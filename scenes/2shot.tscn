@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=1]
+
+[ext_resource path="res://scenes/shot.tscn" type="PackedScene" id=1]
+
+[node name="2shot" type="Node2D"]
+
+[node name="shot" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( -3, 0 )
+Damage = 1
+
+[node name="shot1" parent="." instance=ExtResource( 1 )]
+
+transform/pos = Vector2( 3, 0 )
+Damage = 1
+
+

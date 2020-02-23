@@ -1,0 +1,404 @@
+[gd_scene load_steps=23 format=1]
+
+[ext_resource path="res://rail.gd" type="Script" id=1]
+[ext_resource path="res://ship.gd" type="Script" id=2]
+[ext_resource path="res://assets/sprites/ship/ship.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/ship/ship1.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/ship/ship2.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/ship/trail1.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/ship/trail3.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/ship/trail2.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/ship/trail4.png" type="Texture" id=9]
+[ext_resource path="res://explosion.scn" type="PackedScene" id=10]
+[ext_resource path="res://sound_shoot.wav" type="Sample" id=11]
+[ext_resource path="res://sound_explode.wav" type="Sample" id=12]
+[ext_resource path="res://assets/fonts/zxB.fnt" type="BitmapFont" id=13]
+[ext_resource path="res://assets/themes/theme.thm" type="Theme" id=14]
+[ext_resource path="res://assets/fonts/zx.fnt" type="BitmapFont" id=15]
+
+[sub_resource type="ConvexPolygonShape2D" id=1]
+
+custom_solver_bias = 0.0
+points = Vector2Array( -7, 6, 0, -8, 7, 6 )
+
+[sub_resource type="SpriteFrames" id=2]
+
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
+"loop": false,
+"name": "bankLeft",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ), ExtResource( 5 ) ],
+"loop": false,
+"name": "bankRight",
+"speed": 5.0
+} ]
+
+[sub_resource type="SpriteFrames" id=3]
+
+animations = [ {
+"frames": [ ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
+"loop": true,
+"name": "default",
+"speed": 15.0
+} ]
+
+[sub_resource type="Animation" id=4]
+
+resource/name = "explosion"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("explosion:playing")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.1 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("shipSprite:visibility/visible")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 0.1 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("thruster:visibility/visible")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 0, 0.1 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=5]
+
+resource/name = "shoot"
+length = 0.2
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("shipSprite:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.1 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 1 ), Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("thruster:transform/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 0.1 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 14 ), Vector2( 0, 13 ) ]
+}
+
+[sub_resource type="SampleLibrary" id=6]
+
+samples/shoot = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 11 )
+}
+samples/sound_explode = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 12 )
+}
+
+[sub_resource type="ImageTexture" id=7]
+
+flags = 0
+image = Image()
+size = Vector2( 72, 8 )
+storage = 0
+lossy_quality = 0.7
+
+[node name="rail" type="Node2D"]
+
+script/script = ExtResource( 1 )
+__meta__ = {
+"__editor_plugin_screen__": "2D"
+}
+motion = Vector2( 0, -50 )
+max_x = 256
+max_y = 500
+
+[node name="ship" type="Area2D" parent="."]
+
+transform/pos = Vector2( 128, 174 )
+input/pickable = true
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 2 )
+__meta__ = {
+"__editor_plugin_screen__": "Script",
+"__editor_plugin_states__": {
+"2D": {
+"ofs": Vector2( -161.705, -75.6866 ),
+"snap_grid": false,
+"snap_offset": Vector2( 0, 0 ),
+"snap_pixel": false,
+"snap_relative": false,
+"snap_rotation": false,
+"snap_rotation_offset": 0.0,
+"snap_rotation_step": 0.261799,
+"snap_show_grid": false,
+"snap_step": Vector2( 10, 10 ),
+"zoom": 3.42479
+},
+"3D": {
+"ambient_light_color": Color( 0.15, 0.15, 0.15, 1 ),
+"default_light": true,
+"default_srgb": false,
+"deflight_rot_x": 0.942478,
+"deflight_rot_y": 0.628319,
+"fov": 45.0,
+"show_grid": true,
+"show_origin": true,
+"viewport_mode": 1,
+"viewports": [ {
+"distance": 4.0,
+"listener": true,
+"pos": Vector3( 0, 0, 0 ),
+"use_environment": false,
+"use_orthogonal": false,
+"x_rot": 0.0,
+"y_rot": 0.0
+}, {
+"distance": 4.0,
+"listener": false,
+"pos": Vector3( 0, 0, 0 ),
+"use_environment": false,
+"use_orthogonal": false,
+"x_rot": 0.0,
+"y_rot": 0.0
+}, {
+"distance": 4.0,
+"listener": false,
+"pos": Vector3( 0, 0, 0 ),
+"use_environment": false,
+"use_orthogonal": false,
+"x_rot": 0.0,
+"y_rot": 0.0
+}, {
+"distance": 4.0,
+"listener": false,
+"pos": Vector3( 0, 0, 0 ),
+"use_environment": false,
+"use_orthogonal": false,
+"x_rot": 0.0,
+"y_rot": 0.0
+} ],
+"zfar": 500.0,
+"znear": 0.1
+},
+"Script": {
+"current": 0,
+"sources": [ "res://ship.gd" ]
+}
+},
+"__editor_run_settings__": {
+"custom_args": "-l $scene",
+"run_mode": 0
+}
+}
+
+[node name="shipSprite" type="AnimatedSprite" parent="ship"]
+
+frames = SubResource( 2 )
+animation = "default"
+playing = true
+
+[node name="thruster" type="AnimatedSprite" parent="ship"]
+
+transform/pos = Vector2( 0, 13 )
+frames = SubResource( 3 )
+animation = "default"
+frame = 3
+playing = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ship"]
+
+build_mode = 0
+polygon = Vector2Array( -7, 6, 0, -8, 7, 6 )
+shape_range = Vector2( 0, 0 )
+trigger = false
+
+[node name="anim" type="AnimationPlayer" parent="ship"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/explosion = SubResource( 4 )
+anims/shoot = SubResource( 5 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="shootfrom" type="Position2D" parent="ship"]
+
+transform/pos = Vector2( 0, -9 )
+
+[node name="explosion" parent="ship" instance=ExtResource( 10 )]
+
+visibility/visible = false
+
+[node name="sfx" type="SamplePlayer" parent="ship"]
+
+config/polyphony = 1
+config/samples = SubResource( 6 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 0.0
+default/filter/resonance = 0.0
+default/filter/gain = 0.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
+
+[node name="camera" type="Camera2D" parent="."]
+
+anchor_mode = 0
+rotating = false
+current = true
+zoom = Vector2( 1, 1 )
+limit/left = -10000000
+limit/top = -10000000
+limit/right = 10000000
+limit/bottom = 10000000
+drag_margin/h_enabled = true
+drag_margin/v_enabled = true
+smoothing/enable = false
+smoothing/speed = 5.0
+drag_margin/left = 0.2
+drag_margin/top = 0.2
+drag_margin/right = 0.2
+drag_margin/bottom = 0.2
+
+[node name="hud" type="CanvasLayer" parent="."]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="Sprite" type="Sprite" parent="hud"]
+
+transform/pos = Vector2( 128, 4 )
+transform/scale = Vector2( 32, 1 )
+texture = SubResource( 7 )
+modulate = Color( 0, 0, 0, 1 )
+
+[node name="score" type="Label" parent="hud"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = -1.0
+margin/right = 58.0
+margin/bottom = 9.0
+custom_fonts/font = ExtResource( 13 )
+text = "SCORE:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="score_points" type="Label" parent="hud"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 56.0
+margin/top = -1.0
+margin/right = 120.0
+margin/bottom = 9.0
+custom_fonts/font = ExtResource( 13 )
+text = "0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="back_to_menu" type="Button" parent="hud"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 14 )
+margin/left = 158.0
+margin/top = -2.0
+margin/right = 256.0
+margin/bottom = 8.0
+custom_fonts/font = ExtResource( 15 )
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Back to Menu"
+flat = false
+
+[node name="game_over" type="Sprite" parent="hud"]
+
+visibility/visible = false
+transform/pos = Vector2( 128, 100.264 )
+texture = SubResource( 7 )
+modulate = Color( 0, 0, 0, 1 )
+
+[node name="game_over" type="Label" parent="hud/game_over"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -36.0
+margin/top = -4.26352
+margin/right = 36.0
+margin/bottom = 4.73648
+custom_fonts/font = ExtResource( 13 )
+text = "GAME OVER"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="area_enter" from="ship" to="ship" method="_on_ship_area_enter"]
+
+[connection signal="body_enter" from="ship" to="ship" method="_on_ship_body_enter"]
+
+[connection signal="pressed" from="hud/back_to_menu" to="ship" method="_on_back_to_menu_pressed"]
+
+

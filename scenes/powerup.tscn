@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=1]
+
+[ext_resource path="res://scripts/powerup.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/powerup/powerup0.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/powerup/powerup1.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/powerup/powerup2.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/powerup/powerup3.png" type="Texture" id=5]
+[ext_resource path="res://assets/fonts/zxB.fnt" type="BitmapFont" id=6]
+
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 8.0
+
+[sub_resource type="SpriteFrames" id=1]
+
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 10.0
+} ]
+
+[node name="Powerup" type="Area2D"]
+
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 1 )
+PowerupType = "shot"
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+
+frames = SubResource( 1 )
+animation = "default"
+frame = 3
+playing = true
+
+[node name="Label" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -4.0
+margin/top = -5.0
+margin/right = 4.0
+margin/bottom = 4.0
+custom_fonts/font = ExtResource( 6 )
+text = "S"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[connection signal="area_enter" from="." to="." method="_on_Powerup_area_enter"]
+
+
