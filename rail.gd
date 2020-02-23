@@ -15,6 +15,9 @@ func _process(delta):
 		update()
 		return
 	
+	if get_pos().x >= max_x or get_pos().x <= -max_x or get_pos().y >= max_y or get_pos().y <= -max_y:
+		return
+	
 	set_pos(get_pos() + delta*motion)
 
 func _ready():
