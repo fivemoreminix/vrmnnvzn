@@ -230,6 +230,7 @@ __meta__ = {
 "run_mode": 0
 }
 }
+powerup = "None"
 
 [node name="shipSprite" type="AnimatedSprite" parent="ship"]
 
@@ -242,7 +243,7 @@ playing = true
 transform/pos = Vector2( 0, 13 )
 frames = SubResource( 3 )
 animation = "default"
-frame = 3
+frame = 2
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ship"]
@@ -288,6 +289,13 @@ default/filter/gain = 0.0
 default/reverb_room = 2
 default/reverb_send = 0.0
 default/chorus_send = 0.0
+
+[node name="PowerupTimer" type="Timer" parent="ship"]
+
+process_mode = 1
+wait_time = 5.0
+one_shot = true
+autostart = false
 
 [node name="camera" type="Camera2D" parent="."]
 
@@ -398,6 +406,8 @@ max_lines_visible = -1
 [connection signal="area_enter" from="ship" to="ship" method="_on_ship_area_enter"]
 
 [connection signal="body_enter" from="ship" to="ship" method="_on_ship_body_enter"]
+
+[connection signal="timeout" from="ship/PowerupTimer" to="ship" method="_on_PowerupTimer_timeout"]
 
 [connection signal="pressed" from="hud/back_to_menu" to="ship" method="_on_back_to_menu_pressed"]
 

@@ -9,9 +9,9 @@ var prev_shooting = false
 var killed = false
 onready var shipSprite = get_node("shipSprite")
 onready var shots = [preload("res://scenes/shot.tscn"),preload("res://scenes/2shot.tscn"),preload("res://scenes/3shot.tscn"),preload("res://scenes/5shot.tscn")]
-var shotLevel = 1
 const maxShotLevel = 3
 var banking = false
+export(String, "None", "Speed", "FireRate", "Blah") var powerup = "None"
 
 func _process(delta):
 	var motion = Vector2()
@@ -50,7 +50,7 @@ func _process(delta):
 	
 	if (shooting and not prev_shooting):
 		# Just pressed
-		var shot = shots[shotLevel].instance()
+		var shot = shots[2 if powerup == "Shot" else 1].instance()
 		get_node("anim").play("shoot")
 		# Use the Position2D as reference
 		shot.set_pos(get_node("shootfrom").get_global_pos())
@@ -98,3 +98,7 @@ func _on_ship_area_enter(area):
 
 func _on_back_to_menu_pressed():
 	get_tree().change_scene("res://main_menu.scn")
+
+
+func _on_PowerupTimer_timeout():
+	powerup = "None"

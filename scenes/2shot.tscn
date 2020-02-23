@@ -7,11 +7,9 @@
 [node name="shot" parent="." instance=ExtResource( 1 )]
 
 transform/pos = Vector2( -3, 0 )
-Damage = 1
 
 [node name="shot1" parent="." instance=ExtResource( 1 )]
 
 transform/pos = Vector2( 3, 0 )
-Damage = 1
 
 

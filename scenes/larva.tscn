@@ -18,12 +18,12 @@
 [ext_resource path="res://assets/sprites/explosion/explosion11.png" type="Texture" id=16]
 [ext_resource path="res://assets/sprites/explosion/explosion12.png" type="Texture" id=17]
 
-[sub_resource type="CircleShape2D" id=5]
+[sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 8.0
 
-[sub_resource type="SpriteFrames" id=7]
+[sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
@@ -37,7 +37,7 @@ animations = [ {
 "speed": 6.0
 } ]
 
-[sub_resource type="SampleLibrary" id=4]
+[sub_resource type="SampleLibrary" id=3]
 
 samples/sound_explode = {
 "db": 0.0,
@@ -46,7 +46,7 @@ samples/sound_explode = {
 "sample": ExtResource( 4 )
 }
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=4]
 
 animations = [ {
 "frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), null ],
@@ -58,7 +58,7 @@ animations = [ {
 [node name="Larva" type="Area2D"]
 
 input/pickable = true
-shapes/0/shape = SubResource( 5 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -72,13 +72,13 @@ __meta__ = {
 
 [node name="sprite" type="AnimatedSprite" parent="."]
 
-frames = SubResource( 7 )
+frames = SubResource( 2 )
 animation = "default"
 playing = true
 
 [node name="collision" type="CollisionShape2D" parent="."]
 
-shape = SubResource( 5 )
+shape = SubResource( 1 )
 trigger = false
 _update_shape_index = 0
 
@@ -94,13 +94,13 @@ params/attenuation/min_distance = 1.0
 params/attenuation/max_distance = 2048.0
 params/attenuation/distance_exp = 1.0
 config/polyphony = 1
-config/samples = SubResource( 4 )
+config/samples = SubResource( 3 )
 config/pitch_random = 0.0
 
 [node name="explosion" type="AnimatedSprite" parent="."]
 
 visibility/visible = false
-frames = SubResource( 6 )
+frames = SubResource( 4 )
 animation = "default"
 
 [connection signal="enter_screen" from="visibility" to="." method="_on_visibility_enter_screen"]
