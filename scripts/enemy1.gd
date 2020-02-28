@@ -117,7 +117,7 @@ func destroy():
 		trailing.set_tail() 
 	get_node("sfx").play("sound_explode")
 	# Accumulate points
-	get_node("/root/game_state").points += 25
+#	get_node("/root/game_state").points += 25
 
 
 func _on_visibility_enter_screen():

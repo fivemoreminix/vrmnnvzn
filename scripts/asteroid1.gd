@@ -40,7 +40,7 @@ func destroy():
 		set_process(false)
 		get_node("sfx").play("sound_explode")
 		# Accumulate points
-		get_node("/root/game_state").points += 10
+#		get_node("/root/game_state").points += 10
 	else:
 		if !get_node("explosion").is_playing():
 			queue_free()

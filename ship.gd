@@ -4,6 +4,9 @@ extends Area2D
 # Member variables
 const SPEED = 80
 
+var motion = Vector2()
+var dampen_speed = 10
+
 var screen_size
 var prev_shooting = false
 var killed = false
@@ -19,7 +22,6 @@ func _process(delta):
 			_on_back_to_menu_pressed()
 		return
 	
-	var motion = Vector2()
 	if Input.is_action_pressed("move_up"):
 		motion += Vector2(0, -1)
 	if Input.is_action_pressed("move_down"):
@@ -41,7 +43,13 @@ func _process(delta):
 	
 	var pos = get_pos()
 	
+	# clamp motion
+	motion = Vector2(clamp(motion.x, -1, 1), clamp(motion.y, -1, 1))
+	# move ship
 	pos += motion*delta*SPEED
+	# lerp motion (motion dampening effect)
+	motion = Vector2(lerp(motion.x, 0, delta*dampen_speed), lerp(motion.y, 0, delta*dampen_speed))
+	
 	if (pos.x < 0):
 		pos.x = 0
 	if (pos.x > screen_size.x):
