@@ -29,19 +29,15 @@ tile_data = IntArray( -9240576, 4, -9240575, 4, -9240574, 4, -9240573, 4, -92405
 
 [node name="rail" parent="." instance=ExtResource( 2 )]
 
-editor/display_folded = true
 max_y = 2250
-
-[node name="ship" parent="rail"]
-
-powerup = "None"
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 2
+frame = 1
 
 [node name="enemies" type="Node2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 0, 10 )
 
 [node name="asteroid" parent="enemies" instance=ExtResource( 3 )]
@@ -110,7 +106,6 @@ speed_x = -120.0
 [node name="Powerup" parent="." instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 125.302, -181.576 )
-type = "Shot"
 
 
 [editable path="rail"]

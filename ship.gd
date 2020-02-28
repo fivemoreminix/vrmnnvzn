@@ -14,6 +14,11 @@ var banking = false
 export(String, "None", "Speed", "FireRate", "Blah") var powerup = "None"
 
 func _process(delta):
+	if killed:
+		if Input.is_action_pressed("ui_cancel"):
+			_on_back_to_menu_pressed()
+		return
+	
 	var motion = Vector2()
 	if Input.is_action_pressed("move_up"):
 		motion += Vector2(0, -1)
@@ -63,7 +68,7 @@ func _process(delta):
 	prev_shooting = shooting
 	
 	# Update points counter
-	get_node("../hud/score_points").set_text(str(get_node("/root/game_state").points))
+#	get_node("../hud/score_points").set_text(str(get_node("/root/game_state").points))
 
 
 func _ready():
@@ -73,7 +78,7 @@ func _ready():
 
 
 func _hit_something():
-	if (killed):
+	if killed:
 		return
 	killed = true
 	get_node("shipSprite").hide()
@@ -84,7 +89,13 @@ func _hit_something():
 	get_node("../hud/game_over").show()
 	get_node("/root/game_state").game_over()
 	get_parent().stop()
-	set_process(false)
+#	set_process(false)
+
+
+#func _input(ev):
+#	print("pressed a key: " + str(ev))
+#	if ev.type == InputEvent.ACTION and ev.is_action_pressed("ui_cancel"):
+#		_on_back_to_menu_pressed()
 
 
 func _on_ship_body_enter(body):

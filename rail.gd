@@ -11,7 +11,6 @@ func stop():
 
 func _process(delta):
 	if get_tree().is_editor_hint():
-		print("in the editor!!!1")
 		update()
 		return
 	
@@ -24,6 +23,7 @@ func _ready():
 	set_process(true)
 
 func _draw():
-	draw_circle(Vector2(0, 0), 8, Color(1.0, 1.0, 1.0))
-	draw_circle(Vector2(max_x - get_pos().x, 0), 6, Color(1.0, 0.0, 0.0))
-	draw_circle(Vector2(0, -max_y - get_pos().y), 6, Color(0.0, 1.0, 0.0))
+	if get_tree().is_editor_hint():
+		draw_circle(Vector2(0, 0), 8, Color(1.0, 1.0, 1.0))
+		draw_circle(Vector2(max_x - get_pos().x, 0), 6, Color(1.0, 0.0, 0.0))
+		draw_circle(Vector2(0, -max_y - get_pos().y), 6, Color(0.0, 1.0, 0.0))
