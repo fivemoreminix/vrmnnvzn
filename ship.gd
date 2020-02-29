@@ -1,6 +1,9 @@
 
 extends Area2D
 
+signal effect_added
+signal effect_removed
+
 # Member variables
 const SPEED = 80
 
@@ -8,19 +11,27 @@ var motion = Vector2()
 var dampen_speed = 10
 
 var screen_size
-var prev_shooting = false
+#var prev_shooting = false
+var can_shoot = true
 var killed = false
 onready var shipSprite = get_node("shipSprite")
 onready var shots = [preload("res://scenes/shot.tscn"),preload("res://scenes/2shot.tscn"),preload("res://scenes/3shot.tscn"),preload("res://scenes/5shot.tscn")]
-const maxShotLevel = 3
 var banking = false
-export(String, "None", "Speed", "FireRate", "Blah") var powerup = "None"
+
+var active_effects = [] # a list of active powerups or detriments
 
 func _process(delta):
 	if killed:
 		if Input.is_action_pressed("ui_cancel"):
 			_on_back_to_menu_pressed()
 		return
+	
+	# decrease time remaining for all effects
+	for e in active_effects:
+		e[2] -= delta
+		if e[2] <= 0:
+			active_effects.erase(e) # remove the effect once duration has run out
+			emit_signal("effect_removed", e)
 	
 	if Input.is_action_pressed("move_up"):
 		motion += Vector2(0, -1)
@@ -41,29 +52,32 @@ func _process(delta):
 		banking = false
 	var shooting = Input.is_action_pressed("shoot")
 	
+	move(delta, motion)
+	
+	if shooting: shoot()
+	
+	# Update points counter
+#	get_node("../hud/score_points").set_text(str(get_node("/root/game_state").points))
+
+func move(delta, motion):
 	var pos = get_pos()
 	
 	# clamp motion
-	motion = Vector2(clamp(motion.x, -1, 1), clamp(motion.y, -1, 1))
+	self.motion = Vector2(clamp(motion.x, -1, 1), clamp(motion.y, -1, 1))
 	# move ship
-	pos += motion*delta*SPEED
+	pos += self.motion*delta*SPEED
 	# lerp motion (motion dampening effect)
-	motion = Vector2(lerp(motion.x, 0, delta*dampen_speed), lerp(motion.y, 0, delta*dampen_speed))
+	self.motion = Vector2(lerp(self.motion.x, 0, delta*dampen_speed), lerp(self.motion.y, 0, delta*dampen_speed))
 	
-	if (pos.x < 0):
-		pos.x = 0
-	if (pos.x > screen_size.x):
-		pos.x = screen_size.x
-	if (pos.y < 0):
-		pos.y = 0
-	if (pos.y > screen_size.y):
-		pos.y = screen_size.y
+	pos.x = clamp(pos.x, 0, screen_size.x)
+	pos.y = clamp(pos.y, 0, screen_size.y)
 	
 	set_pos(pos)
-	
-	if (shooting and not prev_shooting):
+
+func shoot():
+	if can_shoot:
 		# Just pressed
-		var shot = shots[2 if powerup == "Shot" else 1].instance()
+		var shot = shots[2 if has_effect(0, 2) else 1].instance()
 		get_node("anim").play("shoot")
 		# Use the Position2D as reference
 		shot.set_pos(get_node("shootfrom").get_global_pos())
@@ -72,11 +86,10 @@ func _process(delta):
 		get_node("../..").add_child(shot)
 		# Play sound
 		get_node("sfx").play("shoot")
-	
-	prev_shooting = shooting
-	
-	# Update points counter
-#	get_node("../hud/score_points").set_text(str(get_node("/root/game_state").points))
+		
+		# reset condition
+		can_shoot = false
+		get_node("ShootTimer").start()
 
 
 func _ready():
@@ -85,9 +98,7 @@ func _ready():
 	
 
 
-func _hit_something():
-	if killed:
-		return
+func kill():
 	killed = true
 	get_node("shipSprite").hide()
 	get_node("thruster").hide()
@@ -97,13 +108,28 @@ func _hit_something():
 	get_node("../hud/game_over").show()
 	get_node("/root/game_state").game_over()
 	get_parent().stop()
-#	set_process(false)
 
 
-#func _input(ev):
-#	print("pressed a key: " + str(ev))
-#	if ev.type == InputEvent.ACTION and ev.is_action_pressed("ui_cancel"):
-#		_on_back_to_menu_pressed()
+func has_effect(type, effect):
+	for e in active_effects:
+		if e[0] == type and e[1] == effect: return true
+	return false
+
+#Add powerup and detriment effects to the player.
+#
+#type is of powerup.gd::Class, effect is of either powerup.gd::{Powerup, Detriment}.
+func add_effect(type, effect, duration=5):
+	# check if this effect is present ...
+	for e in active_effects:
+		if e[0] == type and e[1] == effect: active_effects.erase(e) # remove the effect from the list
+		emit_signal("effect_removed", e)
+	active_effects.append([type, effect, duration])
+	emit_signal("effect_added", active_effects.size()-1) # returns index in array where the effect is present
+
+
+func _hit_something():
+	if killed: return
+	else: kill()
 
 
 func _on_ship_body_enter(body):
@@ -119,5 +145,5 @@ func _on_back_to_menu_pressed():
 	get_tree().change_scene("res://main_menu.scn")
 
 
-func _on_PowerupTimer_timeout():
-	powerup = "None"
+func _on_ShootTimer_timeout():
+	can_shoot = true

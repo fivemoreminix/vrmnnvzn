@@ -247,7 +247,6 @@ __meta__ = {
 "run_mode": 0
 }
 }
-powerup = "None"
 
 [node name="shipSprite" type="AnimatedSprite" parent="ship"]
 
@@ -307,11 +306,11 @@ default/reverb_room = 2
 default/reverb_send = 0.0
 default/chorus_send = 0.0
 
-[node name="PowerupTimer" type="Timer" parent="ship"]
+[node name="ShootTimer" type="Timer" parent="ship"]
 
 process_mode = 1
-wait_time = 5.0
-one_shot = true
+wait_time = 0.3
+one_shot = false
 autostart = false
 
 [node name="camera" type="Camera2D" parent="."]
@@ -465,7 +464,7 @@ flat = false
 
 [connection signal="body_enter" from="ship" to="ship" method="_on_ship_body_enter"]
 
-[connection signal="timeout" from="ship/PowerupTimer" to="ship" method="_on_PowerupTimer_timeout"]
+[connection signal="timeout" from="ship/ShootTimer" to="ship" method="_on_ShootTimer_timeout"]
 
 [connection signal="pressed" from="hud/back_to_menu" to="ship" method="_on_back_to_menu_pressed"]
 
