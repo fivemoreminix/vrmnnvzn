@@ -1,5 +1,7 @@
 extends Button
 
+export(String) var parent_function_to_call = "the_function"
+
 var white_flash # ../WhiteFlash
 const FLASH_DUR = 0.3
 var times = 0
@@ -10,8 +12,8 @@ var raising = true # whether to add or subtract from alpha
 func _process(delta):
 	if times >= 2: # if we finished the animation
 		set_process(false)
-		get_parent()._on_play_pressed()
-		return
+		get_parent().begin_fade(parent_function_to_call) # tell parent to begin the fading,
+		return                                           # and use the given function name to change scenes or do whatever.
 	
 	if raising: progress += delta / (FLASH_DUR / 2)
 	else:       progress -= delta / (FLASH_DUR / 2)

@@ -15,15 +15,15 @@ func _process(delta):
 	else:
 		if fade_progress >= FADE_TIME:
 			emit_signal("fade_finished")
-			set_process(false)
+			get_tree().get_root().set_disable_input(false)
 		else:
 			fade_progress += delta
 			black_flash.set_modulate(Color(0.0, 0.0, 0.0, fade_progress))
 
-func _on_play_pressed():
+func begin_fade(func_name):
 	black_flash.show()
 	black_flash.set_modulate(Color(0.0, 0.0, 0.0, 0.0))
-	connect("fade_finished", self, "new_game")
+	connect("fade_finished", self, func_name)
 
 func new_game():
 	get_tree().change_scene("res://scenes/levels/lvl0.tscn")
