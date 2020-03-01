@@ -20,10 +20,10 @@ func _process(delta):
 			fade_progress += delta
 			black_flash.set_modulate(Color(0.0, 0.0, 0.0, fade_progress))
 
-func begin_fade(func_name):
+func handle(func_name):
 	black_flash.show()
 	black_flash.set_modulate(Color(0.0, 0.0, 0.0, 0.0))
 	connect("fade_finished", self, func_name)
 
 func new_game():
-	get_tree().change_scene("res://scenes/levels/lvl0.tscn")
+	get_tree().change_scene("res://new_game.tscn")

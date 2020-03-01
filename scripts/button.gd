@@ -12,7 +12,7 @@ var raising = true # whether to add or subtract from alpha
 func _process(delta):
 	if times >= 2: # if we finished the animation
 		set_process(false)
-		get_parent().begin_fade(parent_function_to_call) # tell parent to begin the fading,
+		get_parent().handle(parent_function_to_call) # tell parent to begin the fading,
 		return                                           # and use the given function name to change scenes or do whatever.
 	
 	if raising: progress += delta / (FLASH_DUR / 2)
