@@ -33,11 +33,10 @@ max_y = 2250
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 3
+frame = 2
 
 [node name="enemies" type="Node2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 0, 10 )
 
 [node name="asteroid" parent="enemies" instance=ExtResource( 3 )]
