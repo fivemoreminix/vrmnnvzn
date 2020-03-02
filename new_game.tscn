@@ -12,9 +12,6 @@ script/source = "extends Control
 
 signal user_made_decision
 
-func _ready():
-	pass
-
 func handle(func_name):
 	call(func_name)
 
@@ -144,6 +141,7 @@ stretch_mode = 0
 
 [node name="MainDialog" type="Control" parent="."]
 
+visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
