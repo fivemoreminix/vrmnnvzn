@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=1]
+[gd_scene load_steps=26 format=1]
 
 [ext_resource path="res://rail.gd" type="Script" id=1]
 [ext_resource path="res://ship.gd" type="Script" id=2]
@@ -12,9 +12,10 @@
 [ext_resource path="res://explosion.scn" type="PackedScene" id=10]
 [ext_resource path="res://sound_shoot.wav" type="Sample" id=11]
 [ext_resource path="res://sound_explode.wav" type="Sample" id=12]
-[ext_resource path="res://assets/fonts/zxB.fnt" type="BitmapFont" id=13]
-[ext_resource path="res://assets/themes/theme.thm" type="Theme" id=14]
-[ext_resource path="res://assets/fonts/zx.fnt" type="BitmapFont" id=15]
+[ext_resource path="res://assets/themes/theme.thm" type="Theme" id=13]
+[ext_resource path="res://bar.gd" type="Script" id=14]
+[ext_resource path="res://assets/fonts/zxB.fnt" type="BitmapFont" id=15]
+[ext_resource path="res://assets/fonts/zx.fnt" type="BitmapFont" id=16]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -259,7 +260,6 @@ playing = true
 transform/pos = Vector2( 0, 13 )
 frames = SubResource( 3 )
 animation = "default"
-frame = 1
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ship"]
@@ -340,12 +340,37 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 
-[node name="Background" type="Sprite" parent="hud"]
+[node name="BottomBar" type="Panel" parent="hud"]
 
-transform/pos = Vector2( 128, 188 )
-transform/scale = Vector2( 32, 1 )
-texture = SubResource( 7 )
-modulate = Color( 0, 0, 0, 1 )
+anchor/left = 3
+anchor/top = 1
+anchor/right = 3
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 13 )
+margin/left = 128.0
+margin/top = 8.0
+margin/right = -128.0
+margin/bottom = 0.0
+script/script = ExtResource( 14 )
+
+[node name="ScrollingText" type="Label" parent="hud/BottomBar"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 256.0
+margin/top = -1.0
+margin/right = 480.0
+margin/bottom = 19.0
+text = "This is some example text..."
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 [node name="score" type="Label" parent="hud"]
 
@@ -358,7 +383,7 @@ margin/left = 0.0
 margin/top = -1.0
 margin/right = 58.0
 margin/bottom = 9.0
-custom_fonts/font = ExtResource( 13 )
+custom_fonts/font = ExtResource( 15 )
 text = "SCORE:"
 percent_visible = 1.0
 lines_skipped = 0
@@ -375,7 +400,7 @@ margin/left = 56.0
 margin/top = -1.0
 margin/right = 120.0
 margin/bottom = 9.0
-custom_fonts/font = ExtResource( 13 )
+custom_fonts/font = ExtResource( 15 )
 text = "0"
 percent_visible = 1.0
 lines_skipped = 0
@@ -388,12 +413,12 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = ExtResource( 14 )
+theme/theme = ExtResource( 13 )
 margin/left = 158.0
 margin/top = -2.0
 margin/right = 256.0
 margin/bottom = 8.0
-custom_fonts/font = ExtResource( 15 )
+custom_fonts/font = ExtResource( 16 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -421,7 +446,7 @@ margin/left = 92.0
 margin/top = 96.0005
 margin/right = 164.0
 margin/bottom = 105.0
-custom_fonts/font = ExtResource( 13 )
+custom_fonts/font = ExtResource( 15 )
 text = "GAME OVER"
 percent_visible = 1.0
 lines_skipped = 0
@@ -449,12 +474,12 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = ExtResource( 14 )
+theme/theme = ExtResource( 13 )
 margin/left = 138.0
 margin/top = 110.0
 margin/right = 164.0
 margin/bottom = 121.0
-custom_fonts/font = ExtResource( 15 )
+custom_fonts/font = ExtResource( 16 )
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null

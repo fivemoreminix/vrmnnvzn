@@ -33,7 +33,7 @@ max_y = 2250
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 2
+frame = 3
 
 [node name="enemies" type="Node2D" parent="."]
 
