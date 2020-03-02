@@ -27,5 +27,8 @@ func continue_game():
 	print("opened save file and got index = " + index)
 	get_tree().change_scene("res://scenes/levels/lvl" + index + ".tscn")
 
+func exit_game():
+	get_tree().quit()
+
 func _on_fade_finished():
 	get_tree().get_root().set_disable_input(false)

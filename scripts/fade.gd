@@ -9,7 +9,6 @@ var fade_progress = 0.0
 func _process(delta):
 	if fade_progress >= FADE_TIME:
 		emit_signal("fade_finished")
-		get_tree().get_root().set_disable_input(false)
 		set_process(false)
 	else:
 		fade_progress += delta
