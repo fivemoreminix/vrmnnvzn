@@ -22,7 +22,7 @@ func _on_Warning_user_made_decision(decision): # decision true if continue, fals
 	if decision == false:
 		fade.begin_fade_out()
 	else:
-		get_node("Warning").hide()
+#		get_node("Warning").hide()
 		begin_fade_and_load_first_level()
 #		get_node("MainDialog").show()
 
