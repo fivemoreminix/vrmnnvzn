@@ -20,6 +20,13 @@ var banking = false
 
 var active_effects = [] # a list of active powerups or detriments
 
+
+func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN) # hide the mouse over game window
+	screen_size = get_viewport().get_rect().size
+	set_process(true)
+
+
 func _process(delta):
 	if killed:
 		if Input.is_action_pressed("ui_cancel"):
@@ -59,6 +66,7 @@ func _process(delta):
 	# Update points counter
 #	get_node("../hud/score_points").set_text(str(get_node("/root/game_state").points))
 
+
 func move(delta, motion):
 	var pos = get_pos()
 	
@@ -73,6 +81,7 @@ func move(delta, motion):
 	pos.y = clamp(pos.y, 0, 172)
 	
 	set_pos(pos)
+
 
 func shoot():
 	if can_shoot:
@@ -92,12 +101,6 @@ func shoot():
 		get_node("ShootTimer").start()
 
 
-func _ready():
-	screen_size = get_viewport().get_rect().size
-	set_process(true)
-	
-
-
 func kill():
 	killed = true
 	get_node("shipSprite").hide()
@@ -108,6 +111,7 @@ func kill():
 	get_node("../hud/game_over").show()
 	get_node("/root/game_state").game_over()
 	get_parent().stop()
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE) # re-enable the mouse
 
 
 func has_effect(type, effect):
