@@ -9,6 +9,7 @@ var fade_progress = 0.0
 func _process(delta):
 	if fade_progress >= FADE_TIME:
 		emit_signal("fade_finished")
+		get_tree().get_root().set_disable_input(false) # re-enable input after completing the animation
 		set_process(false)
 	else:
 		fade_progress += delta
@@ -17,4 +18,5 @@ func _process(delta):
 func begin_fade_out():
 	black_flash.show()
 	black_flash.set_modulate(Color(0.0, 0.0, 0.0, 0.0))
+	get_tree().get_root().set_disable_input(true) # disable input before beginning the animation
 	set_process(true)

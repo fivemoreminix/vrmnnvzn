@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://assets/themes/theme.thm" type="Theme" id=1]
 [ext_resource path="res://new_game.gd" type="Script" id=2]
 [ext_resource path="res://scripts/button.gd" type="Script" id=3]
 [ext_resource path="res://assets/images/question.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/particle.png" type="Texture" id=5]
+[ext_resource path="res://scenes/fade.tscn" type="PackedScene" id=6]
 
 [sub_resource type="GDScript" id=1]
 
@@ -152,10 +153,14 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 
+[node name="Fade" parent="." instance=ExtResource( 6 )]
+
 [connection signal="user_made_decision" from="Warning" to="." method="_on_Warning_user_made_decision"]
 
 [connection signal="pressed" from="Warning/No" to="Warning/No" method="_on_button_pressed"]
 
 [connection signal="pressed" from="Warning/Yes" to="Warning/Yes" method="_on_button_pressed"]
+
+[connection signal="fade_finished" from="Fade" to="." method="_on_fade_finished"]
 
 
