@@ -70,7 +70,7 @@ func move(delta, motion):
 	self.motion = Vector2(lerp(self.motion.x, 0, delta*dampen_speed), lerp(self.motion.y, 0, delta*dampen_speed))
 	
 	pos.x = clamp(pos.x, 0, screen_size.x)
-	pos.y = clamp(pos.y, 0, screen_size.y)
+	pos.y = clamp(pos.y, 0, 172)
 	
 	set_pos(pos)
 
