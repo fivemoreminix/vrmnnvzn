@@ -44,6 +44,8 @@ points = Vector2Array( 0, 16, 16, 0, 16, 16 )
 
 [node name="brick" type="Sprite" parent="."]
 
+editor/display_folded = true
+visibility/visible = false
 transform/pos = Vector2( 0, -0.142397 )
 texture = ExtResource( 1 )
 
@@ -68,6 +70,8 @@ _update_shape_index = 0
 
 [node name="joint" type="Sprite" parent="."]
 
+editor/display_folded = true
+visibility/visible = false
 transform/pos = Vector2( 0, -0.142397 )
 texture = ExtResource( 2 )
 
@@ -92,6 +96,8 @@ _update_shape_index = 0
 
 [node name="pipe" type="Sprite" parent="."]
 
+editor/display_folded = true
+visibility/visible = false
 texture = ExtResource( 3 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="pipe"]
@@ -115,6 +121,8 @@ _update_shape_index = 0
 
 [node name="pipe1" type="Sprite" parent="."]
 
+editor/display_folded = true
+visibility/visible = false
 texture = ExtResource( 4 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="pipe1"]
@@ -138,6 +146,8 @@ _update_shape_index = 0
 
 [node name="bg" type="Sprite" parent="."]
 
+editor/display_folded = true
+visibility/visible = false
 texture = ExtResource( 5 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="bg"]
@@ -161,6 +171,8 @@ _update_shape_index = 0
 
 [node name="bgSkull" type="Sprite" parent="."]
 
+editor/display_folded = true
+visibility/visible = false
 texture = ExtResource( 6 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="bgSkull"]
@@ -209,6 +221,8 @@ trigger = false
 
 [node name="bLc" type="Sprite" parent="."]
 
+editor/display_folded = true
+visibility/visible = false
 texture = ExtResource( 8 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="bLc"]
@@ -234,6 +248,8 @@ trigger = false
 
 [node name="uRc" type="Sprite" parent="."]
 
+editor/display_folded = true
+visibility/visible = false
 texture = ExtResource( 9 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="uRc"]
@@ -259,6 +275,8 @@ trigger = false
 
 [node name="lRc" type="Sprite" parent="."]
 
+editor/display_folded = true
+visibility/visible = false
 texture = ExtResource( 10 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="lRc"]
@@ -284,18 +302,22 @@ trigger = false
 
 [node name="lS" type="Sprite" parent="."]
 
+visibility/visible = false
 texture = ExtResource( 11 )
 
 [node name="rS" type="Sprite" parent="."]
 
+visibility/visible = false
 texture = ExtResource( 12 )
 
 [node name="tS" type="Sprite" parent="."]
 
+visibility/visible = false
 texture = ExtResource( 13 )
 
 [node name="bS" type="Sprite" parent="."]
 
+visibility/visible = false
 texture = ExtResource( 14 )
 
 

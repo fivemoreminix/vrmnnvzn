@@ -9,6 +9,7 @@ var fade_progress = 0.0
 func _process(delta):
 	if fade_progress >= FADE_TIME:
 		emit_signal("fade_finished")
+		fade_progress = 0.0 # reset fade progress
 		get_tree().get_root().set_disable_input(false) # re-enable input after completing the animation
 		set_process(false)
 	else:
