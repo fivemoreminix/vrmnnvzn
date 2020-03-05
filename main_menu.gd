@@ -10,7 +10,10 @@ func _ready():
 func _process(delta):
 	if not get_tree().get_root().is_input_disabled():
 		if Input.is_action_pressed("ui_accept"):
-			get_node("NewGame")._on_button_pressed()
+			if File.new().file_exists("user://VRMNNVZN.save"): # use continue button
+				get_node("Continue")._on_button_pressed()
+			else: # use new game button
+				get_node("NewGame")._on_button_pressed()
 
 func handle(func_name):
 	fade.begin_fade_out()
