@@ -1,13 +1,18 @@
 extends Control
 
 onready var fade = get_node("Fade")
+onready var pointer = get_node("pointer")
 
 func _ready():
 	set_process(true)
 	
 	get_node("Continue").set_disabled(not File.new().file_exists("user://VRMNNVZN.save"))
+	
+	#set the mouse cursor sprite:
+	Input.set_mouse_mode(1)
 
 func _process(delta):
+	pointer.set_pos(get_local_mouse_pos())
 	if not get_tree().get_root().is_input_disabled():
 		if Input.is_action_pressed("ui_accept"):
 			get_node("NewGame")._on_button_pressed()

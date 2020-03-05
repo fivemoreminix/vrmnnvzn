@@ -5,7 +5,7 @@ signal effect_added
 signal effect_removed
 
 # Member variables
-const SPEED = 80
+const SPEED = 150
 
 var motion = Vector2()
 var dampen_speed = 10
@@ -39,7 +39,7 @@ func _process(delta):
 		if e[2] <= 0:
 			active_effects.erase(e) # remove the effect once duration has run out
 			emit_signal("effect_removed", e)
-	
+	motion = Vector2(0,0)
 	if Input.is_action_pressed("move_up"):
 		motion += Vector2(0, -1)
 	if Input.is_action_pressed("move_down"):
@@ -71,11 +71,11 @@ func move(delta, motion):
 	var pos = get_pos()
 	
 	# clamp motion
-	self.motion = Vector2(clamp(motion.x, -1, 1), clamp(motion.y, -1, 1))
+	#self.motion = Vector2(clamp(motion.x, -1, 1), clamp(motion.y, -1, 1))
 	# move ship
-	pos += self.motion*delta*SPEED
+	pos += motion*delta*SPEED
 	# lerp motion (motion dampening effect)
-	self.motion = Vector2(lerp(self.motion.x, 0, delta*dampen_speed), lerp(self.motion.y, 0, delta*dampen_speed))
+	#self.motion = Vector2(lerp(self.motion.x, 0, delta*dampen_speed), lerp(self.motion.y, 0, delta*dampen_speed))
 	
 	pos.x = clamp(pos.x, 0, screen_size.x)
 	pos.y = clamp(pos.y, 0, 172)

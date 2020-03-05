@@ -31,4 +31,5 @@ func _on_button_pressed():
 	white_flash = get_parent().get_node("WhiteFlash")
 	white_flash.show() # make it visible
 	white_flash.edit_set_rect(get_rect()) # fit it over this button
-	white_flash.set_modulate(Color(1.0, 1.0, 1.0, 0.0))
+	#white_flash.set_modulate(Color(1.0, 1.0, 1.0, 0.0))
+	get_parent().get_node("AnimationPlayer").play("flash")
