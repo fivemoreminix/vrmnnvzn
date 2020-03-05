@@ -27,6 +27,7 @@ func _process(delta):
 func _on_button_pressed():
 	set_process(true)
 	get_tree().get_root().set_disable_input(true) # prevent input while doing animation
+	button_sound.play("button_sound")
 	
 	white_flash = get_parent().get_node("WhiteFlash")
 	white_flash.show() # make it visible
