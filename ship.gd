@@ -5,7 +5,7 @@ signal effect_added
 signal effect_removed
 
 # Member variables
-const SPEED = 150
+const SPEED = 130
 
 var motion = Vector2()
 var dampen_speed = 10
