@@ -66,5 +66,5 @@ func _on_visibility_enter_screen():
 func _on_visibility_exit_screen():
 	if get_pos().x < 8:
 		set_pos(Vector2(256,get_pos().y))
-	if get_pos().x > 256-8:
-		set_pos(Vector2(9,get_pos().y))
+	elif get_pos().x > 256-8:
+		set_pos(Vector2(0,get_pos().y))
