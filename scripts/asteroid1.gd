@@ -2,7 +2,7 @@
 extends Area2D
 
 # Member variables
-const SPEED    = 60
+const SPEED    = 100
 const X_RANDOM = 10
 
 export(NodePath) var TargetPath = "../../rail/ship"
@@ -10,23 +10,22 @@ var RailPath                    = "../../rail"
 var target                      = null
 
 var points    = 1
-var speed_x   = 0.0
-var speed_y   = 0.0
+var direction = Vector2(0,0)
 var destroyed = false
 var reversed  = false
 
 
 func _process(delta):
-	translate(Vector2(speed_x, SPEED)*delta)
+	translate(direction*SPEED*delta)
 	if target.get_pos().x > get_pos().x-8 and target.get_pos().x < get_pos().x+8 and !reversed:
 		#print("reversed")
 		get_node("sprite").play("flee")
 		reversed = true
-		speed_x = -speed_x*2.5
 
 
 func _ready():
 	target = get_node(TargetPath)
+	#SPEED = SPEED * 0.1
 	#speed_x = rand_range(-X_RANDOM, X_RANDOM)
 
 
@@ -52,12 +51,13 @@ func is_enemy():
 
 
 func _on_visibility_enter_screen():
-	var run = target.get_pos().x - get_pos().x
-	#print(run)
-	var rise = target.get_pos().y - get_pos().y #(get_pos().y-get_node(RailPath).get_pos().y) -
-	#print(rise)
-	speed_x = run/(rise/SPEED)
-	speed_y = rise/(run/SPEED)
+	direction = (target.get_pos() + get_node(RailPath).get_pos() - get_pos())
+	var distance = direction.length()
+	var targTimeToFuturePos = SPEED*distance/1000
+	var targFuturePos = target.get_pos() + get_node(RailPath).get_pos() + (get_node(RailPath).motion*targTimeToFuturePos) 
+	direction = (targFuturePos - get_pos()).normalized()
+	prints(" new direction: ", direction)
+	
 	#print(speed_x)
 	set_process(true)
 	# Make it spin!

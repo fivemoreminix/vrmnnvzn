@@ -95,12 +95,12 @@ bodySegments = 4
 [node name="Bee" parent="enemies" instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 0, -1577 )
-speed_x = 120.0
+speed_x = 30.0
 
 [node name="Bee1" parent="enemies" instance=ExtResource( 5 )]
 
 transform/pos = Vector2( 254, -1641 )
-speed_x = -120.0
+speed_x = 30.0
 
 [node name="Powerup" parent="." instance=ExtResource( 6 )]
 

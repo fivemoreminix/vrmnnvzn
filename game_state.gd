@@ -1,8 +1,7 @@
-
 extends Node
 
 # Member variables
-#var points = 0
+var points = 0
 #var max_points = 0
 
 func _ready():
