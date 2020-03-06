@@ -54,7 +54,7 @@ func _on_visibility_enter_screen():
 	direction = (target.get_pos() + get_node(RailPath).get_pos() - get_pos())
 	var distance = direction.length()
 	var targTimeToFuturePos = SPEED*distance
-	var targFuturePos = target.get_pos() + get_node(RailPath).get_pos() + (get_node(RailPath).motion*targTimeToFuturePos) 
+	var targFuturePos = target.get_pos() + get_node(RailPath).get_pos() + get_node(RailPath).motion * targTimeToFuturePos
 	direction = (targFuturePos - get_pos()).normalized()
 	prints(" new direction: ", direction)
 	
