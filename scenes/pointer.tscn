@@ -6,6 +6,7 @@
 [node name="Pointer" type="Sprite"]
 
 transform/pos = Vector2( -16, -16 )
+z/z = 1
 texture = ExtResource( 1 )
 offset = Vector2( 8, 8 )
 script/script = ExtResource( 2 )
