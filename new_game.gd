@@ -1,16 +1,11 @@
 extends Control
 
 onready var fade = get_node("Fade")
-onready var pointer = get_node("pointer")
 
 func _ready():
 	# these are hidden by default
 	get_node("Warning").hide()
 	get_node("MainDialog").hide()
-	
-	#set the mouse cursor sprite:
-	set_process(true)
-	Input.set_mouse_mode(1)
 	
 	var f = File.new()
 	if f.file_exists("user://VRMNNVZN.save"): # if a save file exists ...
@@ -21,9 +16,6 @@ func _ready():
 		f.open("user://VRMNNVZN.save", File.WRITE)
 		f.store_string("0") # store level number
 		begin_fade_and_load_first_level()
-
-func _process(delta):
-	pointer.set_pos(get_local_mouse_pos())
 
 func _on_Warning_user_made_decision(decision): # decision true if continue, false if no
 	print("user made decision = " + str(decision))
