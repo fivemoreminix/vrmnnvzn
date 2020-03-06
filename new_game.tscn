@@ -168,7 +168,7 @@ margin/bottom = 0.0
 
 [node name="Fade" parent="." instance=ExtResource( 7 )]
 
-[node name="pointer" parent="." instance=ExtResource( 8 )]
+[node name="Pointer" parent="." instance=ExtResource( 8 )]
 
 [connection signal="user_made_decision" from="Warning" to="." method="_on_Warning_user_made_decision"]
 
