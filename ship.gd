@@ -37,7 +37,9 @@ func _process(delta):
 		e[2] -= delta
 		if e[2] <= 0:
 			active_effects.erase(e) # remove the effect once duration has run out
-			emit_signal("effect_removed", e)
+			emit_signal("effect_removed", active_effects.size(), e)
+	
+	
 	motion = Vector2(0,0)
 	if Input.is_action_pressed("move_up"):
 		motion += Vector2(0, -1)
@@ -110,7 +112,7 @@ func kill():
 	get_node("../hud/game_over").show()
 	get_node("/root/game_state").game_over()
 	
- 	#get_node("../hud/Pointer").show() # re-enable the mouse
+	get_node("../hud/Pointer").show() # re-enable the mouse
 	
 	get_parent().stop()
 
@@ -127,9 +129,10 @@ func add_effect(type, effect, duration=5):
 	# check if this effect is present ...
 	for e in active_effects:
 		if e[0] == type and e[1] == effect: active_effects.erase(e) # remove the effect from the list
-		emit_signal("effect_removed", e)
-	active_effects.append([type, effect, duration])
-	emit_signal("effect_added", active_effects.size()-1) # returns index in array where the effect is present
+		emit_signal("effect_removed", active_effects.size(), e) # send signal with (index, effect)
+	var e = [type, effect, duration]
+	active_effects.append(e)
+	emit_signal("effect_added", active_effects.size()-1, e) # returns index in array where the effect is present and effect itself
 
 
 func _hit_something():

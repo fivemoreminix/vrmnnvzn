@@ -7,9 +7,6 @@ onready var scrol_lbl_default_x = scrol_lbl.get_pos().x
 
 var _scrolling_text = false
 
-func _ready():
-#	scrolling_text("Woah, that's a big invasion ahead of you! Stay frosty.")
-	pass
 
 func _process(delta):
 	if _scrolling_text:
@@ -20,9 +17,20 @@ func _process(delta):
 			scrol_lbl.hide()
 			_scrolling_text = false
 
+
 func scrolling_text(text):
-	print("called scrolling_text")
 	scrol_lbl.show()
 	scrol_lbl.set_text(text)
 	_scrolling_text = true
 	set_process(true)
+
+
+func _on_ship_effect_added(index, effect):
+	var n = TextureFrame.new()
+	
+	n.set_texture(preload("res://assets/sprites/powerup/powerup_triple_shot.png"))
+	get_node("Box").add_child(n)
+
+
+func _on_ship_effect_removed(index, effect):
+	get_node("Box").get_child(index).queue_free()
