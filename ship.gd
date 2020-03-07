@@ -144,7 +144,7 @@ func _on_ship_body_enter(body):
 func _on_ship_area_enter(area):
 #	if (area.has_method("is_enemy") and area.is_enemy()):
 #		_hit_something()
-	if area.is_in_group("Enemy"):
+	if area.is_in_group("Enemy") and not area.destroyed: # TODO: should not ever need to check if an enemy is dead
 		_hit_something()
 
 
