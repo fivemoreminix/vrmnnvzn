@@ -106,7 +106,7 @@ func kill():
 	get_node("thruster").hide()
 	get_node("explosion").show()
 	get_node("explosion").play("default")
-	get_node("sfx").play("sound_explode")
+	get_node("sfx").play("explode")
 	get_node("../hud/game_over").show()
 	get_node("/root/game_state").game_over()
 	
