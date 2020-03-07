@@ -55,7 +55,9 @@ animations = [ {
 "speed": 30.0
 } ]
 
-[node name="Bee" type="Area2D"]
+[node name="Bee" type="Area2D" groups=[
+"Enemy",
+]]
 
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
@@ -75,7 +77,6 @@ speed_x = 0.0
 
 frames = SubResource( 2 )
 animation = "default"
-frame = 1
 playing = true
 
 [node name="collision" type="CollisionShape2D" parent="."]

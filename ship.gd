@@ -142,7 +142,9 @@ func _on_ship_body_enter(body):
 
 
 func _on_ship_area_enter(area):
-	if (area.has_method("is_enemy") and area.is_enemy()):
+#	if (area.has_method("is_enemy") and area.is_enemy()):
+#		_hit_something()
+	if area.is_in_group("Enemy"):
 		_hit_something()
 
 

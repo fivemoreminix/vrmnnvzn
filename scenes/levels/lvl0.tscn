@@ -31,9 +31,13 @@ tile_data = IntArray( -9240576, 4, -9240575, 4, -9240574, 4, -9240573, 4, -92405
 
 max_y = 2250
 
+[node name="ship" parent="rail" groups=[
+"Player",
+]]
+
 [node name="thruster" parent="rail/ship"]
 
-frame = 1
+frame = 2
 
 [node name="enemies" type="Node2D" parent="."]
 
@@ -105,9 +109,6 @@ speed_x = 30.0
 [node name="Powerup" parent="." instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 125.302, -181.576 )
-item_class = null
-powerup_type = 0
-detriment_type = 0
 
 
 [editable path="rail"]

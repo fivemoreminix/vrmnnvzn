@@ -18,8 +18,6 @@ var destroyed=false
 var screenTime = 0
 var spawned = false
 
-func _ready():
-	pass
 
 func _process(delta):
 	var pos = get_pos()
@@ -69,10 +67,7 @@ func _process(delta):
 	#	if trailing==null: return
 	#	else:
 	#		set_pos(Vector2(lerp(pos.x,trailing.get_global_pos().x,delta*8),trailing.get_global_pos().y-10))
-
-
-func is_enemy():
-	return not destroyed
+	
 
 #func _init():
 #	if bodySegments > 0:
@@ -84,6 +79,7 @@ func is_enemy():
 #		get_parent().add_child(segment)
 #		print(segment)
 
+
 func set_head():
 	get_node("sprite").set_animation("head")
 	if diverging == true:
@@ -93,14 +89,17 @@ func set_head():
 			divergeDir = 1
 		divergeStart = OS.get_ticks_msec()
 
+
 func set_segment(frame):
 	if frame < 0:
 		frame = 3
 	get_node("sprite").set_animation("segment")
 	get_node("sprite").set_frame(frame)
 
+
 func set_tail():
 	get_node("sprite").set_animation("tail")
+
 
 func destroy():
 	if (destroyed):
