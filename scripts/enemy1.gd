@@ -129,6 +129,7 @@ func _on_visibility_enter_screen():
 		segment.trailing     = self
 		segment.bodySegments = bodySegments-1
 		segment.screenTime   = screenTime-(PI/10)
+		segment.get_node("sprite").set_z(get_node("sprite").get_z()-1)
 		segment.set_segment(get_node("sprite").get_frame()-1)
 		segment.set_pos(Vector2(initPoint.x,get_global_pos().y)-Vector2(0,10))#Vector2(initPoint.x-sin(segment.screenTime),get_global_pos().y) 
 		get_parent().add_child(segment)

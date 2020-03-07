@@ -110,7 +110,7 @@ func kill():
 	get_node("../hud/game_over").show()
 	get_node("/root/game_state").game_over()
 	
-	get_node("../hud/Pointer").show() # re-enable the mouse
+ 	#get_node("../hud/Pointer").show() # re-enable the mouse
 	
 	get_parent().stop()
 

@@ -1,12 +1,12 @@
 [gd_scene load_steps=28 format=1]
 
 [ext_resource path="res://scripts/enemy1.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/enemies/tail.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/enemies/segment0.png" type="Texture" id=3]
-[ext_resource path="res://assets/sprites/enemies/segment1.png" type="Texture" id=4]
-[ext_resource path="res://assets/sprites/enemies/segment2.png" type="Texture" id=5]
-[ext_resource path="res://assets/sprites/enemies/pincer0.png" type="Texture" id=6]
-[ext_resource path="res://assets/sprites/enemies/pincer1.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/enemies/pincer0.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/enemies/pincer1.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/enemies/tail.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/enemies/segment0.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/enemies/segment1.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/enemies/segment2.png" type="Texture" id=7]
 [ext_resource path="res://explosion.scn" type="PackedScene" id=8]
 [ext_resource path="res://assets/sprites/explosion/explosion0.png" type="Texture" id=9]
 [ext_resource path="res://assets/sprites/explosion/explosion1.png" type="Texture" id=10]
@@ -31,20 +31,20 @@ radius = 8.0
 [sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "head",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 4 ) ],
 "loop": true,
 "name": "tail",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 4 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "segment",
 "speed": 7.0
-}, {
-"frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
-"loop": true,
-"name": "head",
-"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=3]
@@ -92,9 +92,9 @@ tracks/1/keys = {
 "values": [ "default" ]
 }
 
-[node name="pinsir" type="Area2D"]
+[node name="pincer" type="Area2D"]
 
-transform/pos = Vector2( -3.648, 0 )
+transform/pos = Vector2( -24, 0 )
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -116,7 +116,6 @@ _update_shape_index = 0
 
 frames = SubResource( 2 )
 animation = "head"
-frame = 1
 playing = true
 
 [node name="explosion" parent="." instance=ExtResource( 8 )]
