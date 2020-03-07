@@ -24,13 +24,19 @@ func scrolling_text(text):
 	_scrolling_text = true
 	set_process(true)
 
-
-func _on_ship_effect_added(index, effect):
+#export(String, "Fast shooting", "Phase-through", "Triple-shot") var powerup_type = "Fast shooting"
+#export(String, "Tough enemies", "Less health", "Wow, accurate!", "Homing enemies") var detriment_type
+func _on_ship_effect_added(index, name):
 	var n = TextureFrame.new()
 	
-	n.set_texture(preload("res://assets/sprites/powerup/powerup_triple_shot.png"))
+	if name == "Triple-shot": n.set_texture(preload("res://assets/sprites/powerup/powerup_triple_shot.png"))
+	elif name == "Fast shooting": n.set_texture(preload("res://assets/sprites/powerup/powerup_fast_shooting.png"))
+	elif name == "Phase-through": n.set_texture(preload("res://assets/sprites/powerup/powerup_phase_through.png"))
+	else:
+		printerr("bar.gd: Powerup name not identified: " + name)
+		n.set_texture(preload("res://assets/sprites/powerup/powerup0.png"))
 	get_node("Box").add_child(n)
 
 
-func _on_ship_effect_removed(index, effect):
+func _on_ship_effect_removed(index, name):
 	get_node("Box").get_child(index).queue_free()

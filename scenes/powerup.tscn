@@ -32,15 +32,15 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 script/script = ExtResource( 1 )
-item_class = null
-powerup_type = 0
-detriment_type = 0
+item_class = "Powerup"
+powerup_type = "Fast shooting"
+detriment_type = "Tough enemies"
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 
 frames = SubResource( 2 )
 animation = "default"
-frame = 2
+frame = 1
 playing = true
 
 [node name="Label" type="Label" parent="."]

@@ -18,7 +18,7 @@ onready var shipSprite = get_node("shipSprite")
 onready var shots = [preload("res://scenes/shot.tscn"),preload("res://scenes/2shot.tscn"),preload("res://scenes/3shot.tscn"),preload("res://scenes/5shot.tscn")]
 var banking = false
 
-var active_effects = [] # a list of active powerups or detriments
+var active_effects = [] # a list of active powerups or detriments [type of effect, effect name, duration as a float]
 
 
 func _ready():
@@ -37,7 +37,7 @@ func _process(delta):
 		e[2] -= delta
 		if e[2] <= 0:
 			active_effects.erase(e) # remove the effect once duration has run out
-			emit_signal("effect_removed", active_effects.size(), e)
+			emit_signal("effect_removed", active_effects.size(), e[1])
 	
 	
 	motion = Vector2(0,0)
@@ -87,7 +87,7 @@ func move(delta, motion):
 func shoot():
 	if can_shoot:
 		# Just pressed
-		var shot = shots[2 if has_effect(0, 2) else 1].instance()
+		var shot = shots[2 if has_effect("Powerup", "Triple-shot") else 1].instance()
 		get_node("anim").play("shoot")
 		# Use the Position2D as reference
 		shot.set_pos(get_node("shootfrom").get_global_pos())
@@ -125,14 +125,14 @@ func has_effect(type, effect):
 #Add powerup and detriment effects to the player.
 #
 #type is of powerup.gd::Class, effect is of either powerup.gd::{Powerup, Detriment}.
-func add_effect(type, effect, duration=5):
+func add_effect(type, name, duration=5):
 	# check if this effect is present ...
 	for e in active_effects:
-		if e[0] == type and e[1] == effect: active_effects.erase(e) # remove the effect from the list
-		emit_signal("effect_removed", active_effects.size(), e) # send signal with (index, effect)
-	var e = [type, effect, duration]
-	active_effects.append(e)
-	emit_signal("effect_added", active_effects.size()-1, e) # returns index in array where the effect is present and effect itself
+		if e[0] == type and e[1] == name:
+			active_effects.erase(e) # remove the effect from the list
+			emit_signal("effect_removed", active_effects.size(), name) # send signal with (index, effect name)
+	active_effects.append([type, name, duration])
+	emit_signal("effect_added", active_effects.size()-1, name) # returns index in array where the effect is present and effect name itself
 
 
 func _hit_something():
