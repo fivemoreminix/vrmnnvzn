@@ -6,6 +6,7 @@ signal effect_removed
 
 # Member variables
 const SPEED = 130
+onready var DEFAULT_SHOOT_WAIT_TIME = get_node("ShootTimer").get_wait_time() # basically a constant
 
 var motion = Vector2()
 var dampen_speed = 10
@@ -99,7 +100,10 @@ func shoot():
 		
 		# reset condition
 		can_shoot = false
-		get_node("ShootTimer").start()
+		var t = get_node("ShootTimer")
+		if has_effect("Powerup", "Fast shooting"): t.set_wait_time(0.2)
+		else: t.set_wait_time(DEFAULT_SHOOT_WAIT_TIME)
+		t.start()
 
 
 func kill():
