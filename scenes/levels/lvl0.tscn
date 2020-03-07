@@ -68,7 +68,6 @@ transform/scale = Vector2( 3.42188, 1 )
 
 [node name="rail" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 0, -2150 )
 max_y = 2250
 
 [node name="ship" parent="rail"]
