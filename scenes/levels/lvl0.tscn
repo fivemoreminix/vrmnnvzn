@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=2]
@@ -7,7 +7,6 @@
 [ext_resource path="res://scenes/enemy1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/bee.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/powerup.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/fade.tscn" type="PackedScene" id=8]
 
 [sub_resource type="GDScript" id=1]
 
@@ -15,11 +14,12 @@ script/source = "extends Node2D
 
 func _on_LevelFinishTrigger_level_finished():
 	# fade screen to black
-	print(\"beginning fade ...\")
-	get_node(\"Fade\").begin_fade_out()
+	print(\"begin fade\")
+	get_node(\"rail/hud/Fade\").begin_fade_out()
 
 func _on_Fade_fade_finished():
 	# scroll text saying \"Level finished!\"
+	print(\"scroll text\")
 	get_node(\"rail/hud/BottomBar\").scrolling_text(\"Level finished!\")
 "
 
@@ -52,16 +52,20 @@ transform/scale = Vector2( 3.42188, 1 )
 
 [node name="rail" parent="." instance=ExtResource( 3 )]
 
-transform/pos = Vector2( 0, -2170 )
+transform/pos = Vector2( 0, -2150 )
 max_y = 2250
 
-[node name="ship" parent="rail" groups=[
-"Player",
-]]
+[node name="ship" parent="rail"]
+
+editor/display_folded = true
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 2
+frame = 1
+
+[node name="Fade" parent="rail/hud"]
+
+editor/display_folded = true
 
 [node name="enemies" type="Node2D" parent="."]
 
@@ -134,11 +138,10 @@ speed_x = 30.0
 
 transform/pos = Vector2( 125.302, -181.576 )
 
-[node name="Fade" parent="." instance=ExtResource( 8 )]
-
 [connection signal="level_finished" from="LevelFinishTrigger" to="." method="_on_LevelFinishTrigger_level_finished"]
 
-[connection signal="fade_finished" from="Fade" to="." method="_on_Fade_fade_finished"]
+[connection signal="fade_finished" from="rail/hud/Fade" to="." method="_on_Fade_fade_finished"]
 
 
 [editable path="rail"]
+[editable path="rail/hud/Fade"]

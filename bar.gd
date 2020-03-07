@@ -2,7 +2,7 @@ extends Panel
 
 const SCROLLING_SPEED = 135
 
-onready var scrol_lbl = get_node("ScrollingText")
+onready var scrol_lbl = get_node("Text")
 onready var scrol_lbl_default_x = scrol_lbl.get_pos().x
 
 var _scrolling_text = false
@@ -21,6 +21,7 @@ func _process(delta):
 			_scrolling_text = false
 
 func scrolling_text(text):
+	print("called scrolling_text")
 	scrol_lbl.show()
 	scrol_lbl.set_text(text)
 	_scrolling_text = true

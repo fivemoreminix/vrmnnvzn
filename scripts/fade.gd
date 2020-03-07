@@ -1,4 +1,4 @@
-extends Node
+extends Control
 
 signal fade_finished # for function callback
 
@@ -19,6 +19,6 @@ func _process(delta):
 func begin_fade_out():
 	#black_flash.show()
 	#black_flash.set_modulate(Color(0.0, 0.0, 0.0, 0.0))
-	get_node("AnimationPlayer").play("fadeout")
+	get_node("AnimationPlayer").play("fadeOut")
 	get_tree().get_root().set_disable_input(true) # disable input before beginning the animation
 	set_process(true)
