@@ -131,7 +131,7 @@ samples/old_explode = {
 "sample": ExtResource( 12 )
 }
 samples/shoot = {
-"db": 0.0,
+"db": -8.0,
 "pitch": 1.0,
 "priority": 0,
 "sample": ExtResource( 13 )
