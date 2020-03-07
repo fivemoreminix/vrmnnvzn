@@ -34,4 +34,4 @@ func _on_fade_finished_but_load_first_level():
 	get_tree().change_scene("res://scenes/levels/lvl0.tscn")
 
 func _on_fade_finished():
-	get_tree().change_scene("res://main_menu.tscn")
+	get_tree().change_scene("res://main_menu.scn")
