@@ -22,7 +22,7 @@ func _process(delta):
 	
 	if alpha >= 1.0: raising = false
 	elif alpha <= 0.1 and raising == false: raising = true; times += 1
-	white_flash.set_modulate(Color(1.0, 1.0, 1.0, alpha))
+	#white_flash.set_modulate(Color(1.0, 1.0, 1.0, alpha))
 
 func _on_button_pressed():
 	set_process(true)

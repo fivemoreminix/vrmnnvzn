@@ -31,6 +31,10 @@ tile_data = IntArray( -9240576, 4, -9240575, 4, -9240574, 4, -9240573, 4, -92405
 
 max_y = 2250
 
+[node name="thruster" parent="rail/ship"]
+
+frame = 1
+
 [node name="enemies" type="Node2D" parent="."]
 
 transform/pos = Vector2( 0, 10 )

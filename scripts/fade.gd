@@ -14,10 +14,11 @@ func _process(delta):
 		set_process(false)
 	else:
 		fade_progress += delta
-		black_flash.set_modulate(Color(0.0, 0.0, 0.0, fade_progress))
+		#black_flash.set_modulate(Color(0.0, 0.0, 0.0, fade_progress))
 
 func begin_fade_out():
-	black_flash.show()
-	black_flash.set_modulate(Color(0.0, 0.0, 0.0, 0.0))
+	#black_flash.show()
+	#black_flash.set_modulate(Color(0.0, 0.0, 0.0, 0.0))
+	get_node("AnimationPlayer").play("fadeout")
 	get_tree().get_root().set_disable_input(true) # disable input before beginning the animation
 	set_process(true)
