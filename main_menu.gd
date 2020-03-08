@@ -17,9 +17,6 @@ func _process(delta):
 
 func handle(func_name):
 	fade.begin_fade_out()
-	print(fade.get_signal_connection_list("fade_finished"))
-#	for f in fade.get_signal_connection_list("fade_finished"):
-#		fade.disconnect("fade_finished", self, f["method"])
 	fade.connect("fade_finished", self, func_name)
 
 func new_game():
@@ -36,4 +33,4 @@ func exit_game():
 	get_tree().quit()
 
 func settings():
-	print("settings button clicked")
+	get_tree().change_scene("res://scenes/settings.tscn")

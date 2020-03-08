@@ -5,7 +5,6 @@
 
 [node name="ButtonFlasher" type="Control"]
 
-editor/display_folded = true
 visibility/visible = false
 focus/ignore_mouse = false
 focus/stop_mouse = true
