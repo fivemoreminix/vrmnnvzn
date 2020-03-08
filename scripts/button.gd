@@ -1,4 +1,4 @@
-extends Button
+extends Control
 
 export(String) var parent_function_to_call = "the_function"
 
@@ -8,6 +8,9 @@ var times = 0
 var alpha = 0.0
 var progress = 0.0 # out of 1.0
 var raising = true # whether to add or subtract from alpha
+
+func _ready():
+	if not is_connected("pressed", self, "_on_button_pressed"): connect("pressed", self, "_on_button_pressed")
 
 func _process(delta):
 	if times >= 2: # if we finished the animation

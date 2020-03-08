@@ -35,5 +35,5 @@ func continue_game():
 func exit_game():
 	get_tree().quit()
 
-func _on_fade_finished():
-	pass
+func settings():
+	print("settings button clicked")
