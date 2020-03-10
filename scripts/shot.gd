@@ -38,8 +38,9 @@ func _on_shot_area_enter(area):
 	# Hit an enemy or asteroid
 	if (area.has_method("destroy")):
 		# Duck typing at it's best
-		area.destroy()
-		_hit_something()
+		if(!area.destroyed):
+			area.destroy()
+			_hit_something()
 
 
 func _on_shot_body_enter(body):
