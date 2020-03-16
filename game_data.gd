@@ -58,11 +58,11 @@ func load_global_data(): # load global data from disk
 		
 		# for the purposes of making this software stable, we will load game resolution and window type immediately
 		# upon reading the global data file
-		var xy = global_data.resolution.split("x")
+		var xy = global_data.resolution.split("x", false)
 		if xy.size() != 2:
 			print("resolution is not in a valid form: " + var2str(global_data.resolution))
 			print("go to " + OS.get_data_dir() + "/VRMNNVZN_global.save" + ", and set \"resolution\": \"800x600\" to reset it, or delete the file and a new one will be made.")
-			get_tree().quit() # Exit game with error code 1
+			get_tree().quit()
 			return 2
 		
 		print("game_data.gd: Initializing video settings: " + var2str(global_data.resolution))
