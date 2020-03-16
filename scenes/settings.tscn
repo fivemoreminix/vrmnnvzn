@@ -44,10 +44,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 10.0
-margin/top = 41.0
-margin/right = 74.0
-margin/bottom = 55.0
+margin/left = 8.0
+margin/top = 40.0
+margin/right = 72.0
+margin/bottom = 54.0
 text = "Sound FX"
 percent_visible = 1.0
 lines_skipped = 0
@@ -59,10 +59,10 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 10.0
-margin/top = 61.0
-margin/right = 74.0
-margin/bottom = 75.0
+margin/left = 8.0
+margin/top = 56.0
+margin/right = 72.0
+margin/bottom = 70.0
 text = "Music"
 percent_visible = 1.0
 lines_skipped = 0
@@ -74,9 +74,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 83.0
+margin/left = 80.0
 margin/top = 38.0
-margin/right = 246.0
+margin/right = 248.0
 margin/bottom = 54.0
 range/min = 0.0
 range/max = 1.0
@@ -95,9 +95,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 83.0
+margin/left = 80.0
 margin/top = 58.0
-margin/right = 246.0
+margin/right = 248.0
 margin/bottom = 74.0
 range/min = 0.0
 range/max = 1.0
@@ -109,6 +109,92 @@ range/rounded = false
 tick_count = 0
 ticks_on_borders = true
 focus_mode = 2
+
+[node name="WindowModeOptionLabel" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 24.0
+margin/top = 96.0
+margin/right = 112.0
+margin/bottom = 110.0
+text = "Window Mode"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="WindowModeOption" type="OptionButton" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 120.0
+margin/top = 96.0
+margin/right = 247.0
+margin/bottom = 111.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Windowed"
+flat = false
+align = 0
+selected = 0
+items = [ "Windowed", null, false, 0, null, "Borderless", null, false, 1, null, "Fullscreen", null, false, 2, null ]
+
+[node name="ResolutionOptionLabel" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 24.0
+margin/top = 120.0
+margin/right = 112.0
+margin/bottom = 134.0
+text = "Resolution"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ResolutionOption" type="OptionButton" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 120.0
+margin/top = 120.0
+margin/right = 247.0
+margin/bottom = 135.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "800x600"
+flat = false
+align = 0
+selected = 0
+items = [  ]
+
+[node name="VsyncCheck" type="CheckBox" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 120.0
+margin/top = 144.0
+margin/right = 250.0
+margin/bottom = 162.0
+toggle_mode = true
+is_pressed = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Vertical Sync"
+flat = false
+align = 0
 
 [node name="Cancel" type="Button" parent="."]
 
@@ -154,5 +240,13 @@ parent_function_to_call = "save_changes"
 [node name="Pointer" parent="." instance=ExtResource( 6 )]
 
 [connection signal="value_changed" from="SFXSlider" to="." method="_on_value_changed"]
+
+[connection signal="value_changed" from="MusicSlider" to="." method="_on_value_changed"]
+
+[connection signal="item_selected" from="WindowModeOption" to="." method="_on_value_changed"]
+
+[connection signal="item_selected" from="ResolutionOption" to="." method="_on_value_changed"]
+
+[connection signal="toggled" from="VsyncCheck" to="." method="_on_value_changed"]
 
 
