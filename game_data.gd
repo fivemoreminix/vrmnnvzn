@@ -55,12 +55,27 @@ func load_global_data(): # load global data from disk
 		if err != OK:
 			print("game_data.gd: failed to parse global save file")
 			return 2
+		
+		# for the purposes of making this software stable, we will load game resolution and window type immediately
+		# upon reading the global data file
+		var xy = global_data.resolution.split("x")
+		if xy.size() != 2:
+			print("resolution is not in a valid form: " + var2str(global_data.resolution))
+			print("go to " + OS.get_data_dir() + "/VRMNNVZN_global.save" + ", and set \"resolution\": \"800x600\" to reset it, or delete the file and a new one will be made.")
+			get_tree().quit() # Exit game with error code 1
+			return 2
+		
+		print("game_data.gd: Initializing video settings: " + var2str(global_data.resolution))
+		OS.set_window_fullscreen(global_data.window_mode == "Fullscreen" or global_data.window_mode == "Borderless")
+		OS.set_borderless_window(global_data.window_mode == "Borderless")
+		OS.set_window_size(Vector2(xy[0], xy[1]))
+		
 		return 0
 	else: # global data save file does NOT exist ...
 		global_data = { ### global_data defaults ###
 			sfx_volume = 1.0,
 			music_volume = 1.0,
-			window_mode = "windowed",
+			window_mode = "Windowed", # note: this property must be typed in title case
 			resolution = "800x600",
 			vsync = true,
 		}
