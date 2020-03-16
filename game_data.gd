@@ -69,6 +69,7 @@ func load_global_data(): # load global data from disk
 		OS.set_window_fullscreen(global_data.window_mode == "Fullscreen" or global_data.window_mode == "Borderless")
 		OS.set_borderless_window(global_data.window_mode == "Borderless")
 		OS.set_window_size(Vector2(xy[0], xy[1]))
+		OS.set_use_vsync(global_data.vsync)
 		
 		return 0
 	else: # global data save file does NOT exist ...
