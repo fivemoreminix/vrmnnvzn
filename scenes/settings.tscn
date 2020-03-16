@@ -149,8 +149,6 @@ parent_function_to_call = "save_changes"
 
 [node name="ButtonFlasher" parent="." instance=ExtResource( 4 )]
 
-visibility/visible = true
-
 [node name="Fade" parent="." instance=ExtResource( 5 )]
 
 [node name="Pointer" parent="." instance=ExtResource( 6 )]

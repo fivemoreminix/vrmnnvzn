@@ -9,6 +9,9 @@ func _on_value_changed(_):
 
 func _ready():
 	var err = GameData.load_global_data() # TODO: handle possible errors while loading global game data
+	if err != null:
+		printerr("settings.gd: err != null while loading... ruh roh raggy, error: " + var2str(err)) # TODO: user-friendly dialogs for errors
+		return
 	get_node("SFXSlider").set_val(GameData.global_data.sfx_volume)
 	get_node("MusicSlider").set_val(GameData.global_data.music_volume)
 
@@ -28,7 +31,7 @@ func save_changes():
 	# var err = GameData.save_global_data()
 	var err = GameData.save_global_data()
 	if err != null:
-		printerr("settings.gd: err != null while saving... ruh roh raggy, error: " + str(err)) # TODO: user-friendly dialogs for errors
+		printerr("settings.gd: err != null while saving... ruh roh raggy, error: " + var2str(err)) # TODO: user-friendly dialogs for errors
 		return
 	
 	dirty = false
