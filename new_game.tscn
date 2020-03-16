@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://assets/themes/theme.thm" type="Theme" id=1]
 [ext_resource path="res://new_game.gd" type="Script" id=2]
@@ -24,6 +24,60 @@ func button_new_game():
 	emit_signal(\"user_made_decision\", true)
 "
 
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends Control
+
+func _ready():
+	set_process(true)
+
+func _process(delta):
+	if Input.is_action_pressed(\"ui_cancel\"):
+		get_node(\"Cancel\")._on_button_pressed()
+
+func handle(func_name):
+	get_node(\"../Fade\").begin_fade_out()
+	get_node(\"../Fade\").connect(\"fade_finished\", self, func_name)
+
+func cancel():
+	get_tree().change_scene(\"res://main_menu.scn\")
+
+func start():
+	var diff
+	if get_node(\"EasyCheck\").is_pressed():
+		diff = \"easy\"
+	elif get_node(\"MediumCheck\").is_pressed():
+		diff = \"medium\"
+	elif get_node(\"HardCheck\").is_pressed():
+		diff = \"hard\"
+	
+	GameData.data = {
+		current_level = 0,
+		highest_level_discovered = 0,
+		name = get_node(\"Name\").get_text(),
+		difficulty = diff,
+	}
+	GameData.save_data() # write the new game data to disk
+
+
+func _on_EasyCheck_pressed():
+	get_node(\"EasyCheck\").set_pressed(true)
+	get_node(\"MediumCheck\").set_pressed(false)
+	get_node(\"HardCheck\").set_pressed(false)
+
+
+func _on_MediumCheck_pressed():
+	get_node(\"EasyCheck\").set_pressed(false)
+	get_node(\"MediumCheck\").set_pressed(true)
+	get_node(\"HardCheck\").set_pressed(false)
+
+
+func _on_HardCheck_pressed():
+	get_node(\"EasyCheck\").set_pressed(false)
+	get_node(\"MediumCheck\").set_pressed(false)
+	get_node(\"HardCheck\").set_pressed(true)
+"
+
 [node name="NewGame" type="Control"]
 
 anchor/right = 1
@@ -41,6 +95,8 @@ script/script = ExtResource( 2 )
 
 [node name="Warning" type="Control" parent="."]
 
+editor/display_folded = true
+visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -129,7 +185,6 @@ stretch_mode = 0
 
 [node name="MainDialog" type="Control" parent="."]
 
-visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -140,6 +195,145 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
+script/script = SubResource( 2 )
+
+[node name="Name" type="LineEdit" parent="MainDialog"]
+
+anchor/left = 3
+anchor/right = 3
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 88.0
+margin/top = 32.0
+margin/right = -88.0
+margin/bottom = 48.0
+placeholder/alpha = 0.6
+focus_mode = 2
+caret/caret_blink = true
+caret/caret_blink_speed = 0.65
+
+[node name="NameLabel" type="Label" parent="MainDialog"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 70.0
+margin/top = 20.0
+margin/right = 180.0
+margin/bottom = 29.0
+text = "NAME:"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="DifficultyLabel" type="Label" parent="MainDialog"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 16.0
+margin/top = 72.0
+margin/right = 104.0
+margin/bottom = 81.0
+text = "DIFFICULTY:"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="EasyCheck" type="CheckBox" parent="MainDialog"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 16.0
+margin/top = 88.0
+margin/right = 154.0
+margin/bottom = 106.0
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Go easy on me."
+flat = false
+align = 0
+
+[node name="MediumCheck" type="CheckBox" parent="MainDialog"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 16.0
+margin/top = 112.0
+margin/right = 218.0
+margin/bottom = 130.0
+toggle_mode = true
+is_pressed = true
+enabled_focus_mode = 2
+shortcut = null
+text = "I can play hard games."
+flat = false
+align = 0
+
+[node name="HardCheck" type="CheckBox" parent="MainDialog"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 16.0
+margin/top = 136.0
+margin/right = 218.0
+margin/bottom = 154.0
+toggle_mode = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Kill me."
+flat = false
+align = 0
+
+[node name="Start" type="Button" parent="MainDialog"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 192.0
+margin/top = 168.0
+margin/right = 250.0
+margin/bottom = 187.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "START"
+flat = false
+script/script = ExtResource( 3 )
+parent_function_to_call = "start"
+
+[node name="Cancel" type="Button" parent="MainDialog"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 8.0
+margin/top = 168.0
+margin/right = 66.0
+margin/bottom = 187.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "CANCEL"
+flat = false
+script/script = ExtResource( 3 )
+parent_function_to_call = "cancel"
+
+[node name="ButtonFlasher" parent="MainDialog" instance=ExtResource( 5 )]
 
 [node name="Fade" parent="." instance=ExtResource( 6 )]
 
@@ -151,6 +345,14 @@ margin/bottom = 0.0
 
 [connection signal="pressed" from="Warning/Yes" to="Warning/Yes" method="_on_button_pressed"]
 
-[connection signal="fade_finished" from="Fade" to="." method="_on_fade_finished"]
+[connection signal="pressed" from="MainDialog/EasyCheck" to="MainDialog" method="_on_EasyCheck_pressed"]
+
+[connection signal="pressed" from="MainDialog/MediumCheck" to="MainDialog" method="_on_MediumCheck_pressed"]
+
+[connection signal="pressed" from="MainDialog/HardCheck" to="MainDialog" method="_on_HardCheck_pressed"]
+
+[connection signal="pressed" from="MainDialog/Start" to="MainDialog/Start" method="_on_button_pressed"]
+
+[connection signal="pressed" from="MainDialog/Cancel" to="MainDialog/Cancel" method="_on_button_pressed"]
 
 
