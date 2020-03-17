@@ -101,21 +101,21 @@ func set_tail():
 	get_node("sprite").set_animation("tail")
 
 
-func destroy():
-	if (destroyed):
-		return
-	destroyed = true
-	#get_node("anim").play("explode") 
-	hide()
-	set_process(false)
-	if segment!=null:
-		segment.diverging = true
-		segment.set_head() 
-		#get_parent().add_child(segment)
-	if trailing!=null and trailing.trailing!=null:
-		trailing.set_tail() 
-	get_node("sfx").play("sound_explode")
-	# Accumulate points
+#func destroy():
+#	if (destroyed):
+#		return
+#	destroyed = true
+#	#get_node("anim").play("explode") 
+#	hide()
+#	set_process(false)
+#	if segment!=null:
+#		segment.diverging = true
+#		segment.set_head() 
+#		#get_parent().add_child(segment)
+#	if trailing!=null and trailing.trailing!=null:
+#		trailing.set_tail() 
+#	get_node("sfx").play("sound_explode")
+#	# Accumulate points
 #	get_node("/root/game_state").points += 25
 
 
