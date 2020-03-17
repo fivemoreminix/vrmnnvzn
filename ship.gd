@@ -1,8 +1,8 @@
 
 extends Area2D
 
-signal effect_added
-signal effect_removed
+#signal effect_added
+#signal effect_removed
 
 # Member variables
 const SPEED = 130
@@ -35,10 +35,10 @@ func _process(delta):
 	
 	# decrease time remaining for all effects
 	for e in active_effects:
-		e[2] -= delta
-		if e[2] <= 0:
+		e[1] -= delta
+		if e[1] <= 0:
 			active_effects.erase(e) # remove the effect once duration has run out
-			emit_signal("effect_removed", active_effects.size(), e[1])
+#			emit_signal("effect_removed", active_effects.size(), e[1])
 	
 	
 	motion = Vector2(0,0)
@@ -88,7 +88,7 @@ func move(delta, motion):
 func shoot():
 	if can_shoot:
 		# Just pressed
-		var shot = shots[2 if has_effect("Powerup", "Triple-shot") else 1].instance()
+		var shot = shots[2 if has_effect("Triple-shot") else 1].instance()
 		get_node("anim").play("shoot")
 		# Use the Position2D as reference
 		shot.set_pos(get_node("shootfrom").get_global_pos())
@@ -101,7 +101,7 @@ func shoot():
 		# reset condition
 		can_shoot = false
 		var t = get_node("ShootTimer")
-		if has_effect("Powerup", "Fast shooting"): t.set_wait_time(0.2)
+		if has_effect("Fast shooting"): t.set_wait_time(0.2)
 		else: t.set_wait_time(DEFAULT_SHOOT_WAIT_TIME)
 		t.start()
 
@@ -120,23 +120,24 @@ func kill():
 	get_parent().stop()
 
 
-func has_effect(type, effect):
+func has_effect(name):
 	for e in active_effects:
-		if e[0] == type and e[1] == effect: return true
+		if e[0] == name: return true
 	return false
 
-#Add powerup and detriment effects to the player.
+#Add powerup effects to the player.
 #
-#type is of powerup.gd::Class, effect is of either powerup.gd::{Powerup, Detriment}.
-func add_effect(type, name, duration=5):
+# See: powerup.gd for the effect names
+func add_effect(name, duration=5):
 	# check if this effect is present ...
 	for e in active_effects:
-		if e[0] == type and e[1] == name:
+		if e[0] == name:
 			active_effects.erase(e) # remove the effect from the list
-			emit_signal("effect_removed", active_effects.size(), name) # send signal with (index, effect name)
-	active_effects.append([type, name, duration])
-	emit_signal("effect_added", active_effects.size()-1, name) # returns index in array where the effect is present and effect name itself
-
+#			emit_signal("effect_removed", active_effects.size(), name) # send signal with (index, effect name)
+	active_effects.append([name, duration])
+#	emit_signal("effect_added", active_effects.size()-1, name) # returns index in array where the effect is present and effect name itself
+	# Play sound
+	get_node("sfx").play("powerup_get")
 
 func _hit_something():
 	if killed: return
@@ -148,9 +149,7 @@ func _on_ship_body_enter(body):
 
 
 func _on_ship_area_enter(area):
-#	if (area.has_method("is_enemy") and area.is_enemy()):
-#		_hit_something()
-	if area.is_in_group("Enemy") and not area.destroyed: # TODO: should not ever need to check if an enemy is dead
+	if area.is_in_group("Enemy") and not area.destroyed and not has_effect("Phase-through"): # TODO: should not ever need to check if an enemy is dead
 		_hit_something()
 
 
