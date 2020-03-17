@@ -165,6 +165,7 @@ transform/pos = Vector2( -1, 0 )
 [node name="Powerup" parent="." instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 125.302, -181.576 )
+powerup = "Random"
 
 [node name="Sfx" type="SamplePlayer" parent="."]
 
