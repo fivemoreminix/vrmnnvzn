@@ -24,11 +24,12 @@ func new_game():
 	get_tree().change_scene("res://new_game.tscn")
 
 func continue_game():
-	var f = File.new()
-	f.open("user://VRMNNVZN.save", File.READ)
-	var index = f.get_line()
-	print("opened save file and got index = " + index)
-	get_tree().change_scene("res://scenes/levels/lvl" + index + ".tscn")
+	var err = GameData.load_data()
+	if err != 0:
+		print("main_menu.gd: error loading game data: " + var2str(err))
+		return
+	
+	get_tree().change_scene("res://scenes/levels/lvl" + str(GameData.data.current_level) + ".tscn")
 
 func exit_game():
 	get_tree().quit()
