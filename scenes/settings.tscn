@@ -7,7 +7,7 @@
 [ext_resource path="res://scenes/fade.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/pointer.tscn" type="PackedScene" id=6]
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=1]
 
 script/source = "extends Control
 
@@ -15,7 +15,7 @@ func _on_Button_pressed():
 	hide()
 "
 
-[sub_resource type="StyleBoxFlat" id=1]
+[sub_resource type="StyleBoxFlat" id=2]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -270,7 +270,7 @@ margin/left = 0.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
-script/script = SubResource( 2 )
+script/script = SubResource( 1 )
 
 [node name="Panel" type="Panel" parent="Dialog"]
 
@@ -282,7 +282,7 @@ margin/left = 24.0
 margin/top = 32.0
 margin/right = 232.0
 margin/bottom = 144.0
-custom_styles/panel = SubResource( 1 )
+custom_styles/panel = SubResource( 2 )
 
 [node name="Label" type="Label" parent="Dialog/Panel"]
 

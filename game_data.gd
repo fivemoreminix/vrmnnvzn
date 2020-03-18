@@ -64,12 +64,16 @@ func load_global_data(): # load global data from disk
 			print("go to " + OS.get_data_dir() + "/VRMNNVZN_global.save" + ", and set \"resolution\": \"800x600\" to reset it, or delete the file and a new one will be made.")
 			get_tree().quit()
 			return 2
+		var x = int(xy[0])
+		var y = int(xy[1])
 		
 		print("game_data.gd: Initializing video settings: " + var2str(global_data.resolution))
 		OS.set_window_fullscreen(global_data.window_mode == "Fullscreen" or global_data.window_mode == "Borderless")
 		OS.set_borderless_window(global_data.window_mode == "Borderless")
-		OS.set_window_size(Vector2(xy[0], xy[1]))
+		OS.set_window_size(Vector2(x, y))
 		OS.set_use_vsync(global_data.vsync)
+		var ssize = OS.get_screen_size(OS.get_current_screen())
+		OS.set_window_position(Vector2(ssize.x/2-x/2, ssize.y/2-y/2))
 		
 		return 0
 	else: # global data save file does NOT exist ...
