@@ -2,7 +2,8 @@ extends Node2D
 
 func _ready():
 	expand_beam()
-	get_node("TimerWhileOff").start()
+#	get_node("TimerWhileOff").start()
+	_on_TimerWhileOn_timeout() # Disable collisions and start TimerWhileOff
 
 func expand_beam():
 	var scale = Vector2(get_node("RightHead").get_pos().x-5, 1)

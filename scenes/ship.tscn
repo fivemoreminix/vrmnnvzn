@@ -278,7 +278,7 @@ playing = true
 transform/pos = Vector2( 0, 13 )
 frames = SubResource( 3 )
 animation = "default"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ship"]
@@ -305,6 +305,16 @@ autoplay = ""
 
 transform/pos = Vector2( 0, -9 )
 
+[node name="shootfromDiagLeft" type="Position2D" parent="ship"]
+
+transform/pos = Vector2( -5, -2 )
+transform/rot = 45.0
+
+[node name="shootfromDiagRight" type="Position2D" parent="ship"]
+
+transform/pos = Vector2( 5, -2 )
+transform/rot = -45.0
+
 [node name="explosion" parent="ship" instance=ExtResource( 10 )]
 
 visibility/visible = false
@@ -330,6 +340,13 @@ default/chorus_send = 0.0
 
 process_mode = 1
 wait_time = 0.3
+one_shot = false
+autostart = false
+
+[node name="BlinkTimer" type="Timer" parent="ship"]
+
+process_mode = 1
+wait_time = 0.1
 one_shot = false
 autostart = false
 
@@ -517,6 +534,8 @@ visibility/visible = false
 [connection signal="body_enter" from="ship" to="ship" method="_on_ship_body_enter"]
 
 [connection signal="timeout" from="ship/ShootTimer" to="ship" method="_on_ShootTimer_timeout"]
+
+[connection signal="timeout" from="ship/BlinkTimer" to="ship" method="_on_BlinkTimer_timeout"]
 
 [connection signal="pressed" from="hud/back_to_menu" to="ship" method="_on_back_to_menu_pressed"]
 

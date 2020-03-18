@@ -39,6 +39,8 @@ func _process(delta):
 		if e[1] <= 0:
 			active_effects.erase(e) # remove the effect once duration has run out
 #			emit_signal("effect_removed", active_effects.size(), e[1])
+			# Some effects may have "after-effects":
+			if e[0] == "Phase-through": stop_blinking()
 	
 	
 	motion = Vector2(0,0)
@@ -84,7 +86,6 @@ func move(delta, motion):
 	
 	set_pos(pos)
 
-
 func shoot():
 	if can_shoot:
 		# Just pressed
@@ -97,6 +98,13 @@ func shoot():
 		get_node("../..").add_child(shot)
 		# Play sound
 		get_node("sfx").play("shoot")
+		
+		if has_effect("Shoot diag"):
+			for side in ["Left", "Right"]:
+				var shot = shots[0].instance()
+				shot.set_pos(get_node("shootfromDiag" + side).get_global_pos())
+				shot.set_rot(get_node("shootfromDiag" + side).get_rot()) 
+				get_node("../..").add_child(shot)
 		
 		# reset condition
 		can_shoot = false
@@ -138,6 +146,9 @@ func add_effect(name, duration=5):
 #	emit_signal("effect_added", active_effects.size()-1, name) # returns index in array where the effect is present and effect name itself
 	# Play sound
 	get_node("sfx").play("powerup_get")
+	
+	# Some effects have actions that only need to start upon receiving the effect:
+	if name == "Phase-through": begin_blinking()
 
 func _hit_something():
 	if killed: return
@@ -159,3 +170,18 @@ func _on_back_to_menu_pressed():
 
 func _on_ShootTimer_timeout():
 	can_shoot = true
+
+### BLINKING ###
+
+func begin_blinking():
+	get_node("BlinkTimer").start()
+
+func stop_blinking():
+	get_node("BlinkTimer").stop()
+	show()
+
+func _on_BlinkTimer_timeout():
+	if is_visible(): hide()
+	else: show()
+
+### END BLINKING ###
