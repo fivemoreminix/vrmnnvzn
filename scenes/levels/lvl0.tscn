@@ -80,7 +80,7 @@ editor/display_folded = true
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 0
+frame = 2
 
 [node name="Fade" parent="rail/hud"]
 
@@ -160,6 +160,7 @@ transform/pos = Vector2( -1, 0 )
 
 editor/display_folded = true
 transform/pos = Vector2( 26, -2020 )
+time_delay = 2.0
 
 [node name="RightHead" parent="enemies/Laser 2"]
 
@@ -169,6 +170,7 @@ transform/pos = Vector2( 206, 0 )
 
 editor/display_folded = true
 transform/pos = Vector2( 26, -2080 )
+time_delay = 1.0
 
 [node name="RightHead" parent="enemies/Laser3"]
 
@@ -178,6 +180,7 @@ transform/pos = Vector2( 205, 0 )
 
 editor/display_folded = true
 transform/pos = Vector2( 26, -2140 )
+time_delay = 2.0
 
 [node name="RightHead" parent="enemies/Laser4"]
 

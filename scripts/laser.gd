@@ -7,7 +7,8 @@ func _ready():
 	if time_delay <= 0:
 		_on_TimerWhileOn_timeout() # Disable collisions and start TimerWhileOff
 	else:
-		get_node("DelayTimer").start(time_delay)
+		get_node("DelayTimer").set_wait_time(time_delay)
+		get_node("DelayTimer").start()
 
 func _on_DelayTimer_timeout():
 	_on_TimerWhileOn_timeout() # Begin
