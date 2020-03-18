@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://scripts/ycentipede.gd" type="Script" id=1]
+[ext_resource path="res://scenes/centipede_segment.tscn" type="PackedScene" id=2]
+
+[node name="YCentipede" type="Area2D" groups=[
+"Godmode",
+"Enemy",
+]]
+
+input/pickable = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+script/script = ExtResource( 1 )
+sine_magnitude = 10.0
+speed = 5.0
+body_segments = 5
+
+[node name="head" parent="." instance=ExtResource( 2 )]
+
+

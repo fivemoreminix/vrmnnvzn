@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=13 format=1]
 
 [ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=2]
@@ -6,9 +6,10 @@
 [ext_resource path="res://scenes/bee.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/enemy1.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/laser.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/powerup.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/level_finish.wav" type="Sample" id=8]
-[ext_resource path="res://assets/electric_sound_loop.ogg" type="AudioStream" id=9]
+[ext_resource path="res://scenes/ycentipede.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/powerup.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/level_finish.wav" type="Sample" id=9]
+[ext_resource path="res://assets/electric_sound_loop.ogg" type="AudioStream" id=10]
 
 [sub_resource type="GDScript" id=1]
 
@@ -36,7 +37,7 @@ samples/level_finish = {
 "db": -10.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 8 )
+"sample": ExtResource( 9 )
 }
 
 [node name="lvl0" type="Node2D"]
@@ -80,7 +81,7 @@ editor/display_folded = true
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 2
+frame = 0
 
 [node name="Fade" parent="rail/hud"]
 
@@ -186,7 +187,14 @@ time_delay = 2.0
 
 transform/pos = Vector2( 205, 0 )
 
-[node name="Powerup" parent="." instance=ExtResource( 7 )]
+[node name="YCentipede" parent="enemies" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 180, 80 )
+sine_magnitude = 8.0
+speed = 5.0
+body_segments = 5
+
+[node name="Powerup" parent="." instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 125.302, -181.576 )
 powerup = "Shoot diag"
@@ -210,7 +218,7 @@ default/chorus_send = 0.0
 
 [node name="Music" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 9 )
+stream/stream = ExtResource( 10 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 0.0
