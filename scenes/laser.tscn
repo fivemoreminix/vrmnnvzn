@@ -50,6 +50,7 @@ tracks/1/keys = {
 [node name="Laser" type="Node2D"]
 
 script/script = ExtResource( 1 )
+time_delay = 0.0
 
 [node name="VisibilityEnabler2D" type="VisibilityNotifier2D" parent="."]
 
@@ -141,6 +142,13 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
+[node name="DelayTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
 [connection signal="exit_screen" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_exit_screen"]
 
 [connection signal="timeout" from="TimerWhileOff" to="." method="_on_TimerWhileOff_timeout"]
@@ -148,5 +156,7 @@ autoplay = ""
 [connection signal="timeout" from="TimerWhileOn" to="." method="_on_TimerWhileOn_timeout"]
 
 [connection signal="timeout" from="TimerWhileCharging" to="." method="_on_TimerWhileCharging_timeout"]
+
+[connection signal="timeout" from="DelayTimer" to="." method="_on_DelayTimer_timeout"]
 
 

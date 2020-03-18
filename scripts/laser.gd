@@ -1,9 +1,16 @@
 extends Node2D
 
+export var time_delay = 0.0 # Used for level design // making lasers activate at certain times
+
 func _ready():
 	expand_beam()
-#	get_node("TimerWhileOff").start()
-	_on_TimerWhileOn_timeout() # Disable collisions and start TimerWhileOff
+	if time_delay <= 0:
+		_on_TimerWhileOn_timeout() # Disable collisions and start TimerWhileOff
+	else:
+		get_node("DelayTimer").start(time_delay)
+
+func _on_DelayTimer_timeout():
+	_on_TimerWhileOn_timeout() # Begin
 
 
 func expand_beam():
