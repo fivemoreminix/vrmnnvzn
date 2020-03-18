@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/sprites/enemies/pincer0.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/enemies/pincer1.png" type="Texture" id=6]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 8, 8 )
@@ -33,12 +33,13 @@ animations = [ {
 
 [node name="CentipedeSegment" type="CollisionShape2D"]
 
-shape = SubResource( 1 )
-trigger = false
+shape = SubResource( 3 )
+trigger = true
 _update_shape_index = -1
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 
+visibility/behind_parent = true
 frames = SubResource( 2 )
 animation = "head"
 

@@ -160,6 +160,7 @@ func _on_ship_body_enter(body):
 
 
 func _on_ship_area_enter(area):
+	print("hitting something")
 	if area.is_in_group("Enemy") and not area.destroyed and not has_effect("Phase-through"): # TODO: should not ever need to check if an enemy is dead
 		_hit_something()
 
