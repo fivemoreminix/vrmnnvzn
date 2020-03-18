@@ -22,7 +22,7 @@ func destroy(): pass # THEY'RE UNSTOPPABLE!!!
 
 
 func _process(delta):
-	var pos = get_pos()
+	var pos = get_global_pos()
 	screenTime+=delta*2
 	#if segment!=null and trailing!=null:
 	#	get_node("sprite").set_animation("segment")
@@ -41,9 +41,9 @@ func _process(delta):
 	#	get_node("anim").play("default")
 	#print(sin(screenTime))
 	if !diverging:
-		set_pos(Vector2(initPoint.x+(sin(screenTime)*18), pos.y+SPEED*delta))
+		set_global_pos(Vector2(initPoint.x+(sin(screenTime)*18), pos.y+SPEED*delta))
 	else:#
-		translate(Vector2(delta*divergeDir/2, SPEED*delta))
+		translate(Vector2(delta*divergeDir/2, 0))
 		if OS.get_ticks_msec() - divergeStart >= divergeTime:
 			diverging = false
 	
@@ -132,9 +132,10 @@ func _on_visibility_enter_screen():
 		segment.screenTime   = screenTime-(PI/10)
 		segment.get_node("sprite").set_z(get_node("sprite").get_z()-1)
 		segment.set_segment(get_node("sprite").get_frame()-1)
-		segment.set_pos(Vector2(initPoint.x,get_global_pos().y)-Vector2(0,10))#Vector2(initPoint.x-sin(segment.screenTime),get_global_pos().y) 
-		get_parent().add_child(segment)
-		segment.initPoint    = initPoint
+		#segment.set_pos(Vector2(initPoint.x,get_global_pos().y-22))#Vector2(initPoint.x-sin(segment.screenTime),get_global_pos().y) 
+		get_node("nextSegment").add_child(segment)
+		segment.initPoint = initPoint + Vector2(0,-10)
+		prints("Segment ", segment, " init point: ", segment.get_pos())
 		#print(segment.get_name() + " spawned from " +self.get_name())
 	elif bodySegments == 0:
 		segment=null
