@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://scripts/laser.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/enemies/laser_head.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/enemies/laser_beam.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/enemies/laser_beam_charging3.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/enemies/laser_beam_charging0.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/enemies/laser_beam_charging1.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/enemies/laser_beam_charging2.png" type="Texture" id=7]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -15,6 +19,33 @@ script/source = "extends Area2D
 
 var destroyed = false
 "
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "Charging"
+length = 2.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("ChargeTex:texture")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.8, 1.2, 1.6 ),
+"transitions": FloatArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 4 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ChargeTex:visibility/visible")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8 ),
+"transitions": FloatArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, true, false, true, false, true, false, true, false ]
+}
 
 [node name="Laser" type="Node2D"]
 
@@ -64,10 +95,24 @@ transform/pos = Vector2( 3, -2 )
 texture = ExtResource( 3 )
 centered = false
 
+[node name="ChargeTex" type="TextureFrame" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 3.0
+margin/top = -1.0
+margin/right = 4.0
+margin/bottom = 0.0
+texture = ExtResource( 4 )
+expand = true
+stretch_mode = 2
+
 [node name="TimerWhileOff" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 2.0
+wait_time = 1.5
 one_shot = true
 autostart = false
 
@@ -81,9 +126,20 @@ autostart = false
 [node name="TimerWhileCharging" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 1.0
+wait_time = 2.0
 one_shot = true
 autostart = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/Charging = SubResource( 3 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
 
 [connection signal="exit_screen" from="VisibilityEnabler2D" to="." method="_on_VisibilityEnabler2D_exit_screen"]
 
