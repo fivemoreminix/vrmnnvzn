@@ -1,15 +1,14 @@
-[gd_scene load_steps=13 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/ship.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/bee.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/enemy1.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/laser.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/ycentipede.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/powerup.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/level_finish.wav" type="Sample" id=9]
-[ext_resource path="res://assets/electric_sound_loop.ogg" type="AudioStream" id=10]
+[ext_resource path="res://scenes/laser.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/ycentipede.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/powerup.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/level_finish.wav" type="Sample" id=8]
+[ext_resource path="res://assets/electric_sound_loop.ogg" type="AudioStream" id=9]
 
 [sub_resource type="GDScript" id=1]
 
@@ -37,7 +36,7 @@ samples/level_finish = {
 "db": -10.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 9 )
+"sample": ExtResource( 8 )
 }
 
 [node name="lvl0" type="Node2D"]
@@ -79,10 +78,6 @@ max_y = 2250
 
 editor/display_folded = true
 
-[node name="thruster" parent="rail/ship"]
-
-frame = 0
-
 [node name="Fade" parent="rail/hud"]
 
 editor/display_folded = true
@@ -119,32 +114,7 @@ transform/pos = Vector2( 199.095, -315.864 )
 
 transform/pos = Vector2( 167.208, -337.162 )
 
-[node name="pinsir2" parent="enemies" instance=ExtResource( 5 )]
-
-transform/pos = Vector2( 120, -414.512 )
-bodySegments = 3
-
-[node name="pinsir6" parent="enemies" instance=ExtResource( 5 )]
-
-transform/pos = Vector2( 180, -485 )
-bodySegments = 7
-
-[node name="pinsir9" parent="enemies" instance=ExtResource( 5 )]
-
-transform/pos = Vector2( 60, -605 )
-bodySegments = 12
-
-[node name="pinsir10" parent="enemies" instance=ExtResource( 5 )]
-
-transform/pos = Vector2( 197, -651 )
-bodySegments = 12
-
-[node name="pinsir4" parent="enemies" instance=ExtResource( 5 )]
-
-transform/pos = Vector2( 60, -485 )
-bodySegments = 4
-
-[node name="Laser" parent="enemies" instance=ExtResource( 6 )]
+[node name="Laser" parent="enemies" instance=ExtResource( 5 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 90, -113 )
@@ -157,7 +127,7 @@ transform/pos = Vector2( 78, 0 )
 
 transform/pos = Vector2( -1, 0 )
 
-[node name="Laser 2" parent="enemies" instance=ExtResource( 6 )]
+[node name="Laser 2" parent="enemies" instance=ExtResource( 5 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 26, -2020 )
@@ -167,7 +137,7 @@ time_delay = 2.0
 
 transform/pos = Vector2( 206, 0 )
 
-[node name="Laser3" parent="enemies" instance=ExtResource( 6 )]
+[node name="Laser3" parent="enemies" instance=ExtResource( 5 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 26, -2080 )
@@ -177,7 +147,7 @@ time_delay = 1.0
 
 transform/pos = Vector2( 205, 0 )
 
-[node name="Laser4" parent="enemies" instance=ExtResource( 6 )]
+[node name="Laser4" parent="enemies" instance=ExtResource( 5 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 26, -2140 )
@@ -187,14 +157,16 @@ time_delay = 2.0
 
 transform/pos = Vector2( 205, 0 )
 
-[node name="YCentipede" parent="enemies" instance=ExtResource( 7 )]
+[node name="YCentipede" parent="enemies" instance=ExtResource( 6 )]
 
-transform/pos = Vector2( 180, 80 )
-sine_magnitude = 8.0
-speed = 5.0
-body_segments = 5
+transform/pos = Vector2( 199, -573 )
 
-[node name="Powerup" parent="." instance=ExtResource( 8 )]
+[node name="YCentipede 2" parent="enemies" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 59, -499 )
+body_segments = 10
+
+[node name="Powerup" parent="." instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 125.302, -181.576 )
 powerup = "Shoot diag"
@@ -218,7 +190,7 @@ default/chorus_send = 0.0
 
 [node name="Music" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 10 )
+stream/stream = ExtResource( 9 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 0.0

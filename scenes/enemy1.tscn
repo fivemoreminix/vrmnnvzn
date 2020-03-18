@@ -1,73 +1,234 @@
 [gd_scene load_steps=28 format=1]
 
-[ext_resource path="res://scripts/enemy1.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/enemies/segment0.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/enemies/segment1.png" type="Texture" id=3]
-[ext_resource path="res://assets/sprites/enemies/segment2.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/enemies/segment0.png" type="Texture" id=1]
+[ext_resource path="res://assets/sprites/enemies/segment1.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/enemies/segment2.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/enemies/tail.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/enemies/pincer0.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/enemies/pincer1.png" type="Texture" id=6]
-[ext_resource path="res://assets/sprites/enemies/tail.png" type="Texture" id=7]
-[ext_resource path="res://explosion.scn" type="PackedScene" id=8]
-[ext_resource path="res://assets/sprites/explosion/explosion0.png" type="Texture" id=9]
-[ext_resource path="res://assets/sprites/explosion/explosion1.png" type="Texture" id=10]
-[ext_resource path="res://assets/sprites/explosion/explosion2.png" type="Texture" id=11]
-[ext_resource path="res://assets/sprites/explosion/explosion3.png" type="Texture" id=12]
-[ext_resource path="res://assets/sprites/explosion/explosion4.png" type="Texture" id=13]
-[ext_resource path="res://assets/sprites/explosion/explosion5.png" type="Texture" id=14]
-[ext_resource path="res://assets/sprites/explosion/explosion6.png" type="Texture" id=15]
-[ext_resource path="res://assets/sprites/explosion/explosion7.png" type="Texture" id=16]
-[ext_resource path="res://assets/sprites/explosion/explosion8.png" type="Texture" id=17]
-[ext_resource path="res://assets/sprites/explosion/explosion9.png" type="Texture" id=18]
-[ext_resource path="res://assets/sprites/explosion/explosion10.png" type="Texture" id=19]
-[ext_resource path="res://assets/sprites/explosion/explosion11.png" type="Texture" id=20]
-[ext_resource path="res://assets/sprites/explosion/explosion12.png" type="Texture" id=21]
-[ext_resource path="res://sound_explode.wav" type="Sample" id=22]
+[ext_resource path="res://explosion.scn" type="PackedScene" id=7]
+[ext_resource path="res://assets/sprites/explosion/explosion0.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/explosion/explosion1.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/explosion/explosion2.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/explosion/explosion3.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/explosion/explosion4.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/explosion/explosion5.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/explosion/explosion6.png" type="Texture" id=14]
+[ext_resource path="res://assets/sprites/explosion/explosion7.png" type="Texture" id=15]
+[ext_resource path="res://assets/sprites/explosion/explosion8.png" type="Texture" id=16]
+[ext_resource path="res://assets/sprites/explosion/explosion9.png" type="Texture" id=17]
+[ext_resource path="res://assets/sprites/explosion/explosion10.png" type="Texture" id=18]
+[ext_resource path="res://assets/sprites/explosion/explosion11.png" type="Texture" id=19]
+[ext_resource path="res://assets/sprites/explosion/explosion12.png" type="Texture" id=20]
+[ext_resource path="res://sound_explode.wav" type="Sample" id=21]
 
 [sub_resource type="CircleShape2D" id=1]
 
 custom_solver_bias = 0.0
 radius = 8.0
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends Area2D
+# Member variables
+const SPEED = 0
+export(int) var bodySegments = 0
+#var isHead = true
+#var wasntHead = true
+var trailing = null
+onready var segment = preload(\"res://scenes/enemy1.tscn\").instance()
+onready var initPoint = get_global_pos()
+
+var diverging = false
+var wasDiverging = false
+var divergeTime = 250
+var divergeDir = null
+var divergeStart = null
+
+var destroyed=false
+var screenTime = 0
+var spawned = false
+
+func destroy(): pass # THEY'RE UNSTOPPABLE!!!
+
+
+func _process(delta):
+	var pos = get_global_pos()
+	screenTime+=delta*2
+	#if segment!=null and trailing!=null:
+	#	get_node(\"sprite\").set_animation(\"segment\")
+	#if segment==null and trailing!=null: 
+	#	get_node(\"sprite\").set_animation(\"tail\")
+	#if trailing==null: 
+	#	get_node(\"sprite\").set_animation(\"head\")
+	#else: 
+	#	isHead = false
+	
+	#if isHead: 
+	#	if wasntHead:
+	#		wasntHead = false
+	#		get_node(\"sprite\").set_animation(\"head\")
+	#if !get_node(\"anim\").is_playing():
+	#	get_node(\"anim\").play(\"default\")
+	#print(sin(screenTime))
+	if !diverging:
+		set_global_pos(Vector2(initPoint.x+(sin(screenTime)*18), pos.y+SPEED*delta))
+	else:#
+		translate(Vector2(delta*divergeDir/2, 0))
+		if OS.get_ticks_msec() - divergeStart >= divergeTime:
+			diverging = false
+	
+	
+	if !wasDiverging and diverging:
+		wasDiverging = true
+		if segment!=null:
+			segment.diverging = true
+			segment.divergeDir = divergeDir
+			segment.divergeStart = OS.get_ticks_msec()
+	
+	if wasDiverging and !diverging:
+		initPoint = pos
+		wasDiverging = false
+		if segment!=null:
+			segment.initPoint = pos
+			segment.diverging = false
+	
+	if segment==null and trailing==null:
+		set_head()
+	
+	#else:  
+	#	if trailing==null: return
+	#	else:
+	#		set_pos(Vector2(lerp(pos.x,trailing.get_global_pos().x,delta*8),trailing.get_global_pos().y-10))
+	
+
+#func _init():
+#	if bodySegments > 0:
+#		segment = preload(\"res://scenes/enemy1.tscn\").instance()
+#		segment.head = false
+#		segment.trailing = self
+#		segment.bodySegments = bodySegments-1
+#		segment.set_pos(get_pos()-Vector2(0,16))
+#		get_parent().add_child(segment)
+#		print(segment)
+
+
+func set_head():
+	get_node(\"sprite\").set_animation(\"head\")
+	if diverging == true:
+		if bodySegments%2==0:
+			divergeDir = -1
+		else:
+			divergeDir = 1
+		divergeStart = OS.get_ticks_msec()
+
+
+func set_segment(frame):
+	if frame < 0:
+		frame = 3
+	get_node(\"sprite\").set_animation(\"segment\")
+	get_node(\"sprite\").set_frame(frame)
+
+
+func set_tail():
+	get_node(\"sprite\").set_animation(\"tail\")
+
+
+#func destroy():
+#	if (destroyed):
+#		return
+#	destroyed = true
+#	#get_node(\"anim\").play(\"explode\") 
+#	hide()
+#	set_process(false)
+#	if segment!=null:
+#		segment.diverging = true
+#		segment.set_head() 
+#		#get_parent().add_child(segment)
+#	if trailing!=null and trailing.trailing!=null:
+#		trailing.set_tail() 
+#	get_node(\"sfx\").play(\"sound_explode\")
+#	# Accumulate points
+#	get_node(\"/root/game_state\").points += 25
+
+
+func _on_visibility_enter_screen():
+	spawned = true
+	#
+	if bodySegments > 0:
+		#segment =
+		#segment.isHead       = false
+		segment.trailing     = self
+		segment.bodySegments = bodySegments-1
+		segment.screenTime   = screenTime-(PI/10)
+		segment.get_node(\"sprite\").set_z(get_node(\"sprite\").get_z()-1)
+		segment.set_segment(get_node(\"sprite\").get_frame()-1)
+		#segment.set_pos(Vector2(initPoint.x,get_global_pos().y-22))#Vector2(initPoint.x-sin(segment.screenTime),get_global_pos().y) 
+		get_node(\"nextSegment\").add_child(segment)
+		segment.initPoint = initPoint + Vector2(0,-10)
+		prints(\"Segment \", segment, \" init point: \", segment.get_pos())
+		#print(segment.get_name() + \" spawned from \" +self.get_name())
+	elif bodySegments == 0:
+		segment=null
+		if trailing!=null:
+			set_tail()
+		else:
+			set_head()
+	set_process(true)
+	#get_node(\"anim\").play(\"zigzag\")
+	#get_node(\"anim\").seek(randf()*2.0) # Make it start from any pos
+
+
+func _on_visibility_exit_screen():
+	#pass
+	if spawned:
+		if segment==null:
+			queue_free()
+			return
+		else:
+			segment.trailing = null 
+		queue_free()
+"
+
+[sub_resource type="SpriteFrames" id=3]
 
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 3 ) ],
+"frames": [ ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ), ExtResource( 2 ) ],
 "loop": true,
 "name": "segment",
 "speed": 7.0
+}, {
+"frames": [ ExtResource( 4 ) ],
+"loop": true,
+"name": "tail",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 5 ), ExtResource( 6 ) ],
 "loop": true,
 "name": "head",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "tail",
-"speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=4]
 
 animations = [ {
-"frames": [ null, ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), ExtResource( 21 ), null ],
+"frames": [ null, ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ), ExtResource( 19 ), ExtResource( 20 ), null ],
 "loop": false,
 "name": "default",
 "speed": 30.0
 } ]
 
-[sub_resource type="SampleLibrary" id=4]
+[sub_resource type="SampleLibrary" id=5]
 
 samples/sound_explode = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 22 )
+"sample": ExtResource( 21 )
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=6]
 
-resource/name = "default"
 length = 2.1
 loop = false
 step = 0.1
@@ -106,7 +267,7 @@ gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = ExtResource( 1 )
+script/script = SubResource( 2 )
 bodySegments = 0
 
 [node name="collision" type="CollisionShape2D" parent="."]
@@ -117,13 +278,13 @@ _update_shape_index = 0
 
 [node name="sprite" type="AnimatedSprite" parent="."]
 
-frames = SubResource( 2 )
+frames = SubResource( 3 )
 animation = "head"
 playing = true
 
-[node name="explosion" parent="." instance=ExtResource( 8 )]
+[node name="explosion" parent="." instance=ExtResource( 7 )]
 
-frames = SubResource( 3 )
+frames = SubResource( 4 )
 
 [node name="visibility" type="VisibilityNotifier2D" parent="."]
 
@@ -137,7 +298,7 @@ params/attenuation/min_distance = 1.0
 params/attenuation/max_distance = 2048.0
 params/attenuation/distance_exp = 1.0
 config/polyphony = 1
-config/samples = SubResource( 4 )
+config/samples = SubResource( 5 )
 config/pitch_random = 0.0
 
 [node name="anim" type="AnimationPlayer" parent="."]
@@ -145,7 +306,7 @@ config/pitch_random = 0.0
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/default = SubResource( 5 )
+anims/default = SubResource( 6 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
