@@ -18,6 +18,8 @@ var destroyed=false
 var screenTime = 0
 var spawned = false
 
+func destroy(): pass # THEY'RE UNSTOPPABLE!!!
+
 
 func _process(delta):
 	var pos = get_pos()

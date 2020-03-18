@@ -4,16 +4,15 @@ extends Area2D
 # Member variables
 const SPEED = 600
 
-export var Damage = 1
+export var shot_size = 1 setget set_shot_size
 
-var hit = false
+func set_shot_size(v):
+	shot_size = v
+	# Update sprite to match
 
 
 func _process(delta):
-	if hit:
-		queue_free()
-	else:
-		translate(Vector2(0, -delta*SPEED).rotated(get_rot()))
+	translate(Vector2(0, -delta*SPEED).rotated(get_rot()))
 
 
 func _ready():
@@ -21,13 +20,7 @@ func _ready():
 
 
 func _hit_something():
-	if (hit):
-		return
-	hit = true
-	set_process(false)
-	#hide()
 	queue_free()
-	#get_node("anim").play("splash")
 
 
 func _on_visibility_exit_screen():
@@ -35,8 +28,8 @@ func _on_visibility_exit_screen():
 
 
 func _on_shot_area_enter(area):
-	# Hit an enemy or asteroid
-	if (area.has_method("destroy")):
+	# Hit an enemy
+	if (area.is_in_group("Enemy") and not area.is_in_group("Godmode")):
 		# Duck typing at it's best
 		if(!area.destroyed):
 			area.destroy()

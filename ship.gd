@@ -16,7 +16,7 @@ var screen_size
 var can_shoot = true
 var killed = false
 onready var shipSprite = get_node("shipSprite")
-onready var shots = [preload("res://scenes/shot.tscn"),preload("res://scenes/2shot.tscn"),preload("res://scenes/3shot.tscn"),preload("res://scenes/5shot.tscn")]
+onready var shots = [preload("res://scenes/shot.tscn"),preload("res://scenes/2shot.tscn"),preload("res://scenes/3shot.tscn")]
 var banking = false
 
 var active_effects = [] # a list of active powerups or detriments [type of effect, effect name, duration as a float]

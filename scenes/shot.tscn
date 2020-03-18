@@ -22,7 +22,7 @@ script/script = ExtResource( 1 )
 __meta__ = {
 "__editor_plugin_screen__": "Script"
 }
-Damage = 1
+shot_size = 1
 
 [node name="visibility" type="VisibilityNotifier2D" parent="."]
 
