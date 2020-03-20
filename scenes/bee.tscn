@@ -1,24 +1,19 @@
-[gd_scene load_steps=22 format=1]
+[gd_scene load_steps=17 format=1]
 
 [ext_resource path="res://scripts/bee.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/enemies/bees/bees_frame0.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/enemies/bees/bees_frame1.png" type="Texture" id=3]
 [ext_resource path="res://sound_explode.wav" type="Sample" id=4]
-[ext_resource path="res://assets/sprites/explosion/explosion0.png" type="Texture" id=5]
-[ext_resource path="res://assets/sprites/explosion/explosion1.png" type="Texture" id=6]
-[ext_resource path="res://assets/sprites/explosion/explosion2.png" type="Texture" id=7]
-[ext_resource path="res://assets/sprites/explosion/explosion3.png" type="Texture" id=8]
-[ext_resource path="res://assets/sprites/explosion/explosion4.png" type="Texture" id=9]
-[ext_resource path="res://assets/sprites/explosion/explosion5.png" type="Texture" id=10]
-[ext_resource path="res://assets/sprites/explosion/explosion6.png" type="Texture" id=11]
-[ext_resource path="res://assets/sprites/explosion/explosion7.png" type="Texture" id=12]
-[ext_resource path="res://assets/sprites/explosion/explosion8.png" type="Texture" id=13]
-[ext_resource path="res://assets/sprites/explosion/explosion9.png" type="Texture" id=14]
-[ext_resource path="res://assets/sprites/explosion/explosion10.png" type="Texture" id=15]
-[ext_resource path="res://assets/sprites/explosion/explosion11.png" type="Texture" id=16]
-[ext_resource path="res://assets/sprites/explosion/explosion12.png" type="Texture" id=17]
+[ext_resource path="res://assets/sprites/splat/splat_0.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/splat/splat_1.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/splat/splat_2.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/splat/splat_3.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/splat/splat_4.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/gibs/gibs_5.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/gibs/gibs_1.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/gibs/gibs_0.png" type="Texture" id=12]
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 7, 7 )
@@ -44,10 +39,10 @@ samples/sound_explode = {
 [sub_resource type="SpriteFrames" id=4]
 
 animations = [ {
-"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), null ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": false,
 "name": "default",
-"speed": 30.0
+"speed": 12.0
 } ]
 
 [node name="Bee" type="Area2D" groups=[
@@ -55,7 +50,7 @@ animations = [ {
 ]]
 
 input/pickable = true
-shapes/0/shape = SubResource( 5 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = true
 gravity_vec = Vector2( 0, 1 )
@@ -76,7 +71,7 @@ playing = true
 
 [node name="collision" type="CollisionShape2D" parent="."]
 
-shape = SubResource( 5 )
+shape = SubResource( 1 )
 trigger = true
 _update_shape_index = 0
 
@@ -100,6 +95,157 @@ config/pitch_random = 0.0
 visibility/visible = false
 frames = SubResource( 4 )
 animation = "default"
+frame = 4
+playing = true
+
+[node name="wings0" type="Particles2D" parent="."]
+
+transform/rot = 90.0
+config/amount = 2
+config/lifetime = 1.0
+config/emit_timeout = 1.0
+config/emitting = false
+config/process_mode = 1
+config/local_space = false
+config/explosiveness = 0.01
+config/flip_h = true
+config/texture = ExtResource( 10 )
+config/v_frames = 4
+params/direction = 0.0
+params/spread = 90.0
+params/linear_velocity = 32.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 9.8
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+
+[node name="wings1" type="Particles2D" parent="."]
+
+transform/rot = -90.0
+config/amount = 2
+config/lifetime = 1.0
+config/emit_timeout = 1.0
+config/emitting = false
+config/process_mode = 1
+config/local_space = false
+config/explosiveness = 0.01
+config/texture = ExtResource( 10 )
+config/v_frames = 4
+params/direction = 0.0
+params/spread = 90.0
+params/linear_velocity = 32.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 9.8
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+
+[node name="head" type="Particles2D" parent="."]
+
+transform/rot = -180.0
+config/amount = 1
+config/lifetime = 1.0
+config/emit_timeout = 1.0
+config/emitting = false
+config/process_mode = 1
+config/local_space = false
+config/explosiveness = 0.01
+config/texture = ExtResource( 11 )
+config/v_frames = 4
+params/direction = 0.0
+params/spread = 90.0
+params/linear_velocity = 32.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 9.8
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+
+[node name="legs0" type="Particles2D" parent="."]
+
+transform/rot = -90.0
+config/amount = 3
+config/lifetime = 1.0
+config/emit_timeout = 1.0
+config/emitting = false
+config/process_mode = 1
+config/local_space = false
+config/explosiveness = 0.01
+config/texture = ExtResource( 12 )
+config/v_frames = 4
+params/direction = 0.0
+params/spread = 90.0
+params/linear_velocity = 32.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 9.8
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/spread = -1.0
+
+[node name="legs1" type="Particles2D" parent="."]
+
+transform/rot = 90.0
+config/amount = 3
+config/lifetime = 1.0
+config/emit_timeout = 1.0
+config/emitting = false
+config/process_mode = 1
+config/local_space = false
+config/explosiveness = 0.01
+config/flip_h = true
+config/texture = ExtResource( 12 )
+config/v_frames = 4
+params/direction = 0.0
+params/spread = 90.0
+params/linear_velocity = 32.0
+params/spin_velocity = 0.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 9.8
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 1.0
+params/final_size = 1.0
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/spread = -1.0
 
 [connection signal="area_enter" from="." to="." method="_on_asteroid_area_enter"]
 

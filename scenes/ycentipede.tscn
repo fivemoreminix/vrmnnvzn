@@ -22,8 +22,8 @@ linear_damp = 0.1
 angular_damp = 1.0
 monitoring = false
 script/script = ExtResource( 1 )
-sine_magnitude = 10.0
-speed = 5.0
+sine_magnitude = 15.0
+speed = 2
 body_segments = 5
 
 [node name="head" parent="." instance=ExtResource( 2 )]

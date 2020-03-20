@@ -1,10 +1,10 @@
 extends Area2D
 
 const SEGMENT_TIME_OFFSET = 5.0
-const SEGMENT_OFFSET = Vector2(0, -10)
+const SEGMENT_OFFSET = Vector2(0, -12)
 
-export(float) var sine_magnitude = 10.0
-export(float) var speed = 5.0
+export(float) var sine_magnitude = 15.0
+export(float) var speed = 2
 export(int) var body_segments = 5
 
 var segment = preload("res://scenes/centipede_segment.tscn")

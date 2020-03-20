@@ -28,6 +28,12 @@ func destroy():
 		get_node("sprite").hide()
 		get_node("explosion").show()
 		get_node("explosion").play("default")
+		get_node("wings0").set_emitting(true)
+		get_node("wings1").set_emitting(true)
+		get_node("head").set_emitting(true)
+		get_node("legs0").set_emitting(true)
+		get_node("legs1").set_emitting(true)
+		
 		#get_node("anim").play("explode")
 		set_process(false)
 		get_node("sfx").play("sound_explode")
