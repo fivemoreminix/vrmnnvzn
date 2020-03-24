@@ -34,13 +34,9 @@ func destroy():
 		get_node("legs0").set_emitting(true)
 		get_node("legs1").set_emitting(true)
 		
-		#get_node("anim").play("explode")
 		set_process(false)
+		set_monitorable(false) # Disable the collisions on this Bee
 		get_node("sfx").play("sound_explode")
-	else:
-		if !get_node("explosion").is_playing():
-			queue_free()
-		return
 
 
 func _on_visibility_enter_screen():

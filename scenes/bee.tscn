@@ -67,6 +67,7 @@ TargetPath = "../../rail/ship"
 
 frames = SubResource( 2 )
 animation = "default"
+frame = 1
 playing = true
 
 [node name="collision" type="CollisionShape2D" parent="."]
@@ -95,8 +96,6 @@ config/pitch_random = 0.0
 visibility/visible = false
 frames = SubResource( 4 )
 animation = "default"
-frame = 4
-playing = true
 
 [node name="wings0" type="Particles2D" parent="."]
 

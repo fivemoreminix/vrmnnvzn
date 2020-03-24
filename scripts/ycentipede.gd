@@ -1,7 +1,7 @@
 extends Area2D
 
 const SEGMENT_TIME_OFFSET = 5.0
-const SEGMENT_OFFSET = Vector2(0, -12)
+const SEGMENT_OFFSET = Vector2(0, -10)
 
 export(float) var sine_magnitude = 15.0
 export(float) var speed = 2
