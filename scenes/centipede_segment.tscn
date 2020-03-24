@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/sprites/enemies/pincer1.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/enemies/tail.png" type="Texture" id=6]
 
-[sub_resource type="RectangleShape2D" id=1]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 8, 8 )
@@ -31,11 +31,24 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="CentipedeSegment" type="CollisionShape2D"]
+[node name="CentipedeSegment" type="Area2D" groups=[
+"Enemy",
+]]
 
-shape = SubResource( 1 )
+input/pickable = true
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+
+shape = SubResource( 3 )
 trigger = true
-_update_shape_index = -1
+_update_shape_index = 0
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 
