@@ -30,7 +30,7 @@ func _ready():
 func _process(delta):
 	if Input.is_action_pressed("pause"):
 		get_node("../hud/Pause").set_menu_pause()
-		get_node("../hud/Pause").show()
+		get_node("../hud/Pause").popup(true)
 	
 	# decrease time remaining for all effects
 	for e in active_effects:
