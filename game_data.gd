@@ -58,22 +58,7 @@ func load_global_data(): # load global data from disk
 		
 		# for the purposes of making this software stable, we will load game resolution and window type immediately
 		# upon reading the global data file
-		var xy = global_data.resolution.split("x", false)
-		if xy.size() != 2:
-			print("resolution is not in a valid form: " + var2str(global_data.resolution))
-			print("go to " + OS.get_data_dir() + "/VRMNNVZN_global.save" + ", and set \"resolution\": \"800x600\" to reset it, or delete the file and a new one will be made.")
-			get_tree().quit()
-			return 2
-		var x = int(xy[0])
-		var y = int(xy[1])
-		
-		print("game_data.gd: Initializing video settings: " + var2str(global_data.resolution))
-		OS.set_window_fullscreen(global_data.window_mode == "Fullscreen" or global_data.window_mode == "Borderless")
-		OS.set_borderless_window(global_data.window_mode == "Borderless")
-		OS.set_window_size(Vector2(x, y))
-		OS.set_use_vsync(global_data.vsync)
-		var ssize = OS.get_screen_size(OS.get_current_screen())
-		OS.set_window_position(Vector2(ssize.x/2-x/2, ssize.y/2-y/2))
+		refresh_video_settings()
 		
 		return 0
 	else: # global data save file does NOT exist ...
@@ -87,3 +72,25 @@ func load_global_data(): # load global data from disk
 		print("game_data.gd: global save file not found... creating one now")
 		save_global_data()
 		return 1 # make the file
+
+func refresh_video_settings():
+	print("game_data.gd: Refreshing video settings: " + var2str(global_data.resolution))
+	
+	var xy = global_data.resolution.split("x", false)
+	if xy.size() != 2:
+		print("resolution is not in a valid form: " + var2str(global_data.resolution))
+		print("go to " + OS.get_data_dir() + "/VRMNNVZN_global.save" + ", and set \"resolution\": \"800x600\" to reset it, or delete the file and a new one will be made.")
+		get_tree().quit()
+		return 2
+	var x = int(xy[0])
+	var y = int(xy[1])
+	
+	OS.set_window_fullscreen(global_data.window_mode == "Fullscreen" or global_data.window_mode == "Borderless")
+	OS.set_borderless_window(global_data.window_mode == "Borderless")
+	OS.set_window_size(Vector2(x, y))
+	OS.set_use_vsync(global_data.vsync)
+	var ssize = OS.get_screen_size(OS.get_current_screen())
+	OS.set_window_position(Vector2(ssize.x/2-x/2, ssize.y/2-y/2))
+
+func _enter_tree():
+	load_global_data() # Load global data and refresh video settings upon game load (this code is a singleton)

@@ -83,4 +83,6 @@ func save_changes():
 		print("settings.gd: err != 0 while saving... ruh roh raggy, error: " + var2str(err)) # TODO: user-friendly dialogs for errors
 		return
 	
+	GameData.refresh_video_settings() # Reload video
+	
 	get_tree().change_scene("res://main_menu.scn")
