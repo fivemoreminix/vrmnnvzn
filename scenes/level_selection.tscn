@@ -1,0 +1,82 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://assets/themes/theme.thm" type="Theme" id=1]
+[ext_resource path="res://scripts/level_selection.gd" type="Script" id=2]
+[ext_resource path="res://scripts/button.gd" type="Script" id=3]
+[ext_resource path="res://scenes/button_flasher.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/fade.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/pointer.tscn" type="PackedScene" id=6]
+
+[node name="LevelSelection" type="Control"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+script/script = ExtResource( 2 )
+
+[node name="ItemList" type="ItemList" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 256.0
+margin/bottom = 160.0
+
+[node name="Cancel" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 8.0
+margin/top = 168.0
+margin/right = 64.0
+margin/bottom = 186.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "CANCEL"
+flat = false
+script/script = ExtResource( 3 )
+parent_function_to_call = "cancel"
+
+[node name="Start" type="Button" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 200.0
+margin/top = 168.0
+margin/right = 250.0
+margin/bottom = 186.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "START"
+flat = false
+script/script = ExtResource( 3 )
+parent_function_to_call = "start"
+
+[node name="ButtonFlasher" parent="." instance=ExtResource( 4 )]
+
+[node name="Fade" parent="." instance=ExtResource( 5 )]
+
+[node name="Pointer" parent="." instance=ExtResource( 6 )]
+
+[connection signal="draw" from="ItemList" to="." method="_on_ItemList_draw"]
+
+[connection signal="item_activated" from="ItemList" to="." method="_on_ItemList_item_activated"]
+
+

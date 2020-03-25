@@ -31,6 +31,9 @@ func continue_game():
 	
 	get_tree().change_scene("res://scenes/levels/lvl" + str(GameData.data.current_level) + ".tscn")
 
+func levels():
+	get_tree().change_scene("res://scenes/level_selection.tscn")
+
 func exit_game():
 	get_tree().quit()
 
