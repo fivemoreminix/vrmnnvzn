@@ -39,3 +39,6 @@ func exit_game():
 
 func settings():
 	get_tree().change_scene("res://scenes/settings.tscn")
+
+func info():
+	get_tree().change_scene("res://scenes/information.tscn")
