@@ -28,10 +28,9 @@ func _ready():
 
 
 func _process(delta):
-	if killed:
-		if Input.is_action_pressed("ui_cancel"):
-			_on_back_to_menu_pressed()
-		return
+	if Input.is_action_pressed("pause"):
+		get_node("../hud/Pause").set_menu_pause()
+		get_node("../hud/Pause").show()
 	
 	# decrease time remaining for all effects
 	for e in active_effects:
@@ -66,20 +65,13 @@ func _process(delta):
 	move(delta, motion)
 	
 	if shooting: shoot()
-	
-	# Update points counter
-#	get_node("../hud/score_points").set_text(str(get_node("/root/game_state").points))
 
 
 func move(delta, motion):
 	var pos = get_pos()
 	
-	# clamp motion
-	#self.motion = Vector2(clamp(motion.x, -1, 1), clamp(motion.y, -1, 1))
 	# move ship
 	pos += motion*delta*SPEED
-	# lerp motion (motion dampening effect)
-	#self.motion = Vector2(lerp(self.motion.x, 0, delta*dampen_speed), lerp(self.motion.y, 0, delta*dampen_speed))
 	
 	pos.x = clamp(pos.x, 0, screen_size.x)
 	pos.y = min(pos.y, 168)
@@ -121,9 +113,9 @@ func kill():
 	get_node("explosion").show()
 	get_node("explosion").play("default")
 	get_node("sfx").play("explode")
-	get_node("../hud/game_over").show()
 	
-	get_node("../hud/Pointer").show() # re-enable the mouse
+	get_node("../hud/Pause").set_menu_player_died()
+	get_node("../hud/Pause").show()
 	
 	get_parent().stop()
 
@@ -141,9 +133,8 @@ func add_effect(name, duration=5):
 	for e in active_effects:
 		if e[0] == name:
 			active_effects.erase(e) # remove the effect from the list
-#			emit_signal("effect_removed", active_effects.size(), name) # send signal with (index, effect name)
 	active_effects.append([name, duration])
-#	emit_signal("effect_added", active_effects.size()-1, name) # returns index in array where the effect is present and effect name itself
+	
 	# Play sound
 	get_node("sfx").play("powerup_get")
 	
