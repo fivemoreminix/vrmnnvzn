@@ -11,8 +11,8 @@ func _ready():
 	for i in range(levels.size()):
 		get_node("ItemList").add_item(levels[i][0], null, i <= GameData.data.current_level)
 	
-	get_node("ItemList").grab_focus()
 	get_node("ItemList").select(0)
+#	get_node("ItemList").grab_focus()
 
 
 func update_levels_from_csv():
