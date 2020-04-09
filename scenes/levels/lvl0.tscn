@@ -35,7 +35,7 @@ func _on_Fade_fade_finished():
 
 bake_interval = 5.0
 _data = {
-"points": Vector2Array( 0, 0, -15.8886, -19.0663, 295, -195, 64.1094, 11.1864, -29.6126, -3.59289, 194, -261, 37.3381, -6.75264, -52.0351, 16.2858, 96, -255, 0, 0, 0, 0, 18, -187 )
+"points": Vector2Array( 0, 0, -15.8886, -19.0663, 295, -195, 64.1094, 11.1864, -29.6126, -3.59289, 194, -261, 37.3381, -6.75264, -52.0351, 16.2858, 96, -255, 0, 0, 0, 0, 18, -187, 0, 0, 0, 0, -31, -93 )
 }
 
 [sub_resource type="SampleLibrary" id=3]
@@ -85,6 +85,10 @@ max_y = 2250
 [node name="ship" parent="rail"]
 
 editor/display_folded = true
+
+[node name="thruster" parent="rail/ship"]
+
+frame = 2
 
 [node name="Fade" parent="rail/hud"]
 
@@ -178,6 +182,7 @@ body_segments = 10
 
 transform/pos = Vector2( -35, -534 )
 path = NodePath("Path2D")
+body_segments = 10
 
 [node name="Path2D" type="Path2D" parent="enemies/Millipede"]
 
