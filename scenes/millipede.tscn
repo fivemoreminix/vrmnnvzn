@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=1]
+
+[ext_resource path="res://scripts/millipede.gd" type="Script" id=1]
+[ext_resource path="res://scenes/millipede_segment.tscn" type="PackedScene" id=2]
+
+[node name="Millipede" type="Node2D"]
+
+script/script = ExtResource( 1 )
+path = null
+body_segments = 5
+
+[node name="head" parent="." instance=ExtResource( 2 )]
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="head"]
+
+rect = Rect2( -10, -10, 20, 20 )
+
+[node name="QueueFreeTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 2.0
+one_shot = true
+autostart = false
+
+[connection signal="exit_screen" from="head/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_exit_screen"]
+
+[connection signal="timeout" from="QueueFreeTimer" to="." method="_on_QueueFreeTimer_timeout"]
+
+

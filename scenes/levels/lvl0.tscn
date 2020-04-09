@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=14 format=1]
 
 [ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=2]
@@ -6,9 +6,10 @@
 [ext_resource path="res://scenes/bee.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/laser.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/ycentipede.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/powerup.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/level_finish.wav" type="Sample" id=8]
-[ext_resource path="res://assets/electric_sound_loop.ogg" type="AudioStream" id=9]
+[ext_resource path="res://scenes/millipede.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/powerup.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/level_finish.wav" type="Sample" id=9]
+[ext_resource path="res://assets/electric_sound_loop.ogg" type="AudioStream" id=10]
 
 [sub_resource type="GDScript" id=1]
 
@@ -30,13 +31,20 @@ func _on_Fade_fade_finished():
 	get_node(\"rail/hud/BottomBar\").scrolling_text(\"Level finished!\")
 "
 
-[sub_resource type="SampleLibrary" id=2]
+[sub_resource type="Curve2D" id=2]
+
+bake_interval = 5.0
+_data = {
+"points": Vector2Array( 0, 0, -15.8886, -19.0663, 295, -195, 64.1094, 11.1864, -29.6126, -3.59289, 194, -261, 37.3381, -6.75264, -52.0351, 16.2858, 96, -255, 0, 0, 0, 0, 18, -187 )
+}
+
+[sub_resource type="SampleLibrary" id=3]
 
 samples/level_finish = {
 "db": -10.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 8 )
+"sample": ExtResource( 9 )
 }
 
 [node name="lvl0" type="Node2D"]
@@ -77,10 +85,6 @@ max_y = 2250
 [node name="ship" parent="rail"]
 
 editor/display_folded = true
-
-[node name="thruster" parent="rail/ship"]
-
-frame = 2
 
 [node name="Fade" parent="rail/hud"]
 
@@ -170,7 +174,23 @@ transform/pos = Vector2( 199, -573 )
 transform/pos = Vector2( 59, -499 )
 body_segments = 10
 
-[node name="Powerup" parent="." instance=ExtResource( 7 )]
+[node name="Millipede" parent="enemies" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( -35, -534 )
+path = NodePath("Path2D")
+
+[node name="Path2D" type="Path2D" parent="enemies/Millipede"]
+
+transform/pos = Vector2( -1, -2 )
+curve = SubResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="enemies/Millipede"]
+
+transform/pos = Vector2( 164, -246 )
+transform/scale = Vector2( 11.1, 1 )
+rect = Rect2( -10, -10, 20, 20 )
+
+[node name="Powerup" parent="." instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 125.302, -181.576 )
 powerup = "Shoot diag"
@@ -178,7 +198,7 @@ powerup = "Shoot diag"
 [node name="Sfx" type="SamplePlayer" parent="."]
 
 config/polyphony = 1
-config/samples = SubResource( 2 )
+config/samples = SubResource( 3 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0
@@ -194,7 +214,7 @@ default/chorus_send = 0.0
 
 [node name="Music" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 9 )
+stream/stream = ExtResource( 10 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 0.0
@@ -206,6 +226,8 @@ stream/buffering_ms = 500
 [connection signal="level_finished" from="LevelFinishTrigger" to="." method="_on_LevelFinishTrigger_level_finished"]
 
 [connection signal="fade_finished" from="rail/hud/Fade" to="." method="_on_Fade_fade_finished"]
+
+[connection signal="enter_screen" from="enemies/Millipede/VisibilityNotifier2D" to="enemies/Millipede" method="begin"]
 
 
 [editable path="rail"]
