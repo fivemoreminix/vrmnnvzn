@@ -46,6 +46,7 @@ animations = [ {
 
 [node name="MillipedeSegment" type="Area2D" groups=[
 "Enemy",
+"Godmode",
 ]]
 
 input/pickable = true
