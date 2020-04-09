@@ -115,7 +115,7 @@ func kill():
 	get_node("sfx").play("explode")
 	
 	get_node("../hud/Pause").set_menu_player_died()
-	get_node("../hud/Pause").show()
+	get_node("../hud/Pause").popup(true)
 	
 	get_parent().stop()
 
