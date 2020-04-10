@@ -34,7 +34,7 @@ func cancel():
 
 
 func start():
-	get_tree().change_scene(levels[get_node("ItemList").get_selected_items()[0]][1])
+	get_tree().change_scene("res://scenes/levels/lvl" + levels[get_node("ItemList").get_selected_items()[0]][1] + ".tscn")
 
 
 func _on_ItemList_item_activated( _ ):
