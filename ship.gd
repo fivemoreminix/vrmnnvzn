@@ -21,6 +21,7 @@ var banking = false
 
 var active_effects = [] # a list of active powerups or detriments [type of effect, effect name, duration as a float]
 
+onready var default_shot_idx = 1 if GameData.data.difficulty != "Hard" else 0
 
 func _ready():
 	screen_size = get_viewport().get_rect().size
@@ -81,7 +82,7 @@ func move(delta, motion):
 func shoot():
 	if can_shoot:
 		# Just pressed
-		var shot = shots[2 if has_effect("Triple-shot") else 1].instance()
+		var shot = shots[2 if has_effect("Triple-shot") else default_shot_idx].instance()
 		get_node("anim").play("shoot")
 		# Use the Position2D as reference
 		shot.set_pos(get_node("shootfrom").get_global_pos())

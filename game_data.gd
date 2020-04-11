@@ -30,6 +30,7 @@ func load_data(): # load saved game data from disk
 #			current_level: 0,
 #			highest_level_discovered: 0,
 #			name: "", # player's name
+#			difficulty: "Normal",
 #		}
 #		print("game_data.gd: game data save file not found... creating one now")
 #		return save_data() # make the file
