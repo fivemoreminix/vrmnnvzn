@@ -11,14 +11,14 @@
 [ext_resource path="res://assets/sprites/enemies/milipede_head_5.png" type="Texture" id=9]
 [ext_resource path="res://assets/sprites/enemies/milipede_head_6.png" type="Texture" id=10]
 [ext_resource path="res://assets/sprites/enemies/milipede_head_7.png" type="Texture" id=11]
-[ext_resource path="res://assets/sprites/enemies/milipede_tail_0.png" type="Texture" id=12]
-[ext_resource path="res://assets/sprites/enemies/milipede_tail_7.png" type="Texture" id=13]
-[ext_resource path="res://assets/sprites/enemies/milipede_tail_6.png" type="Texture" id=14]
-[ext_resource path="res://assets/sprites/enemies/milipede_tail_5.png" type="Texture" id=15]
-[ext_resource path="res://assets/sprites/enemies/milipede_tail_4.png" type="Texture" id=16]
-[ext_resource path="res://assets/sprites/enemies/milipede_tail_3.png" type="Texture" id=17]
-[ext_resource path="res://assets/sprites/enemies/milipede_tail_2.png" type="Texture" id=18]
-[ext_resource path="res://assets/sprites/enemies/milipede_tail_1.png" type="Texture" id=19]
+[ext_resource path="res://assets/sprites/enemies/milipede_tail_4.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/enemies/milipede_tail_3.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/enemies/milipede_tail_2.png" type="Texture" id=14]
+[ext_resource path="res://assets/sprites/enemies/milipede_tail_1.png" type="Texture" id=15]
+[ext_resource path="res://assets/sprites/enemies/milipede_tail_0.png" type="Texture" id=16]
+[ext_resource path="res://assets/sprites/enemies/milipede_tail_7.png" type="Texture" id=17]
+[ext_resource path="res://assets/sprites/enemies/milipede_tail_6.png" type="Texture" id=18]
+[ext_resource path="res://assets/sprites/enemies/milipede_tail_5.png" type="Texture" id=19]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -34,7 +34,7 @@ animations = [ {
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
-"loop": true,
+"loop": false,
 "name": "head",
 "speed": 5.0
 }, {
