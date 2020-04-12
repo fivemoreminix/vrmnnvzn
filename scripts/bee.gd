@@ -9,6 +9,7 @@ var RailPath                    = "../../rail"
 var target                      = null
 
 var direction = Vector2(0,0)
+var health = 2 # Number of times this enemy can take damage
 var destroyed = false
 
 var target_pos = Vector2(0, 0)
@@ -23,20 +24,23 @@ func _ready():
 
 
 func destroy():
-	if (!destroyed):
-		destroyed = true
-		get_node("sprite").hide()
-		get_node("explosion").show()
-		get_node("explosion").play("default")
-		get_node("wings0").set_emitting(true)
-		get_node("wings1").set_emitting(true)
-		get_node("head").set_emitting(true)
-		get_node("legs0").set_emitting(true)
-		get_node("legs1").set_emitting(true)
+	if not destroyed:
+		health -= 1
 		
-		set_process(false)
-		set_monitorable(false) # Disable the collisions on this Bee
-		get_node("sfx").play("sound_explode")
+		if health <= 0:
+			destroyed = true
+			get_node("sprite").hide()
+			get_node("explosion").show()
+			get_node("explosion").play("default")
+			get_node("wings0").set_emitting(true)
+			get_node("wings1").set_emitting(true)
+			get_node("head").set_emitting(true)
+			get_node("legs0").set_emitting(true)
+			get_node("legs1").set_emitting(true)
+			
+			set_process(false)
+			set_monitorable(false) # Disable the collisions on this Bee
+			get_node("sfx").play("sound_explode")
 
 
 func _on_visibility_enter_screen():
