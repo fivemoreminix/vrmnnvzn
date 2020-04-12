@@ -109,6 +109,7 @@ func shoot():
 
 func kill():
 	killed = true
+	set_monitorable(false) # Keep other enemies from dying on our invisible collider
 	get_node("shipSprite").hide()
 	get_node("thruster").hide()
 	get_node("explosion").show()
