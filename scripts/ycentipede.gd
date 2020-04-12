@@ -1,17 +1,24 @@
 extends Node2D
 
-const SEGMENT_TIME_OFFSET = 0.9
+const SEGMENT_TIME_OFFSET = 5
 const SEGMENT_OFFSET = Vector2(0, -10)
 
 onready var sine_magnitude = 13.0 if GameData.data.difficulty == "Hard" else 10.0
-onready var speed = 5 if GameData.data.difficulty == "Hard" else 4
+onready var speed = 6 if GameData.data.difficulty == "Hard" else 4
 export(int) var body_segments = 5
 
 var segment = preload("res://scenes/centipede_segment.tscn")
 var segment_shape = preload("res://scenes/res/ycentipede_segment_shape.tres")
 
 var destroyed = false
-func destroy(): pass
+var health = 4 # Number of times this enemy can take damage
+
+func destroy():
+	if not destroyed:
+		health -= 1
+		
+		if health <= 0:
+			queue_free()
 
 onready var parts = []
 var time = 0.0
@@ -47,3 +54,11 @@ func _process(delta):
 	time += delta * speed # Update time variable
 	for i in range(parts.size()): # For every part ...
 		parts[i].set_pos(Vector2(sin(time + SEGMENT_TIME_OFFSET*i) * sine_magnitude, parts[i].get_pos().y))
+
+
+func _on_VisibilityNotifier2D_exit_screen():
+	get_node("QueueFreeTimer").start()
+
+
+func _on_QueueFreeTimer_timeout():
+	queue_free()
