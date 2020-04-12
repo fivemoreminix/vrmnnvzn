@@ -46,10 +46,13 @@ func resume():
 	popup(false)
 
 func restart():
+	get_tree().set_pause(false)
 	get_tree().reload_current_scene()
 
 func main_menu():
+	get_tree().set_pause(false)
 	get_tree().change_scene("res://main_menu.scn")
 
 func settings():
+	get_tree().set_pause(false)
 	get_tree().change_scene("res://scenes/settings.tscn")
