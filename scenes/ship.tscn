@@ -147,7 +147,7 @@ samples/shoot = {
 "sample": ExtResource( 14 )
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=7]
 
 resource/name = "popup"
 length = 0.7
@@ -293,7 +293,7 @@ playing = true
 transform/pos = Vector2( 0, 13 )
 frames = SubResource( 3 )
 animation = "default"
-frame = 3
+frame = 1
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ship"]
@@ -527,13 +527,15 @@ max_lines_visible = -1
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/popup = SubResource( 10 )
+anims/popup = SubResource( 7 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
 [node name="Fade" parent="hud" instance=ExtResource( 20 )]
+
+process/pause_mode = 2
 
 [node name="BottomBar" type="Panel" parent="hud"]
 
