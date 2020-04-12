@@ -13,12 +13,19 @@ var segment_shape = preload("res://scenes/res/ycentipede_segment_shape.tres")
 var destroyed = false
 var health = 4 # Number of times this enemy can take damage
 
+var flashing = false
+var is_white = false
+
 func destroy():
 	if not destroyed:
 		health -= 1
 		
 		if health <= 0:
 			queue_free()
+		else:
+			flashing = true
+			get_node("StunTimer").start()
+			get_node("FlashTimer").start()
 
 onready var parts = []
 var time = 0.0
@@ -51,7 +58,10 @@ func _ready():
 	set_process(true)
 
 func _process(delta):
-	time += delta * speed # Update time variable
+	if flashing:
+		time += delta * speed * 0.5 # Move half speed
+	else:
+		time += delta * speed # Update time variable
 	for i in range(parts.size()): # For every part ...
 		parts[i].set_pos(Vector2(sin(time + SEGMENT_TIME_OFFSET*i) * sine_magnitude, parts[i].get_pos().y))
 
@@ -62,3 +72,25 @@ func _on_VisibilityNotifier2D_exit_screen():
 
 func _on_QueueFreeTimer_timeout():
 	queue_free()
+
+
+func _on_StunTimer_timeout():
+	flashing = false
+	# Change all segment sprites back to default
+	parts[0].get_node("AnimatedSprite").animation = "head"
+	for i in range(parts.size()-1): # For every *body* part ...
+		parts[i].get_node("AnimatedSprite").animation = "body"
+	parts[parts.size()-1].get_node("AnimatedSprite").animation = "tail"
+	
+	get_node("FlashTimer").stop()
+	is_white = false
+
+
+func _on_FlashTimer_timeout():
+	is_white = not is_white
+	print(is_white)
+	parts[0].get_node("AnimatedSprite").animation = "head_white" if is_white else "head"
+	for i in range(parts.size()-1): # For every *body* part ...
+		parts[i].get_node("AnimatedSprite").animation = "body_white" if is_white else "body"
+	parts[parts.size()-1].get_node("AnimatedSprite").animation = "tail_white" if is_white else "tail"
+#	get_node("sprite").play("white" if is_white else "default")

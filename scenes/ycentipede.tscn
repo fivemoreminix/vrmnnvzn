@@ -21,8 +21,26 @@ wait_time = 5.0
 one_shot = true
 autostart = false
 
+[node name="StunTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.3
+one_shot = true
+autostart = false
+
+[node name="FlashTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.1
+one_shot = false
+autostart = false
+
 [connection signal="exit_screen" from="head/VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_exit_screen"]
 
 [connection signal="timeout" from="QueueFreeTimer" to="." method="_on_QueueFreeTimer_timeout"]
+
+[connection signal="timeout" from="StunTimer" to="." method="_on_StunTimer_timeout"]
+
+[connection signal="timeout" from="FlashTimer" to="." method="_on_FlashTimer_timeout"]
 
 
