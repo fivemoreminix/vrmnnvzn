@@ -20,7 +20,6 @@ var time = 0.0
 
 func _ready():
 	if get_node(path) == null: printerr(get_name() + ": `path` is null, this node is not going to function properly.")
-	set_process(true)
 	
 	# Initialize head
 	get_node("head/AnimatedSprite").set_animation("head")
@@ -57,15 +56,19 @@ func _process(delta):
 	var c = get_node(path).get_curve()
 	for i in range(parts.size()): # For every part ...
 		var p_time = max(0.0, time - SEGMENT_TIME_OFFSET*i)
-		var old_pos = parts[i].get_pos()
+		
 		var new_pos = c.interpolatef(p_time)
-		var motion = (new_pos - old_pos).normalized()
+		var motion = (new_pos - parts[i].get_pos()).normalized()
+		parts[i].set_pos(new_pos)
+		
 		var sprite = parts[i].get_node("AnimatedSprite")
 		if sprite.animation != "body":
 			sprite.frame = get_sprite_idx_for_motion(motion)
-#		else:
-#			sprite.set_flip_v(motion.y >= -1.0 and motion.y < 0.0) # When facing up, flip body segments
-		parts[i].set_pos(new_pos)
+		
+		if motion.y >= -1.0 and motion.y < 0.0: # If we're going up...
+			parts[i].set_z(i) # Z order = index
+		else:
+			parts[i].set_z(parts.size() - i - 1) # Z order = count - index - 1
 
 
 # Only normalized motions!
