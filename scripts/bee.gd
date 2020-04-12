@@ -41,10 +41,17 @@ func destroy():
 
 func _on_visibility_enter_screen():
 	var rail_speed = target.get_parent().motion
-	var player_speed = target.motion * target.SPEED
+	var player_speed = target.SPEED # + target.motion.y ?
 	var player_pos = target.get_global_pos()
 	var distance = (player_pos - get_global_pos()).length() # distance: us from player
-	target_pos = player_pos + rail_speed + Vector2(player_speed.x, 0) * get_process_delta_time() * distance
+#	print(var2str(distance))
+	
+	# What offset from the player's current position when we get there?
+	var predict = Vector2(0, -player_speed) * get_process_delta_time() * (distance * (1/SPEED))
+#	print(var2str(predict))
+	
+	target_pos = player_pos + predict
+#	print(var2str(target_pos))
 	direction = (target_pos - get_global_pos()).normalized()
 #	print("player pos: " + var2str(player_pos))
 #	print("future player pos: " + var2str(target_pos))
