@@ -95,3 +95,31 @@ func refresh_video_settings():
 
 func _enter_tree():
 	load_global_data() # Load global data and refresh video settings upon game load (this code is a singleton)
+
+
+### GAME-WIDE HELPER FUNCTIONS ###
+func get_levels(): # returns Array in form of [[level name],[level index]], ...
+	var f = File.new()
+	f.open("res://levels.csv", File.READ)
+	var levels = []
+	while !f.eof_reached():
+		var csv = f.get_csv_line()
+		levels.append(csv)
+	f.close()
+	return levels
+
+func get_levels_count():
+	return get_levels().size()
+
+
+# Using saved data about the current level, we will update save game data, save the game, then load the next level.
+func finished_level():
+	# Obviously, data.current_level should always point at the currently or last played level (where should Continue button go?)
+	if data.current_level < get_levels_count()-1:
+		data.highest_level_discovered = max(data.highest_level_discovered, data.current_level + 1)
+		data.current_level += 1
+		save_data()
+		get_tree().change_scene("res://scenes/levels/lvl" + data.current_level + ".tscn")
+	else:
+		save_data()
+		get_tree().change_scene("res://scenes/information.tscn")

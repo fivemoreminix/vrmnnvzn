@@ -6,22 +6,13 @@ var levels = []
 func _ready():
 	GameData.load_data()
 	
-	update_levels_from_csv()
+	levels = GameData.get_levels()
 	
 	for i in range(levels.size()):
 		get_node("ItemList").add_item(levels[i][0], null, i <= GameData.data.current_level)
 	
 	get_node("ItemList").select(0)
 #	get_node("ItemList").grab_focus()
-
-
-func update_levels_from_csv():
-	var f = File.new()
-	f.open("res://levels.csv", File.READ)
-	while !f.eof_reached():
-		var csv = f.get_csv_line()
-		levels.append(csv)
-	f.close()
 
 
 func handle(func_name):

@@ -17,14 +17,13 @@ func _ready():
 func _on_LevelFinishTrigger_level_finished():
 	get_node(\"Music\").stop()
 	# fade screen to black
-	print(\"begin fade\")
 	get_node(\"rail/hud/Fade\").begin_fade_out()
 
 func _on_Fade_fade_finished():
 	get_node(\"Sfx\").play(\"level_finish\")
 	# scroll text saying \"Level finished!\"
-	print(\"scroll text\")
-	get_node(\"rail/hud/BottomBar\").scrolling_text(\"Level finished!\")
+#	get_node(\"rail/hud/BottomBar\").scrolling_text(\"Level finished!\")
+	GameData.finished_level()
 "
 
 [sub_resource type="SampleLibrary" id=2]
