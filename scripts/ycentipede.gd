@@ -21,7 +21,12 @@ func destroy():
 		health -= 1
 		
 		if health <= 0:
-			queue_free()
+			for i in range(parts.size()): # For every part ...
+				parts[i].set_monitorable(false) # Disable collisions
+				parts[i].get_node("AnimatedSprite").hide() # Hide segment sprites
+				parts[i].get_node("explosion").show()
+				parts[i].get_node("explosion").play("default")
+				parts[i].get_node("legs_particles").set_emitting(true) # Emit particles
 		else:
 			flashing = true
 			get_node("StunTimer").start()
