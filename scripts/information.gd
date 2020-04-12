@@ -7,6 +7,8 @@ onready var lbl = get_node("RichTextLabel")
 
 func _ready():
 	set_process(true)
+	
+	get_node("entities/Millipede").begin()
 
 
 func _process(delta):

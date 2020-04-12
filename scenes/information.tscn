@@ -1,8 +1,16 @@
-[gd_scene load_steps=4 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://assets/themes/theme.thm" type="Theme" id=1]
 [ext_resource path="res://scripts/information.gd" type="Script" id=2]
 [ext_resource path="res://scenes/fade.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/millipede.tscn" type="PackedScene" id=4]
+
+[sub_resource type="Curve2D" id=1]
+
+bake_interval = 5.0
+_data = {
+"points": Vector2Array( 0, 0, 0, 0, 8, -112, 40.4771, 8.2905, -45.8416, -10.2412, -88, -168, 43.4032, -17.5564, -44.3786, 19.9947, -232, -168, -3.41373, -22.9208, 11.5227, 32.2872, -264, -96, -57.4476, -12.122, 55.3632, 0.330215, -200, -48, -15.0207, 4.74338, 22.9263, -10.0138, -112, -64, 0, 0, 0, 0, -16, -112 )
+}
 
 [node name="Information" type="Control"]
 
@@ -58,6 +66,20 @@ visible_characters = -1
 percent_visible = 1.0
 
 [node name="Fade" parent="." instance=ExtResource( 3 )]
+
+[node name="entities" type="Node2D" parent="."]
+
+[node name="Millipede" parent="entities" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 296, 224 )
+path = NodePath("Path2D")
+
+[node name="Path2D" type="Path2D" parent="entities/Millipede"]
+
+curve = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [connection signal="meta_clicked" from="RichTextLabel" to="." method="_on_RichTextLabel_meta_clicked"]
 
