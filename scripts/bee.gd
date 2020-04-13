@@ -8,6 +8,8 @@ export(NodePath) var TargetPath = "../../rail/ship"
 var RailPath                    = "../../rail"
 var target                      = null
 
+export(bool) var disabled = false
+
 var direction = Vector2(0,0)
 var health = 2 # Number of times this enemy can take damage
 var destroyed = false
@@ -18,10 +20,11 @@ var flashing = false
 var is_white = false
 
 func _process(delta):
-	if flashing:
-		global_translate(-direction*SPEED*delta*0.5)
-	else:
-		global_translate(direction*SPEED*delta)
+	if not disabled:
+		if flashing:
+			global_translate(-direction*SPEED*delta*0.5)
+		else:
+			global_translate(direction*SPEED*delta)
 
 
 func _ready():
