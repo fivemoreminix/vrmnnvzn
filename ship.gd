@@ -108,19 +108,21 @@ func shoot():
 
 
 func kill():
-	killed = true
-	set_monitorable(false) # Keep other enemies from dying on our invisible collider
-	get_node("shipSprite").hide()
-	get_node("thruster").hide()
-	get_node("explosion").show()
-	get_node("explosion").play("default")
-	get_node("sfx").play("explode")
-	
-	get_node("../hud/Pause").set_menu_player_died()
-	get_node("../hud/Pause").popup(true)
-	
-	set_process(false) # Keep player from being controllable after death
-	get_parent().stop() # Stop the rail from moving
+	if not killed:
+		killed = true
+		call_deferred("set_monitorable", false) # Keep other enemies from dying on our invisible collider
+#		set_monitorable(false) # This won't work because we can't prevent monitoring while monitoring...
+		get_node("shipSprite").hide()
+		get_node("thruster").hide()
+		get_node("explosion").show()
+		get_node("explosion").play("default")
+		get_node("sfx").play("explode")
+		
+		get_node("../hud/Pause").set_menu_player_died()
+		get_node("../hud/Pause").popup(true)
+		
+		set_process(false) # Keep player from being controllable after death
+		get_parent().stop() # Stop the rail from moving
 
 
 func has_effect(name):

@@ -43,7 +43,8 @@ func destroy():
 			get_node("legs1").set_emitting(true)
 			
 			set_process(false)
-			set_monitorable(false) # Disable the collisions on this Bee
+			call_deferred("set_monitorable", false) # Disable the collisions on this Bee
+#			set_monitorable(false) # This won't work because we can't prevent monitoring while monitoring...
 			get_node("sfx").play("sound_explode")
 		else:
 			flashing = true
