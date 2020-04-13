@@ -39,7 +39,6 @@ func destroy():
 			get_node("explosion").play("default")
 			get_node("wings0").set_emitting(true)
 			get_node("wings1").set_emitting(true)
-			get_node("head").set_emitting(true)
 			get_node("legs0").set_emitting(true)
 			get_node("legs1").set_emitting(true)
 			
