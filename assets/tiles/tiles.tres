@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=20 format=1]
+[gd_resource type="TileSet" load_steps=32 format=1]
 
 [ext_resource path="res://assets/tiles/brick.png" type="Texture" id=1]
 [ext_resource path="res://assets/tiles/joint.png" type="Texture" id=2]
@@ -6,14 +6,26 @@
 [ext_resource path="res://assets/tiles/rS.png" type="Texture" id=4]
 [ext_resource path="res://assets/tiles/tS.png" type="Texture" id=5]
 [ext_resource path="res://assets/tiles/bS.png" type="Texture" id=6]
-[ext_resource path="res://assets/tiles/pipe.png" type="Texture" id=7]
-[ext_resource path="res://assets/tiles/pipe1.png" type="Texture" id=8]
-[ext_resource path="res://assets/tiles/bg.png" type="Texture" id=9]
-[ext_resource path="res://assets/tiles/bgSkull.png" type="Texture" id=10]
-[ext_resource path="res://assets/tiles/upLc.png" type="Texture" id=11]
-[ext_resource path="res://assets/tiles/loLc.png" type="Texture" id=12]
-[ext_resource path="res://assets/tiles/upRc.png" type="Texture" id=13]
-[ext_resource path="res://assets/tiles/loRc.png" type="Texture" id=14]
+[ext_resource path="res://assets/tiles/pipeLL.png" type="Texture" id=7]
+[ext_resource path="res://assets/tiles/pipeLR.png" type="Texture" id=8]
+[ext_resource path="res://assets/tiles/pipeUL.png" type="Texture" id=9]
+[ext_resource path="res://assets/tiles/pipeUR.png" type="Texture" id=10]
+[ext_resource path="res://assets/tiles/pipeTRight.png" type="Texture" id=11]
+[ext_resource path="res://assets/tiles/pipeTLeft.png" type="Texture" id=12]
+[ext_resource path="res://assets/tiles/pipe.png" type="Texture" id=13]
+[ext_resource path="res://assets/tiles/pipeTUp.png" type="Texture" id=14]
+[ext_resource path="res://assets/tiles/pipeTDown.png" type="Texture" id=15]
+[ext_resource path="res://assets/tiles/pipeCutoffRight.png" type="Texture" id=16]
+[ext_resource path="res://assets/tiles/pipeCutoffLeft.png" type="Texture" id=17]
+[ext_resource path="res://assets/tiles/pipeCutoffUp.png" type="Texture" id=18]
+[ext_resource path="res://assets/tiles/pipeCutoffDown.png" type="Texture" id=19]
+[ext_resource path="res://assets/tiles/pipe1.png" type="Texture" id=20]
+[ext_resource path="res://assets/tiles/bg.png" type="Texture" id=21]
+[ext_resource path="res://assets/tiles/bgSkull.png" type="Texture" id=22]
+[ext_resource path="res://assets/tiles/upLc.png" type="Texture" id=23]
+[ext_resource path="res://assets/tiles/loLc.png" type="Texture" id=24]
+[ext_resource path="res://assets/tiles/upRc.png" type="Texture" id=25]
+[ext_resource path="res://assets/tiles/loRc.png" type="Texture" id=26]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -65,7 +77,7 @@ points = Vector2Array( 0, 16, 16, 0, 16, 16 )
 1/one_way_collision_direction = Vector2( 0, 0 )
 1/one_way_collision_max_depth = 0.0
 2/name = "pipe"
-2/texture = ExtResource( 7 )
+2/texture = ExtResource( 13 )
 2/tex_offset = Vector2( 0, 0 )
 2/modulate = Color( 1, 1, 1, 1 )
 2/region = Rect2( 0, 0, 16, 16 )
@@ -76,7 +88,7 @@ points = Vector2Array( 0, 16, 16, 0, 16, 16 )
 2/one_way_collision_direction = Vector2( 0, 0 )
 2/one_way_collision_max_depth = 0.0
 3/name = "pipe1"
-3/texture = ExtResource( 8 )
+3/texture = ExtResource( 20 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
 3/region = Rect2( 0, 0, 16, 16 )
@@ -87,7 +99,7 @@ points = Vector2Array( 0, 16, 16, 0, 16, 16 )
 3/one_way_collision_direction = Vector2( 0, 0 )
 3/one_way_collision_max_depth = 0.0
 4/name = "bg"
-4/texture = ExtResource( 9 )
+4/texture = ExtResource( 21 )
 4/tex_offset = Vector2( 0, 0 )
 4/modulate = Color( 1, 1, 1, 1 )
 4/region = Rect2( 0, 0, 16, 16 )
@@ -98,7 +110,7 @@ points = Vector2Array( 0, 16, 16, 0, 16, 16 )
 4/one_way_collision_direction = Vector2( 0, 0 )
 4/one_way_collision_max_depth = 0.0
 5/name = "bgSkull"
-5/texture = ExtResource( 10 )
+5/texture = ExtResource( 22 )
 5/tex_offset = Vector2( 0, 0 )
 5/modulate = Color( 1, 1, 1, 1 )
 5/region = Rect2( 0, 0, 16, 16 )
@@ -109,7 +121,7 @@ points = Vector2Array( 0, 16, 16, 0, 16, 16 )
 5/one_way_collision_direction = Vector2( 0, 0 )
 5/one_way_collision_max_depth = 0.0
 6/name = "uLc"
-6/texture = ExtResource( 11 )
+6/texture = ExtResource( 23 )
 6/tex_offset = Vector2( 0, 0 )
 6/modulate = Color( 1, 1, 1, 1 )
 6/region = Rect2( 0, 0, 16, 16 )
@@ -120,7 +132,7 @@ points = Vector2Array( 0, 16, 16, 0, 16, 16 )
 6/one_way_collision_direction = Vector2( 0, 0 )
 6/one_way_collision_max_depth = 0.0
 7/name = "bLc"
-7/texture = ExtResource( 12 )
+7/texture = ExtResource( 24 )
 7/tex_offset = Vector2( 0, 0 )
 7/modulate = Color( 1, 1, 1, 1 )
 7/region = Rect2( 0, 0, 16, 16 )
@@ -131,7 +143,7 @@ points = Vector2Array( 0, 16, 16, 0, 16, 16 )
 7/one_way_collision_direction = Vector2( 0, 0 )
 7/one_way_collision_max_depth = 0.0
 8/name = "uRc"
-8/texture = ExtResource( 13 )
+8/texture = ExtResource( 25 )
 8/tex_offset = Vector2( 0, 0 )
 8/modulate = Color( 1, 1, 1, 1 )
 8/region = Rect2( 0, 0, 16, 16 )
@@ -142,7 +154,7 @@ points = Vector2Array( 0, 16, 16, 0, 16, 16 )
 8/one_way_collision_direction = Vector2( 0, 0 )
 8/one_way_collision_max_depth = 0.0
 9/name = "lRc"
-9/texture = ExtResource( 14 )
+9/texture = ExtResource( 26 )
 9/tex_offset = Vector2( 0, 0 )
 9/modulate = Color( 1, 1, 1, 1 )
 9/region = Rect2( 0, 0, 16, 16 )
@@ -196,4 +208,136 @@ points = Vector2Array( 0, 16, 16, 0, 16, 16 )
 13/shapes = [  ]
 13/one_way_collision_direction = Vector2( 0, 0 )
 13/one_way_collision_max_depth = 0.0
+14/name = "pipeLL"
+14/texture = ExtResource( 7 )
+14/tex_offset = Vector2( 0, 0 )
+14/modulate = Color( 1, 1, 1, 1 )
+14/region = Rect2( 0, 0, 16, 16 )
+14/occluder_offset = Vector2( 8, 8 )
+14/navigation_offset = Vector2( 8, 8 )
+14/shape_offset = Vector2( 8, 8 )
+14/shapes = [ SubResource( 1 ) ]
+14/one_way_collision_direction = Vector2( 0, 0 )
+14/one_way_collision_max_depth = 0.0
+15/name = "pipeLR"
+15/texture = ExtResource( 8 )
+15/tex_offset = Vector2( 0, 0 )
+15/modulate = Color( 1, 1, 1, 1 )
+15/region = Rect2( 0, 0, 16, 16 )
+15/occluder_offset = Vector2( 8, 8 )
+15/navigation_offset = Vector2( 8, 8 )
+15/shape_offset = Vector2( 8, 8 )
+15/shapes = [ SubResource( 1 ) ]
+15/one_way_collision_direction = Vector2( 0, 0 )
+15/one_way_collision_max_depth = 0.0
+16/name = "pipeUL"
+16/texture = ExtResource( 9 )
+16/tex_offset = Vector2( 0, 0 )
+16/modulate = Color( 1, 1, 1, 1 )
+16/region = Rect2( 0, 0, 16, 16 )
+16/occluder_offset = Vector2( 8, 8 )
+16/navigation_offset = Vector2( 8, 8 )
+16/shape_offset = Vector2( 8, 8 )
+16/shapes = [ SubResource( 1 ) ]
+16/one_way_collision_direction = Vector2( 0, 0 )
+16/one_way_collision_max_depth = 0.0
+17/name = "pipeUR"
+17/texture = ExtResource( 10 )
+17/tex_offset = Vector2( 0, 0 )
+17/modulate = Color( 1, 1, 1, 1 )
+17/region = Rect2( 0, 0, 16, 16 )
+17/occluder_offset = Vector2( 8, 8 )
+17/navigation_offset = Vector2( 8, 8 )
+17/shape_offset = Vector2( 8, 8 )
+17/shapes = [ SubResource( 1 ) ]
+17/one_way_collision_direction = Vector2( 0, 0 )
+17/one_way_collision_max_depth = 0.0
+18/name = "pipeTRight"
+18/texture = ExtResource( 11 )
+18/tex_offset = Vector2( 0, 0 )
+18/modulate = Color( 1, 1, 1, 1 )
+18/region = Rect2( 0, 0, 16, 16 )
+18/occluder_offset = Vector2( 8, 8 )
+18/navigation_offset = Vector2( 8, 8 )
+18/shape_offset = Vector2( 8, 8 )
+18/shapes = [ SubResource( 1 ) ]
+18/one_way_collision_direction = Vector2( 0, 0 )
+18/one_way_collision_max_depth = 0.0
+19/name = "pipeTLeft"
+19/texture = ExtResource( 12 )
+19/tex_offset = Vector2( 0, 0 )
+19/modulate = Color( 1, 1, 1, 1 )
+19/region = Rect2( 0, 0, 16, 16 )
+19/occluder_offset = Vector2( 8, 8 )
+19/navigation_offset = Vector2( 8, 8 )
+19/shape_offset = Vector2( 8, 8 )
+19/shapes = [ SubResource( 1 ) ]
+19/one_way_collision_direction = Vector2( 0, 0 )
+19/one_way_collision_max_depth = 0.0
+20/name = "pipeTUp"
+20/texture = ExtResource( 14 )
+20/tex_offset = Vector2( 0, 0 )
+20/modulate = Color( 1, 1, 1, 1 )
+20/region = Rect2( 0, 0, 16, 16 )
+20/occluder_offset = Vector2( 8, 8 )
+20/navigation_offset = Vector2( 8, 8 )
+20/shape_offset = Vector2( 8, 8 )
+20/shapes = [ SubResource( 1 ) ]
+20/one_way_collision_direction = Vector2( 0, 0 )
+20/one_way_collision_max_depth = 0.0
+21/name = "pipeTDown"
+21/texture = ExtResource( 15 )
+21/tex_offset = Vector2( 0, 0 )
+21/modulate = Color( 1, 1, 1, 1 )
+21/region = Rect2( 0, 0, 16, 16 )
+21/occluder_offset = Vector2( 8, 8 )
+21/navigation_offset = Vector2( 8, 8 )
+21/shape_offset = Vector2( 8, 8 )
+21/shapes = [ SubResource( 1 ) ]
+21/one_way_collision_direction = Vector2( 0, 0 )
+21/one_way_collision_max_depth = 0.0
+22/name = "pipeCutoffRight"
+22/texture = ExtResource( 16 )
+22/tex_offset = Vector2( 0, 0 )
+22/modulate = Color( 1, 1, 1, 1 )
+22/region = Rect2( 0, 0, 16, 16 )
+22/occluder_offset = Vector2( 8, 8 )
+22/navigation_offset = Vector2( 8, 8 )
+22/shape_offset = Vector2( 8, 8 )
+22/shapes = [ SubResource( 1 ) ]
+22/one_way_collision_direction = Vector2( 0, 0 )
+22/one_way_collision_max_depth = 0.0
+23/name = "pipeCutoffLeft"
+23/texture = ExtResource( 17 )
+23/tex_offset = Vector2( 0, 0 )
+23/modulate = Color( 1, 1, 1, 1 )
+23/region = Rect2( 0, 0, 16, 16 )
+23/occluder_offset = Vector2( 8, 8 )
+23/navigation_offset = Vector2( 8, 8 )
+23/shape_offset = Vector2( 8, 8 )
+23/shapes = [ SubResource( 1 ) ]
+23/one_way_collision_direction = Vector2( 0, 0 )
+23/one_way_collision_max_depth = 0.0
+24/name = "pipeCutoffUp"
+24/texture = ExtResource( 18 )
+24/tex_offset = Vector2( 0, 0 )
+24/modulate = Color( 1, 1, 1, 1 )
+24/region = Rect2( 0, 0, 16, 16 )
+24/occluder_offset = Vector2( 8, 8 )
+24/navigation_offset = Vector2( 8, 8 )
+24/shape_offset = Vector2( 8, 8 )
+24/shapes = [ SubResource( 1 ) ]
+24/one_way_collision_direction = Vector2( 0, 0 )
+24/one_way_collision_max_depth = 0.0
+25/name = "pipeCutoffDown"
+25/texture = ExtResource( 19 )
+25/tex_offset = Vector2( 0, 0 )
+25/modulate = Color( 1, 1, 1, 1 )
+25/region = Rect2( 0, 0, 16, 16 )
+25/occluder_offset = Vector2( 8, 8 )
+25/navigation_offset = Vector2( 8, 8 )
+25/shape_offset = Vector2( 8, 8 )
+25/shapes = [ SubResource( 1 ) ]
+25/one_way_collision_direction = Vector2( 0, 0 )
+25/one_way_collision_max_depth = 0.0
 
