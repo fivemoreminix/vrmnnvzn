@@ -77,6 +77,9 @@ func move(delta, motion):
 	pos.x = clamp(pos.x, 0, screen_size.x)
 	pos.y = min(pos.y, 168)
 	
+	# Make y value discrete to prevent (most) stuttering
+	pos.y = int(pos.y)
+	
 	set_pos(pos)
 
 func shoot():
