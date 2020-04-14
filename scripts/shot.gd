@@ -4,19 +4,13 @@ extends Area2D
 # Member variables
 const SPEED = 600
 
-export var shot_size = 1 setget set_shot_size
 
-func set_shot_size(v):
-	shot_size = v
-	# Update sprite to match
-
-
-func _process(delta):
+func _fixed_process(delta):
 	translate(Vector2(0, -delta*SPEED).rotated(get_rot()))
 
 
 func _ready():
-	set_process(true)
+	set_fixed_process(true)
 
 
 func _hit_something():
@@ -33,7 +27,8 @@ func _on_shot_area_enter(area):
 		# Duck typing at it's best
 		if(!area.destroyed):
 			area.destroy()
-			_hit_something()
+	
+	_hit_something()
 
 
 func _on_shot_body_enter(body):
