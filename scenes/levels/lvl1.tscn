@@ -80,7 +80,7 @@ transform/scale = Vector2( 3.42188, 1 )
 [node name="rail" parent="." instance=ExtResource( 3 )]
 
 editor/display_folded = true
-max_y = 2250
+travel_y = 2250
 
 [node name="ship" parent="rail"]
 
@@ -101,30 +101,37 @@ transform/pos = Vector2( 0, 10 )
 [node name="asteroid" parent="enemies" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 223.559, -1159.81 )
+disabled = false
 
 [node name="asteroid1" parent="enemies" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 159.299, -1267.67 )
+disabled = false
 
 [node name="asteroid2" parent="enemies" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 64.4138, -905.878 )
+disabled = false
 
 [node name="asteroid3" parent="enemies" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 41.0521, -860.524 )
+disabled = false
 
 [node name="asteroid4" parent="enemies" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 226.306, -285.944 )
+disabled = false
 
 [node name="asteroid5" parent="enemies" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 199.095, -315.864 )
+disabled = false
 
 [node name="asteroid6" parent="enemies" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 167.208, -337.162 )
+disabled = false
 
 [node name="Laser" parent="enemies" instance=ExtResource( 5 )]
 
@@ -188,19 +195,16 @@ frame = 0
 [node name="YCentipede" parent="enemies" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 199, -573 )
-speed = 6
 
 [node name="YCentipede 2" parent="enemies" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 59, -499 )
-speed = 6
 body_segments = 10
 
 [node name="Millipede" parent="enemies" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( -35, -534 )
 path = NodePath("Path2D")
-body_segments = 10
 
 [node name="Path2D" type="Path2D" parent="enemies/Millipede"]
 

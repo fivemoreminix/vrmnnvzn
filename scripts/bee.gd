@@ -56,7 +56,7 @@ func destroy():
 
 
 func _on_visibility_enter_screen():
-	var rail_speed = target.get_parent().motion
+	var rail_speed = Vector2(0, target.get_parent().Y_MOTION)
 	var player_speed = target.SPEED # + target.motion.y ?
 	var player_pos = target.get_global_pos()
 	var distance = (player_pos - get_global_pos()).length() # distance: us from player

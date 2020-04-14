@@ -190,9 +190,6 @@ script/script = ExtResource( 1 )
 __meta__ = {
 "__editor_plugin_screen__": "2D"
 }
-motion = Vector2( 0, -50 )
-max_x = 256
-max_y = 500
 
 [node name="ship" type="Area2D" parent="." groups=[
 "Player",
@@ -293,7 +290,7 @@ playing = true
 transform/pos = Vector2( 0, 13 )
 frames = SubResource( 3 )
 animation = "default"
-frame = 1
+frame = 2
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ship"]
