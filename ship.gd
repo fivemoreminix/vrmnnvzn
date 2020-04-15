@@ -121,8 +121,7 @@ func kill():
 		get_node("explosion").play("default")
 		get_node("sfx").play("explode")
 		
-		get_node("../hud/Pause").set_menu_player_died()
-		get_node("../hud/Pause").popup(true)
+		get_node("../hud/Pause").handle("restart")
 		
 		set_process(false) # Keep player from being controllable after death
 		get_parent().stop() # Stop the rail from moving
