@@ -12,7 +12,7 @@ var motion = Vector2()
 var dampen_speed = 10
 
 var screen_size
-#var prev_shooting = false
+var input_disabled = false
 var can_shoot = true
 var killed = false
 onready var shipSprite = get_node("shipSprite")
@@ -42,30 +42,30 @@ func _process(delta):
 			# Some effects may have "after-effects":
 			if e[0] == "Phase-through": stop_blinking()
 	
-	
-	motion = Vector2(0,0)
-	if Input.is_action_pressed("move_up"):
-		motion += Vector2(0, -1)
-	if Input.is_action_pressed("move_down"):
-		motion += Vector2(0, 1)
-	if Input.is_action_pressed("move_left"):
-		motion += Vector2(-1, 0)
-		if !banking:
-			shipSprite.play("bankLeft")
-			banking = true
-	if Input.is_action_pressed("move_right"):
-		motion += Vector2(1, 0)
-		if !banking:
-			shipSprite.play("bankRight")
-			banking = true
-	if (!Input.is_action_pressed("move_right") or !Input.is_action_pressed("move_left")) or (Input.is_action_pressed("move_right") and Input.is_action_pressed("move_left")):
-		shipSprite.set_animation("default")
-		banking = false
-	var shooting = Input.is_action_pressed("shoot")
-	
-	move(delta, motion)
-	
-	if shooting: shoot()
+	if not input_disabled:
+		motion = Vector2(0,0)
+		if Input.is_action_pressed("move_up"):
+			motion += Vector2(0, -1)
+		if Input.is_action_pressed("move_down"):
+			motion += Vector2(0, 1)
+		if Input.is_action_pressed("move_left"):
+			motion += Vector2(-1, 0)
+			if !banking:
+				shipSprite.play("bankLeft")
+				banking = true
+		if Input.is_action_pressed("move_right"):
+			motion += Vector2(1, 0)
+			if !banking:
+				shipSprite.play("bankRight")
+				banking = true
+		if (!Input.is_action_pressed("move_right") or !Input.is_action_pressed("move_left")) or (Input.is_action_pressed("move_right") and Input.is_action_pressed("move_left")):
+			shipSprite.set_animation("default")
+			banking = false
+		
+		move(delta, motion)
+		
+		var shooting = Input.is_action_pressed("shoot")
+		if shooting: shoot()
 
 
 func move(delta, motion):

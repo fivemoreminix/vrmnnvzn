@@ -1,14 +1,15 @@
-[gd_scene load_steps=12 format=1]
+[gd_scene load_steps=13 format=1]
 
 [ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=2]
-[ext_resource path="res://scenes/ship.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/laser.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/ycentipede.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/bee.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/checkpoint.tscn" type="PackedScene" id=7]
-[ext_resource path="res://assets/level_finish.wav" type="Sample" id=8]
-[ext_resource path="res://assets/electric_sound_loop.ogg" type="AudioStream" id=9]
+[ext_resource path="res://scenes/player_path_takeover.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/ship.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/laser.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/ycentipede.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/bee.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/checkpoint.tscn" type="PackedScene" id=8]
+[ext_resource path="res://assets/level_finish.wav" type="Sample" id=9]
+[ext_resource path="res://assets/electric_sound_loop.ogg" type="AudioStream" id=10]
 
 [sub_resource type="GDScript" id=1]
 
@@ -36,7 +37,7 @@ samples/level_finish = {
 "db": -10.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 8 )
+"sample": ExtResource( 9 )
 }
 
 [node name="lvl0" type="Node2D"]
@@ -69,7 +70,15 @@ __meta__ = {
 transform/pos = Vector2( 131.5, -2284 )
 transform/scale = Vector2( 3.42188, 1 )
 
-[node name="rail" parent="." instance=ExtResource( 3 )]
+[node name="PlayerPathTakeover" parent="." instance=ExtResource( 3 )]
+
+transform/pos = Vector2( 0, -2237 )
+
+[node name="TargetPos" parent="PlayerPathTakeover"]
+
+transform/pos = Vector2( 128, -25 )
+
+[node name="rail" parent="." instance=ExtResource( 4 )]
 
 editor/display_folded = true
 travel_y = 2250
@@ -80,7 +89,7 @@ editor/display_folded = true
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 1
+frame = 0
 
 [node name="Fade" parent="rail/hud"]
 
@@ -90,7 +99,7 @@ editor/display_folded = true
 
 transform/pos = Vector2( 0, 10 )
 
-[node name="Laser" parent="entities" instance=ExtResource( 4 )]
+[node name="Laser" parent="entities" instance=ExtResource( 5 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 184, -346 )
@@ -99,7 +108,11 @@ transform/pos = Vector2( 184, -346 )
 
 transform/pos = Vector2( 50, 0 )
 
-[node name="Laser 2" parent="entities" instance=ExtResource( 4 )]
+[node name="Sprite" parent="entities/Laser/LeftHead/Beam"]
+
+frame = 0
+
+[node name="Laser 2" parent="entities" instance=ExtResource( 5 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 160, -1026 )
@@ -113,7 +126,11 @@ transform/pos = Vector2( 32, -0.0252664 )
 
 editor/display_folded = true
 
-[node name="Laser 3" parent="entities" instance=ExtResource( 4 )]
+[node name="Sprite" parent="entities/Laser 2/LeftHead/Beam"]
+
+frame = 0
+
+[node name="Laser 3" parent="entities" instance=ExtResource( 5 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 24, -1442 )
@@ -122,11 +139,7 @@ transform/pos = Vector2( 24, -1442 )
 
 transform/pos = Vector2( 34, 0 )
 
-[node name="Sprite" parent="entities/Laser 3/LeftHead/Beam"]
-
-frame = 0
-
-[node name="Laser4" parent="entities" instance=ExtResource( 4 )]
+[node name="Laser4" parent="entities" instance=ExtResource( 5 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 152, -1430 )
@@ -136,11 +149,7 @@ time_delay = 2.0
 
 transform/pos = Vector2( 50, 0 )
 
-[node name="Sprite" parent="entities/Laser4/LeftHead/Beam"]
-
-frame = 0
-
-[node name="Laser5" parent="entities" instance=ExtResource( 4 )]
+[node name="Laser5" parent="entities" instance=ExtResource( 5 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 136, -1669 )
@@ -149,7 +158,11 @@ transform/pos = Vector2( 136, -1669 )
 
 transform/pos = Vector2( 50, 0 )
 
-[node name="Laser6" parent="entities" instance=ExtResource( 4 )]
+[node name="Sprite" parent="entities/Laser5/LeftHead/Beam"]
+
+frame = 0
+
+[node name="Laser6" parent="entities" instance=ExtResource( 5 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 133, -2044 )
@@ -160,20 +173,16 @@ time_delay = 1.0
 
 transform/pos = Vector2( 54, -2.38419e-06 )
 
-[node name="Sprite" parent="entities/Laser6/LeftHead/Beam"]
-
-frame = 0
-
-[node name="YCentipede" parent="entities" instance=ExtResource( 5 )]
+[node name="YCentipede" parent="entities" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 168, -1266 )
 
-[node name="Bee" parent="entities" instance=ExtResource( 6 )]
+[node name="Bee" parent="entities" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 240, -656 )
 disabled = true
 
-[node name="Checkpoint" parent="entities" instance=ExtResource( 7 )]
+[node name="Checkpoint" parent="entities" instance=ExtResource( 8 )]
 
 transform/pos = Vector2( 0, -1178 )
 
@@ -196,7 +205,7 @@ default/chorus_send = 0.0
 
 [node name="Music" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 9 )
+stream/stream = ExtResource( 10 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 0.0
@@ -208,6 +217,7 @@ stream/buffering_ms = 500
 [connection signal="level_finished" from="LevelFinishTrigger" to="." method="_on_LevelFinishTrigger_level_finished"]
 
 
+[editable path="PlayerPathTakeover"]
 [editable path="rail"]
 [editable path="rail/hud/Fade"]
 [editable path="entities/Laser"]
