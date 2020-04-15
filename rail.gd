@@ -52,5 +52,6 @@ func _draw():
 
 
 func align_with_checkpoint(node):
+	print("Aligning with Checkpoint " + node.get_name())
 	set_global_pos(node.get_global_pos() + Vector2(0, -192/2)) # Set camera centered with checkpoint
 	get_node("ship").set_global_pos(node.get_respawn_global_pos()) # Set ship location to location by checkpoint

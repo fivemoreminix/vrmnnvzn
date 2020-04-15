@@ -24,6 +24,12 @@ func load_data(): # load saved game data from disk
 		if err != OK:
 			print("game_data.gd: failed to parse game data save file")
 			return 2
+		
+		# Make numbered values numbers
+		data.current_level = int(data.current_level)
+		data.current_section = int(data.current_section)
+		data.highest_level_discovered = int(data.highest_level_discovered)
+		
 		return 0
 #	else: # data save file does NOT exist ...
 #		data = { ### data defaults ###
@@ -128,7 +134,7 @@ func finished_level():
 		data.highest_level_discovered = max(data.highest_level_discovered, data.current_level + 1)
 		data.current_level += 1
 		save_data()
-		get_tree().change_scene("res://scenes/levels/lvl" + data.current_level + ".tscn")
+		get_tree().change_scene("res://scenes/levels/lvl" + str(data.current_level) + ".tscn")
 	else:
 		save_data()
 		get_tree().change_scene("res://scenes/information.tscn")

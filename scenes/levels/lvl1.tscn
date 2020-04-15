@@ -86,10 +86,6 @@ travel_y = 2250
 
 editor/display_folded = true
 
-[node name="thruster" parent="rail/ship"]
-
-frame = 3
-
 [node name="Fade" parent="rail/hud"]
 
 editor/display_folded = true

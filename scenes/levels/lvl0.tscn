@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=12 format=1]
 
 [ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=2]
@@ -6,8 +6,9 @@
 [ext_resource path="res://scenes/laser.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/ycentipede.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/bee.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/level_finish.wav" type="Sample" id=7]
-[ext_resource path="res://assets/electric_sound_loop.ogg" type="AudioStream" id=8]
+[ext_resource path="res://scenes/checkpoint.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/level_finish.wav" type="Sample" id=8]
+[ext_resource path="res://assets/electric_sound_loop.ogg" type="AudioStream" id=9]
 
 [sub_resource type="GDScript" id=1]
 
@@ -35,7 +36,7 @@ samples/level_finish = {
 "db": -10.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 7 )
+"sample": ExtResource( 8 )
 }
 
 [node name="lvl0" type="Node2D"]
@@ -79,7 +80,7 @@ editor/display_folded = true
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 0
+frame = 1
 
 [node name="Fade" parent="rail/hud"]
 
@@ -172,6 +173,10 @@ transform/pos = Vector2( 168, -1266 )
 transform/pos = Vector2( 240, -656 )
 disabled = true
 
+[node name="Checkpoint" parent="entities" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 0, -1178 )
+
 [node name="Sfx" type="SamplePlayer" parent="."]
 
 config/polyphony = 1
@@ -191,7 +196,7 @@ default/chorus_send = 0.0
 
 [node name="Music" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 8 )
+stream/stream = ExtResource( 9 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 0.0
