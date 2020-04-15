@@ -28,6 +28,7 @@ func load_data(): # load saved game data from disk
 #	else: # data save file does NOT exist ...
 #		data = { ### data defaults ###
 #			current_level: 0,
+#			current_section: 0,
 #			highest_level_discovered: 0,
 #			name: "", # player's name
 #			difficulty: "Normal",
@@ -112,9 +113,17 @@ func get_levels_count():
 	return get_levels().size()
 
 
+# NOTE: index 0 is forbidden, because it represents the start of a level
+func triggered_section(index):
+	assert(index > 0)
+	data.current_section = index
+	save_data()
+
+
 # Using saved data about the current level, we will update save game data, save the game, then load the next level.
 func finished_level():
 	# Obviously, data.current_level should always point at the currently or last played level (where should Continue button go?)
+	data.current_section = 0
 	if data.current_level < get_levels_count()-1:
 		data.highest_level_discovered = max(data.highest_level_discovered, data.current_level + 1)
 		data.current_level += 1

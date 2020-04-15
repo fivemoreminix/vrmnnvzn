@@ -31,11 +31,6 @@ points = Vector2Array( -7, 6, 0, -8, 7, 6 )
 [sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ), ExtResource( 4 ) ],
 "loop": false,
 "name": "bankLeft",
@@ -44,6 +39,11 @@ animations = [ {
 "frames": [ ExtResource( 3 ), ExtResource( 5 ) ],
 "loop": false,
 "name": "bankRight",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
 "speed": 5.0
 } ]
 
@@ -190,6 +190,7 @@ script/script = ExtResource( 1 )
 __meta__ = {
 "__editor_plugin_screen__": "2D"
 }
+travel_y = 200
 
 [node name="ship" type="Area2D" parent="." groups=[
 "Player",
@@ -290,7 +291,7 @@ playing = true
 transform/pos = Vector2( 0, 13 )
 frames = SubResource( 3 )
 animation = "default"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ship"]

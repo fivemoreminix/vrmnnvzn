@@ -88,7 +88,7 @@ editor/display_folded = true
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 1
+frame = 3
 
 [node name="Fade" parent="rail/hud"]
 

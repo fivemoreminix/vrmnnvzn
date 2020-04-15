@@ -34,6 +34,14 @@ func _process(delta):
 
 func _ready():
 	set_process(true)
+	
+	# Load player at checkpoints
+	if not get_tree().is_editor_hint():
+		if get_node("/root/GameData").data.current_section > 0: # We need to load at a checkpoint
+			for checkpoint in get_tree().get_nodes_in_group("Checkpoint"):
+				if checkpoint.section_index == get_node("/root/GameData").data.current_section:
+					align_with_checkpoint(checkpoint)
+					break
 
 
 func _draw():
@@ -41,3 +49,8 @@ func _draw():
 		draw_circle(Vector2(0, 0), 8, Color(1.0, 1.0, 1.0))
 #		draw_circle(Vector2(5 - get_pos().x, 0), 6, Color(1.0, 0.0, 0.0))
 		draw_circle(Vector2(0, -travel_y - get_pos().y), 6, Color(0.0, 1.0, 0.0))
+
+
+func align_with_checkpoint(node):
+	set_global_pos(node.get_global_pos() + Vector2(0, -192/2)) # Set camera centered with checkpoint
+	get_node("ship").set_global_pos(node.get_respawn_global_pos()) # Set ship location to location by checkpoint
