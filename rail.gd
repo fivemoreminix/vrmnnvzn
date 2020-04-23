@@ -1,6 +1,8 @@
 tool
 extends Node2D
 
+signal rail_finished
+
 const Y_MOTION = -50 # Local y position change in pixels each frame
 const DIST_TO_BEGIN_LERP = 50
 const INTERPOLATE_SPEED = 1
@@ -18,20 +20,22 @@ func _process(delta):
 	if get_tree().is_editor_hint():
 		update()
 		return
+	else:
 	
-#	if get_pos().x >= max_x or get_pos().x <= -max_x or get_pos().y >= max_y or get_pos().y <= -max_y:
-#	if get_pos().y <= -travel_y: # If the rail has travelled past the distance of travel_y ...
-#		return # Block processing
+	#	if get_pos().x >= max_x or get_pos().x <= -max_x or get_pos().y >= max_y or get_pos().y <= -max_y:
+		if get_pos().y <= -travel_y: # If the rail has travelled past the distance of travel_y ...
+			emit_signal("rail_finished")
+			set_process(false) # Block processing
+		
+		# How many units into DIST_TO_BEGIN_LERP is the player? values: -inf thru DIST_TO_BEGIN_LERP
+	#	var progress = -(starting_y + get_pos().y) + (-travel_y + DIST_TO_BEGIN_LERP)
+	#	if progress >= 0:
+	#		var interpolation = progress / DIST_TO_BEGIN_LERP # Get progress as num from 0 to 1
+	#		set_pos(get_pos() + Vector2(0, Y_MOTION - interpolation*Y_MOTION*INTERPOLATE_SPEED) * delta)
+	#	else: # Not ready to interpolate
+	#		set_pos(get_pos() + Vector2(0, Y_MOTION) * delta)
 	
-	# How many units into DIST_TO_BEGIN_LERP is the player? values: -inf thru DIST_TO_BEGIN_LERP
-#	var progress = -(starting_y + get_pos().y) + (-travel_y + DIST_TO_BEGIN_LERP)
-#	if progress >= 0:
-#		var interpolation = progress / DIST_TO_BEGIN_LERP # Get progress as num from 0 to 1
-#		set_pos(get_pos() + Vector2(0, Y_MOTION - interpolation*Y_MOTION*INTERPOLATE_SPEED) * delta)
-#	else: # Not ready to interpolate
-#		set_pos(get_pos() + Vector2(0, Y_MOTION) * delta)
-
-	set_pos(get_pos() + Vector2(0, Y_MOTION) * delta)
+		set_pos(get_pos() + Vector2(0, Y_MOTION) * delta)
 
 
 func _ready():
