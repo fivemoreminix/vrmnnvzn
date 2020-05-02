@@ -83,7 +83,7 @@ func _on_StunTimer_timeout():
 	flashing = false
 	# Change all segment sprites back to default
 	parts[0].get_node("AnimatedSprite").animation = "head"
-	for i in range(parts.size()-1): # For every *body* part ...
+	for i in range(1, parts.size()-1): # For every *body* part ...
 		parts[i].get_node("AnimatedSprite").animation = "body"
 	parts[parts.size()-1].get_node("AnimatedSprite").animation = "tail"
 	
@@ -95,7 +95,7 @@ func _on_FlashTimer_timeout():
 	is_white = not is_white
 	print(is_white)
 	parts[0].get_node("AnimatedSprite").animation = "head_white" if is_white else "head"
-	for i in range(parts.size()-1): # For every *body* part ...
+	for i in range(1, parts.size()-1): # For every *body* part ...
 		parts[i].get_node("AnimatedSprite").animation = "body_white" if is_white else "body"
 	parts[parts.size()-1].get_node("AnimatedSprite").animation = "tail_white" if is_white else "tail"
 #	get_node("sprite").play("white" if is_white else "default")
