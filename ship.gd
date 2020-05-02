@@ -17,7 +17,6 @@ var can_shoot = true
 var killed = false
 onready var shipSprite = get_node("shipSprite")
 onready var shots = [preload("res://scenes/shot.tscn"),preload("res://scenes/2shot.tscn"),preload("res://scenes/3shot.tscn")]
-var banking = false
 
 var active_effects = [] # a list of active powerups or detriments [type of effect, effect name, duration as a float]
 
@@ -50,17 +49,8 @@ func _process(delta):
 			motion += Vector2(0, 1)
 		if Input.is_action_pressed("move_left"):
 			motion += Vector2(-1, 0)
-			if !banking:
-				shipSprite.play("bankLeft")
-				banking = true
 		if Input.is_action_pressed("move_right"):
 			motion += Vector2(1, 0)
-			if !banking:
-				shipSprite.play("bankRight")
-				banking = true
-		if (!Input.is_action_pressed("move_right") or !Input.is_action_pressed("move_left")) or (Input.is_action_pressed("move_right") and Input.is_action_pressed("move_left")):
-			shipSprite.set_animation("default")
-			banking = false
 		
 		move(delta, motion)
 		
