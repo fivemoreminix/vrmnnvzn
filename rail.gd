@@ -43,7 +43,7 @@ func _ready():
 	
 	# Load player at checkpoints
 	if not get_tree().is_editor_hint():
-		if get_node("/root/GameData").data.current_section > 0: # We need to load at a checkpoint
+		if get_node("/root/GameData").data.current_section > 0 and not get_node("/root/GameData").data.difficulty == "Hard": # We need to load at a checkpoint
 			for checkpoint in get_tree().get_nodes_in_group("Checkpoint"):
 				if checkpoint.section_index == get_node("/root/GameData").data.current_section:
 					align_with_checkpoint(checkpoint)
