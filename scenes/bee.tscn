@@ -1,18 +1,19 @@
-[gd_scene load_steps=18 format=1]
+[gd_scene load_steps=19 format=1]
 
 [ext_resource path="res://scripts/bee.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/enemies/bees/bees_frame0.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/enemies/bees/bees_frame1.png" type="Texture" id=3]
 [ext_resource path="res://assets/sprites/enemies/bees/bees_white_frame0.png" type="Texture" id=4]
 [ext_resource path="res://assets/sprites/enemies/bees/bees_white_frame1.png" type="Texture" id=5]
-[ext_resource path="res://sound_explode.wav" type="Sample" id=6]
-[ext_resource path="res://assets/sprites/splat/splat_0.png" type="Texture" id=7]
-[ext_resource path="res://assets/sprites/splat/splat_1.png" type="Texture" id=8]
-[ext_resource path="res://assets/sprites/splat/splat_2.png" type="Texture" id=9]
-[ext_resource path="res://assets/sprites/splat/splat_3.png" type="Texture" id=10]
-[ext_resource path="res://assets/sprites/splat/splat_4.png" type="Texture" id=11]
-[ext_resource path="res://assets/sprites/gibs/gibs_5.png" type="Texture" id=12]
-[ext_resource path="res://assets/sprites/gibs/gibs_0.png" type="Texture" id=13]
+[ext_resource path="res://assets/bee_hit.wav" type="Sample" id=6]
+[ext_resource path="res://sound_explode.wav" type="Sample" id=7]
+[ext_resource path="res://assets/sprites/splat/splat_0.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/splat/splat_1.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/splat/splat_2.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/splat/splat_3.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/splat/splat_4.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/gibs/gibs_5.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/gibs/gibs_0.png" type="Texture" id=14]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -35,17 +36,23 @@ animations = [ {
 
 [sub_resource type="SampleLibrary" id=3]
 
-samples/sound_explode = {
+samples/bee_hit = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
 "sample": ExtResource( 6 )
 }
+samples/sound_explode = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 7 )
+}
 
 [sub_resource type="SpriteFrames" id=4]
 
 animations = [ {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ) ],
 "loop": false,
 "name": "default",
 "speed": 12.0
@@ -68,11 +75,13 @@ __meta__ = {
 "__editor_plugin_screen__": "2D"
 }
 TargetPath = "../../rail/ship"
+disabled = false
 
 [node name="sprite" type="AnimatedSprite" parent="."]
 
 frames = SubResource( 2 )
 animation = "default"
+frame = 1
 playing = true
 
 [node name="collision" type="CollisionShape2D" parent="."]
@@ -113,7 +122,7 @@ config/process_mode = 1
 config/local_space = false
 config/explosiveness = 0.01
 config/flip_h = true
-config/texture = ExtResource( 12 )
+config/texture = ExtResource( 13 )
 config/v_frames = 4
 params/direction = 0.0
 params/spread = 90.0
@@ -142,7 +151,7 @@ config/emitting = false
 config/process_mode = 1
 config/local_space = false
 config/explosiveness = 0.01
-config/texture = ExtResource( 12 )
+config/texture = ExtResource( 13 )
 config/v_frames = 4
 params/direction = 0.0
 params/spread = 90.0
@@ -171,7 +180,7 @@ config/emitting = false
 config/process_mode = 1
 config/local_space = false
 config/explosiveness = 0.01
-config/texture = ExtResource( 13 )
+config/texture = ExtResource( 14 )
 config/v_frames = 4
 params/direction = 0.0
 params/spread = 90.0
@@ -202,7 +211,7 @@ config/process_mode = 1
 config/local_space = false
 config/explosiveness = 0.01
 config/flip_h = true
-config/texture = ExtResource( 13 )
+config/texture = ExtResource( 14 )
 config/v_frames = 4
 params/direction = 0.0
 params/spread = 90.0

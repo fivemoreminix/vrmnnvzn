@@ -35,6 +35,8 @@ func destroy():
 	if not destroyed:
 		health -= 1
 		
+		get_node("sfx").play("bee_hit")
+		
 		if health <= 0:
 			destroyed = true
 			get_node("sprite").hide()
