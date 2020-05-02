@@ -75,7 +75,7 @@ func move(delta, motion):
 	pos += motion*delta*SPEED
 	
 	pos.x = clamp(pos.x, 0, screen_size.x)
-	pos.y = min(pos.y, 168)
+	pos.y = min(pos.y, 175)
 	
 	# Make y value discrete to prevent (most) stuttering
 	pos.y = int(pos.y)
