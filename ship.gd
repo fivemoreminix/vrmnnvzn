@@ -5,11 +5,10 @@ extends Area2D
 #signal effect_removed
 
 # Member variables
-const SPEED = 130
+const SPEED = 110
 onready var DEFAULT_SHOOT_WAIT_TIME = get_node("ShootTimer").get_wait_time() # basically a constant
 
 var motion = Vector2()
-var dampen_speed = 10
 
 var screen_size
 var input_disabled = false
@@ -46,7 +45,7 @@ func _process(delta):
 		if Input.is_action_pressed("move_up"):
 			motion += Vector2(0, -1)
 		if Input.is_action_pressed("move_down"):
-			motion += Vector2(0, 1)
+			motion += Vector2(0, 1.5)
 		if Input.is_action_pressed("move_left"):
 			motion += Vector2(-1, 0)
 		if Input.is_action_pressed("move_right"):
