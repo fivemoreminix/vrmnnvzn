@@ -6,6 +6,7 @@ export(int) var section_index = 1
 
 func _ready():
 	assert(section_index > 0)
+	if GameData.data.difficulty == "Hard": hide()
 
 
 func _on_Trigger_area_enter( area ):

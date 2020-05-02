@@ -104,6 +104,10 @@ transform/pos = Vector2( 184, -346 )
 
 transform/pos = Vector2( 50, 0 )
 
+[node name="Sprite" parent="entities/Laser/LeftHead/Beam"]
+
+frame = 0
+
 [node name="Laser 2" parent="entities" instance=ExtResource( 5 )]
 
 editor/display_folded = true
@@ -118,6 +122,10 @@ transform/pos = Vector2( 32, -0.0252664 )
 
 editor/display_folded = true
 
+[node name="Sprite" parent="entities/Laser 2/LeftHead/Beam"]
+
+frame = 0
+
 [node name="Laser 3" parent="entities" instance=ExtResource( 5 )]
 
 editor/display_folded = true
@@ -126,10 +134,6 @@ transform/pos = Vector2( 24, -1442 )
 [node name="RightHead" parent="entities/Laser 3"]
 
 transform/pos = Vector2( 34, 0 )
-
-[node name="Sprite" parent="entities/Laser 3/LeftHead/Beam"]
-
-frame = 0
 
 [node name="Laser4" parent="entities" instance=ExtResource( 5 )]
 
@@ -141,10 +145,6 @@ time_delay = 2.0
 
 transform/pos = Vector2( 50, 0 )
 
-[node name="Sprite" parent="entities/Laser4/LeftHead/Beam"]
-
-frame = 0
-
 [node name="Laser5" parent="entities" instance=ExtResource( 5 )]
 
 editor/display_folded = true
@@ -153,6 +153,10 @@ transform/pos = Vector2( 136, -1669 )
 [node name="RightHead" parent="entities/Laser5"]
 
 transform/pos = Vector2( 50, 0 )
+
+[node name="Sprite" parent="entities/Laser5/LeftHead/Beam"]
+
+frame = 0
 
 [node name="Laser6" parent="entities" instance=ExtResource( 5 )]
 
@@ -164,10 +168,6 @@ time_delay = 1.0
 [node name="RightHead" parent="entities/Laser6"]
 
 transform/pos = Vector2( 54, -2.38419e-06 )
-
-[node name="Sprite" parent="entities/Laser6/LeftHead/Beam"]
-
-frame = 0
 
 [node name="YCentipede" parent="entities" instance=ExtResource( 6 )]
 
