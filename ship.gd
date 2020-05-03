@@ -21,9 +21,12 @@ var active_effects = [] # a list of active powerups or detriments [type of effec
 
 onready var default_shot_idx = 1 if GameData.data.difficulty != "Hard" else 0
 
+onready var last_mouse_pos = get_viewport().get_mouse_pos()
+
 func _ready():
 	screen_size = get_viewport().get_rect().size
 	set_process(true)
+#	set_process_input(true)
 
 
 func _process(delta):
@@ -55,6 +58,13 @@ func _process(delta):
 		
 		var shooting = Input.is_action_pressed("shoot")
 		if shooting: shoot()
+
+
+# Experimental mouse support
+#func _input(event):
+#	if event.type == InputEvent.MOUSE_MOTION:
+#		print(var2str(event.relative_pos))
+#		move(get_process_delta_time(), event.relative_pos)
 
 
 func move(delta, motion):
