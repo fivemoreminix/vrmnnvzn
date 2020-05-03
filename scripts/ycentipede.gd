@@ -11,7 +11,7 @@ var segment = preload("res://scenes/centipede_segment.tscn")
 var segment_shape = preload("res://scenes/res/ycentipede_segment_shape.tres")
 
 var destroyed = false
-var health = 4 # Number of times this enemy can take damage
+var health = 6 # Number of times this enemy can take damage
 
 var flashing = false
 var is_white = false

@@ -2,13 +2,14 @@
 extends Area2D
 
 # Member variables
-const SPEED    = 50
+onready var SPEED = 60 if GameData.data.difficulty == "Hard" else 75
 
 export(NodePath) var TargetPath = "../../rail/ship"
 var RailPath                    = "../../rail"
 var target                      = null
 
 export(bool) var disabled = false
+export(bool) var play_alert_sound_when_visible = false
 
 var direction = Vector2(0,0)
 var health = 2 # Number of times this enemy can take damage
@@ -58,6 +59,9 @@ func destroy():
 
 
 func _on_visibility_enter_screen():
+#	if play_alert_sound_when_visible:
+#		get_node("sfx").play("alert")
+	
 	var rail_speed = Vector2(0, target.get_parent().Y_MOTION)
 	var player_speed = target.SPEED # + target.motion.y ?
 	var player_pos = target.get_global_pos()
