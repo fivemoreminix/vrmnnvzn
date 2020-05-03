@@ -69,7 +69,7 @@ func _on_visibility_enter_screen():
 #	print(var2str(distance))
 	
 	# What offset from the player's current position when we get there?
-	var predict = Vector2(0, -player_speed) * get_process_delta_time() * (distance * (1/SPEED))
+	var predict = Vector2(0, -player_speed) * get_process_delta_time() * (distance * (1.0/SPEED))
 #	print(var2str(predict))
 	
 	target_pos = player_pos + predict

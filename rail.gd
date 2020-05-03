@@ -47,6 +47,7 @@ func _ready():
 			for checkpoint in get_tree().get_nodes_in_group("Checkpoint"):
 				if checkpoint.section_index == get_node("/root/GameData").data.current_section:
 					align_with_checkpoint(checkpoint)
+					checkpoint.hide() # We don't want to see the checkpoint we're starting at...
 					break
 
 
