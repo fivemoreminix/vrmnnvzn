@@ -3,8 +3,8 @@ extends Node2D
 const SEGMENT_TIME_OFFSET = 5
 const SEGMENT_OFFSET = Vector2(0, -10)
 
-onready var sine_magnitude = 10.0 if GameData.data.difficulty == "Hard" else 13.0
-onready var speed = 6 if GameData.data.difficulty == "Hard" else 4
+onready var sine_magnitude = 10.0 if GameData.data.difficulty == "Normal" else 13.0
+onready var speed = 6 if GameData.data.difficulty == "Normal" else 4
 export(int) var body_segments = 5
 
 var segment = preload("res://scenes/centipede_segment.tscn")

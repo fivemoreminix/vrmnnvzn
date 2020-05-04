@@ -19,7 +19,7 @@ onready var shots = [preload("res://scenes/shot.tscn"),preload("res://scenes/2sh
 
 var active_effects = [] # a list of active powerups or detriments [type of effect, effect name, duration as a float]
 
-onready var default_shot_idx = 1 if GameData.data.difficulty != "Hard" else 0
+onready var default_shot_idx = 1 if GameData.data.difficulty != "Normal" else 0
 
 onready var last_mouse_pos = get_viewport().get_mouse_pos()
 

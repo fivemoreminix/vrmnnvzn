@@ -2,7 +2,7 @@
 extends Area2D
 
 # Member variables
-onready var SPEED = 60 if GameData.data.difficulty == "Hard" else 75
+onready var SPEED = 60 if GameData.data.difficulty == "Normal" else 75
 
 export(NodePath) var TargetPath = "../../rail/ship"
 var RailPath                    = "../../rail"

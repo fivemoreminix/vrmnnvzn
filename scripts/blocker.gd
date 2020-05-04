@@ -1,6 +1,6 @@
 extends Area2D
 
-var health = 3 if GameData.data.difficulty == "Hard" else 2
+var health = 3 if GameData.data.difficulty == "Normal" else 2
 var destroyed = false
 
 func destroy():
