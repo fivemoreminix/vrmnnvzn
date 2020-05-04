@@ -24,14 +24,17 @@ func _ready():
 
 func _on_LevelFinishTrigger_level_finished():
 	get_node(\"rail/ship\").input_disabled = true # Ship may no longer move...
-#	get_node(\"Music\").stop()
-	# fade screen to black
-#	get_node(\"rail/hud/Fade\").begin_fade_out()
-#	get_node(\"rail/hud/Fade\").connect(\"fade_finished\", self, \"_on_Fade_fade_finished\")
 
 
 func _on_rail_rail_finished():
 	get_node(\"EndOfLevelGUI\").start(\"A Rookie at Hell's Gates\", GameData.data.difficulty, 0, 0)
+
+
+func _on_EndOfLevelGUI_finished():
+	# TODO: fade music out
+	# fade screen to black
+	get_node(\"rail/hud/Fade\").begin_fade_out()
+	get_node(\"rail/hud/Fade\").connect(\"fade_finished\", self, \"_on_Fade_fade_finished\")
 
 
 func _on_Fade_fade_finished():
@@ -90,10 +93,6 @@ travel_y = 3968
 
 editor/display_folded = true
 
-[node name="thruster" parent="rail/ship"]
-
-frame = 1
-
 [node name="Fade" parent="rail/hud"]
 
 editor/display_folded = true
@@ -111,6 +110,10 @@ transform/pos = Vector2( 184, -346 )
 
 transform/pos = Vector2( 50, 0 )
 
+[node name="Sprite" parent="entities/Laser/LeftHead/Beam"]
+
+frame = 0
+
 [node name="Laser 2" parent="entities" instance=ExtResource( 4 )]
 
 editor/display_folded = true
@@ -125,6 +128,10 @@ transform/pos = Vector2( 32, -0.0252664 )
 
 editor/display_folded = true
 
+[node name="Sprite" parent="entities/Laser 2/LeftHead/Beam"]
+
+frame = 0
+
 [node name="Laser 3" parent="entities" instance=ExtResource( 4 )]
 
 editor/display_folded = true
@@ -133,10 +140,6 @@ transform/pos = Vector2( 24, -1442 )
 [node name="RightHead" parent="entities/Laser 3"]
 
 transform/pos = Vector2( 34, 0 )
-
-[node name="Sprite" parent="entities/Laser 3/LeftHead/Beam"]
-
-frame = 0
 
 [node name="Laser4" parent="entities" instance=ExtResource( 4 )]
 
@@ -148,10 +151,6 @@ time_delay = 2.0
 
 transform/pos = Vector2( 50, 0 )
 
-[node name="Sprite" parent="entities/Laser4/LeftHead/Beam"]
-
-frame = 0
-
 [node name="Laser5" parent="entities" instance=ExtResource( 4 )]
 
 editor/display_folded = true
@@ -160,6 +159,10 @@ transform/pos = Vector2( 136, -1669 )
 [node name="RightHead" parent="entities/Laser5"]
 
 transform/pos = Vector2( 50, 0 )
+
+[node name="Sprite" parent="entities/Laser5/LeftHead/Beam"]
+
+frame = 0
 
 [node name="Laser6" parent="entities" instance=ExtResource( 4 )]
 
@@ -171,10 +174,6 @@ time_delay = 1.0
 [node name="RightHead" parent="entities/Laser6"]
 
 transform/pos = Vector2( 54, -2.38419e-06 )
-
-[node name="Sprite" parent="entities/Laser6/LeftHead/Beam"]
-
-frame = 0
 
 [node name="YCentipede" parent="entities" instance=ExtResource( 5 )]
 
@@ -207,6 +206,10 @@ play_alert_sound_when_visible = true
 [node name="Bee4" parent="entities" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( 118, -2906 )
+
+[node name="Bee7" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 174, -3107 )
 
 [node name="Bee5" parent="entities" instance=ExtResource( 6 )]
 
@@ -267,6 +270,8 @@ margin/bottom = -3776.0
 [connection signal="rail_finished" from="rail" to="." method="_on_rail_rail_finished"]
 
 [connection signal="level_finished" from="LevelFinishTrigger" to="." method="_on_LevelFinishTrigger_level_finished"]
+
+[connection signal="finished" from="EndOfLevelGUI" to="." method="_on_EndOfLevelGUI_finished"]
 
 
 [editable path="rail"]

@@ -73,7 +73,7 @@ tracks/3/path = NodePath("Enemies/AnimationPlayer")
 tracks/3/interp = 1
 tracks/3/imported = false
 tracks/3/keys = {
-"times": FloatArray( 4.5 ),
+"times": FloatArray( 5 ),
 "transitions": FloatArray( 1 ),
 "values": [ {
 "args": [ "Anim" ],
@@ -85,7 +85,7 @@ tracks/4/path = NodePath("Blockers/AnimationPlayer")
 tracks/4/interp = 1
 tracks/4/imported = false
 tracks/4/keys = {
-"times": FloatArray( 5.5 ),
+"times": FloatArray( 6.5 ),
 "transitions": FloatArray( 1 ),
 "values": [ {
 "args": [ "Anim" ],
@@ -139,6 +139,7 @@ max_lines_visible = -1
 
 [node name="Difficulty" type="Control" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -193,6 +194,7 @@ autoplay = ""
 
 [node name="Enemies" type="Control" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -247,6 +249,7 @@ autoplay = ""
 
 [node name="Blockers" type="Control" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -309,5 +312,7 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
+
+[connection signal="finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_finished"]
 
 
