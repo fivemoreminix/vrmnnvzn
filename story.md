@@ -25,6 +25,10 @@ An animated pixel art video cutscene introducing the plot. Maybe a narration beh
 
 Since the war started rather unexpectedly, the government has not given the most attention to the training of each unit. The player is one of them -- this is their first day on the job, with very little training. They are told to disperse "only a couple hostilities in the area".
 
+**Choreography:** Initializing artificial intelligence "April" ... Core systems boot, no failures dete- [April]: Hello, {PLAYER NAME}. I'm April! If my systems are correct, the date is 2093. [Player]: It's 3086... [April]: Oh... I see.   So how long have you been on this ship? [Player]: Today. Do you know anything about VRMNZ? [April]: No.. but I can tell you everything about the Centurion! [Player]: Centurion?.. What, wait that's from a hundre- no these VRMNZ aren't from 2085, or whatever.. These are new. [April]: For both of us, then.  [Player]: I thought you were supposed to be helpful. [April]: Shut up.
+
+*Enemy wasp is not moving behind a wall the player cannot access.* [April]: I'm picking up very light movement past that rock face. There's something here... Wait! More, just ahead of us! *First enemy encounter is a bee, then a few, then a couple more.* [April]: They're like bees, but massive.
+
 ### 1 Enigma
 
 The player discovers something big while fighting: a vermin rune typograph. The wasps developed this written language to communicate only just a hundred years ago. Commander Cook is very interested in this discovery and he needs you to find who has been writing the messages.
