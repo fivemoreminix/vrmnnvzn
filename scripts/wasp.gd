@@ -126,7 +126,7 @@ func begin_follow():
 	# set state to following
 	state = State.Following
 	# set following variables to random values
-	follow_right = bool(randi() % 2)
+	follow_right = true if randi() % 2 == 1 else false
 	follow_y_height = rand_range(25, 128-25)
 
 
