@@ -3,7 +3,7 @@ extends Area2D
 const STUN_DIR = Vector2(1, -1) # Direction wasp moves while stunned
 
 # Member variables
-onready var SPEED = 60 if GameData.data.difficulty == "Normal" else 75
+onready var SPEED = 75 if GameData.data.difficulty == "Normal" else 60
 
 export(NodePath) var RailPath   = "../../rail"
 onready var rail                = get_node(RailPath)
@@ -14,11 +14,18 @@ export(bool) var disabled = false
 
 # state
 enum State {
-	Following, # Wasp will follow player on the left or right sides of the screen, before hovering
+	Following, # Wasp will follow player on the left or right sides of the screen when hurt, before hovering
 	Hovering,  # Wasp hovers in front of player, firing down at them
-	Fleeing,   # Wasp was hit, so now it is fleeing to the right of the screen
+	Fleeing,   # Wasp was hit, so now it is fleeing to the right of the screen and returns with one more health
 }
 var state = State.Hovering
+
+# following values
+var follow_right = true # if true, wasp follows on right side of player, otherwise left side
+var follow_y_height = 100
+
+# fleeing values
+var out_of_screen = true
 
 # health
 var health = 4 # Number of times this enemy can take damage
@@ -39,25 +46,65 @@ func _process(delta):
 
 
 func follow(delta):
-	pass
+	var rail_pos = rail.get_global_pos()
+	var ship_pos = ship.get_global_pos()
+	var view_size = get_viewport().get_rect().size
+	var target_pos = Vector2(view_size.width - 10 if follow_right else 10, rail_pos.y + follow_y_height)
+	
+	move_to(target_pos, delta, 1.0)
 
 
 func hover(delta):
 	var rail_pos = rail.get_global_pos()
 	var ship_pos = ship.get_global_pos()
-	var target_pos = Vector2(ship_pos.x, rail_pos.y + 50)
+	var target_pos = Vector2(ship_pos.x, rail_pos.y + 25)
 	
-	var dir = (target_pos - get_global_pos()).normalized()
-	
-	move(dir, delta)
+	move_to(target_pos, delta, 1.0)
 
 
 func flee(delta):
-	pass
+	var rail_pos = rail.get_global_pos()
+	var ship_pos = ship.get_global_pos()
+	var target_pos = Vector2(256 + 25, rail_pos.y)
+	
+	move_to(target_pos, delta, 1.5)
 
 
-func move(dir, delta):
-	set_global_pos(get_pos() + dir * SPEED)
+func move_to(global_pos, delta, speed_mult):
+	var dir = (global_pos - get_global_pos()).normalized()
+	move(dir, delta, speed_mult)
+
+
+func move(dir, delta, speed_mult):
+#	if dir.length() < 0.5: return
+#	if dir.y < 0: dir.y *= 2
+	
+	var pos = get_global_pos()
+	
+	pos += dir * SPEED * speed_mult * delta # Add movement
+	
+	# Snap values on integers
+#	pos.x = int(pos.x)
+#	pos.y = int(pos.y)
+	
+	set_global_pos(pos)
+
+
+func begin_flee():
+	# set state to fleeing
+	state = State.Fleeing
+	# begin flee timer
+	get_node("FleeTimer").start()
+	# reset and stop follow timer
+	get_node("FollowTimer").stop()
+
+
+func begin_follow():
+	# set state to following
+	state = State.Following
+	# set following variables to random values
+	follow_right = bool(randi() % 2)
+	follow_y_height = rand_range(25, 128-25)
 
 
 func destroy():
@@ -65,6 +112,8 @@ func destroy():
 		health -= 1
 		
 		get_node("sfx").play("bee_hit")
+		
+		if health == 1: begin_flee()
 		
 		if health <= 0:
 			destroyed = true
@@ -91,7 +140,8 @@ func _on_visibility_enter_screen():
 
 
 func _on_visibility_exit_screen():
-	queue_free()
+	if state != State.Fleeing:
+		queue_free()
 
 
 func _on_asteroid_area_enter( area ): # "asteroid" comes from this project's origins
@@ -109,3 +159,16 @@ func _on_StunTimer_timeout():
 func _on_FlashTimer_timeout():
 	is_white = not is_white
 	get_node("sprite").play("white" if is_white else "default")
+
+
+func _on_FollowTimer_timeout():
+	if state != State.Fleeing:
+		if state == State.Hovering:
+			begin_follow()
+		else: state = State.Hovering
+
+
+func _on_FleeTimer_timeout():
+	state = State.Hovering
+	health += 1
+	get_node("FollowTimer").start() # We reset the follow timer after fleeing
