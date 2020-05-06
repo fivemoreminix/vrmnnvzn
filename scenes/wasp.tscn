@@ -27,12 +27,12 @@ animations = [ {
 "frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
 "loop": true,
 "name": "default",
-"speed": 10.0
+"speed": 12.0
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "white",
-"speed": 5.0
+"speed": 10.0
 } ]
 
 [sub_resource type="SampleLibrary" id=3]
@@ -88,6 +88,7 @@ disabled = false
 
 frames = SubResource( 2 )
 animation = "default"
+frame = 1
 playing = true
 
 [node name="collision" type="CollisionShape2D" parent="."]
