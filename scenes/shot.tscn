@@ -8,7 +8,9 @@
 custom_solver_bias = 0.0
 extents = Vector2( 2, 4 )
 
-[node name="shot" type="Area2D"]
+[node name="shot" type="Area2D" groups=[
+"Projectile",
+]]
 
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
