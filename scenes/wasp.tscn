@@ -88,7 +88,6 @@ disabled = false
 
 frames = SubResource( 2 )
 animation = "default"
-frame = 1
 playing = true
 
 [node name="collision" type="CollisionShape2D" parent="."]
@@ -255,7 +254,7 @@ autostart = false
 [node name="FollowTimer" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 10.0
+wait_time = 5.0
 one_shot = false
 autostart = true
 
@@ -265,6 +264,18 @@ process_mode = 1
 wait_time = 5.0
 one_shot = true
 autostart = false
+
+[node name="ShootTimer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="shootfrom" type="Position2D" parent="."]
+
+transform/pos = Vector2( 0, 6 )
+transform/rot = 180.0
 
 [connection signal="area_enter" from="." to="." method="_on_asteroid_area_enter"]
 
@@ -279,5 +290,7 @@ autostart = false
 [connection signal="timeout" from="FollowTimer" to="." method="_on_FollowTimer_timeout"]
 
 [connection signal="timeout" from="FleeTimer" to="." method="_on_FleeTimer_timeout"]
+
+[connection signal="timeout" from="ShootTimer" to="." method="_on_ShootTimer_timeout"]
 
 

@@ -2,8 +2,9 @@ extends Area2D
 
 const STUN_DIR = Vector2(1, -1) # Direction wasp moves while stunned
 
-# Member variables
+# Onready
 onready var SPEED = 75 if GameData.data.difficulty == "Normal" else 60
+onready var enemy_shot = preload("res://scenes/enemy_shot.tscn")
 
 export(NodePath) var RailPath   = "../../rail"
 onready var rail                = get_node(RailPath)
@@ -11,6 +12,9 @@ onready var ship                = get_node(RailPath + "/ship")
 
 export(bool) var disabled = false
 #export(bool) var play_alert_sound_when_visible = false
+
+# shooting
+var can_shoot = true
 
 # state
 enum State {
@@ -45,6 +49,24 @@ func _process(delta):
 			else: flee(delta)
 
 
+func shoot():
+	if can_shoot:
+#		var dir = (ship.get_global_pos() - get_global_pos()).normalized()
+		
+#		print(dir)
+		
+		var shot = enemy_shot.instance()
+#		get_node("shootfrom").look_at(dir)
+#		print(rad2deg(get_node("shootfrom").get_rot()))
+#		get_node("shootfrom").rotate(deg2rad(-180))
+		shot.set_pos(get_node("shootfrom").get_global_pos())
+		shot.set_rot(get_node("shootfrom").get_global_rot()) 
+		get_parent().add_child(shot)
+		
+		can_shoot = false
+		get_node("ShootTimer").start()
+
+
 func follow(delta):
 	var rail_pos = rail.get_global_pos()
 	var ship_pos = ship.get_global_pos()
@@ -60,6 +82,7 @@ func hover(delta):
 	var target_pos = Vector2(ship_pos.x, rail_pos.y + 25)
 	
 	move_to(target_pos, delta, 1.0)
+	shoot()
 
 
 func flee(delta):
@@ -172,3 +195,7 @@ func _on_FleeTimer_timeout():
 	state = State.Hovering
 	health += 1
 	get_node("FollowTimer").start() # We reset the follow timer after fleeing
+
+
+func _on_ShootTimer_timeout():
+	can_shoot = true
