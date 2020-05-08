@@ -11,6 +11,8 @@ func destroy():
 			set_monitorable(false)
 			get_node("AnimatedSprite").play("destroyed")
 			get_node("sfx").play("shroom_destroy")
+			return true
+	return false
 
 
 func _on_VisibilityNotifier2D_exit_screen():

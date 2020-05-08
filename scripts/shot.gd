@@ -1,5 +1,6 @@
-
 extends Area2D
+
+signal enemy_destroyed
 
 # Member variables
 const SPEED = 600
@@ -27,7 +28,8 @@ func _on_shot_area_enter(area):
 	if (area.is_in_group("Enemy") and not area.is_in_group("Godmode")):
 		# Duck typing at it's best
 		if(!area.destroyed):
-			area.destroy()
+			if area.destroy(): # true if enemy died when this function is called
+				emit_signal("enemy_destroyed")
 	
 	_hit_something()
 

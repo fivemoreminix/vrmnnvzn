@@ -1,8 +1,7 @@
-
 extends Area2D
 
-#signal effect_added
-#signal effect_removed
+signal enemy_destroyed
+
 
 # Member variables
 const SPEED = 110
@@ -12,6 +11,8 @@ var motion = Vector2()
 
 var screen_size
 var input_disabled = false
+var override_move_target = null # Vector2, location to move to
+var override_move_target_time = 0.0
 var can_shoot = true
 var killed = false
 onready var shipSprite = get_node("shipSprite")
@@ -43,21 +44,29 @@ func _process(delta):
 			# Some effects may have "after-effects":
 			if e[0] == "Phase-through": stop_blinking()
 	
-	if not input_disabled:
-		motion = Vector2(0,0)
-		if Input.is_action_pressed("move_up"):
-			motion += Vector2(0, -1)
-		if Input.is_action_pressed("move_down"):
-			motion += Vector2(0, 1.5)
-		if Input.is_action_pressed("move_left"):
-			motion += Vector2(-1, 0)
-		if Input.is_action_pressed("move_right"):
-			motion += Vector2(1, 0)
-		
-		move(delta, motion)
-		
-		var shooting = Input.is_action_pressed("shoot")
-		if shooting: shoot()
+	if override_move_target != null:
+#		motion = (override_move_target - get_global_pos()).normalized()
+#		move(delta, motion)
+		override_move_target_time += delta
+		var cpos = get_global_pos()
+		cpos.linear_interpolate(override_move_target, override_move_target_time)
+		set_global_pos(cpos)
+	else:
+		if not input_disabled:
+			motion = Vector2(0,0)
+			if Input.is_action_pressed("move_up"):
+				motion += Vector2(0, -1)
+			if Input.is_action_pressed("move_down"):
+				motion += Vector2(0, 1.5)
+			if Input.is_action_pressed("move_left"):
+				motion += Vector2(-1, 0)
+			if Input.is_action_pressed("move_right"):
+				motion += Vector2(1, 0)
+			
+			move(delta, motion)
+			
+			var shooting = Input.is_action_pressed("shoot")
+			if shooting: shoot()
 
 
 # Experimental mouse support
@@ -89,6 +98,9 @@ func shoot():
 		# Use the Position2D as reference
 		shot.set_pos(get_node("shootfrom").get_global_pos())
 		shot.set_rot(get_node("shootfrom").get_rot()) 
+		
+		shot.connect("enemy_destroyed", self, "on_enemy_destroyed")
+		
 		# Put it two parents above, so it is not moved by us
 		get_node("../..").add_child(shot)
 		# Play sound
@@ -98,7 +110,10 @@ func shoot():
 			for side in ["Left", "Right"]:
 				var shot = shots[0].instance()
 				shot.set_pos(get_node("shootfromDiag" + side).get_global_pos())
-				shot.set_rot(get_node("shootfromDiag" + side).get_rot()) 
+				shot.set_rot(get_node("shootfromDiag" + side).get_rot())
+				
+				shot.connect("enemy_destroyed", self, "on_enemy_destroyed")
+				
 				get_node("../..").add_child(shot)
 		
 		# reset condition
@@ -182,5 +197,8 @@ func stop_blinking():
 func _on_BlinkTimer_timeout():
 	if is_visible(): hide()
 	else: show()
+
+func on_enemy_destroyed():
+	emit_signal("enemy_destroyed")
 
 ### END BLINKING ###

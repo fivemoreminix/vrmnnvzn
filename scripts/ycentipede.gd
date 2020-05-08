@@ -27,10 +27,12 @@ func destroy():
 				parts[i].get_node("explosion").show()
 				parts[i].get_node("explosion").play("default")
 				parts[i].get_node("legs_particles").set_emitting(true) # Emit particles
+			return true
 		else:
 			flashing = true
 			get_node("StunTimer").start()
 			get_node("FlashTimer").start()
+	return false
 
 onready var parts = []
 var time = 0.0

@@ -52,10 +52,12 @@ func destroy():
 			call_deferred("set_monitorable", false) # Disable the collisions on this Bee
 #			set_monitorable(false) # This won't work because we can't prevent monitoring while monitoring...
 			get_node("sfx").play("sound_explode")
+			return true
 		else:
 			flashing = true
 			get_node("StunTimer").start()
 			get_node("FlashTimer").start()
+	return false
 
 
 func _on_visibility_enter_screen():

@@ -1,0 +1,177 @@
+[gd_scene load_steps=11 format=1]
+
+[ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=1]
+[ext_resource path="res://scenes/ship.tscn" type="PackedScene" id=2]
+[ext_resource path="res://assets/sprites/portal/black.png" type="Texture" id=3]
+[ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/level_finish.wav" type="Sample" id=5]
+[ext_resource path="res://assets/electric_sound_loop.ogg" type="AudioStream" id=6]
+[ext_resource path="res://scenes/end_of_level_gui.tscn" type="PackedScene" id=7]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Node2D
+
+
+func _ready():
+	get_node(\"Music\").play()
+
+
+func _on_LevelFinishTrigger_level_finished():
+	get_node(\"rail/ship\").input_disabled = true # Ship may no longer move...
+
+
+func _on_rail_rail_finished():
+	get_node(\"EndOfLevelGUI\").start(\"A Rookie at Hell's Gates\", GameData.data.difficulty, 0, 0)
+
+
+func _on_EndOfLevelGUI_finished():
+	# TODO: fade music out
+	# fade screen to black
+	get_node(\"rail/hud/Fade\").begin_fade_out()
+	get_node(\"rail/hud/Fade\").connect(\"fade_finished\", self, \"_on_Fade_fade_finished\")
+
+
+func _on_Fade_fade_finished():
+	get_node(\"Sfx\").play(\"level_finish\")
+	# scroll text saying \"Level finished!\"
+#	get_node(\"rail/hud/BottomBar\").scrolling_text(\"Level finished!\")
+	GameData.finished_level()
+"
+
+[sub_resource type="SampleLibrary" id=2]
+
+samples/level_finish = {
+"db": -10.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 5 )
+}
+
+[sub_resource type="GDScript" id=3]
+
+script/source = "extends Node2D
+
+export(NodePath) var message_bar_path
+
+onready var bar = get_node(message_bar_path)
+onready var timer = get_node(\"NextMessageTimer\")
+
+func _ready():
+	if GameData.data.name.length() > 30:
+		bar.message(\"%s-       I was going to try. Just disperse VRMNZ.\" % GameData.data.name.substr(0, 30))
+	else:
+		bar.message(\"%s, welcome. Disperse the VRMNZ.\" % GameData.data.name)
+"
+
+[node name="lvl0" type="Node2D"]
+
+script/script = SubResource( 1 )
+
+[node name="TileMap" type="TileMap" parent="."]
+
+mode = 0
+tile_set = ExtResource( 1 )
+cell/size = Vector2( 16, 16 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 786432, 4, 786433, 4, 786434, 4, 786435, 4, 786436, 4, 786437, 4, 786438, 4, 786439, 4, 786440, 4, 786441, 4, 786442, 4, 786443, 4, 786444, 4, 786445, 4, 786446, 4, 786447, 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Blockers" type="Node2D" parent="."]
+
+[node name="rail" parent="." instance=ExtResource( 2 )]
+
+editor/display_folded = true
+travel_y = 3968
+
+[node name="ship" parent="rail"]
+
+editor/display_folded = true
+
+[node name="Fade" parent="rail/hud"]
+
+editor/display_folded = true
+
+[node name="entities" type="Node2D" parent="."]
+
+transform/pos = Vector2( 0, 10 )
+
+[node name="EndLevelCover" type="Sprite" parent="."]
+
+transform/pos = Vector2( 128, -3878 )
+transform/scale = Vector2( 6.5, 5.08333 )
+texture = ExtResource( 3 )
+
+[node name="LevelFinishTrigger" parent="." instance=ExtResource( 4 )]
+
+transform/pos = Vector2( 120, -3792 )
+transform/scale = Vector2( 5.125, 1 )
+
+[node name="Sfx" type="SamplePlayer" parent="."]
+
+config/polyphony = 1
+config/samples = SubResource( 2 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
+
+[node name="Music" type="StreamPlayer" parent="."]
+
+stream/stream = ExtResource( 6 )
+stream/play = false
+stream/loop = true
+stream/volume_db = 0.0
+stream/autoplay = false
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
+
+[node name="EndOfLevelGUI" parent="." instance=ExtResource( 7 )]
+
+margin/top = -3968.0
+margin/bottom = -3776.0
+
+[node name="Sequencing" type="Node2D" parent="."]
+
+script/script = SubResource( 3 )
+message_bar_path = NodePath("../rail/hud/TextBar")
+
+[node name="NextMessageTimer" type="Timer" parent="Sequencing"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[connection signal="rail_finished" from="rail" to="." method="_on_rail_rail_finished"]
+
+[connection signal="level_finished" from="LevelFinishTrigger" to="." method="_on_LevelFinishTrigger_level_finished"]
+
+[connection signal="finished" from="EndOfLevelGUI" to="." method="_on_EndOfLevelGUI_finished"]
+
+[connection signal="timeout" from="Sequencing/NextMessageTimer" to="Sequencing" method="_on_NextMessageTimer_timeout"]
+
+
+[editable path="rail"]
+[editable path="rail/hud/Fade"]
