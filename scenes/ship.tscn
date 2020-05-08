@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=1]
+[gd_scene load_steps=32 format=1]
 
 [ext_resource path="res://rail.gd" type="Script" id=1]
 [ext_resource path="res://ship.gd" type="Script" id=2]
@@ -19,7 +19,8 @@
 [ext_resource path="res://scenes/button_flasher.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/fade.tscn" type="PackedScene" id=18]
 [ext_resource path="res://bar.gd" type="Script" id=19]
-[ext_resource path="res://scenes/pointer.tscn" type="PackedScene" id=20]
+[ext_resource path="res://assets/bloop.wav" type="Sample" id=20]
+[ext_resource path="res://scenes/pointer.tscn" type="PackedScene" id=21]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -220,6 +221,15 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
+[sub_resource type="SampleLibrary" id=10]
+
+samples/bloop = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 20 )
+}
+
 [node name="rail" type="Node2D"]
 
 script/script = ExtResource( 1 )
@@ -325,7 +335,6 @@ texture = ExtResource( 3 )
 transform/pos = Vector2( 0, 13 )
 frames = SubResource( 2 )
 animation = "default"
-frame = 3
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ship"]
@@ -633,7 +642,18 @@ wait_time = 2.0
 one_shot = true
 autostart = false
 
-[node name="Pointer" parent="hud" instance=ExtResource( 20 )]
+[node name="SamplePlayer2D" type="SamplePlayer2D" parent="hud/TextBar"]
+
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 10 )
+config/pitch_random = 0.0
+
+[node name="Pointer" parent="hud" instance=ExtResource( 21 )]
 
 process/pause_mode = 2
 visibility/visible = false
