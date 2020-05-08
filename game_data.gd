@@ -130,6 +130,7 @@ func triggered_section(index):
 func finished_level():
 	# Obviously, data.current_level should always point at the currently or last played level (where should Continue button go?)
 	data.current_section = 0
+	data.current_level = int(data.current_level)
 	if data.current_level < get_levels_count()-1:
 		data.highest_level_discovered = max(data.highest_level_discovered, data.current_level + 1)
 		data.current_level += 1
