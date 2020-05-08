@@ -49,7 +49,7 @@ func _process(delta):
 #		move(delta, motion)
 		override_move_target_time += delta
 		var cpos = get_global_pos()
-		cpos.linear_interpolate(override_move_target, override_move_target_time)
+		cpos = cpos.linear_interpolate(override_move_target, override_move_target_time)
 		set_global_pos(cpos)
 	else:
 		if not input_disabled:
