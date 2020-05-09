@@ -37,7 +37,7 @@ func _ready():
 [node name="lvl0" type="Node2D"]
 
 script/script = ExtResource( 1 )
-level_name = "A Rookie at Hell's Gates"
+level_name = "Into the Fog"
 rail_path = "rail"
 end_of_level_gui_path = "EndOfLevelGUI"
 fade_path = "rail/hud/Fade"
@@ -86,7 +86,7 @@ editor/display_folded = true
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 3
+frame = 0
 
 [node name="Fade" parent="rail/hud"]
 
