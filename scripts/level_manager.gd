@@ -1,5 +1,6 @@
 extends Node2D
 
+export var level_name = "A Rookie at Hell's Gates"
 export(NodePath) var rail_path = "rail"
 export(NodePath) var end_of_level_gui_path = "EndOfLevelGUI"
 export(NodePath) var fade_path = "rail/hud/Fade"
@@ -22,7 +23,7 @@ func _on_LevelFinishTrigger_level_finished():
 
 
 func _on_rail_rail_finished():
-	end_of_level_gui.start("A Rookie at Hell's Gates", GameData.data.difficulty, enemies_killed, blockers_cleared)
+	end_of_level_gui.start(level_name, GameData.data.difficulty, enemies_killed, blockers_cleared)
 	rail.get_node("ship").override_move_target = end_of_level_gui.get_node("ShipPosition").get_global_pos()
 
 
