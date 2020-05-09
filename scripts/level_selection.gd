@@ -1,5 +1,6 @@
 extends Control
 
+var accessible_icon = preload("res://assets/images/selectable.png")
 var levels = []
 
 
@@ -9,7 +10,8 @@ func _ready():
 	levels = GameData.get_levels()
 	
 	for i in range(levels.size()):
-		get_node("ItemList").add_item(levels[i][0], null, i <= int(GameData.data.highest_level_discovered))
+		var accessible = i <= int(GameData.data.highest_level_discovered)
+		get_node("ItemList").add_item(levels[i][0], accessible_icon if accessible else null, accessible)
 	
 	get_node("ItemList").select(0)
 #	get_node("ItemList").grab_focus()
