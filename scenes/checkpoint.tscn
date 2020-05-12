@@ -30,6 +30,7 @@ tracks/0/keys = {
 
 script/script = ExtResource( 1 )
 section_index = 1
+easy_mode_only = true
 
 [node name="Trigger" type="Area2D" parent="."]
 

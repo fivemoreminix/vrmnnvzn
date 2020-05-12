@@ -2,11 +2,12 @@ extends Node2D
 
 # This value cannot be 0, 0 is reserved for start of level
 export(int) var section_index = 1
+export(bool) var easy_mode_only = true
 
 
 func _ready():
 	assert(section_index > 0)
-	if GameData.data.difficulty == "Normal": hide()
+	if easy_mode_only and GameData.data.difficulty != "Easy": hide()
 
 
 func _on_Trigger_area_enter( area ):

@@ -104,10 +104,6 @@ editor/display_folded = true
 transform/pos = Vector2( 0, 384 )
 travel_y = 3968
 
-[node name="ship" parent="rail"]
-
-editor/display_folded = true
-
 [node name="thruster" parent="rail/ship"]
 
 frame = 3
@@ -118,7 +114,6 @@ editor/display_folded = true
 
 [node name="entities" type="Node2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 0, 10 )
 
 [node name="Laser" parent="entities" instance=ExtResource( 7 )]
@@ -129,6 +124,10 @@ transform/pos = Vector2( 184, -346 )
 [node name="RightHead" parent="entities/Laser"]
 
 transform/pos = Vector2( 50, 0 )
+
+[node name="Sprite" parent="entities/Laser/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Laser 2" parent="entities" instance=ExtResource( 7 )]
 
@@ -144,6 +143,10 @@ transform/pos = Vector2( 32, -0.0252664 )
 
 editor/display_folded = true
 
+[node name="Sprite" parent="entities/Laser 2/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser 3" parent="entities" instance=ExtResource( 7 )]
 
 editor/display_folded = true
@@ -155,7 +158,7 @@ transform/pos = Vector2( 34, 0 )
 
 [node name="Sprite" parent="entities/Laser 3/LeftHead/Beam"]
 
-frame = 0
+frame = 1
 
 [node name="Laser4" parent="entities" instance=ExtResource( 7 )]
 
@@ -169,7 +172,7 @@ transform/pos = Vector2( 50, 0 )
 
 [node name="Sprite" parent="entities/Laser4/LeftHead/Beam"]
 
-frame = 0
+frame = 1
 
 [node name="Laser5" parent="entities" instance=ExtResource( 7 )]
 
@@ -179,6 +182,10 @@ transform/pos = Vector2( 136, -1669 )
 [node name="RightHead" parent="entities/Laser5"]
 
 transform/pos = Vector2( 50, 0 )
+
+[node name="Sprite" parent="entities/Laser5/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Laser6" parent="entities" instance=ExtResource( 7 )]
 
@@ -193,7 +200,7 @@ transform/pos = Vector2( 54, -2.38419e-06 )
 
 [node name="Sprite" parent="entities/Laser6/LeftHead/Beam"]
 
-frame = 0
+frame = 1
 
 [node name="YCentipede" parent="entities" instance=ExtResource( 8 )]
 
@@ -207,6 +214,7 @@ disabled = true
 [node name="Checkpoint" parent="entities" instance=ExtResource( 10 )]
 
 transform/pos = Vector2( 0, -1178 )
+easy_mode_only = false
 
 [node name="Checkpoint1" parent="entities" instance=ExtResource( 10 )]
 

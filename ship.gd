@@ -10,7 +10,7 @@ onready var DEFAULT_SHOOT_WAIT_TIME = get_node("ShootTimer").get_wait_time() # b
 var motion = Vector2()
 
 var screen_size
-var input_disabled = false
+export var input_disabled = false
 var override_move_target = null # Vector2, location to move to
 var override_move_target_time = 0.0
 var can_shoot = true
