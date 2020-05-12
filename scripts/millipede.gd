@@ -19,7 +19,7 @@ var time = 0.0
 
 
 func _ready():
-	if get_node(path) == null: printerr(get_name() + ": `path` is null, this node is not going to function properly.")
+	if path == null: printerr(get_name() + ": `path` is null, this node is not going to function properly.")
 	
 	# Initialize head
 	get_node("head/AnimatedSprite").set_animation("head")
@@ -100,7 +100,6 @@ func begin():
 
 func _on_VisibilityNotifier2D_exit_screen():
 	get_node("QueueFreeTimer").start()
-	print("Left screen")
 
 
 func _on_QueueFreeTimer_timeout():
