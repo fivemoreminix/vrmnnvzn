@@ -1,26 +1,35 @@
 [gd_scene load_steps=32 format=1]
 
 [ext_resource path="res://rail.gd" type="Script" id=1]
-[ext_resource path="res://ship.gd" type="Script" id=2]
-[ext_resource path="res://assets/sprites/ship/ship.png" type="Texture" id=3]
-[ext_resource path="res://assets/sprites/ship/trail1.png" type="Texture" id=4]
-[ext_resource path="res://assets/sprites/ship/trail3.png" type="Texture" id=5]
-[ext_resource path="res://assets/sprites/ship/trail2.png" type="Texture" id=6]
-[ext_resource path="res://assets/sprites/ship/trail4.png" type="Texture" id=7]
-[ext_resource path="res://explosion.scn" type="PackedScene" id=8]
-[ext_resource path="res://assets/player_dies.wav" type="Sample" id=9]
-[ext_resource path="res://sound_explode.wav" type="Sample" id=10]
-[ext_resource path="res://assets/powerup_get.wav" type="Sample" id=11]
-[ext_resource path="res://sound_shoot.wav" type="Sample" id=12]
-[ext_resource path="res://assets/themes/theme.thm" type="Theme" id=13]
-[ext_resource path="res://scripts/pause.gd" type="Script" id=14]
-[ext_resource path="res://scripts/button.gd" type="Script" id=15]
-[ext_resource path="res://assets/images/cog_unfilled.png" type="Texture" id=16]
-[ext_resource path="res://scenes/button_flasher.tscn" type="PackedScene" id=17]
-[ext_resource path="res://scenes/fade.tscn" type="PackedScene" id=18]
-[ext_resource path="res://bar.gd" type="Script" id=19]
-[ext_resource path="res://assets/bloop.wav" type="Sample" id=20]
+[ext_resource path="res://assets/bloop.wav" type="Sample" id=2]
+[ext_resource path="res://ship.gd" type="Script" id=3]
+[ext_resource path="res://assets/sprites/ship/ship.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/ship/trail1.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/ship/trail3.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/ship/trail2.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/ship/trail4.png" type="Texture" id=8]
+[ext_resource path="res://explosion.scn" type="PackedScene" id=9]
+[ext_resource path="res://assets/player_dies.wav" type="Sample" id=10]
+[ext_resource path="res://sound_explode.wav" type="Sample" id=11]
+[ext_resource path="res://assets/powerup_get.wav" type="Sample" id=12]
+[ext_resource path="res://sound_shoot.wav" type="Sample" id=13]
+[ext_resource path="res://assets/themes/theme.thm" type="Theme" id=14]
+[ext_resource path="res://scripts/pause.gd" type="Script" id=15]
+[ext_resource path="res://scripts/button.gd" type="Script" id=16]
+[ext_resource path="res://assets/images/cog_unfilled.png" type="Texture" id=17]
+[ext_resource path="res://scenes/button_flasher.tscn" type="PackedScene" id=18]
+[ext_resource path="res://scenes/fade.tscn" type="PackedScene" id=19]
+[ext_resource path="res://bar.gd" type="Script" id=20]
 [ext_resource path="res://scenes/pointer.tscn" type="PackedScene" id=21]
+
+[sub_resource type="SampleLibrary" id=10]
+
+samples/bloop = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 2 )
+}
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 
@@ -30,7 +39,7 @@ points = Vector2Array( -7, 6, 0, -8, 7, 6 )
 [sub_resource type="SpriteFrames" id=2]
 
 animations = [ {
-"frames": [ ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
 "loop": true,
 "name": "default",
 "speed": 15.0
@@ -86,25 +95,25 @@ samples/explode = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 9 )
+"sample": ExtResource( 10 )
 }
 samples/old_explode = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 10 )
+"sample": ExtResource( 11 )
 }
 samples/powerup_get = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 11 )
+"sample": ExtResource( 12 )
 }
 samples/shoot = {
 "db": -8.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 12 )
+"sample": ExtResource( 13 )
 }
 
 [sub_resource type="Animation" id=6]
@@ -221,15 +230,6 @@ tracks/2/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="SampleLibrary" id=10]
-
-samples/bloop = {
-"db": 0.0,
-"pitch": 1.0,
-"priority": 0,
-"sample": ExtResource( 20 )
-}
-
 [node name="rail" type="Node2D"]
 
 script/script = ExtResource( 1 )
@@ -237,6 +237,18 @@ __meta__ = {
 "__editor_plugin_screen__": "2D"
 }
 travel_y = 200
+
+[node name="MessageSoundPlayer" type="SamplePlayer2D" parent="."]
+
+transform/pos = Vector2( 0, 184 )
+params/volume_db = 0.0
+params/pitch_scale = 1.0
+params/attenuation/min_distance = 1.0
+params/attenuation/max_distance = 2048.0
+params/attenuation/distance_exp = 1.0
+config/polyphony = 1
+config/samples = SubResource( 10 )
+config/pitch_random = 0.0
 
 [node name="ship" type="Area2D" parent="." groups=[
 "Player",
@@ -252,7 +264,7 @@ gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
 priority = 1.0
-script/script = ExtResource( 2 )
+script/script = ExtResource( 3 )
 __meta__ = {
 "__editor_plugin_screen__": "Script",
 "__editor_plugin_states__": {
@@ -328,7 +340,7 @@ __meta__ = {
 
 [node name="shipSprite" type="Sprite" parent="ship"]
 
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
 [node name="thruster" type="AnimatedSprite" parent="ship"]
 
@@ -372,7 +384,7 @@ transform/rot = 45.0
 transform/pos = Vector2( 5, -2 )
 transform/rot = -45.0
 
-[node name="explosion" parent="ship" instance=ExtResource( 8 )]
+[node name="explosion" parent="ship" instance=ExtResource( 9 )]
 
 visibility/visible = false
 
@@ -436,6 +448,7 @@ scale = Vector2( 1, 1 )
 [node name="Pause" type="Panel" parent="hud"]
 
 process/pause_mode = 2
+editor/display_folded = true
 visibility/visible = false
 anchor/left = 3
 anchor/top = 3
@@ -446,12 +459,12 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = ExtResource( 13 )
+theme/theme = ExtResource( 14 )
 margin/left = 8.0
 margin/top = 6.0
 margin/right = -120.0
 margin/bottom = -76.0
-script/script = ExtResource( 14 )
+script/script = ExtResource( 15 )
 
 [node name="Resume" type="Button" parent="hud/Pause"]
 
@@ -468,7 +481,7 @@ enabled_focus_mode = 2
 shortcut = null
 text = "RESUME"
 flat = false
-script/script = ExtResource( 15 )
+script/script = ExtResource( 16 )
 parent_function_to_call = "resume"
 
 [node name="Restart" type="Button" parent="hud/Pause"]
@@ -486,7 +499,7 @@ enabled_focus_mode = 2
 shortcut = null
 text = "RESTART"
 flat = false
-script/script = ExtResource( 15 )
+script/script = ExtResource( 16 )
 parent_function_to_call = "restart"
 
 [node name="MainMenu" type="Button" parent="hud/Pause"]
@@ -504,7 +517,7 @@ enabled_focus_mode = 2
 shortcut = null
 text = "MAIN MENU"
 flat = false
-script/script = ExtResource( 15 )
+script/script = ExtResource( 16 )
 parent_function_to_call = "main_menu"
 
 [node name="Settings" type="TextureButton" parent="hud/Pause"]
@@ -520,10 +533,10 @@ margin/bottom = 72.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-textures/normal = ExtResource( 16 )
+textures/normal = ExtResource( 17 )
 params/resize_mode = 0
 params/stretch_mode = 0
-script/script = ExtResource( 15 )
+script/script = ExtResource( 16 )
 parent_function_to_call = "settings"
 
 [node name="Label" type="Label" parent="hud/Pause"]
@@ -562,7 +575,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="ButtonFlasher" parent="hud/Pause" instance=ExtResource( 17 )]
+[node name="ButtonFlasher" parent="hud/Pause" instance=ExtResource( 18 )]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="hud/Pause"]
 
@@ -575,7 +588,7 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
-[node name="Fade" parent="hud" instance=ExtResource( 18 )]
+[node name="Fade" parent="hud" instance=ExtResource( 19 )]
 
 process/pause_mode = 2
 
@@ -589,7 +602,7 @@ margin/left = 0.0
 margin/top = 184.0
 margin/right = 256.0
 margin/bottom = 192.0
-script/script = ExtResource( 19 )
+script/script = ExtResource( 20 )
 
 [node name="Panel" type="Panel" parent="hud/TextBar"]
 
@@ -602,7 +615,7 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = ExtResource( 13 )
+theme/theme = ExtResource( 14 )
 margin/left = 128.0
 margin/top = 10.0
 margin/right = -128.0
@@ -642,17 +655,6 @@ process_mode = 1
 wait_time = 2.0
 one_shot = true
 autostart = false
-
-[node name="SamplePlayer2D" type="SamplePlayer2D" parent="hud/TextBar"]
-
-params/volume_db = 0.0
-params/pitch_scale = 1.0
-params/attenuation/min_distance = 1.0
-params/attenuation/max_distance = 2048.0
-params/attenuation/distance_exp = 1.0
-config/polyphony = 1
-config/samples = SubResource( 10 )
-config/pitch_random = 0.0
 
 [node name="Pointer" parent="hud" instance=ExtResource( 21 )]
 

@@ -32,7 +32,6 @@ func _on_TimerWhileOff_timeout(): # After being off ...
 	# Begin playing "charging" animation
 	# Start charging timer
 	
-	# TODO: anim...
 	get_node("TimerWhileCharging").start()
 	get_node("AnimationPlayer").play("Charging") # Start animation
 

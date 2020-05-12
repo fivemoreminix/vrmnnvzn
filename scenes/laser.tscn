@@ -77,8 +77,8 @@ flip_h = true
 texture = ExtResource( 2 )
 
 [node name="Beam" type="Area2D" parent="LeftHead" groups=[
-"Enemy",
 "Godmode",
+"Enemy",
 ]]
 
 input/pickable = true
@@ -103,11 +103,11 @@ _update_shape_index = 0
 transform/pos = Vector2( 3, -1 )
 frames = SubResource( 3 )
 animation = "default"
-frame = 1
 playing = true
 
 [node name="ChargeTex" type="TextureFrame" parent="."]
 
+visibility/visible = false
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2

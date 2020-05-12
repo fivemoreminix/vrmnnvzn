@@ -17,7 +17,7 @@ func _process(delta):
 
 func message(text):
 	get_node("AnimationPlayer").play("Show")
-	get_node("SamplePlayer2D").play("bloop")
+	get_node("../../MessageSoundPlayer").play("bloop")
 	get_node("Timer").start()
 	scrol_lbl.set_text(text)
 	set_process(false)
