@@ -1,0 +1,132 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://assets/themes/theme.thm" type="Theme" id=1]
+[ext_resource path="res://scripts/checkpoint_selection.gd" type="Script" id=2]
+[ext_resource path="res://scripts/button.gd" type="Script" id=3]
+[ext_resource path="res://scenes/button_flasher.tscn" type="PackedScene" id=4]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends Panel
+
+func handle(func_name):
+	call(func_name)
+
+func accept():
+	get_parent()._on_ItemList_item_activated(get_node(\"ItemList\").get_selected_items()[0])
+
+func cancel():
+	get_parent().emit_signal(\"option_canceled\")
+"
+
+[sub_resource type="StyleBoxFlat" id=2]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0, 0, 0, 1 )
+light_color = Color( 1, 1, 1, 1 )
+dark_color = Color( 1, 1, 1, 1 )
+border_size = 1
+border_blend = true
+draw_bg = true
+
+[node name="CheckpointSelection" type="Control"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 1 )
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 152.0
+margin/bottom = 120.0
+script/script = ExtResource( 2 )
+options = [  ]
+
+[node name="Panel" type="Panel" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = -32.0
+margin/bottom = 0.0
+script/script = SubResource( 1 )
+
+[node name="ItemList" type="ItemList" parent="Panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 8.0
+margin/top = 24.0
+margin/right = 176.0
+margin/bottom = 88.0
+custom_styles/bg = SubResource( 2 )
+
+[node name="Accept" type="Button" parent="Panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 126.0
+margin/top = 96.0
+margin/right = 176.0
+margin/bottom = 114.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "ACCEPT"
+flat = false
+script/script = ExtResource( 3 )
+parent_function_to_call = "accept"
+
+[node name="Cancel" type="Button" parent="Panel"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 8.0
+margin/top = 96.0
+margin/right = 58.0
+margin/bottom = 114.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "CANCEL"
+flat = false
+script/script = ExtResource( 3 )
+parent_function_to_call = "cancel"
+
+[node name="ButtonFlasher" parent="Panel" instance=ExtResource( 4 )]
+
+[node name="Label" type="Label" parent="Panel"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 8.0
+margin/top = 8.0
+margin/right = 184.0
+margin/bottom = 17.0
+text = "CHOOSE STARTING POINT"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[connection signal="draw" from="Panel/ItemList" to="." method="_on_ItemList_draw"]
+
+[connection signal="item_activated" from="Panel/ItemList" to="." method="_on_ItemList_item_activated"]
+
+
