@@ -213,8 +213,12 @@ disabled = true
 
 [node name="Checkpoint" parent="entities" instance=ExtResource( 10 )]
 
-transform/pos = Vector2( 0, -1178 )
+transform/pos = Vector2( 0, -1186 )
 easy_mode_only = false
+
+[node name="RespawnPoint" parent="entities/Checkpoint"]
+
+transform/pos = Vector2( 120, 0 )
 
 [node name="Checkpoint1" parent="entities" instance=ExtResource( 10 )]
 
@@ -320,3 +324,4 @@ script/script = SubResource( 4 )
 [editable path="entities/Laser4"]
 [editable path="entities/Laser5"]
 [editable path="entities/Laser6"]
+[editable path="entities/Checkpoint"]
