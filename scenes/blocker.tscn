@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://scripts/blocker.gd" type="Script" id=1]
-[ext_resource path="res://assets/sprites/shrooms/shroom_destroyed.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/shrooms/shroom.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/barrels/barrel.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/barrels/barrel_destroyed.png" type="Texture" id=3]
 [ext_resource path="res://assets/shroom_destroy.wav" type="Sample" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
@@ -15,12 +15,12 @@ extents = Vector2( 10, 10 )
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": false,
-"name": "destroyed",
+"name": "default",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 3 ) ],
 "loop": false,
-"name": "default",
+"name": "destroyed",
 "speed": 5.0
 } ]
 

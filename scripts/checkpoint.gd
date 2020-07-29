@@ -11,11 +11,13 @@ func _ready():
 
 
 func _on_Trigger_area_enter( area ):
-	if area.is_in_group("Player") and GameData.data.current_section < section_index:
-		GameData.triggered_section(section_index)
-		
-		# Animate
-		get_node("AnimationPlayer").play("Activated")
+	if is_visible(): # Checkpoints only enabled when visible
+		if area.is_in_group("Player") and GameData.data.current_section < section_index:
+			GameData.triggered_section(section_index)
+			
+			# Animate
+			get_node("AnimationPlayer").play("Activated")
+			get_node("SamplePlayer2D").play("checkpoint")
 
 
 func get_respawn_global_pos():
