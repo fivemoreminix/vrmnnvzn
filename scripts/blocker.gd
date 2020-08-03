@@ -1,6 +1,9 @@
 extends Area2D
 
-var health = 3 if GameData.data.difficulty == "Normal" else 2
+#var radius = 5
+#var damage = 5
+
+var health = 1
 var destroyed = false
 
 func destroy():
@@ -9,8 +12,13 @@ func destroy():
 		
 		if health <= 0:
 			set_monitorable(false)
-			get_node("AnimatedSprite").play("destroyed")
-			get_node("sfx").play("shroom_destroy")
+			# Play explosion animation
+			# ...
+			# Play explosion sound
+			# get_node("sfx").play("shroom_destroy")
+			
+			# Hurt nearby enemies / player
+			# ...
 			return true
 	return false
 
