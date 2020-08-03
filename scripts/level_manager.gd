@@ -9,13 +9,10 @@ onready var rail = get_node(rail_path)
 onready var end_of_level_gui = get_node(end_of_level_gui_path)
 onready var fade = get_node(fade_path)
 
-var enemies_killed = 0
-var blockers_cleared = 0
-
 
 func _ready():
 #	get_node("Music").play()
-	rail.get_node("ship").connect("enemy_destroyed", self, "on_enemy_killed")
+	pass
 
 
 func _on_LevelFinishTrigger_level_finished():
@@ -23,7 +20,7 @@ func _on_LevelFinishTrigger_level_finished():
 
 
 func _on_rail_rail_finished():
-	end_of_level_gui.start(level_name, GameData.data.difficulty, enemies_killed, blockers_cleared)
+	end_of_level_gui.start(level_name, GameData.data.difficulty, GameData.data.kills_this_level, GameData.data.blockers_cleared_this_level)
 	rail.get_node("ship").override_move_target = end_of_level_gui.get_node("ShipPosition").get_global_pos()
 
 
@@ -39,6 +36,3 @@ func _on_Fade_fade_finished():
 	# scroll text saying "Level finished!"
 #	get_node("rail/hud/BottomBar").scrolling_text("Level finished!")
 	GameData.finished_level()
-
-func on_enemy_killed():
-	enemies_killed += 1

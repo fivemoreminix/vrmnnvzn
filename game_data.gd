@@ -25,16 +25,24 @@ func load_data(): # load saved game data from disk
 			print("game_data.gd: failed to parse game data save file")
 			return 2
 		
-		# Make numbered values numbers
+		### Make numbered values numbers ###
+		# Per-level data
 		data.current_level = int(data.current_level)
 		data.current_section = int(data.current_section)
+		data.kills_this_level = int(data.kills_this_level)
+		data.blockers_cleared_this_level = int(data.blockers_cleared_this_level)
+		# Other data
 		data.highest_level_discovered = int(data.highest_level_discovered)
 		
 		return 0
+		# ** To add data, edit in NewGame node's MainDialog child script **
+		# ** Bottom of this script has handlers for end of level changes **
 #	else: # data save file does NOT exist ...
 #		data = { ### data defaults ###
 #			current_level: 0,
 #			current_section: 0,
+#			kills_this_level: 0,
+#			blockers_cleared_this_level: 0,
 #			highest_level_discovered: 0,
 #			name: "", # player's name
 #			difficulty: "Normal",
@@ -130,6 +138,8 @@ func triggered_section(index):
 func finished_level():
 	# Obviously, data.current_level should always point at the currently or last played level (where should Continue button go?)
 	data.current_section = 0
+	data.kills_this_level = 0
+	data.blockers_cleared_this_level = 0
 	data.current_level = int(data.current_level)
 	if data.current_level < get_levels_count()-1:
 		data.highest_level_discovered = max(data.highest_level_discovered, data.current_level + 1)

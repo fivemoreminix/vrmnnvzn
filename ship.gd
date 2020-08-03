@@ -200,7 +200,11 @@ func _on_BlinkTimer_timeout():
 	if is_visible(): hide()
 	else: show()
 
-func on_enemy_destroyed():
+func on_enemy_destroyed(enemy):
+	if enemy.is_in_group("Blocker"):
+		GameData.data.blockers_cleared_this_level += 1
+	else:
+		GameData.data.kills_this_level += 1
 	emit_signal("enemy_destroyed")
 
 ### END BLINKING ###

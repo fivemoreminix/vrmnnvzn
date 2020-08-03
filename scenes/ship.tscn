@@ -411,6 +411,7 @@ texture = ExtResource( 4 )
 transform/pos = Vector2( 0, 13 )
 frames = SubResource( 5 )
 animation = "default"
+frame = 3
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ship"]

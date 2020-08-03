@@ -53,6 +53,8 @@ func start():
 	GameData.data = {
 		current_level = 0,
 		current_section = 0,
+		kills_this_level = 0,
+		blockers_cleared_this_level = 0,
 		highest_level_discovered = 0,
 		name = get_node(\"Name\").get_text().strip_edges(),
 		difficulty = diff,

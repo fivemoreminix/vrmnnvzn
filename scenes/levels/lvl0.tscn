@@ -92,13 +92,12 @@ transform/pos = Vector2( 224, -3184 )
 
 [node name="rail" parent="." instance=ExtResource( 6 )]
 
-editor/display_folded = true
 transform/pos = Vector2( 0, 384 )
 travel_y = 3968
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 2
+frame = 1
 
 [node name="Fade" parent="rail/hud"]
 

@@ -29,7 +29,7 @@ func _on_shot_area_enter(area):
 		# Duck typing at it's best
 		if(!area.destroyed):
 			if area.destroy(): # true if enemy died when this function is called
-				emit_signal("enemy_destroyed")
+				emit_signal("enemy_destroyed", area)
 	
 	_hit_something()
 
