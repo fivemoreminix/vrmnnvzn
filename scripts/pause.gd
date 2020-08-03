@@ -49,18 +49,16 @@ func resume():
 	popup(false, false)
 
 func restart():
-#	get_tree().set_pause(false)
-#	get_tree().reload_current_scene()
+	# Update the checkpoint selection node with all available starting points
 	var c = get_node("CheckpointSelection")
 	var section_nums = get_tree().get_nodes_in_group("Checkpoint")
 	for i in range(section_nums.size()):
 		section_nums[i] = section_nums[i].section_index # map checkpoints to their section indices
 	section_nums.sort()
-	section_nums.invert() # Reverse the array (descending values)
+	c.options += ["Start of level"] # Comes first (idx = 0)
 	for num in section_nums:
 		var name = "Checkpoint " + str(num)
 		c.options += [name]
-	c.options.append("Start of level")
 	print(c.options)
 	c.update_options()
 	c.show()
@@ -81,7 +79,9 @@ func _on_CheckpointSelection_option_canceled():
 
 func _on_CheckpointSelection_option_selected(option_idx):
 	var c = get_node("CheckpointSelection")
-	if option_idx == c.options.size()-1: # Last item says "at start of level"
-		pass
-	else:
-		pass
+	get_tree().set_pause(false) # Unpause game
+	# Set current section to what was selected from the menu
+	GameData.data.current_section = option_idx
+	print("selected starting section idx: " + str(option_idx))
+	# Reload the scene, rail will align to correct section
+	get_tree().reload_current_scene()
