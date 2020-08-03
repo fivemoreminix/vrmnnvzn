@@ -9,7 +9,7 @@ func _ready():
 	set_process_input(true)
 
 func _input(event):
-	if event.is_action_pressed("ui_accept"):
+	if is_visible() and event.is_action_pressed("ui_accept"):
 		get_node("Panel/Accept")._on_button_pressed()
 
 # Notice: *Items should be added in order of ascending position. Therefore: start of level appended first*
