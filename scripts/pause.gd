@@ -23,8 +23,11 @@ func set_menu_pause():
 	get_node("Resume").set_disabled(false)
 	get_node("Resume").grab_focus() # Resume is preferred option
 
-func popup(val):
-	if val: get_node("AnimationPlayer").play("popup")
+func popup(val, died): # if died == true, then message is "You died!", otherwise "game paused"
+	if val:
+		get_node("AnimationPlayer").play("popup")
+		if died: get_node("Label1").set_text("YOU DIED!")
+		else: get_node("Label1").set_text("GAME PAUSED")
 	else:   get_node("AnimationPlayer").play_backwards("popup")
 
 func _on_Pause_visibility_changed():
@@ -43,7 +46,7 @@ func handle(func_name):
 	fade.connect("fade_finished", self, func_name)
 
 func resume():
-	popup(false)
+	popup(false, false)
 
 func restart():
 #	get_tree().set_pause(false)

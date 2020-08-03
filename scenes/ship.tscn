@@ -627,9 +627,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 8.0
-margin/top = -16.0
+margin/top = -40.0
 margin/right = 120.0
-margin/bottom = -3.0
+margin/bottom = -27.0
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 custom_constants/shadow_as_outline = 1
 text = "GAME PAUSED"
@@ -639,6 +639,14 @@ lines_skipped = 0
 max_lines_visible = -1
 
 [node name="ButtonFlasher" parent="hud/Pause" instance=ExtResource( 18 )]
+
+[node name="CheckpointSelection" parent="hud/Pause" instance=ExtResource( 19 )]
+
+visibility/visible = false
+margin/left = -32.0
+margin/top = -20.0
+margin/right = 120.0
+margin/bottom = 100.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="hud/Pause"]
 
@@ -650,14 +658,6 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
-
-[node name="CheckpointSelection" parent="hud/Pause" instance=ExtResource( 19 )]
-
-visibility/visible = false
-margin/left = -28.0
-margin/top = -2.0
-margin/right = 124.0
-margin/bottom = 118.0
 
 [node name="Fade" parent="hud" instance=ExtResource( 20 )]
 
