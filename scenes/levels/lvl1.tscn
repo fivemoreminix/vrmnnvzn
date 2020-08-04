@@ -218,10 +218,6 @@ editor/display_folded = true
 transform/pos = Vector2( 0, 160 )
 travel_y = 3968
 
-[node name="thruster" parent="rail/ship"]
-
-frame = 1
-
 [node name="Fade" parent="rail/hud"]
 
 editor/display_folded = true
@@ -230,10 +226,21 @@ editor/display_folded = true
 
 transform/pos = Vector2( 0, 10 )
 
+[node name="Checkpoint1" parent="entities" instance=ExtResource( 12 )]
+
+editor/display_folded = true
+transform/pos = Vector2( 0, -824 )
+easy_mode_only = false
+
+[node name="RespawnPoint" parent="entities/Checkpoint1"]
+
+transform/pos = Vector2( 152, 0 )
+
 [node name="Checkpoint" parent="entities" instance=ExtResource( 12 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 0, -2504 )
+section_index = 2
 easy_mode_only = false
 
 [node name="RespawnPoint" parent="entities/Checkpoint"]
@@ -338,10 +345,6 @@ transform/pos = Vector2( 24, -1952 )
 
 transform/pos = Vector2( 179, 0 )
 
-[node name="Sprite" parent="entities/Laser 2/LeftHead/Beam"]
-
-frame = 1
-
 [node name="Laser3" parent="entities" instance=ExtResource( 16 )]
 
 editor/display_folded = true
@@ -351,29 +354,27 @@ transform/pos = Vector2( 175, -2698 )
 
 transform/pos = Vector2( 56, 0 )
 
-[node name="Sprite" parent="entities/Laser3/LeftHead/Beam"]
-
-frame = 1
-
 [node name="Laser6" parent="entities" instance=ExtResource( 16 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 184, -42 )
 
 [node name="RightHead" parent="entities/Laser6"]
 
 transform/pos = Vector2( 50, 0 )
 
-[node name="Sprite" parent="entities/Laser6/LeftHead/Beam"]
-
-frame = 1
-
 [node name="Laser7" parent="entities" instance=ExtResource( 16 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 40, 14 )
 
 [node name="RightHead" parent="entities/Laser7"]
 
 transform/pos = Vector2( 67, 0 )
+
+[node name="Sprite" parent="entities/Laser7/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Laser4" parent="entities" instance=ExtResource( 16 )]
 
@@ -384,21 +385,14 @@ transform/pos = Vector2( 16, -2866 )
 
 transform/pos = Vector2( 51, 0 )
 
-[node name="Sprite" parent="entities/Laser4/LeftHead/Beam"]
-
-frame = 1
-
 [node name="Laser5" parent="entities" instance=ExtResource( 16 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 40, -3460 )
 
 [node name="RightHead" parent="entities/Laser5"]
 
 transform/pos = Vector2( 176, 0 )
-
-[node name="Sprite" parent="entities/Laser5/LeftHead/Beam"]
-
-frame = 1
 
 [node name="Bee 4" parent="entities" instance=ExtResource( 13 )]
 
@@ -459,6 +453,7 @@ stream/buffering_ms = 500
 
 [node name="Sequencing" type="Node2D" parent="."]
 
+editor/display_folded = true
 script/script = SubResource( 4 )
 message_bar_path = NodePath("../rail/hud/TextBar")
 
@@ -489,6 +484,7 @@ script/script = SubResource( 6 )
 
 [editable path="rail"]
 [editable path="rail/hud/Fade"]
+[editable path="entities/Checkpoint1"]
 [editable path="entities/Checkpoint"]
 [editable path="entities/Laser 2"]
 [editable path="entities/Laser3"]
