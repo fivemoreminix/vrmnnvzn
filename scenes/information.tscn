@@ -41,8 +41,8 @@ margin/top = 192.0
 margin/right = 0.0
 margin/bottom = -320.0
 bbcode/enabled = true
-bbcode/bbcode = "[center]VRMNNVZN v0.1[/center]
-[center]Mar 25, 2020[/center]
+bbcode/bbcode = "[center]VRMNNVZN v0.2 Alpha[/center]
+[center]Aug 4, 2020[/center]
 
 
 [center]CREDITS[/center]
@@ -51,13 +51,15 @@ bbcode/bbcode = "[center]VRMNNVZN v0.1[/center]
 [right]Design, Programming, & Story[/right]
 Luke I. Wilson
 	[url=mailto:thelukaswils@gmail.com]thelukaswils@gmail.com[/url]
-	[url]https://lukewilson.me/[/url]
 
 [right]Graphics[/right]
 Chris DeBoy \"eightbit\"
 
-[right]Music & Sound Effects[/right]
-David Williams \"Soldrynn\"
+[right]Music[/right]
+Tomás Palazzi
+
+[right]Sound Design[/right]
+Thommaz Kauffmann
 
 
 [center]SPECIAL THANKS TO[/center]
@@ -65,7 +67,10 @@ David Williams \"Soldrynn\"
 
 [center]Godot Engine Contributors[/center]
 
-[center]Trentin L.[/center]"
+[center]Whisper[/center]
+
+
+Copyright (C) 2020, Luke I. Wilson. All rights reserved."
 visible_characters = -1
 percent_visible = 1.0
 
