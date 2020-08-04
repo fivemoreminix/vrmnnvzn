@@ -9,8 +9,11 @@ func _ready():
 	set_process_input(true)
 
 func _input(event):
-	if is_visible() and event.is_action_pressed("ui_accept"):
-		get_node("Panel/Accept")._on_button_pressed()
+	if is_visible():
+		if event.is_action_pressed("ui_accept"):
+			get_node("Panel/Accept")._on_button_pressed()
+		elif event.is_action_pressed("ui_cancel"):
+			get_node("Panel/Cancel")._on_button_pressed()
 
 # Notice: *Items should be added in order of ascending position. Therefore: start of level appended first*
 func add_option(v):

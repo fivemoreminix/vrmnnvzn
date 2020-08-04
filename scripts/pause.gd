@@ -1,6 +1,7 @@
 extends Panel
 
 onready var fade = get_node("../Fade")
+var player_is_dead = false
 
 func _ready():
 	set_process(true)
@@ -8,7 +9,8 @@ func _ready():
 func _process(delta):
 	if (Input.is_action_pressed("ui_cancel") or Input.is_action_pressed("pause")) and not \
 	   get_node("Resume").is_disabled()                                           and not \
-	   get_node("AnimationPlayer").is_playing(): resume()
+	   get_node("AnimationPlayer").is_playing()                                   and not \
+	   player_is_dead: resume()
 
 func set_menu_player_died():
 	get_node("Label").show()
@@ -26,9 +28,14 @@ func set_menu_pause():
 func popup(val, died): # if died == true, then message is "You died!", otherwise "game paused"
 	if val:
 		get_node("AnimationPlayer").play("popup")
-		if died: get_node("Label1").set_text("YOU DIED!")
-		else: get_node("Label1").set_text("GAME PAUSED")
+		
+		get_node("Resume").set_disabled(died)
+		if died:
+			get_node("Label1").set_text("YOU DIED!")
+		else:
+			get_node("Label1").set_text("GAME PAUSED")
 	else:   get_node("AnimationPlayer").play_backwards("popup")
+	player_is_dead = died
 
 func _on_Pause_visibility_changed():
 	if is_visible():
@@ -56,9 +63,10 @@ func restart():
 		section_nums[i] = section_nums[i].section_index # map checkpoints to their section indices
 	section_nums.sort() # Sort numbers in ascending
 	c.options += ["Start of level"] # Comes first (idx = 0)
-	for num in range(1, min(section_nums.size(), GameData.data.current_section+1)):
-		var name = "Checkpoint " + str(num)
-		c.options += [name]
+	if GameData.data.current_section > 0:
+		for num in range(1, min(section_nums.size(), GameData.data.current_section+1)): # min(section_nums.size(), GameData.data.current_section+1)
+			var name = "Section " + str(num)
+			c.options += [name]
 	print(c.options)
 	c.update_options()
 	c.show()
