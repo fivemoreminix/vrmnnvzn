@@ -19,6 +19,8 @@ func _on_value_changed(_):
 	get_node("Save").set_disabled(false)
 
 func _ready():
+	set_process_input(true)
+	
 	var err = GameData.load_global_data() # TODO: handle possible errors while loading global game data
 	if err != 0 and err != 1:
 		print("settings.gd: err != 0 while loading... ruh roh raggy, error: " + var2str(err)) # TODO: user-friendly dialogs for errors
@@ -43,6 +45,10 @@ func _ready():
 	
 	get_node("Save").set_disabled(true) # Disable save button
 
+func _input(event):
+	if event.is_action_pressed("oop"):
+		handle("go_oop")
+
 func handle(func_name):
 	if func_name == "save_changes":
 		# validate ResolutionOption input
@@ -64,6 +70,9 @@ func handle(func_name):
 
 func go_back():
 	get_tree().change_scene("res://main_menu.scn")
+
+func go_oop():
+	get_tree().change_scene("res://scenes/oop.tscn")
 
 func save_changes():
 	# write changes to GameData.global_data
