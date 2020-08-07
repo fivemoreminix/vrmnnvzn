@@ -44,6 +44,7 @@ func _ready():
 	# Load player at checkpoints
 	if not get_tree().is_editor_hint():
 		if get_node("/root/GameData").data.current_section > 0: # We need to load at a checkpoint
+			print(get_node("/root/GameData").data.current_section)
 			for checkpoint in get_tree().get_nodes_in_group("Checkpoint"):
 				print(get_node("/root/GameData").data.current_section)
 				if checkpoint.section_index == get_node("/root/GameData").data.current_section: # We found the checkpoint we need to be at ...
@@ -55,6 +56,7 @@ func _ready():
 					get_node("ship").add_effect("Phase-through", 1)
 					break # We break if we find our checkpoint, whether or not we can actually use it
 		else:
+			print("test")
 			get_node("AnimationPlayer").play("FlyIn")
 
 

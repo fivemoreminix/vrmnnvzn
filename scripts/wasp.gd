@@ -10,6 +10,7 @@ export(NodePath) var RailPath   = "../../rail"
 onready var rail                = get_node(RailPath)
 onready var ship                = get_node(RailPath + "/ship")
 
+export(bool) var writing = false
 export(bool) var disabled = false
 #export(bool) var play_alert_sound_when_visible = false
 
@@ -39,11 +40,20 @@ var destroyed = false
 var flashing = false
 var is_white = false
 
+func set_writing(v):
+	writing = v
+	if writing:
+		get_node("sprite").play("writing")
+	else:
+		get_node("sprite").play("default")
+
 func _ready():
 	randomize()
+	
+	set_writing(writing)
 
 func _process(delta):
-	if not disabled:
+	if not disabled and not writing:
 		if flashing:
 			global_translate(STUN_DIR*SPEED*delta*0.5)
 		else:

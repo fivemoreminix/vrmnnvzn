@@ -218,6 +218,10 @@ editor/display_folded = true
 transform/pos = Vector2( 0, 160 )
 travel_y = 3968
 
+[node name="thruster" parent="rail/ship"]
+
+frame = 0
+
 [node name="Fade" parent="rail/hud"]
 
 editor/display_folded = true
@@ -453,7 +457,6 @@ stream/buffering_ms = 500
 
 [node name="Sequencing" type="Node2D" parent="."]
 
-editor/display_folded = true
 script/script = SubResource( 4 )
 message_bar_path = NodePath("../rail/hud/TextBar")
 
