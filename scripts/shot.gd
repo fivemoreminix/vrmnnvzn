@@ -1,6 +1,6 @@
 extends Area2D
 
-signal enemy_destroyed
+signal enemy_destroyed(area)
 
 # Member variables
 const SPEED = 600

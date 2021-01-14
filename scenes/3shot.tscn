@@ -6,11 +6,11 @@
 
 script/source = "extends Node2D
 
-signal enemy_destroyed
+signal enemy_destroyed(area)
 
 
-func _on_shot_enemy_destroyed():
-	emit_signal(\"enemy_destroyed\")
+func _on_shot_enemy_destroyed(area):
+	emit_signal(\"enemy_destroyed\", area)
 "
 
 [node name="3shot" type="Node2D"]

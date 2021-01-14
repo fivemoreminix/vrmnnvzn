@@ -18,7 +18,7 @@
 [ext_resource path="res://assets/sprites/gibs/gibs_5.png" type="Texture" id=16]
 [ext_resource path="res://assets/sprites/gibs/gibs_0.png" type="Texture" id=17]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 10, 10 )
@@ -42,7 +42,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SampleLibrary" id=4]
+[sub_resource type="SampleLibrary" id=3]
 
 samples/alert = {
 "db": 0.0,
@@ -63,7 +63,7 @@ samples/sound_explode = {
 "sample": ExtResource( 10 )
 }
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=4]
 
 animations = [ {
 "frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
@@ -77,7 +77,7 @@ animations = [ {
 ]]
 
 input/pickable = true
-shapes/0/shape = SubResource( 3 )
+shapes/0/shape = SubResource( 1 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = true
 gravity_vec = Vector2( 0, 1 )
@@ -96,12 +96,11 @@ disabled = false
 
 frames = SubResource( 2 )
 animation = "default"
-frame = 1
 playing = true
 
 [node name="collision" type="CollisionShape2D" parent="."]
 
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 trigger = true
 _update_shape_index = 0
 
@@ -117,13 +116,13 @@ params/attenuation/min_distance = 1.0
 params/attenuation/max_distance = 2048.0
 params/attenuation/distance_exp = 1.0
 config/polyphony = 1
-config/samples = SubResource( 4 )
+config/samples = SubResource( 3 )
 config/pitch_random = 0.0
 
 [node name="explosion" type="AnimatedSprite" parent="."]
 
 visibility/visible = false
-frames = SubResource( 5 )
+frames = SubResource( 4 )
 animation = "default"
 
 [node name="wings0" type="Particles2D" parent="."]

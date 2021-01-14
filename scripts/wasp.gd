@@ -8,11 +8,11 @@ onready var enemy_shot = preload("res://scenes/enemy_shot.tscn")
 
 export(NodePath) var RailPath   = "../../rail"
 onready var rail                = get_node(RailPath)
-onready var ship                = get_node(RailPath + "/ship")
+onready var ship                = get_node(str(RailPath) + "/ship")
 
 export(bool) var writing = false
 export(bool) var disabled = false
-#export(bool) var play_alert_sound_when_visible = false
+var scripted_move_to = null # global Vector2 or null
 
 # shooting
 var can_shoot = true
@@ -54,12 +54,15 @@ func _ready():
 
 func _process(delta):
 	if not disabled and not writing:
-		if flashing:
-			global_translate(STUN_DIR*SPEED*delta*0.5)
-		else:
-			if state == State.Following: follow(delta)
-			elif state == State.Hovering: hover(delta)
-			else: flee(delta)
+		if scripted_move_to != null: # We're going somewhere specific
+			move_to(scripted_move_to, delta, 1.0)
+		else: # normal AI
+			if flashing:
+				global_translate(STUN_DIR*SPEED*delta*0.5)
+			else:
+				if state == State.Following: follow(delta)
+				elif state == State.Hovering: hover(delta)
+				else: flee(delta)
 
 
 func shoot():
