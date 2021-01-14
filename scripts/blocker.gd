@@ -12,13 +12,15 @@ func destroy():
 		
 		if health <= 0:
 			set_monitorable(false)
-			# Play explosion animation
-			# ...
+			get_node("Sprite").set_texture(preload("res://assets/sprites/barrels/barrel_destroyed.png"))
+			get_node("Particles2D").set_emitting(true)
+			
+			
 			# Play explosion sound
 			# get_node("sfx").play("shroom_destroy")
 			
-			# Hurt nearby enemies / player
-			# ...
+			get_node("DamageRadius").destroy_nearby_entities()
+			
 			return true
 	return false
 

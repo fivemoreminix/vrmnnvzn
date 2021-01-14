@@ -1,15 +1,43 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=9 format=1]
 
 [ext_resource path="res://scripts/blocker.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/barrels/barrel.png" type="Texture" id=2]
 [ext_resource path="res://assets/shroom_destroy.wav" type="Sample" id=3]
+[ext_resource path="res://assets/sprites/barrels/barrel_fragment.png" type="Texture" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
 extents = Vector2( 7, 7 )
 
-[sub_resource type="SampleLibrary" id=3]
+[sub_resource type="CircleShape2D" id=2]
+
+custom_solver_bias = 0.0
+radius = 30.0
+
+[sub_resource type="GDScript" id=3]
+
+script/source = "extends Area2D
+
+var areas_in_range = [] # A list of areas
+
+func destroy_nearby_entities():
+	print(areas_in_range)
+	for area in areas_in_range:
+		if area.has_method(\"destroy\"):
+			area.destroy()
+
+
+func _on_Area2D_area_enter( area ):
+	if area != get_parent():
+		areas_in_range.append(area)
+
+
+func _on_Area2D_area_exit( area ):
+	areas_in_range.erase(area)
+"
+
+[sub_resource type="SampleLibrary" id=4]
 
 samples/shroom_destroy = {
 "db": 0.0,
@@ -19,8 +47,8 @@ samples/shroom_destroy = {
 }
 
 [node name="Blocker" type="Area2D" groups=[
-"Enemy",
 "Blocker",
+"Enemy",
 ]]
 
 input/pickable = true
@@ -33,6 +61,25 @@ linear_damp = 0.1
 angular_damp = 1.0
 monitoring = false
 script/script = ExtResource( 1 )
+
+[node name="DamageRadius" type="Area2D" parent="."]
+
+input/pickable = true
+shapes/0/shape = SubResource( 2 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = true
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+monitorable = false
+script/script = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageRadius"]
+
+shape = SubResource( 2 )
+trigger = true
+_update_shape_index = 0
 
 [node name="Sprite" type="Sprite" parent="."]
 
@@ -56,8 +103,41 @@ params/attenuation/min_distance = 1.0
 params/attenuation/max_distance = 2048.0
 params/attenuation/distance_exp = 1.0
 config/polyphony = 1
-config/samples = SubResource( 3 )
+config/samples = SubResource( 4 )
 config/pitch_random = 0.0
+
+[node name="Particles2D" type="Particles2D" parent="."]
+
+config/amount = 10
+config/lifetime = 4.0
+config/emit_timeout = 4.0
+config/emitting = false
+config/process_mode = 1
+config/explosiveness = 0.01
+config/texture = ExtResource( 4 )
+params/direction = 90.0
+params/spread = 180.0
+params/linear_velocity = 80.0
+params/spin_velocity = 10.0
+params/orbit_velocity = 0.0
+params/gravity_direction = 0.0
+params/gravity_strength = 0.0
+params/radial_accel = 0.0
+params/tangential_accel = 0.0
+params/damping = 0.0
+params/initial_angle = 0.0
+params/initial_size = 0.7
+params/final_size = 0.1
+params/hue_variation = 0.0
+params/anim_speed_scale = 1.0
+params/anim_initial_pos = 0.0
+randomness/linear_velocity = 0.65
+randomness/spin_velocity = 0.7
+randomness/final_size = 1.0
+
+[connection signal="area_enter" from="DamageRadius" to="DamageRadius" method="_on_Area2D_area_enter"]
+
+[connection signal="area_exit" from="DamageRadius" to="DamageRadius" method="_on_Area2D_area_exit"]
 
 [connection signal="exit_screen" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_exit_screen"]
 
