@@ -10,7 +10,11 @@ func _ready():
 	levels = GameData.get_levels()
 	
 	for i in range(levels.size()):
-		var accessible = i <= int(GameData.data.highest_level_discovered)
+		var accessible
+		if GameData.data != null: # If an active save game exists
+			accessible = i <= int(GameData.data.highest_level_discovered)
+		else: # No game save exists
+			accessible = false
 		get_node("ItemList").add_item(levels[i][0], accessible_icon if accessible else null, accessible)
 	
 	get_node("ItemList").select(0)
