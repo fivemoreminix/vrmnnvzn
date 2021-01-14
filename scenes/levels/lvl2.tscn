@@ -21,21 +21,24 @@
 [ext_resource path="res://assets/level_finish.wav" type="Sample" id=19]
 [ext_resource path="res://assets/electric_sound_loop.ogg" type="AudioStream" id=20]
 
-[sub_resource type="GDScript" id=6]
+[sub_resource type="GDScript" id=1]
 
 script/source = "extends Node2D
 
 func _on_Area2D_area_enter( area ):
-	if area.is_in_group(\"Player\"):
-		pass # tell Wasp to fly left out of screen
+	if area.is_in_group(\"Player\"): # tell Wasp to fly left out of screen
+		var wasp = get_node(\"Wasp\")
+		if wasp != null: # Technically the wasp could be killed ...
+			wasp.set_writing(false)
+			wasp.scripted_move_to = get_node(\"MoveTo\").get_global_pos()
 "
 
-[sub_resource type="RectangleShape2D" id=5]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 112, 10 )
 
-[sub_resource type="SampleLibrary" id=1]
+[sub_resource type="SampleLibrary" id=3]
 
 samples/level_finish = {
 "db": -10.0,
@@ -44,7 +47,7 @@ samples/level_finish = {
 "sample": ExtResource( 19 )
 }
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=4]
 
 script/source = "extends Node2D
 
@@ -53,7 +56,7 @@ export(NodePath) var message_bar_path
 onready var bar = get_node(message_bar_path)
 "
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=5]
 
 script/source = "extends VisibilityNotifier2D
 
@@ -61,7 +64,7 @@ func send():
 	get_parent().bar.message(\"An ambush, I guess\")
 "
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=6]
 
 script/source = "extends VisibilityNotifier2D
 
@@ -187,13 +190,16 @@ editor/display_folded = true
 transform/pos = Vector2( 0, 2200 )
 travel_y = 3968
 
+[node name="thruster" parent="rail/ship"]
+
+frame = 0
+
 [node name="Fade" parent="rail/hud"]
 
 editor/display_folded = true
 
 [node name="entities" type="Node2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 0, 10 )
 
 [node name="Laser" parent="entities" instance=ExtResource( 13 )]
@@ -343,17 +349,22 @@ transform/pos = Vector2( 0, -216 )
 [node name="Wasp Writing" type="Node2D" parent="entities"]
 
 transform/pos = Vector2( 0, 64 )
-script/script = SubResource( 6 )
+script/script = SubResource( 1 )
+
+[node name="MoveTo" type="Position2D" parent="entities/Wasp Writing"]
+
+transform/pos = Vector2( -50, -74 )
 
 [node name="Wasp" parent="entities/Wasp Writing" instance=ExtResource( 17 )]
 
 transform/pos = Vector2( 64, -8 )
+RailPath = NodePath("../../../rail")
 writing = true
 
 [node name="Area2D" type="Area2D" parent="entities/Wasp Writing"]
 
 input/pickable = true
-shapes/0/shape = SubResource( 5 )
+shapes/0/shape = SubResource( 2 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 128, 6 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -364,7 +375,7 @@ angular_damp = 1.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="entities/Wasp Writing/Area2D"]
 
 transform/pos = Vector2( 128, 6 )
-shape = SubResource( 5 )
+shape = SubResource( 2 )
 trigger = false
 _update_shape_index = 0
 
@@ -376,7 +387,7 @@ transform/scale = Vector2( 5.125, 1 )
 [node name="Sfx" type="SamplePlayer" parent="."]
 
 config/polyphony = 1
-config/samples = SubResource( 1 )
+config/samples = SubResource( 3 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
 default/pan = 0.0
@@ -404,20 +415,20 @@ stream/buffering_ms = 500
 [node name="Sequencing" type="Node2D" parent="."]
 
 editor/display_folded = true
-script/script = SubResource( 2 )
+script/script = SubResource( 4 )
 message_bar_path = NodePath("../rail/hud/TextBar")
 
 [node name="Msg1" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 120, 1854 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 3 )
+script/script = SubResource( 5 )
 
 [node name="Msg2" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 120, 1206 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 4 )
+script/script = SubResource( 6 )
 
 [connection signal="finished" from="EndOfLevelGUI" to="." method="_on_EndOfLevelGUI_finished"]
 
