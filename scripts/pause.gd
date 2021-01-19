@@ -92,7 +92,5 @@ func _on_CheckpointSelection_option_selected(option_idx):
 	GameData.data.current_section = option_idx
 	print("selected starting section idx: " + str(option_idx))
 	
-	
-	
 	# Reload the scene, rail will align to correct section
 	get_tree().reload_current_scene()
