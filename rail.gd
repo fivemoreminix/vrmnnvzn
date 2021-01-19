@@ -44,9 +44,8 @@ func _ready():
 	# Load player at checkpoints
 	if not get_tree().is_editor_hint():
 		if get_node("/root/GameData").data.current_section > 0: # We need to load at a checkpoint
-			print(get_node("/root/GameData").data.current_section)
+			print("aligning with checkpoint: " + str(get_node("/root/GameData").data.current_section))
 			for checkpoint in get_tree().get_nodes_in_group("Checkpoint"):
-				print(get_node("/root/GameData").data.current_section)
 				if checkpoint.section_index == get_node("/root/GameData").data.current_section: # We found the checkpoint we need to be at ...
 					if checkpoint.easy_mode_only and get_node("/root/GameData").data.difficulty != "Easy":
 						assert(false) # There is a bug if this is encountered, because easy mode checkpoints are only enabled on easy mode

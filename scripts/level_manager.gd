@@ -11,7 +11,6 @@ onready var fade = get_node(fade_path)
 
 
 func _ready():
-#	get_node("Music").play()
 	pass
 
 
@@ -20,6 +19,7 @@ func _on_LevelFinishTrigger_level_finished():
 
 
 func _on_rail_rail_finished():
+	print("rail finished")
 	end_of_level_gui.start(level_name, GameData.data.difficulty, GameData.data.kills_this_level, GameData.data.blockers_cleared_this_level)
 	rail.get_node("ship").override_move_target = end_of_level_gui.get_node("ShipPosition").get_global_pos()
 

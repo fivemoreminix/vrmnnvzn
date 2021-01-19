@@ -95,8 +95,8 @@ func send():
 
 script/script = ExtResource( 1 )
 level_name = "Enigma"
-rail_path = "rail"
-end_of_level_gui_path = "EndOfLevelGUI"
+rail_path = NodePath("rail")
+end_of_level_gui_path = NodePath("EndOfLevelGUI")
 fade_path = "rail/hud/Fade"
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -214,13 +214,12 @@ margin/bottom = -3776.0
 
 [node name="rail" parent="." instance=ExtResource( 11 )]
 
-editor/display_folded = true
 transform/pos = Vector2( 0, 160 )
 travel_y = 3968
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 0
+frame = 3
 
 [node name="Fade" parent="rail/hud"]
 
@@ -349,6 +348,10 @@ transform/pos = Vector2( 24, -1952 )
 
 transform/pos = Vector2( 179, 0 )
 
+[node name="Sprite" parent="entities/Laser 2/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser3" parent="entities" instance=ExtResource( 16 )]
 
 editor/display_folded = true
@@ -357,6 +360,10 @@ transform/pos = Vector2( 175, -2698 )
 [node name="RightHead" parent="entities/Laser3"]
 
 transform/pos = Vector2( 56, 0 )
+
+[node name="Sprite" parent="entities/Laser3/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Laser6" parent="entities" instance=ExtResource( 16 )]
 
@@ -367,6 +374,10 @@ transform/pos = Vector2( 184, -42 )
 
 transform/pos = Vector2( 50, 0 )
 
+[node name="Sprite" parent="entities/Laser6/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser7" parent="entities" instance=ExtResource( 16 )]
 
 editor/display_folded = true
@@ -375,10 +386,6 @@ transform/pos = Vector2( 40, 14 )
 [node name="RightHead" parent="entities/Laser7"]
 
 transform/pos = Vector2( 67, 0 )
-
-[node name="Sprite" parent="entities/Laser7/LeftHead/Beam"]
-
-frame = 1
 
 [node name="Laser4" parent="entities" instance=ExtResource( 16 )]
 
@@ -389,6 +396,10 @@ transform/pos = Vector2( 16, -2866 )
 
 transform/pos = Vector2( 51, 0 )
 
+[node name="Sprite" parent="entities/Laser4/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser5" parent="entities" instance=ExtResource( 16 )]
 
 editor/display_folded = true
@@ -397,6 +408,10 @@ transform/pos = Vector2( 40, -3460 )
 [node name="RightHead" parent="entities/Laser5"]
 
 transform/pos = Vector2( 176, 0 )
+
+[node name="Sprite" parent="entities/Laser5/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Bee 4" parent="entities" instance=ExtResource( 13 )]
 

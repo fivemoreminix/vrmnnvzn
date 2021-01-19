@@ -21,11 +21,11 @@ script/source = "extends Area2D
 
 var areas_in_range = [] # A list of areas
 
-func destroy_nearby_entities():
-	print(areas_in_range)
+func hurt_nearby_entities(times): # times: int
 	for area in areas_in_range:
 		if area.has_method(\"destroy\"):
-			area.destroy()
+			for i in range(times):
+				area.destroy() # Call `destroy` N `times`
 
 
 func _on_Area2D_area_enter( area ):
@@ -47,8 +47,8 @@ samples/shroom_destroy = {
 }
 
 [node name="Blocker" type="Area2D" groups=[
-"Blocker",
 "Enemy",
+"Blocker",
 ]]
 
 input/pickable = true
@@ -61,6 +61,7 @@ linear_damp = 0.1
 angular_damp = 1.0
 monitoring = false
 script/script = ExtResource( 1 )
+damage = 5
 
 [node name="DamageRadius" type="Area2D" parent="."]
 

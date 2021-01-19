@@ -136,7 +136,7 @@ func triggered_section(index):
 
 # Using saved data about the current level, we will update save game data, save the game, then load the next level.
 func finished_level():
-	# Obviously, data.current_level should always point at the currently or last played level (where should Continue button go?)
+	# data.current_level should always point at the currently or last played level (where should Continue button go?)
 	data.current_section = 0
 	data.kills_this_level = 0
 	data.blockers_cleared_this_level = 0

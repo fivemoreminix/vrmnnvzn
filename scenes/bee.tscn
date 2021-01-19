@@ -89,7 +89,6 @@ play_alert_sound_when_visible = false
 
 frames = SubResource( 2 )
 animation = "default"
-frame = 1
 playing = true
 
 [node name="collision" type="CollisionShape2D" parent="."]

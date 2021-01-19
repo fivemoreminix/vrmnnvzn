@@ -1,7 +1,6 @@
 extends Area2D
 
-#var radius = 5
-#var damage = 5
+export var damage = 5
 
 var health = 1
 var destroyed = false
@@ -19,7 +18,7 @@ func destroy():
 			# Play explosion sound
 			# get_node("sfx").play("shroom_destroy")
 			
-			get_node("DamageRadius").destroy_nearby_entities()
+			get_node("DamageRadius").hurt_nearby_entities(damage)
 			
 			return true
 	return false
