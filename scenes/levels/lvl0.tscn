@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=1]
+[gd_scene load_steps=17 format=1]
 
 [ext_resource path="res://scripts/level_manager.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=2]
@@ -10,10 +10,9 @@
 [ext_resource path="res://scenes/ycentipede.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/bee.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/checkpoint.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/wasp.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=12]
-[ext_resource path="res://assets/level_finish.wav" type="Sample" id=13]
-[ext_resource path="res://assets/electric_sound_loop.ogg" type="AudioStream" id=14]
+[ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=11]
+[ext_resource path="res://assets/level_finish.wav" type="Sample" id=12]
+[ext_resource path="res://assets/electric_sound_loop.ogg" type="AudioStream" id=13]
 
 [sub_resource type="SampleLibrary" id=1]
 
@@ -21,7 +20,7 @@ samples/level_finish = {
 "db": -10.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 13 )
+"sample": ExtResource( 12 )
 }
 
 [sub_resource type="GDScript" id=2]
@@ -224,11 +223,7 @@ transform/pos = Vector2( 222, -3738 )
 
 transform/pos = Vector2( 72, -3272 )
 
-[node name="Wasp" parent="entities" instance=ExtResource( 11 )]
-
-transform/pos = Vector2( 136, 0 )
-
-[node name="LevelFinishTrigger" parent="." instance=ExtResource( 12 )]
+[node name="LevelFinishTrigger" parent="." instance=ExtResource( 11 )]
 
 transform/pos = Vector2( 120, -3792 )
 transform/scale = Vector2( 5.125, 1 )
@@ -252,7 +247,7 @@ default/chorus_send = 0.0
 
 [node name="Music" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 14 )
+stream/stream = ExtResource( 13 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 0.0

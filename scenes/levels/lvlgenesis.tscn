@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=1]
+[gd_scene load_steps=15 format=1]
 
 [ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=2]
@@ -7,9 +7,10 @@
 [ext_resource path="res://scenes/laser.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/ycentipede.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/millipede.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/powerup.tscn" type="PackedScene" id=8]
-[ext_resource path="res://assets/level_finish.wav" type="Sample" id=9]
-[ext_resource path="res://assets/electric_sound_loop.ogg" type="AudioStream" id=10]
+[ext_resource path="res://scenes/blocker.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/powerup.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/level_finish.wav" type="Sample" id=10]
+[ext_resource path="res://assets/electric_sound_loop.ogg" type="AudioStream" id=11]
 
 [sub_resource type="GDScript" id=1]
 
@@ -41,7 +42,7 @@ samples/level_finish = {
 "db": -10.0,
 "pitch": 1.0,
 "priority": 0,
-"sample": ExtResource( 9 )
+"sample": ExtResource( 10 )
 }
 
 [node name="lvl0" type="Node2D"]
@@ -76,15 +77,12 @@ transform/scale = Vector2( 3.42188, 1 )
 
 [node name="rail" parent="." instance=ExtResource( 3 )]
 
-travel_y = 2250
-
-[node name="ship" parent="rail"]
-
 editor/display_folded = true
+travel_y = 2250
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 1
+frame = 2
 
 [node name="Fade" parent="rail/hud"]
 
@@ -97,37 +95,30 @@ transform/pos = Vector2( 0, 10 )
 [node name="asteroid" parent="enemies" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 223.559, -1159.81 )
-disabled = false
 
 [node name="asteroid1" parent="enemies" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 159.299, -1267.67 )
-disabled = false
 
 [node name="asteroid2" parent="enemies" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 64.4138, -905.878 )
-disabled = false
 
 [node name="asteroid3" parent="enemies" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 41.0521, -860.524 )
-disabled = false
 
 [node name="asteroid4" parent="enemies" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 226.306, -285.944 )
-disabled = false
 
 [node name="asteroid5" parent="enemies" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 199.095, -315.864 )
-disabled = false
 
 [node name="asteroid6" parent="enemies" instance=ExtResource( 4 )]
 
 transform/pos = Vector2( 167.208, -337.162 )
-disabled = false
 
 [node name="Laser" parent="enemies" instance=ExtResource( 5 )]
 
@@ -144,7 +135,7 @@ transform/pos = Vector2( -1, 0 )
 
 [node name="Sprite" parent="enemies/Laser/LeftHead/Beam"]
 
-frame = 0
+frame = 1
 
 [node name="Laser 2" parent="enemies" instance=ExtResource( 5 )]
 
@@ -158,7 +149,7 @@ transform/pos = Vector2( 206, 0 )
 
 [node name="Sprite" parent="enemies/Laser 2/LeftHead/Beam"]
 
-frame = 0
+frame = 1
 
 [node name="Laser3" parent="enemies" instance=ExtResource( 5 )]
 
@@ -172,7 +163,7 @@ transform/pos = Vector2( 205, 0 )
 
 [node name="Sprite" parent="enemies/Laser3/LeftHead/Beam"]
 
-frame = 0
+frame = 1
 
 [node name="Laser4" parent="enemies" instance=ExtResource( 5 )]
 
@@ -186,7 +177,7 @@ transform/pos = Vector2( 205, 0 )
 
 [node name="Sprite" parent="enemies/Laser4/LeftHead/Beam"]
 
-frame = 0
+frame = 1
 
 [node name="YCentipede" parent="enemies" instance=ExtResource( 6 )]
 
@@ -213,7 +204,11 @@ transform/pos = Vector2( 164, -246 )
 transform/scale = Vector2( 11.1, 1 )
 rect = Rect2( -10, -10, 20, 20 )
 
-[node name="Powerup" parent="." instance=ExtResource( 8 )]
+[node name="Blocker" parent="enemies" instance=ExtResource( 8 )]
+
+transform/pos = Vector2( 150, -230 )
+
+[node name="Powerup" parent="." instance=ExtResource( 9 )]
 
 transform/pos = Vector2( 125.302, -181.576 )
 powerup = "Shoot diag"
@@ -237,7 +232,7 @@ default/chorus_send = 0.0
 
 [node name="Music" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 10 )
+stream/stream = ExtResource( 11 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 0.0
