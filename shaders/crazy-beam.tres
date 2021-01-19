@@ -1,0 +1,15 @@
+[gd_resource type="CanvasItemShader" format=1]
+
+[resource]
+
+_code = {
+"fragment": "vec2 pos = vec2(mod(UV.x + TIME, 1.0), mod(UV.y + TIME, 1.0));
+COLOR = tex(TEXTURE, pos);",
+"fragment_ofs": 0,
+"light": "",
+"light_ofs": 0,
+"vertex": "float s = sin(TIME) * (UV.x - 0.5) * 10;
+VERTEX = vec2(VERTEX.x, VERTEX.y + s);",
+"vertex_ofs": 0
+}
+
