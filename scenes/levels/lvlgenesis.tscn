@@ -9,8 +9,10 @@
 [ext_resource path="res://scenes/millipede.tscn" type="PackedScene" id=7]
 [ext_resource path="res://scenes/blocker.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/powerup.tscn" type="PackedScene" id=9]
-[ext_resource path="res://assets/level_finish.wav" type="Sample" id=10]
-[ext_resource path="res://assets/electric_sound_loop.ogg" type="AudioStream" id=11]
+[ext_resource path="res://assets/sound/level_finish.wav" type="Sample" id=10]
+[ext_resource path="res://assets/sound/music/electric_sound_loop.ogg" type="AudioStream" id=11]
+
+
 
 [sub_resource type="GDScript" id=1]
 

@@ -7,9 +7,9 @@
 [ext_resource path="res://assets/sprites/enemies/wasps/wasp_white_1.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/enemies/wasps/wasp_writing_0.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/enemies/wasps/wasp_writing_1.png" type="Texture" id=7]
-[ext_resource path="res://assets/alert.wav" type="Sample" id=8]
-[ext_resource path="res://assets/bee_hit.wav" type="Sample" id=9]
-[ext_resource path="res://sound_explode.wav" type="Sample" id=10]
+[ext_resource path="res://assets/sound/alert.wav" type="Sample" id=8]
+[ext_resource path="res://assets/sound/bee_hit.wav" type="Sample" id=9]
+[ext_resource path="res://assets/sound/sound_explode.wav" type="Sample" id=10]
 [ext_resource path="res://assets/sprites/splat/splat_0.png" type="Texture" id=11]
 [ext_resource path="res://assets/sprites/splat/splat_1.png" type="Texture" id=12]
 [ext_resource path="res://assets/sprites/splat/splat_2.png" type="Texture" id=13]
@@ -17,6 +17,10 @@
 [ext_resource path="res://assets/sprites/splat/splat_4.png" type="Texture" id=15]
 [ext_resource path="res://assets/sprites/gibs/gibs_5.png" type="Texture" id=16]
 [ext_resource path="res://assets/sprites/gibs/gibs_0.png" type="Texture" id=17]
+
+
+
+
 
 [sub_resource type="RectangleShape2D" id=1]
 

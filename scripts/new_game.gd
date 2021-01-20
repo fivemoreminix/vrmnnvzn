@@ -26,4 +26,4 @@ func _on_Warning_user_made_decision(decision): # decision true if continue, fals
 		get_node("MainDialog/Name").grab_focus()
 
 func _on_fade_finished():
-	get_tree().change_scene("res://main_menu.scn")
+	get_tree().change_scene("res://scenes/main_menu.scn")

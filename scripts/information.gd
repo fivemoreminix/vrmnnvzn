@@ -25,7 +25,7 @@ func exit_with_fade():
 
 
 func exit():
-	get_tree().change_scene("res://main_menu.scn")
+	get_tree().change_scene("res://scenes/main_menu.scn")
 
 
 func _on_RichTextLabel_meta_clicked( meta ):

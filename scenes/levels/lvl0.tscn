@@ -11,8 +11,10 @@
 [ext_resource path="res://scenes/bee.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/checkpoint.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=11]
-[ext_resource path="res://assets/level_finish.wav" type="Sample" id=12]
-[ext_resource path="res://assets/electric_sound_loop.ogg" type="AudioStream" id=13]
+[ext_resource path="res://assets/sound/level_finish.wav" type="Sample" id=12]
+[ext_resource path="res://assets/sound/music/electric_sound_loop.ogg" type="AudioStream" id=13]
+
+
 
 [sub_resource type="SampleLibrary" id=1]
 
