@@ -14,9 +14,8 @@ func destroy():
 			get_node("Sprite").set_texture(preload("res://assets/sprites/barrels/barrel_destroyed.png"))
 			get_node("Particles2D").set_emitting(true)
 			
-			
 			# Play explosion sound
-			# get_node("sfx").play("shroom_destroy")
+			get_node("sfx").play("sound_explode")
 			
 			get_node("DamageRadius").hurt_nearby_entities(damage)
 			

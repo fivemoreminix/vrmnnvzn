@@ -2,7 +2,8 @@
 
 [ext_resource path="res://scripts/checkpoint.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/particle.png" type="Texture" id=2]
-[ext_resource path="res://assets/checkpoint.wav" type="Sample" id=3]
+[ext_resource path="res://assets/sound/checkpoint.wav" type="Sample" id=3]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 

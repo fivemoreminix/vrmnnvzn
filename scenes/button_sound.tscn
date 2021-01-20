@@ -1,6 +1,7 @@
 [gd_scene load_steps=3 format=1]
 
-[ext_resource path="res://assets/button_sound.wav" type="Sample" id=1]
+[ext_resource path="res://assets/sound/button_sound.wav" type="Sample" id=1]
+
 
 [sub_resource type="SampleLibrary" id=1]
 

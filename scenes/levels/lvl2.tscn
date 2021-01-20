@@ -20,10 +20,12 @@
 [ext_resource path="res://scenes/ycentipede.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/blocker.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=20]
-[ext_resource path="res://assets/level_finish.wav" type="Sample" id=21]
-[ext_resource path="res://assets/electric_sound_loop.ogg" type="AudioStream" id=22]
+[ext_resource path="res://assets/sound/level_finish.wav" type="Sample" id=21]
+[ext_resource path="res://assets/sound/music/electric_sound_loop.ogg" type="AudioStream" id=22]
 [ext_resource path="res://shaders/crazy-beam.tres" type="Shader" id=23]
 [ext_resource path="res://assets/sprites/cool-beam.png" type="Texture" id=24]
+
+
 
 [sub_resource type="GDScript" id=1]
 

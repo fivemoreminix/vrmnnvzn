@@ -69,7 +69,7 @@ func handle(func_name):
 	fade.connect("fade_finished", self, func_name)
 
 func go_back():
-	get_tree().change_scene("res://main_menu.scn")
+	get_tree().change_scene("res://scenes/main_menu.scn")
 
 func go_oop():
 	get_tree().change_scene("res://scenes/oop.tscn")
@@ -94,4 +94,4 @@ func save_changes():
 	
 	GameData.refresh_video_settings() # Reload video
 	
-	get_tree().change_scene("res://main_menu.scn")
+	get_tree().change_scene("res://scenes/main_menu.scn")

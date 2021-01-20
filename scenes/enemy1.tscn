@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/sprites/enemies/pincer0.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/enemies/pincer1.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/enemies/tail.png" type="Texture" id=7]
-[ext_resource path="res://explosion.scn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/explosion.scn" type="PackedScene" id=8]
 [ext_resource path="res://assets/sprites/explosion/explosion0.png" type="Texture" id=9]
 [ext_resource path="res://assets/sprites/explosion/explosion1.png" type="Texture" id=10]
 [ext_resource path="res://assets/sprites/explosion/explosion2.png" type="Texture" id=11]
@@ -21,7 +21,10 @@
 [ext_resource path="res://assets/sprites/explosion/explosion10.png" type="Texture" id=19]
 [ext_resource path="res://assets/sprites/explosion/explosion11.png" type="Texture" id=20]
 [ext_resource path="res://assets/sprites/explosion/explosion12.png" type="Texture" id=21]
-[ext_resource path="res://sound_explode.wav" type="Sample" id=22]
+[ext_resource path="res://assets/sound/sound_explode.wav" type="Sample" id=22]
+
+
+
 
 [sub_resource type="CircleShape2D" id=1]
 
