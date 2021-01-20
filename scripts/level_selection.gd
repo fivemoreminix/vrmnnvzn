@@ -27,7 +27,7 @@ func handle(func_name):
 
 
 func cancel():
-	get_tree().change_scene("res://main_menu.scn")
+	get_tree().change_scene("res://scenes/main_menu.scn")
 
 
 func start():
