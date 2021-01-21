@@ -1,0 +1,31 @@
+[Entering combat for the first time]
+[No enemies]
+
+Looks like we're in this together, {name}. I'm the Admin.
+
+I'll be on the communications and radar, and monitoring the ship. We're connected with HQ, and I'll be relaying any important details to them about the VRMNZ. We're their frontline "scouts". Really we're in for the dirty work.
+
+The VRMNZ are some of the dumbest space-faring pirates in the universe, but they're numerous. When they brought down our fifth colony ship... I think they became something much more united. It's hard to say.
+
+There's one, on the right... Get ready to maneuver and shoot anything that moves!
+
+
+
+
+
+[Entering level 2]
+It looks like this place winds, you'll need to be quick on the steering.
+
+[Millipede saves player]
+That was a millipede. They're not one of the VRMNZ. It's very rare to see them about; they usually nest deep within the surface of these formations.
+
+[Runes]
+VRMN runes? But nobody knew they wrote. Maybe they're reading the runes, instead. Transmitting a report to HQ.
+
+We need to decode the messages.
+
+
+
+
+
+These structures are not natural formations. The VRMNZ built these.
