@@ -16,9 +16,6 @@
 [ext_resource path="res://assets/sprites/gibs/gibs_5.png" type="Texture" id=14]
 [ext_resource path="res://assets/sprites/gibs/gibs_0.png" type="Texture" id=15]
 
-
-
-
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
@@ -92,6 +89,7 @@ play_alert_sound_when_visible = false
 
 frames = SubResource( 2 )
 animation = "default"
+frame = 1
 playing = true
 
 [node name="collision" type="CollisionShape2D" parent="."]
