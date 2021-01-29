@@ -1,8 +1,11 @@
 
 extends Area2D
 
+var powerup = preload("res://scenes/powerup.tscn")
+
 # Member variables
 onready var SPEED = 75 if GameData.data.difficulty == "Normal" else 60
+var powerup_drop_chance = 15 if GameData.data.difficulty == "Normal" else 30
 
 export(NodePath) var TargetPath = "../../rail/ship"
 var RailPath                    = "../../rail"
@@ -52,6 +55,13 @@ func destroy():
 			call_deferred("set_monitorable", false) # Disable the collisions on this Bee
 #			set_monitorable(false) # This won't work because we can't prevent monitoring while monitoring...
 			get_node("sfx").play("sound_explode")
+			
+			# chance to spawn a random powerup on death
+			if randi() % 100 < powerup_drop_chance:
+				var p = powerup.instance()
+				p.set_global_pos(get_global_pos())
+				get_parent().add_child(p)
+			
 			return true
 		else:
 			flashing = true
@@ -65,21 +75,15 @@ func _on_visibility_enter_screen():
 #		get_node("sfx").play("alert")
 	
 	var rail_speed = Vector2(0, target.get_parent().Y_MOTION)
-	var player_speed = target.SPEED # + target.motion.y ?
+	var player_speed = target.SPEED
 	var player_pos = target.get_global_pos()
 	var distance = (player_pos - get_global_pos()).length() # distance: us from player
-#	print(var2str(distance))
 	
 	# What offset from the player's current position when we get there?
 	var predict = Vector2(0, -player_speed) * get_process_delta_time() * (distance * (1.0/SPEED))
-#	print(var2str(predict))
 	
 	target_pos = player_pos + predict
-#	print(var2str(target_pos))
 	direction = (target_pos - get_global_pos()).normalized()
-#	print("player pos: " + var2str(player_pos))
-#	print("future player pos: " + var2str(target_pos))
-#	print(get_name() + "'s direction: " + var2str(direction))
 	
 	set_process(true) # begin moving
 
