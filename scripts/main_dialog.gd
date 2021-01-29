@@ -20,9 +20,10 @@ func start():
 		diff = "Easy"
 	elif get_node("NormalCheck").is_pressed():
 		diff = "Normal"
-	
+
 	# See GameData for info about these
-	GameData.data = {
+	GameData.data =
+	{
 		current_level = 0,
 		current_section = 0,
 		kills_this_level = 0,
@@ -32,7 +33,7 @@ func start():
 		difficulty = diff,
 	}
 	GameData.save_data() # write the new game data to disk
-	
+
 	get_tree().change_scene("res://scenes/levels/lvl0.tscn")
 
 

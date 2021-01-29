@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=1]
+[gd_scene load_steps=21 format=1]
 
 [ext_resource path="res://scripts/level_manager.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=11]
 [ext_resource path="res://assets/sound/level_finish.wav" type="Sample" id=12]
 [ext_resource path="res://assets/sound/music/electric_sound_loop.ogg" type="AudioStream" id=13]
+[ext_resource path="res://scenes/difficultyInfo.tscn" type="PackedScene" id=14]
 
 [sub_resource type="SampleLibrary" id=1]
 
@@ -113,12 +114,13 @@ transform/pos = Vector2( 224, -3184 )
 
 [node name="rail" parent="." instance=ExtResource( 6 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 0, 1284 )
 travel_y = 3968
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 2
+frame = 3
 
 [node name="Fade" parent="rail/hud"]
 
@@ -126,6 +128,7 @@ editor/display_folded = true
 
 [node name="entities" type="Node2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 0, 10 )
 
 [node name="Laser" parent="entities" instance=ExtResource( 7 )]
@@ -276,8 +279,18 @@ stream/paused = false
 stream/loop_restart_time = 0.0
 stream/buffering_ms = 500
 
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="difficultyInfo" parent="CanvasLayer" instance=ExtResource( 14 )]
+
 [node name="Sequencing" type="Node" parent="."]
 
+editor/display_folded = true
 script/script = SubResource( 2 )
 message_bar_path = NodePath("../rail/hud/TextBar")
 
