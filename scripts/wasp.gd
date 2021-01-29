@@ -26,7 +26,7 @@ enum State {
 var state = State.Hovering
 
 # following values
-var follow_right = true # if true, wasp follows on right side of player, otherwise left side
+export var follow_right = true # if true, wasp follows on right side of player, otherwise left side
 var follow_y_height = 100
 
 # fleeing values
@@ -48,8 +48,6 @@ func set_writing(v):
 		get_node("sprite").play("default")
 
 func _ready():
-	randomize()
-	
 	set_writing(writing)
 
 func _process(delta):
@@ -67,14 +65,7 @@ func _process(delta):
 
 func shoot():
 	if can_shoot:
-#		var dir = (ship.get_global_pos() - get_global_pos()).normalized()
-		
-#		print(dir)
-		
 		var shot = enemy_shot.instance()
-#		get_node("shootfrom").look_at(dir)
-#		print(rad2deg(get_node("shootfrom").get_rot()))
-#		get_node("shootfrom").rotate(deg2rad(-180))
 		shot.set_pos(get_node("shootfrom").get_global_pos())
 		shot.set_rot(get_node("shootfrom").get_global_rot()) 
 		get_parent().add_child(shot)
@@ -115,16 +106,9 @@ func move_to(global_pos, delta, speed_mult):
 
 
 func move(dir, delta, speed_mult):
-#	if dir.length() < 0.5: return
-#	if dir.y < 0: dir.y *= 2
-	
 	var pos = get_global_pos()
 	
 	pos += dir * SPEED * speed_mult * delta # Add movement
-	
-	# Snap values on integers
-#	pos.x = int(pos.x)
-#	pos.y = int(pos.y)
 	
 	set_global_pos(pos)
 
