@@ -1,31 +1,32 @@
-[gd_scene load_steps=20 format=1]
+[gd_scene load_steps=21 format=1]
 
-[ext_resource path="res://assets/sprites/enemies/boss/body.png" type="Texture" id=1]
-[ext_resource path="res://assets/sprites/enemies/boss/dome/dome1.png" type="Texture" id=2]
-[ext_resource path="res://assets/sprites/enemies/boss/dome/dome2.png" type="Texture" id=3]
-[ext_resource path="res://assets/sprites/enemies/boss/dome/dome3.png" type="Texture" id=4]
-[ext_resource path="res://assets/sprites/enemies/boss/dome/dome4.png" type="Texture" id=5]
-[ext_resource path="res://assets/sprites/enemies/boss/dome/dome5.png" type="Texture" id=6]
-[ext_resource path="res://assets/sprites/enemies/boss/dome/dome_scared_1.png" type="Texture" id=7]
-[ext_resource path="res://assets/sprites/enemies/boss/dome/dome_scared_2.png" type="Texture" id=8]
-[ext_resource path="res://assets/sprites/enemies/boss/armor/armor_plates.png" type="Texture" id=9]
-[ext_resource path="res://assets/sprites/enemies/boss/engines/engine_armor_bottom.png" type="Texture" id=10]
-[ext_resource path="res://assets/sprites/enemies/boss/engines/engine.png" type="Texture" id=11]
-[ext_resource path="res://scenes/thruster.tscn" type="PackedScene" id=12]
-[ext_resource path="res://assets/sprites/enemies/boss/engines/engine_armor_top.png" type="Texture" id=13]
-[ext_resource path="res://assets/sprites/enemies/boss/armor/cover_armor.png" type="Texture" id=14]
-[ext_resource path="res://assets/sprites/enemies/boss/doors/door_left.png" type="Texture" id=15]
-[ext_resource path="res://assets/sprites/enemies/boss/doors/door_right.png" type="Texture" id=16]
+[ext_resource path="res://scripts/machine.gd" type="Script" id=1]
+[ext_resource path="res://assets/sprites/enemies/boss/body.png" type="Texture" id=2]
+[ext_resource path="res://assets/sprites/enemies/boss/dome/dome1.png" type="Texture" id=3]
+[ext_resource path="res://assets/sprites/enemies/boss/dome/dome2.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/enemies/boss/dome/dome3.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/enemies/boss/dome/dome4.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/enemies/boss/dome/dome5.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/enemies/boss/dome/dome_scared_1.png" type="Texture" id=8]
+[ext_resource path="res://assets/sprites/enemies/boss/dome/dome_scared_2.png" type="Texture" id=9]
+[ext_resource path="res://assets/sprites/enemies/boss/armor/armor_plates.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/enemies/boss/engines/engine_armor_bottom.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/enemies/boss/engines/engine.png" type="Texture" id=12]
+[ext_resource path="res://scenes/thruster.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/sprites/enemies/boss/engines/engine_armor_top.png" type="Texture" id=14]
+[ext_resource path="res://assets/sprites/enemies/boss/armor/cover_armor.png" type="Texture" id=15]
+[ext_resource path="res://assets/sprites/enemies/boss/doors/door_left.png" type="Texture" id=16]
+[ext_resource path="res://assets/sprites/enemies/boss/doors/door_right.png" type="Texture" id=17]
 
 [sub_resource type="SpriteFrames" id=1]
 
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ) ],
+"frames": [ ExtResource( 3 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
 "name": "default",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 7 ), ExtResource( 8 ) ],
+"frames": [ ExtResource( 8 ), ExtResource( 9 ) ],
 "loop": true,
 "name": "scared",
 "speed": 5.0
@@ -67,58 +68,66 @@ tracks/0/keys = {
 
 [node name="Machine" type="Node2D"]
 
+script/script = ExtResource( 1 )
+RailPath = "../../rail"
+disabled = false
+state = 0
+
 [node name="BodySprite" type="Sprite" parent="."]
 
-texture = ExtResource( 1 )
+texture = ExtResource( 2 )
 
 [node name="DomeSprite" type="AnimatedSprite" parent="."]
 
 transform/pos = Vector2( -1.5, -3.5 )
 frames = SubResource( 1 )
 animation = "default"
+frame = 4
+playing = true
 
 [node name="ArmorPlatesSprite" type="Sprite" parent="."]
 
 transform/pos = Vector2( 0, 15 )
-texture = ExtResource( 9 )
+texture = ExtResource( 10 )
 
 [node name="EngineArmorBotSprite" type="Sprite" parent="."]
 
 transform/pos = Vector2( 0.5, -15 )
-texture = ExtResource( 10 )
+texture = ExtResource( 11 )
 
 [node name="EngineLeftSprite" type="Sprite" parent="."]
 
 transform/pos = Vector2( -52.5, -3 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 
-[node name="thruster" parent="EngineLeftSprite" instance=ExtResource( 12 )]
+[node name="thruster" parent="EngineLeftSprite" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 0, 19 )
 
 [node name="EngineRightSprite" type="Sprite" parent="."]
 
 transform/pos = Vector2( 54.5, -3 )
-texture = ExtResource( 11 )
+texture = ExtResource( 12 )
 
-[node name="thruster" parent="EngineRightSprite" instance=ExtResource( 12 )]
+[node name="thruster" parent="EngineRightSprite" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 0, 19 )
+frame = 3
 
 [node name="EngineArmorTopSprite" type="Sprite" parent="."]
 
 transform/pos = Vector2( 0.5, 4 )
-texture = ExtResource( 13 )
+texture = ExtResource( 14 )
 
 [node name="ArmorCoverSprite" type="Sprite" parent="."]
 
 transform/pos = Vector2( -0.5, 26.5 )
-texture = ExtResource( 14 )
+texture = ExtResource( 15 )
 
 [node name="DoorLeftSprite" type="Sprite" parent="ArmorCoverSprite"]
 
 transform/pos = Vector2( -18.5, -3 )
-texture = ExtResource( 15 )
+texture = ExtResource( 16 )
 
 [node name="DoorAnimator" type="AnimationPlayer" parent="ArmorCoverSprite/DoorLeftSprite"]
 
@@ -135,7 +144,7 @@ autoplay = ""
 [node name="DoorRightSprite" type="Sprite" parent="ArmorCoverSprite"]
 
 transform/pos = Vector2( 18.5, -3 )
-texture = ExtResource( 16 )
+texture = ExtResource( 17 )
 
 [node name="DoorAnimator" type="AnimationPlayer" parent="ArmorCoverSprite/DoorRightSprite"]
 
@@ -148,5 +157,12 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+
+transform/scale = Vector2( 4.889, 2.31187 )
+rect = Rect2( -10, -10, 20, 20 )
+
+[connection signal="exit_screen" from="VisibilityNotifier2D" to="." method="_on_visibility_exit_screen"]
 
 
