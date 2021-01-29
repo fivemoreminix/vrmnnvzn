@@ -24,17 +24,6 @@
 [ext_resource path="res://scripts/bar.gd" type="Script" id=22]
 [ext_resource path="res://scenes/pointer.tscn" type="PackedScene" id=23]
 
-
-
-
-
-
-
-
-
-
-
-
 [sub_resource type="Animation" id=1]
 
 resource/name = "FlyIn"
@@ -328,7 +317,6 @@ config/pitch_random = 0.0
 "Player",
 ]]
 
-editor/display_folded = true
 transform/pos = Vector2( 128, 278 )
 input/pickable = true
 shapes/0/shape = SubResource( 4 )
@@ -423,6 +411,7 @@ texture = ExtResource( 4 )
 transform/pos = Vector2( 0, 13 )
 frames = SubResource( 5 )
 animation = "default"
+frame = 3
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ship"]

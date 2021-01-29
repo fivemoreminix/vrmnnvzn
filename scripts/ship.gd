@@ -5,7 +5,7 @@ signal enemy_destroyed
 
 # Member variables
 const SPEED = 110
-onready var DEFAULT_SHOOT_WAIT_TIME = get_node("ShootTimer").get_wait_time() # basically a constant
+onready var DEFAULT_SHOOT_WAIT_TIME = 0.3 if GameData.data.difficulty == "Normal" else 0.2
 
 var motion = Vector2()
 
@@ -19,8 +19,6 @@ onready var shipSprite = get_node("shipSprite")
 onready var shots = [preload("res://scenes/shot.tscn"),preload("res://scenes/2shot.tscn"),preload("res://scenes/3shot.tscn")]
 
 var active_effects = [] # a list of active powerups or detriments [type of effect, effect name, duration as a float]
-
-onready var default_shot_idx = 1 if GameData.data.difficulty != "Normal" else 0
 
 onready var last_mouse_pos = get_viewport().get_mouse_pos()
 
@@ -93,7 +91,7 @@ func move(delta, motion):
 func shoot():
 	if can_shoot:
 		# Just pressed
-		var shot = shots[2 if has_effect("Triple-shot") else default_shot_idx].instance()
+		var shot = shots[1 if has_effect("Double-shot") else 2 if has_effect("Triple-shot") else 0].instance()
 		get_node("anim").play("shoot")
 		# Use the Position2D as reference
 		shot.set_pos(get_node("shootfrom").get_global_pos())
@@ -119,7 +117,7 @@ func shoot():
 		# reset condition
 		can_shoot = false
 		var t = get_node("ShootTimer")
-		if has_effect("Fast shooting"): t.set_wait_time(0.2)
+		if has_effect("Fast shooting"): t.set_wait_time(DEFAULT_SHOOT_WAIT_TIME - 0.1)
 		else: t.set_wait_time(DEFAULT_SHOOT_WAIT_TIME)
 		t.start()
 
