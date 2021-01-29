@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=1]
 
 [ext_resource path="res://assets/themes/theme.thm" type="Theme" id=1]
-[ext_resource path="res://scripts/difficultyInfo.gd" type="Script" id=2]
+[ext_resource path="res://scripts/difficulty_info.gd" type="Script" id=2]
 
 [node name="difficultyInfo" type="Control"]
 
@@ -28,7 +28,7 @@ infoNormal = "on Normal, enemies are a bit faster,
 [node name="infoTime" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 10.0
+wait_time = 14.0
 one_shot = true
 autostart = true
 

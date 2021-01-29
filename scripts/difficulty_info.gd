@@ -13,18 +13,10 @@ func _ready():
 
 
 func load_difficulty():
-	var f = File.new()
-	if f.file_exists("user://VRMNNVZN.save"):
-		f.open("user://VRMNNVZN.save", File.READ)
-		var data = {}
-		var err = data.parse_json(f.get_as_text())
-		f.close()
-		if err != OK:
-			print("difficulty: failed to parse game data save file")
-			return
-		current_difficulty = String(data.difficulty)
-		if int(data.current_section) > 0:
-			first_time_play = false # so that it doesn't popup when you have already played the level (when you have allready a section saved)
+
+	current_difficulty = String(GameData.data.difficulty)
+	if int(GameData.data.current_section) > 0:
+		first_time_play = false # so that it doesn't popup when you have already played the level (when you have allready a section saved)
 
 func set_info_txt():
 	if first_time_play:
