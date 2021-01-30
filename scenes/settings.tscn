@@ -259,6 +259,7 @@ parent_function_to_call = "save_changes"
 
 [node name="Dialog" type="Control" parent="."]
 
+visibility/visible = false
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false

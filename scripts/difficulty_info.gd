@@ -5,7 +5,6 @@ export var infoEasy = "on Easy, enemies are a bit slower,\n and you can shoot on
 export var infoNormal = "on Normal, enemies are a bit faster, \n you can shoot one bullet. \n and every other thing is just normal ..."
 
 
-
 func set_info_txt():
 
 	if current_difficulty == "Easy":
@@ -13,8 +12,6 @@ func set_info_txt():
 	elif current_difficulty == "Normal":
 		get_node("Popup/Panel/Info").set_text(infoNormal)
 	show()
-
-
 
 func _on_EasyCheck_pressed():
 	current_difficulty = "Easy"
