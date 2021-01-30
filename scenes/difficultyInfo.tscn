@@ -5,6 +5,7 @@
 
 [node name="difficultyInfo" type="Control"]
 
+visibility/visible = false
 anchor/left = 3
 anchor/top = 3
 anchor/right = 3
@@ -25,27 +26,44 @@ infoNormal = "on Normal, enemies are a bit faster,
  you can shoot one bullet. 
  and every other thing is just normal ..."
 
-[node name="infoTime" type="Timer" parent="."]
+[node name="delay_show" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 14.0
+wait_time = 1.7
 one_shot = true
 autostart = true
 
-[node name="Popup" type="Popup" parent="."]
+[node name="Popup" type="Control" parent="."]
 
-visibility/visible = false
+anchor/left = 1
+anchor/top = 1
+anchor/right = 1
+anchor/bottom = 1
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 256.0
-margin/bottom = 192.0
-popup/exclusive = false
+margin/left = 256.0
+margin/top = 192.0
+margin/right = 0.0
+margin/bottom = 1.0
 
-[node name="Info" type="Label" parent="Popup"]
+[node name="Panel" type="Panel" parent="Popup"]
+
+anchor/left = 3
+anchor/top = 3
+anchor/right = 3
+anchor/bottom = 3
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 101.0
+margin/top = 51.0
+margin/right = -107.0
+margin/bottom = -61.0
+
+[node name="Info" type="Label" parent="Popup/Panel"]
 
 anchor/left = 3
 anchor/top = 3
@@ -55,18 +73,36 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 128.0
-margin/top = 98.0
-margin/right = -128.0
-margin/bottom = -94.0
-align = 1
-valign = 1
+margin/left = 96.0
+margin/top = 48.0
+margin/right = -96.0
+margin/bottom = -40.0
 autowrap = true
 clip_text = true
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[connection signal="timeout" from="infoTime" to="." method="_on_infoTime_timeout"]
+[node name="Ok" type="Button" parent="Popup/Panel"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 145.0
+margin/top = 85.0
+margin/right = 15.0
+margin/bottom = 11.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "OK"
+flat = false
+
+[connection signal="timeout" from="delay_show" to="." method="_on_delay_show_timeout"]
+
+[connection signal="pressed" from="Popup/Panel/Ok" to="." method="_on_Ok_pressed"]
 
 
