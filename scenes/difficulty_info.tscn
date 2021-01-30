@@ -22,8 +22,8 @@ margin/bottom = -96.0
 script/script = ExtResource( 2 )
 infoEasy = "on Easy, enemies are a bit slower,
  and you can shoot two bullets."
-infoNormal = "on Normal, enemies are a bit faster, 
- you can shoot one bullet. 
+infoNormal = "on Normal, enemies are a bit faster,
+ you can shoot one bullet.
  and every other thing is just normal ..."
 
 [node name="delay_show" type="Timer" parent="."]
