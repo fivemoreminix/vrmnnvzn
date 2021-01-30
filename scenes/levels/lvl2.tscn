@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=1]
+[gd_scene load_steps=36 format=1]
 
 [ext_resource path="res://scripts/level_manager.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=2]
@@ -20,12 +20,10 @@
 [ext_resource path="res://scenes/ycentipede.tscn" type="PackedScene" id=18]
 [ext_resource path="res://scenes/blocker.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=20]
-[ext_resource path="res://assets/sound/level_finish.wav" type="Sample" id=21]
-[ext_resource path="res://assets/sound/music/electric_sound_loop.ogg" type="AudioStream" id=22]
+[ext_resource path="res://assets/sound/music/electric_sound_loop.ogg" type="AudioStream" id=21]
+[ext_resource path="res://scripts/sequencing.gd" type="Script" id=22]
 [ext_resource path="res://shaders/crazy-beam.tres" type="Shader" id=23]
 [ext_resource path="res://assets/sprites/cool-beam.png" type="Texture" id=24]
-
-
 
 [sub_resource type="GDScript" id=1]
 
@@ -44,25 +42,7 @@ func _on_Area2D_area_enter( area ):
 custom_solver_bias = 0.0
 extents = Vector2( 112, 10 )
 
-[sub_resource type="SampleLibrary" id=3]
-
-samples/level_finish = {
-"db": -10.0,
-"pitch": 1.0,
-"priority": 0,
-"sample": ExtResource( 21 )
-}
-
-[sub_resource type="GDScript" id=4]
-
-script/source = "extends Node2D
-
-export(NodePath) var message_bar_path
-
-onready var bar = get_node(message_bar_path)
-"
-
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=3]
 
 script/source = "extends VisibilityNotifier2D
 
@@ -70,7 +50,7 @@ func send():
 	get_parent().bar.message(\"An ambush. They were expecting us.\")
 "
 
-[sub_resource type="GDScript" id=10]
+[sub_resource type="GDScript" id=4]
 
 script/source = "extends VisibilityNotifier2D
 
@@ -78,7 +58,7 @@ func send():
 	get_parent().bar.message(\"A swarm of those things are coming. Quick grab that power!\")
 "
 
-[sub_resource type="GDScript" id=11]
+[sub_resource type="GDScript" id=5]
 
 script/source = "extends VisibilityNotifier2D
 
@@ -86,7 +66,7 @@ func send():
 	get_parent().bar.message(\"Wow, that was close. Up ahead, there's more runes.\")
 "
 
-[sub_resource type="GDScript" id=12]
+[sub_resource type="GDScript" id=6]
 
 script/source = "extends VisibilityNotifier2D
 
@@ -94,7 +74,7 @@ func send():
 	get_parent().bar.message(\"Looks like we found our Ernest Hemingway. Transmitting to HQ...\")
 "
 
-[sub_resource type="GDScript" id=13]
+[sub_resource type="GDScript" id=7]
 
 script/source = "extends VisibilityNotifier2D
 
@@ -102,7 +82,7 @@ func send():
 	get_parent().bar.message(\"We passed through some kind of force field. It corrupted our message, and we lost communications.\")
 "
 
-[sub_resource type="GDScript" id=14]
+[sub_resource type="GDScript" id=8]
 
 script/source = "extends VisibilityNotifier2D
 
@@ -110,17 +90,17 @@ func send():
 	get_parent().bar.message(\"We're alone.\")
 "
 
-[sub_resource type="CanvasItemMaterial" id=7]
+[sub_resource type="CanvasItemMaterial" id=9]
 
 shader/shader = ExtResource( 23 )
 shader/shading_mode = 0
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=10]
 
 custom_solver_bias = 0.0
 extents = Vector2( 127.307, 10 )
 
-[sub_resource type="GDScript" id=9]
+[sub_resource type="GDScript" id=11]
 
 script/source = "extends Area2D
 
@@ -248,7 +228,7 @@ travel_y = 2298
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 2
+frame = 1
 
 [node name="entities" type="Node2D" parent="."]
 
@@ -263,10 +243,6 @@ transform/pos = Vector2( 64, 2166 )
 
 transform/pos = Vector2( 112, 0 )
 
-[node name="Sprite" parent="entities/Laser/LeftHead/Beam"]
-
-frame = 1
-
 [node name="Laser1" parent="entities" instance=ExtResource( 13 )]
 
 editor/display_folded = true
@@ -276,6 +252,10 @@ time_delay = 1.0
 [node name="RightHead" parent="entities/Laser1"]
 
 transform/pos = Vector2( 112, 0 )
+
+[node name="Sprite" parent="entities/Laser1/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Laser3" parent="entities" instance=ExtResource( 13 )]
 
@@ -287,10 +267,6 @@ time_delay = 1.0
 
 transform/pos = Vector2( 96, 0 )
 
-[node name="Sprite" parent="entities/Laser3/LeftHead/Beam"]
-
-frame = 1
-
 [node name="Laser2" parent="entities" instance=ExtResource( 13 )]
 
 editor/display_folded = true
@@ -300,6 +276,10 @@ time_delay = 1.0
 [node name="RightHead" parent="entities/Laser2"]
 
 transform/pos = Vector2( 64, 0 )
+
+[node name="Sprite" parent="entities/Laser2/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Bee" parent="entities" instance=ExtResource( 14 )]
 
@@ -490,6 +470,7 @@ transform/pos = Vector2( -50, -74 )
 transform/pos = Vector2( 64, -8 )
 RailPath = NodePath("../../../rail")
 writing = true
+follow_right = true
 
 [node name="Area2D" type="Area2D" parent="entities/Wasp Writing"]
 
@@ -523,26 +504,9 @@ transform/pos = Vector2( 227.484, 1695.27 )
 transform/pos = Vector2( 120, -2122 )
 transform/scale = Vector2( 5.125, 1 )
 
-[node name="Sfx" type="SamplePlayer" parent="."]
-
-config/polyphony = 1
-config/samples = SubResource( 3 )
-default/volume_db = 0.0
-default/pitch_scale = 1.0
-default/pan = 0.0
-default/depth = 0.0
-default/height = 0.0
-default/filter/type = 0
-default/filter/cutoff = 5000.0
-default/filter/resonance = 1.0
-default/filter/gain = 1.0
-default/reverb_room = 2
-default/reverb_send = 0.0
-default/chorus_send = 0.0
-
 [node name="Music" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 22 )
+stream/stream = ExtResource( 21 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 0.0
@@ -553,44 +517,44 @@ stream/buffering_ms = 500
 
 [node name="Sequencing" type="Node2D" parent="."]
 
-script/script = SubResource( 4 )
+script/script = ExtResource( 22 )
 message_bar_path = NodePath("../rail/hud/TextBar")
 
 [node name="Msg1" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 120, 1854 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 5 )
+script/script = SubResource( 3 )
 
 [node name="Msg2" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 120, 1206 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 10 )
+script/script = SubResource( 4 )
 
 [node name="Msg5" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 110, 676 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 11 )
+script/script = SubResource( 5 )
 
 [node name="Msg3" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 140, -134 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 12 )
+script/script = SubResource( 6 )
 
 [node name="Msg4" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 120, -604 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 13 )
+script/script = SubResource( 7 )
 
 [node name="Msg6" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 120, -984 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 14 )
+script/script = SubResource( 8 )
 
 [node name="ForceField" type="Node2D" parent="."]
 
@@ -598,7 +562,7 @@ transform/pos = Vector2( 0, -430 )
 
 [node name="Sprite" type="Sprite" parent="ForceField"]
 
-material/material = SubResource( 7 )
+material/material = SubResource( 9 )
 transform/pos = Vector2( 128, 0 )
 texture = ExtResource( 24 )
 
@@ -606,18 +570,18 @@ texture = ExtResource( 24 )
 
 transform/pos = Vector2( 128, 0 )
 input/pickable = true
-shapes/0/shape = SubResource( 8 )
+shapes/0/shape = SubResource( 10 )
 shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
 shapes/0/trigger = true
 gravity_vec = Vector2( 0, 1 )
 gravity = 98.0
 linear_damp = 0.1
 angular_damp = 1.0
-script/script = SubResource( 9 )
+script/script = SubResource( 11 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ForceField/Area2D"]
 
-shape = SubResource( 8 )
+shape = SubResource( 10 )
 trigger = true
 _update_shape_index = 0
 

@@ -1,0 +1,127 @@
+[gd_scene load_steps=11 format=1]
+
+[ext_resource path="res://scripts/level_manager.gd" type="Script" id=1]
+[ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=2]
+[ext_resource path="res://assets/sprites/portal/black.png" type="Texture" id=3]
+[ext_resource path="res://scenes/end_of_level_gui.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/ship.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/wasp.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/sound/music/electric_sound_loop.ogg" type="AudioStream" id=8]
+[ext_resource path="res://scripts/sequencing.gd" type="Script" id=9]
+
+[sub_resource type="GDScript" id=1]
+
+script/source = "extends VisibilityNotifier2D
+
+func send():
+	get_parent().bar.message(\"An ambush. They were expecting us.\")
+"
+
+[node name="lvl0" type="Node2D"]
+
+script/script = ExtResource( 1 )
+level_name = "A Rookie at Hell's Gates"
+rail_path = "rail"
+end_of_level_gui_path = "EndOfLevelGUI"
+fade_path = "rail/hud/Fade"
+
+[node name="TileMap" type="TileMap" parent="."]
+
+mode = 0
+tile_set = ExtResource( 2 )
+cell/size = Vector2( 16, 16 )
+cell/quadrant_size = 16
+cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+cell/half_offset = 2
+cell/tile_origin = 0
+cell/y_sort = false
+collision/use_kinematic = false
+collision/friction = 1.0
+collision/bounce = 0.0
+collision/layers = 1
+collision/mask = 1
+occluder/light_mask = 1
+tile_data = IntArray( 0, 4, 15, 4, 65536, 4, 65551, 4, 131072, 4, 131087, 4, 196608, 4, 196623, 4, 262144, 4, 262159, 4, 327680, 4, 327695, 4, 393216, 4, 393231, 4, 458752, 4, 458767, 4, 524288, 4, 524303, 4, 589824, 4, 589839, 4, 655360, 4, 655375, 4, 720896, 4, 720911, 4, 786432, 4, 786433, 4, 786434, 4, 786435, 4, 786436, 4, 786443, 4, 786444, 4, 786445, 4, 786446, 4, 786447, 4, 12255232, 4, 12320768, 4, 12320783, 4, 12386304, 4, 12386319, 4, 12451840, 4, 12451855, 4, 12517376, 4, 12517391, 4, 12582912, 4, 12582927, 4, 12648448, 4, 12648463, 4, 12713984, 4, 12713999, 4, 12779520, 4, 12779535, 4, 12845056, 4, 12845071, 4, 12910592, 4, 12910607, 4, 12976128, 4, 12976143, 4, 13041664, 4, 13041679, 4, 13107200, 4, 13107215, 4, 13172736, 4, 13172751, 4, 13238272, 4, 13238287, 4, 13303808, 4, 13303823, 4, 13369344, 4, 13369359, 4, 13434880, 4, 13434895, 4, 13500416, 4, 13500431, 4, 13565952, 4, 13565967, 4, 13631488, 4, 13631503, 4, 13697024, 4, 13697039, 4, 13762560, 4, 13762575, 4, 13828096, 4, 13828111, 4, 13893632, 4, 13893647, 4, 13959168, 4, 13959183, 4, 14024704, 4, 14024719, 4, 14090240, 4, 14090255, 4, 14155776, 4, 14155791, 4, 14221312, 4, 14221327, 4, 14286848, 4, 14286863, 4, 14352384, 4, 14352399, 4, 14417920, 4, 14417935, 4, 14483456, 4, 14483471, 4, 14548992, 4, 14549007, 4, 14614528, 4, 14614543, 4, 14680064, 4, 14680079, 4, 14745600, 4, 14745615, 4, 14811136, 4, 14811151, 4, 14876672, 4, 14876687, 4, 14942208, 4, 14942223, 4, 15007744, 4, 15007759, 4, 15073280, 4, 15073295, 4, 15138816, 4, 15138831, 4, 15204352, 4, 15204367, 4, 15269888, 4, 15269903, 4, 15335424, 4, 15335439, 4, 15400960, 4, 15400975, 4, 15466496, 4, 15466511, 4, 15532032, 4, 15532047, 4, 15597568, 4, 15597583, 4, 15663104, 4, 15663119, 4, 15728640, 4, 15728655, 4, 15794176, 4, 15794191, 4, 15859712, 4, 15859727, 4, 15925248, 4, 15925263, 4, 15990784, 4, 15990799, 4, 16056320, 4, 16056335, 4, 16121856, 4, 16121871, 4, 16187392, 4, 16187407, 4, 16252928, 4, 16252943, 4, 16318464, 4, 16318479, 4, 16384000, 4, 16384015, 4, 16449536, 4, 16449551, 4, 16515072, 4, 16515087, 4, 16580608, 4, 16580623, 4, 16646144, 4, 16646159, 4, 16711680, 4, 16711695, 4, 16777216, 4, 16777231, 4, 16842752, 4, 16842767, 4, 16908288, 4, 16908303, 4, 16973824, 4, 16973839, 4, 17039360, 4, 17039375, 4, 17104896, 4, 17104911, 4 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="EndLevelCover" type="Sprite" parent="."]
+
+transform/pos = Vector2( 128, -3878 )
+transform/scale = Vector2( 6.5, 5.08333 )
+texture = ExtResource( 3 )
+
+[node name="EndOfLevelGUI" parent="." instance=ExtResource( 4 )]
+
+margin/top = -3968.0
+margin/bottom = -3776.0
+
+[node name="Blockers" type="Node2D" parent="."]
+
+[node name="rail" parent="." instance=ExtResource( 5 )]
+
+editor/display_folded = true
+transform/pos = Vector2( 0, 4000 )
+travel_y = 3968
+
+[node name="ship" parent="rail"]
+
+editor/display_folded = true
+
+[node name="thruster" parent="rail/ship"]
+
+frame = 2
+
+[node name="Fade" parent="rail/hud"]
+
+editor/display_folded = true
+
+[node name="entities" type="Node2D" parent="."]
+
+transform/pos = Vector2( 0, 4000 )
+
+[node name="Wasp" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 130, -210 )
+follow_right = true
+
+[node name="LevelFinishTrigger" parent="." instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 120, -3792 )
+transform/scale = Vector2( 5.125, 1 )
+
+[node name="Music" type="StreamPlayer" parent="."]
+
+stream/stream = ExtResource( 8 )
+stream/play = false
+stream/loop = true
+stream/volume_db = 0.0
+stream/autoplay = false
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
+
+[node name="Sequencing" type="Node2D" parent="."]
+
+script/script = ExtResource( 9 )
+message_bar_path = null
+
+[node name="Msg" type="VisibilityNotifier2D" parent="Sequencing"]
+
+transform/pos = Vector2( 120, 0 )
+rect = Rect2( -10, -10, 20, 20 )
+script/script = SubResource( 1 )
+
+[connection signal="finished" from="EndOfLevelGUI" to="." method="_on_EndOfLevelGUI_finished"]
+
+[connection signal="rail_finished" from="rail" to="." method="_on_rail_rail_finished"]
+
+[connection signal="level_finished" from="LevelFinishTrigger" to="." method="_on_LevelFinishTrigger_level_finished"]
+
+[connection signal="enter_screen" from="Sequencing/Msg" to="Sequencing/Msg" method="send"]
+
+
+[editable path="rail"]
+[editable path="rail/hud/Fade"]
