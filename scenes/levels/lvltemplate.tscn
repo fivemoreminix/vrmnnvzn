@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=1]
+[gd_scene load_steps=10 format=1]
 
 [ext_resource path="res://scripts/level_manager.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=2]
@@ -6,34 +6,15 @@
 [ext_resource path="res://scenes/end_of_level_gui.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/ship.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/sound/level_finish.wav" type="Sample" id=7]
-[ext_resource path="res://assets/sound/music/electric_sound_loop.ogg" type="AudioStream" id=8]
-
-
-
-[sub_resource type="SampleLibrary" id=1]
-
-samples/level_finish = {
-"db": -10.0,
-"pitch": 1.0,
-"priority": 0,
-"sample": ExtResource( 7 )
-}
+[ext_resource path="res://assets/sound/music/electric_sound_loop.ogg" type="AudioStream" id=7]
+[ext_resource path="res://scripts/sequencing.gd" type="Script" id=8]
 
 [sub_resource type="GDScript" id=2]
 
-script/source = "extends Node2D
+script/source = "extends VisibilityNotifier2D
 
-export(NodePath) var message_bar_path
-
-onready var bar = get_node(message_bar_path)
-onready var timer = get_node(\"NextMessageTimer\")
-
-func _ready():
-	if GameData.data.name.length() > 30:
-		bar.message(\"%s-       I was going to try. Just disperse VRMNZ.\" % GameData.data.name.substr(0, 30))
-	else:
-		bar.message(\"%s, welcome. Disperse the VRMNZ.\" % GameData.data.name)
+func send():
+	get_parent().bar.message(\"An ambush. They were expecting us.\")
 "
 
 [node name="lvl0" type="Node2D"]
@@ -60,7 +41,7 @@ collision/bounce = 0.0
 collision/layers = 1
 collision/mask = 1
 occluder/light_mask = 1
-tile_data = IntArray( 786432, 4, 786433, 4, 786434, 4, 786435, 4, 786436, 4, 786437, 4, 786438, 4, 786439, 4, 786440, 4, 786441, 4, 786442, 4, 786443, 4, 786444, 4, 786445, 4, 786446, 4, 786447, 4 )
+tile_data = IntArray( 0, 4, 15, 4, 65536, 4, 65551, 4, 131072, 4, 131087, 4, 196608, 4, 196623, 4, 262144, 4, 262159, 4, 327680, 4, 327695, 4, 393216, 4, 393231, 4, 458752, 4, 458767, 4, 524288, 4, 524303, 4, 589824, 4, 589839, 4, 655360, 4, 655375, 4, 720896, 4, 720911, 4, 786432, 4, 786433, 4, 786434, 4, 786435, 4, 786436, 4, 786443, 4, 786444, 4, 786445, 4, 786446, 4, 786447, 4 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -89,7 +70,7 @@ editor/display_folded = true
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 0
+frame = 1
 
 [node name="Fade" parent="rail/hud"]
 
@@ -104,26 +85,9 @@ transform/pos = Vector2( 0, 10 )
 transform/pos = Vector2( 120, -3792 )
 transform/scale = Vector2( 5.125, 1 )
 
-[node name="Sfx" type="SamplePlayer" parent="."]
-
-config/polyphony = 1
-config/samples = SubResource( 1 )
-default/volume_db = 0.0
-default/pitch_scale = 1.0
-default/pan = 0.0
-default/depth = 0.0
-default/height = 0.0
-default/filter/type = 0
-default/filter/cutoff = 5000.0
-default/filter/resonance = 1.0
-default/filter/gain = 1.0
-default/reverb_room = 2
-default/reverb_send = 0.0
-default/chorus_send = 0.0
-
 [node name="Music" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 8 )
+stream/stream = ExtResource( 7 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 0.0
@@ -134,15 +98,14 @@ stream/buffering_ms = 500
 
 [node name="Sequencing" type="Node2D" parent="."]
 
+script/script = ExtResource( 8 )
+message_bar_path = null
+
+[node name="Msg" type="VisibilityNotifier2D" parent="Sequencing"]
+
+transform/pos = Vector2( 120, 0 )
+rect = Rect2( -10, -10, 20, 20 )
 script/script = SubResource( 2 )
-message_bar_path = NodePath("../rail/hud/TextBar")
-
-[node name="NextMessageTimer" type="Timer" parent="Sequencing"]
-
-process_mode = 1
-wait_time = 1.0
-one_shot = true
-autostart = false
 
 [connection signal="finished" from="EndOfLevelGUI" to="." method="_on_EndOfLevelGUI_finished"]
 
@@ -150,7 +113,7 @@ autostart = false
 
 [connection signal="level_finished" from="LevelFinishTrigger" to="." method="_on_LevelFinishTrigger_level_finished"]
 
-[connection signal="timeout" from="Sequencing/NextMessageTimer" to="Sequencing" method="_on_NextMessageTimer_timeout"]
+[connection signal="enter_screen" from="Sequencing/Msg" to="Sequencing/Msg" method="send"]
 
 
 [editable path="rail"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=1]
+[gd_scene load_steps=18 format=1]
 
 [ext_resource path="res://scripts/level_manager.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=2]
@@ -11,27 +11,10 @@
 [ext_resource path="res://scenes/bee.tscn" type="PackedScene" id=9]
 [ext_resource path="res://scenes/checkpoint.tscn" type="PackedScene" id=10]
 [ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=11]
-[ext_resource path="res://assets/sound/level_finish.wav" type="Sample" id=12]
-[ext_resource path="res://assets/sound/music/electric_sound_loop.ogg" type="AudioStream" id=13]
-
-[sub_resource type="SampleLibrary" id=1]
-
-samples/level_finish = {
-"db": -10.0,
-"pitch": 1.0,
-"priority": 0,
-"sample": ExtResource( 12 )
-}
+[ext_resource path="res://assets/sound/music/electric_sound_loop.ogg" type="AudioStream" id=12]
+[ext_resource path="res://scripts/sequencing.gd" type="Script" id=13]
 
 [sub_resource type="GDScript" id=2]
-
-script/source = "extends Node
-
-export(NodePath) var message_bar_path
-onready var bar = get_node(message_bar_path)
-"
-
-[sub_resource type="GDScript" id=3]
 
 script/source = "extends VisibilityNotifier2D
 
@@ -39,7 +22,7 @@ func send():
 	get_parent().bar.message(\"Looks like we're in this together, %s. I'm the Admin.\" % GameData.data.name)
 "
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=3]
 
 script/source = "extends VisibilityNotifier2D
 
@@ -47,7 +30,7 @@ func send():
 	get_parent().bar.message(\"I'll be on the communications and radar, and monitoring the ship. We're connected with HQ, and I'll be relaying any important details to them about the VRMNs. We're their frontline \\\"scouts\\\". Really we're in for the dirty work.\")
 "
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=4]
 
 script/source = "extends VisibilityNotifier2D
 
@@ -55,7 +38,7 @@ func send():
 	get_parent().bar.message(\"The VRMNZ are some of the dumbest space-faring pirates in the universe, but they're numerous. When they brought down our fifth colony ship... I think they became something much more united. It's hard to say.\")
 "
 
-[sub_resource type="GDScript" id=6]
+[sub_resource type="GDScript" id=5]
 
 script/source = "extends VisibilityNotifier2D
 
@@ -119,7 +102,7 @@ travel_y = 3968
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 2
+frame = 0
 
 [node name="Fade" parent="rail/hud"]
 
@@ -250,26 +233,9 @@ transform/pos = Vector2( 72, -3272 )
 transform/pos = Vector2( 120, -3792 )
 transform/scale = Vector2( 5.125, 1 )
 
-[node name="Sfx" type="SamplePlayer" parent="."]
-
-config/polyphony = 1
-config/samples = SubResource( 1 )
-default/volume_db = 0.0
-default/pitch_scale = 1.0
-default/pan = 0.0
-default/depth = 0.0
-default/height = 0.0
-default/filter/type = 0
-default/filter/cutoff = 5000.0
-default/filter/resonance = 1.0
-default/filter/gain = 1.0
-default/reverb_room = 2
-default/reverb_send = 0.0
-default/chorus_send = 0.0
-
 [node name="Music" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 13 )
+stream/stream = ExtResource( 12 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 0.0
@@ -278,35 +244,35 @@ stream/paused = false
 stream/loop_restart_time = 0.0
 stream/buffering_ms = 500
 
-[node name="Sequencing" type="Node" parent="."]
+[node name="Sequencing" type="Node2D" parent="."]
 
 editor/display_folded = true
-script/script = SubResource( 2 )
+script/script = ExtResource( 13 )
 message_bar_path = NodePath("../rail/hud/TextBar")
 
 [node name="Msg" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 128, 1210 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 3 )
+script/script = SubResource( 2 )
 
 [node name="Msg1" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 128, 910 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 4 )
+script/script = SubResource( 3 )
 
 [node name="Msg2" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 128, 130 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 5 )
+script/script = SubResource( 4 )
 
 [node name="Msg3" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 118, -650 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 6 )
+script/script = SubResource( 5 )
 
 [connection signal="finished" from="EndOfLevelGUI" to="." method="_on_EndOfLevelGUI_finished"]
 
