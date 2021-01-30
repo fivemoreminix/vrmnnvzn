@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://assets/themes/theme.thm" type="Theme" id=1]
 [ext_resource path="res://scripts/settings.gd" type="Script" id=2]
@@ -6,27 +6,7 @@
 [ext_resource path="res://scenes/button_flasher.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/fade.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/pointer.tscn" type="PackedScene" id=6]
-
-[sub_resource type="GDScript" id=1]
-
-script/source = "extends Control
-
-func _on_Button_pressed():
-	hide()
-"
-
-[sub_resource type="StyleBoxFlat" id=2]
-
-content_margin/left = -1.0
-content_margin/right = -1.0
-content_margin/top = -1.0
-content_margin/bottom = -1.0
-bg_color = Color( 0, 0, 0, 1 )
-light_color = Color( 1, 1, 1, 1 )
-dark_color = Color( 1, 1, 1, 1 )
-border_size = 1
-border_blend = true
-draw_bg = true
+[ext_resource path="res://scenes/dialog.tscn" type="PackedScene" id=7]
 
 [node name="Settings" type="Control"]
 
@@ -257,66 +237,10 @@ parent_function_to_call = "save_changes"
 
 [node name="Pointer" parent="." instance=ExtResource( 6 )]
 
-[node name="Dialog" type="Control" parent="."]
+[node name="Dialog" parent="." instance=ExtResource( 7 )]
 
 visibility/visible = false
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 0.0
-margin/top = 0.0
-margin/right = 0.0
-margin/bottom = 0.0
-script/script = SubResource( 1 )
-
-[node name="Panel" type="Panel" parent="Dialog"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 24.0
-margin/top = 32.0
-margin/right = 232.0
-margin/bottom = 144.0
-custom_styles/panel = SubResource( 2 )
-
-[node name="Label" type="Label" parent="Dialog/Panel"]
-
-anchor/right = 1
-anchor/bottom = 1
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 8.0
-margin/top = 8.0
-margin/right = 8.0
-margin/bottom = 16.0
-text = "Resolution provided was not a valid input. A valid resolution would be widthxheight, for example: 800x600 is the default setting."
-autowrap = true
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="Button" type="Button" parent="Dialog/Panel"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 136.0
-margin/top = 88.0
-margin/right = 184.0
-margin/bottom = 104.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "OK"
-flat = false
+message = "Resolution provided was not a valid input. A valid resolution would be widthxheight, for example: 800x600 is the default setting."
 
 [connection signal="value_changed" from="SFXSlider" to="." method="_on_value_changed"]
 
@@ -327,7 +251,5 @@ flat = false
 [connection signal="text_changed" from="ResolutionOption" to="." method="_on_value_changed"]
 
 [connection signal="toggled" from="VsyncCheck" to="." method="_on_value_changed"]
-
-[connection signal="pressed" from="Dialog/Panel/Button" to="Dialog" method="_on_Button_pressed"]
 
 
