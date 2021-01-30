@@ -3,6 +3,8 @@ extends Control
 onready var fade = get_node("Fade")
 
 func _ready():
+	print(OS.get_data_dir())
+	
 	set_process(true)
 	
 	get_node("Continue").set_disabled(not File.new().file_exists("user://VRMNNVZN.save"))
