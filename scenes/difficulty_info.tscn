@@ -29,9 +29,9 @@ infoNormal = "on Normal, enemies are a bit faster,
 [node name="delay_show" type="Timer" parent="."]
 
 process_mode = 1
-wait_time = 1.7
+wait_time = 0.6
 one_shot = true
-autostart = true
+autostart = false
 
 [node name="Popup" type="Control" parent="."]
 

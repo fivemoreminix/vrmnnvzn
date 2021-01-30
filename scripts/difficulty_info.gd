@@ -28,3 +28,7 @@ func _on_Ok_pressed():
 
 func _on_delay_show_timeout():
 	set_info_txt()
+
+
+func _on_Yes_pressed():
+	get_node("delay_show").start()
