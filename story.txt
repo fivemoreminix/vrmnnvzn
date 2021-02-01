@@ -28,4 +28,4 @@ We need to decode the messages.
 
 
 
-These structures are not natural formations. The VRMNZ built these.
+These structures are not natural formations -- the VRMNZ built these.
