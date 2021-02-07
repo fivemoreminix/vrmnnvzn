@@ -47,15 +47,12 @@ func _ready():
 			print("aligning with checkpoint: " + str(get_node("/root/GameData").data.current_section))
 			for checkpoint in get_tree().get_nodes_in_group("Checkpoint"):
 				if checkpoint.section_index == get_node("/root/GameData").data.current_section: # We found the checkpoint we need to be at ...
-					if checkpoint.easy_mode_only and get_node("/root/GameData").data.difficulty != "Easy":
-						assert(false) # There is a bug if this is encountered, because easy mode checkpoints are only enabled on easy mode
 					align_with_checkpoint(checkpoint)
 					checkpoint.hide() # We don't want to see the checkpoint we're starting at...
 					get_node("ship").input_disabled = false
 					get_node("ship").add_effect("Phase-through", 1)
-					break # We break if we find our checkpoint, whether or not we can actually use it
+					break
 		else:
-			print("test")
 			get_node("AnimationPlayer").play("FlyIn")
 
 
@@ -67,6 +64,5 @@ func _draw():
 
 
 func align_with_checkpoint(node):
-	print("Aligning with Checkpoint " + node.get_name())
 	set_global_pos(node.get_global_pos() + Vector2(0, -192/2)) # Set camera centered with checkpoint
 	get_node("ship").set_global_pos(node.get_respawn_global_pos()) # Set ship location to location by checkpoint

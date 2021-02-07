@@ -14,7 +14,7 @@
 [ext_resource path="res://assets/sound/music/electric_sound_loop.ogg" type="AudioStream" id=12]
 [ext_resource path="res://scripts/sequencing.gd" type="Script" id=13]
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=1]
 
 script/source = "extends VisibilityNotifier2D
 
@@ -22,7 +22,7 @@ func send():
 	get_parent().bar.message(\"Looks like we're in this together, %s. I'm the Admin.\" % GameData.data.name)
 "
 
-[sub_resource type="GDScript" id=3]
+[sub_resource type="GDScript" id=2]
 
 script/source = "extends VisibilityNotifier2D
 
@@ -30,7 +30,7 @@ func send():
 	get_parent().bar.message(\"I'll be on the communications and radar, and monitoring the ship. We're connected with HQ, and I'll be relaying any important details to them about the VRMNs. We're their frontline \\\"scouts\\\". Really we're in for the dirty work.\")
 "
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=3]
 
 script/source = "extends VisibilityNotifier2D
 
@@ -38,7 +38,7 @@ func send():
 	get_parent().bar.message(\"The VRMNZ are some of the dumbest space-faring pirates in the universe, but they're numerous. When they brought down our fifth colony ship... I think they became something much more united. It's hard to say.\")
 "
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=4]
 
 script/source = "extends VisibilityNotifier2D
 
@@ -102,7 +102,7 @@ travel_y = 3968
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 0
+frame = 1
 
 [node name="Fade" parent="rail/hud"]
 
@@ -110,7 +110,6 @@ editor/display_folded = true
 
 [node name="entities" type="Node2D" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 0, 10 )
 
 [node name="Laser" parent="entities" instance=ExtResource( 7 )]
@@ -121,6 +120,10 @@ transform/pos = Vector2( 184, -346 )
 [node name="RightHead" parent="entities/Laser"]
 
 transform/pos = Vector2( 50, 0 )
+
+[node name="Sprite" parent="entities/Laser/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Laser 2" parent="entities" instance=ExtResource( 7 )]
 
@@ -136,6 +139,10 @@ transform/pos = Vector2( 32, -0.0252664 )
 
 editor/display_folded = true
 
+[node name="Sprite" parent="entities/Laser 2/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser 3" parent="entities" instance=ExtResource( 7 )]
 
 editor/display_folded = true
@@ -144,6 +151,10 @@ transform/pos = Vector2( 24, -1442 )
 [node name="RightHead" parent="entities/Laser 3"]
 
 transform/pos = Vector2( 34, 0 )
+
+[node name="Sprite" parent="entities/Laser 3/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Laser4" parent="entities" instance=ExtResource( 7 )]
 
@@ -155,6 +166,10 @@ time_delay = 2.0
 
 transform/pos = Vector2( 50, 0 )
 
+[node name="Sprite" parent="entities/Laser4/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser5" parent="entities" instance=ExtResource( 7 )]
 
 editor/display_folded = true
@@ -163,6 +178,10 @@ transform/pos = Vector2( 136, -1669 )
 [node name="RightHead" parent="entities/Laser5"]
 
 transform/pos = Vector2( 50, 0 )
+
+[node name="Sprite" parent="entities/Laser5/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Laser6" parent="entities" instance=ExtResource( 7 )]
 
@@ -174,6 +193,10 @@ time_delay = 1.0
 [node name="RightHead" parent="entities/Laser6"]
 
 transform/pos = Vector2( 54, -2.38419e-06 )
+
+[node name="Sprite" parent="entities/Laser6/LeftHead/Beam"]
+
+frame = 1
 
 [node name="YCentipede" parent="entities" instance=ExtResource( 8 )]
 
@@ -187,16 +210,10 @@ disabled = true
 [node name="Checkpoint" parent="entities" instance=ExtResource( 10 )]
 
 transform/pos = Vector2( 0, -966 )
-easy_mode_only = false
 
 [node name="RespawnPoint" parent="entities/Checkpoint"]
 
 transform/pos = Vector2( 105, 0 )
-
-[node name="Checkpoint1" parent="entities" instance=ExtResource( 10 )]
-
-transform/pos = Vector2( 0, -2274 )
-section_index = 2
 
 [node name="Bee 2" parent="entities" instance=ExtResource( 9 )]
 
@@ -254,25 +271,25 @@ message_bar_path = NodePath("../rail/hud/TextBar")
 
 transform/pos = Vector2( 128, 1210 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 2 )
+script/script = SubResource( 1 )
 
 [node name="Msg1" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 128, 910 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 3 )
+script/script = SubResource( 2 )
 
 [node name="Msg2" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 128, 130 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 4 )
+script/script = SubResource( 3 )
 
 [node name="Msg3" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 118, -650 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 5 )
+script/script = SubResource( 4 )
 
 [connection signal="finished" from="EndOfLevelGUI" to="." method="_on_EndOfLevelGUI_finished"]
 

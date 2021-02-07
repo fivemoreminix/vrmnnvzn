@@ -4,7 +4,6 @@
 [ext_resource path="res://assets/sprites/particle.png" type="Texture" id=2]
 [ext_resource path="res://assets/sound/checkpoint.wav" type="Sample" id=3]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 
 custom_solver_bias = 0.0
@@ -51,7 +50,6 @@ samples/checkpoint = {
 
 script/script = ExtResource( 1 )
 section_index = 1
-easy_mode_only = true
 
 [node name="Trigger" type="Area2D" parent="."]
 
