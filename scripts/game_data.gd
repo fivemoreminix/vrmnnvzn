@@ -25,14 +25,17 @@ func load_data(): # load saved game data from disk
 			print("game_data.gd: failed to parse game data save file")
 			return 2
 		
-		### Make numbered values numbers ###
-		# Per-level data
+		### Make numbered values whole integers ###
+		# Level data
 		data.current_level = int(data.current_level)
 		data.current_section = int(data.current_section)
-		data.kills_this_level = int(data.kills_this_level)
-		data.blockers_cleared_this_level = int(data.blockers_cleared_this_level)
-		# Other data
 		data.highest_level_discovered = int(data.highest_level_discovered)
+		
+		# Level stats
+		data.level_stats.bees_killed = int(data.level_stats.bees_killed)
+		data.level_stats.centipedes_killed = int(data.level_stats.centipedes_killed)
+		data.level_stats.wasps_killed = int(data.level_stats.wasps_killed)
+		data.level_stats.deaths = int(data.level_stats.deaths)
 		
 		return 0
 		# ** To add data, edit in NewGame node's MainDialog child script **
@@ -127,10 +130,26 @@ func get_levels_count():
 	return get_levels().size()
 
 
-# NOTE: index 0 is forbidden, because it represents the start of a level
+func reset_level_stats():
+	data.level_stats = {       # A snapshot of level_stats at each section ([0] is start of level)
+		bees_killed = 0,       # Active "this level" statistics. Reset on the start of each level,
+		centipedes_killed = 0, # or set to section_stats[sect. idx] when loading from checkpoint
+		wasps_killed = 0,
+		deaths = 0,
+	}
+
+
+# Yes, this is a long function name. But at least you know what it does.
+func load_level_stats_from_section_snapshot(section_index):
+	data.level_stats = data.section_stats[section_index]
+
+
+# triggered_section is called at the start of a level, and on any checkpoints. Start of level has index = 0.
 func triggered_section(index):
-	assert(index > 0)
 	data.current_section = index
+	assert(data.section_stats.size() >= index - 1)
+	data.section_stats.insert(index, data.level_stats) # Take snapshot of level stats at section index
+	data.section_stats.resize(index + 1) # Erase any items following `index`
 	save_data()
 
 

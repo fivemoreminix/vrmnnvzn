@@ -58,13 +58,9 @@ func resume():
 func restart():
 	# Update the checkpoint selection node with all available starting points
 	var c = get_node("CheckpointSelection")
-	var section_nums = get_tree().get_nodes_in_group("Checkpoint")
-	for i in range(section_nums.size()): # Map from nodes to ints
-		section_nums[i] = section_nums[i].section_index # map checkpoints to their section indices
-	section_nums.sort() # Sort numbers in ascending
 	c.options += ["Start of level"] # Comes first (idx = 0)
 	if GameData.data.current_section > 0:
-		for num in range(1, min(section_nums.size(), GameData.data.current_section+1)): # min(section_nums.size(), GameData.data.current_section+1)
+		for num in range(1, GameData.data.current_section + 1):
 			var name = "Section " + str(num)
 			c.options += [name]
 	print(c.options)

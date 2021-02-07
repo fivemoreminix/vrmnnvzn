@@ -47,12 +47,26 @@ func _ready():
 			print("aligning with checkpoint: " + str(get_node("/root/GameData").data.current_section))
 			for checkpoint in get_tree().get_nodes_in_group("Checkpoint"):
 				if checkpoint.section_index == get_node("/root/GameData").data.current_section: # We found the checkpoint we need to be at ...
+					# GameData updates
+					get_node("/root/GameData").load_level_stats_from_section_snapshot(checkpoint.section_index)
+					# triggered_section sets the section snapshot of level stats upon calling, that's why we
+					# set the level stats from the section, prior. To prevent from collecting lots of kills,
+					# and reloading the section, for example.
+					get_node("/root/GameData").triggered_section(checkpoint.section_index)
+					
+					# Mechanical updates
 					align_with_checkpoint(checkpoint)
 					checkpoint.hide() # We don't want to see the checkpoint we're starting at...
 					get_node("ship").input_disabled = false
 					get_node("ship").add_effect("Phase-through", 1)
 					break
-		else:
+		else: # Start from beginning of level
+			# GameData updates
+			get_node("/root/GameData").reset_level_stats()
+			# we reset the level stats so that the section snapshot for start of level is entirely fresh.
+			get_node("/root/GameData").triggered_section(0) # Section index 0 is the start of the level
+			
+			# Mechanical updates
 			get_node("AnimationPlayer").play("FlyIn")
 
 

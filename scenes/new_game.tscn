@@ -52,11 +52,16 @@ func start():
 	
 	# See GameData for info about these
 	GameData.data = {
+		section_stats = [],   # A snapshot of level_stats at each section ([0] is start of level)
+		level_stats = {       # Active \"this level\" statistics. Reset on the start of each level,
+			bees_killed = 0,  # or set to section_stats[sect. idx] when loading from checkpoint
+			centipedes_killed = 0,
+			wasps_killed = 0,
+			deaths = 0,
+		},
 		current_level = 0,
 		current_section = 0,
-		kills_this_level = 0,
-		blockers_cleared_this_level = 0,
-		highest_level_discovered = 0,
+		highest_level_discovered = 0, # when this becomes (lvl_cnt - 1) then the player has beat the game
 		name = get_node(\"Name\").get_text().strip_edges(),
 		difficulty = diff,
 	}
@@ -397,13 +402,13 @@ infoNormal = "On Normal, there may be fewer checkpoints than Easy difficulty. Tr
 
 [connection signal="text_changed" from="MainDialog/Name" to="MainDialog" method="_on_Name_text_changed"]
 
-[connection signal="pressed" from="MainDialog/EasyCheck" to="DifficultyInfo" method="_on_EasyCheck_pressed"]
-
 [connection signal="pressed" from="MainDialog/EasyCheck" to="MainDialog" method="_on_MediumCheck_pressed"]
 
-[connection signal="pressed" from="MainDialog/NormalCheck" to="DifficultyInfo" method="_on_NormalCheck_pressed"]
+[connection signal="pressed" from="MainDialog/EasyCheck" to="DifficultyInfo" method="_on_EasyCheck_pressed"]
 
 [connection signal="pressed" from="MainDialog/NormalCheck" to="MainDialog" method="_on_HardCheck_pressed"]
+
+[connection signal="pressed" from="MainDialog/NormalCheck" to="DifficultyInfo" method="_on_NormalCheck_pressed"]
 
 [connection signal="pressed" from="MainDialog/Start" to="MainDialog/Start" method="_on_button_pressed"]
 

@@ -34,6 +34,7 @@ func start():
 	var selected_level_idx = levels[get_node("ItemList").get_selected_items()[0]][1]
 	GameData.load_data()
 	GameData.data.current_level = selected_level_idx
+	GameData.data.current_section = 0
 	GameData.save_data()
 	get_tree().change_scene("res://scenes/levels/lvl" + selected_level_idx + ".tscn")
 
