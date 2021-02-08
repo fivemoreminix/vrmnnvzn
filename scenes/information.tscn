@@ -39,35 +39,55 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 192.0
 margin/right = 0.0
-margin/bottom = -320.0
+margin/bottom = -498.0
 bbcode/enabled = true
-bbcode/bbcode = "[center]VRMNNVZN v0.2 Alpha[/center]
-[center]Aug 4, 2020[/center]
+bbcode/bbcode = "VRMN NVZN v0.5 Alpha
+Feb. 27, 2020 - Feb. 8, 2021
 
 
 [center]CREDITS[/center]
-[center]=======[/center]
+[center]----------------[/center]
 
-[right]Design, Programming, & Story[/right]
-Luke I. Wilson
+[center]Design & Story[/center]
+
+Luke I. Wilson \"fivemoreminix\"
 	[url=mailto:thelukaswils@gmail.com]thelukaswils@gmail.com[/url]
 	[url=https://lukewilson.me]lukewilson.me[/url]
 
-Ayman Lezhar
+[center]Programming[/center]
 
-[right]Graphics[/right]
+Luke Wilson
+Ayman Lezhar \"Haxeil\"
+
+[center]Graphics[/center]
+
 Chris DeBoy \"eightbit\"
+Luke Wilson
+
+[center]Soundtrack[/center]
+
+Hollo
+
+[center]Sound Effects[/center]
+
+Luke Wilson
+
+
+
 
 
 [center]SPECIAL THANKS TO[/center]
-[center]=================[/center]
+[center]----------------[/center]
 
-[center]Godot Engine Contributors[/center]
+[center]The Godot Engine Contributors[/center]
 
 [center]Whisper[/center]
 
 
-Copyright (C) 2020, Luke I. Wilson. All rights reserved."
+
+
+
+Copyright (C) 2021, Luke I. Wilson. All rights reserved."
 visible_characters = -1
 percent_visible = 1.0
 

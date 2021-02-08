@@ -22,6 +22,7 @@ func _process(delta):
 func exit_with_fade():
 	get_node("Fade").begin_fade_out()
 	get_node("Fade").connect("fade_finished", self, "exit")
+	set_process(false)
 
 
 func exit():
