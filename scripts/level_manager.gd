@@ -10,17 +10,12 @@ onready var end_of_level_gui = get_node(end_of_level_gui_path)
 onready var fade = get_node(fade_path)
 
 
-func _ready():
-	pass
-
-
 func _on_LevelFinishTrigger_level_finished():
 	rail.get_node("ship").input_disabled = true # Ship may no longer move...
 
 
 func _on_rail_rail_finished():
-	print("rail finished")
-	end_of_level_gui.start(level_name, GameData.data.difficulty, GameData.data.kills_this_level, GameData.data.blockers_cleared_this_level)
+	end_of_level_gui.start(level_name)
 	rail.get_node("ship").override_move_target = end_of_level_gui.get_node("ShipPosition").get_global_pos()
 
 
@@ -32,7 +27,4 @@ func _on_EndOfLevelGUI_finished():
 
 
 func _on_Fade_fade_finished():
-#	get_node("Sfx").play("level_finish")
-	# scroll text saying "Level finished!"
-#	get_node("rail/hud/BottomBar").scrolling_text("Level finished!")
 	GameData.finished_level()

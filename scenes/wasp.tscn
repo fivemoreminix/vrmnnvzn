@@ -3,10 +3,10 @@
 [ext_resource path="res://scripts/wasp.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/enemies/wasps/wasp_0.png" type="Texture" id=2]
 [ext_resource path="res://assets/sprites/enemies/wasps/wasp_1.png" type="Texture" id=3]
-[ext_resource path="res://assets/sprites/enemies/wasps/wasp_white_0.png" type="Texture" id=4]
-[ext_resource path="res://assets/sprites/enemies/wasps/wasp_white_1.png" type="Texture" id=5]
-[ext_resource path="res://assets/sprites/enemies/wasps/wasp_writing_0.png" type="Texture" id=6]
-[ext_resource path="res://assets/sprites/enemies/wasps/wasp_writing_1.png" type="Texture" id=7]
+[ext_resource path="res://assets/sprites/enemies/wasps/wasp_writing_0.png" type="Texture" id=4]
+[ext_resource path="res://assets/sprites/enemies/wasps/wasp_writing_1.png" type="Texture" id=5]
+[ext_resource path="res://assets/sprites/enemies/wasps/wasp_white_0.png" type="Texture" id=6]
+[ext_resource path="res://assets/sprites/enemies/wasps/wasp_white_1.png" type="Texture" id=7]
 [ext_resource path="res://assets/sound/alert.wav" type="Sample" id=8]
 [ext_resource path="res://assets/sound/bee_hit.wav" type="Sample" id=9]
 [ext_resource path="res://assets/sound/sound_explode.wav" type="Sample" id=10]
@@ -17,10 +17,6 @@
 [ext_resource path="res://assets/sprites/splat/splat_4.png" type="Texture" id=15]
 [ext_resource path="res://assets/sprites/gibs/gibs_5.png" type="Texture" id=16]
 [ext_resource path="res://assets/sprites/gibs/gibs_0.png" type="Texture" id=17]
-
-
-
-
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -37,13 +33,13 @@ animations = [ {
 }, {
 "frames": [ ExtResource( 4 ), ExtResource( 5 ) ],
 "loop": true,
-"name": "white",
-"speed": 10.0
+"name": "writing",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 7 ) ],
 "loop": true,
-"name": "writing",
-"speed": 5.0
+"name": "white",
+"speed": 10.0
 } ]
 
 [sub_resource type="SampleLibrary" id=3]
@@ -78,6 +74,7 @@ animations = [ {
 
 [node name="Wasp" type="Area2D" groups=[
 "Enemy",
+"Wasp",
 ]]
 
 input/pickable = true
@@ -95,6 +92,7 @@ __meta__ = {
 RailPath = "../../rail"
 writing = false
 disabled = false
+follow_right = true
 
 [node name="sprite" type="AnimatedSprite" parent="."]
 

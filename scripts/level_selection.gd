@@ -15,7 +15,7 @@ func _ready():
 			accessible = i <= int(GameData.data.highest_level_discovered)
 		else: # No game save exists
 			accessible = false
-		get_node("ItemList").add_item(levels[i][0], accessible_icon if accessible else null, accessible)
+		get_node("ItemList").add_item(str(i + 1) + ": " + levels[i][0], accessible_icon if accessible else null, accessible)
 	
 	get_node("ItemList").select(0)
 #	get_node("ItemList").grab_focus()
@@ -35,6 +35,7 @@ func start():
 	GameData.load_data()
 	GameData.data.current_level = selected_level_idx
 	GameData.data.current_section = 0
+	GameData.data.deaths = 0
 	GameData.save_data()
 	get_tree().change_scene("res://scenes/levels/lvl" + selected_level_idx + ".tscn")
 

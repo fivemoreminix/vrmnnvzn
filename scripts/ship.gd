@@ -1,6 +1,6 @@
 extends Area2D
 
-signal enemy_destroyed
+signal enemy_killed(enemy)
 
 
 # Member variables
@@ -90,6 +90,8 @@ func move(delta, motion):
 
 func shoot():
 	if can_shoot:
+		print(GameData.data.level_stats)
+		
 		# Just pressed
 		var shot = shots[1 if has_effect("Double-shot") else 2 if has_effect("Triple-shot") else 0].instance()
 		get_node("anim").play("shoot")
@@ -139,6 +141,8 @@ func kill():
 		
 		set_process(false) # Keep player from being controllable after death
 		get_parent().stop() # Stop the rail from moving
+		
+		GameData.data.deaths += 1
 
 
 func has_effect(name):
@@ -185,6 +189,18 @@ func _on_back_to_menu_pressed():
 func _on_ShootTimer_timeout():
 	can_shoot = true
 
+
+func on_enemy_destroyed(enemy):
+	if enemy.is_in_group("Bee"):
+		GameData.data.level_stats.bees_killed += 1
+	elif enemy.is_in_group("Centipede"):
+		GameData.data.level_stats.centipedes_killed += 1
+	elif enemy.is_in_group("Wasp"):
+		GameData.data.level_stats.wasps_killed += 1
+		
+	emit_signal("enemy_killed", enemy)
+
+
 ### BLINKING ###
 
 func begin_blinking():
@@ -197,12 +213,5 @@ func stop_blinking():
 func _on_BlinkTimer_timeout():
 	if is_visible(): hide()
 	else: show()
-
-func on_enemy_destroyed(enemy):
-	if enemy.is_in_group("Blocker"):
-		GameData.data.blockers_cleared_this_level += 1
-	else:
-		GameData.data.kills_this_level += 1
-	emit_signal("enemy_destroyed")
 
 ### END BLINKING ###

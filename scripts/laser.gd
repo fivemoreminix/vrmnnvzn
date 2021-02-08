@@ -24,7 +24,6 @@ func expand_beam():
 
 
 func _on_VisibilityEnabler2D_exit_screen():
-	print(get_name() + " has left the screen... freeing self :'(")
 	queue_free()
 
 

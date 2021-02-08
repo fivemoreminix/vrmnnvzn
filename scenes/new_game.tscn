@@ -57,8 +57,8 @@ func start():
 			bees_killed = 0,  # or set to section_stats[sect. idx] when loading from checkpoint
 			centipedes_killed = 0,
 			wasps_killed = 0,
-			deaths = 0,
 		},
+		deaths = 0, # Death counter for only the current level
 		current_level = 0,
 		current_section = 0,
 		highest_level_discovered = 0, # when this becomes (lvl_cnt - 1) then the player has beat the game

@@ -35,7 +35,7 @@ func load_data(): # load saved game data from disk
 		data.level_stats.bees_killed = int(data.level_stats.bees_killed)
 		data.level_stats.centipedes_killed = int(data.level_stats.centipedes_killed)
 		data.level_stats.wasps_killed = int(data.level_stats.wasps_killed)
-		data.level_stats.deaths = int(data.level_stats.deaths)
+		data.deaths = int(data.deaths)
 		
 		return 0
 		# ** To add data, edit in NewGame node's MainDialog child script **
@@ -108,8 +108,8 @@ func refresh_video_settings():
 	OS.set_borderless_window(global_data.window_mode == "Borderless")
 	OS.set_window_size(Vector2(x, y))
 	OS.set_use_vsync(global_data.vsync)
-	var ssize = OS.get_screen_size(OS.get_current_screen())
-	OS.set_window_position(Vector2(ssize.x/2-x/2, ssize.y/2-y/2))
+#	var ssize = OS.get_screen_size(OS.get_current_screen())
+#	OS.set_window_position(Vector2(ssize.x/2-x/2, ssize.y/2-y/2))
 
 func _enter_tree():
 	load_global_data() # Load global data and refresh video settings upon game load (this code is a singleton)
@@ -135,36 +135,46 @@ func reset_level_stats():
 		bees_killed = 0,       # Active "this level" statistics. Reset on the start of each level,
 		centipedes_killed = 0, # or set to section_stats[sect. idx] when loading from checkpoint
 		wasps_killed = 0,
-		deaths = 0,
 	}
 
 
 # Yes, this is a long function name. But at least you know what it does.
 func load_level_stats_from_section_snapshot(section_index):
 	data.level_stats = data.section_stats[section_index]
+	print("Loading level stats from section snapshot: " + str(data.level_stats))
+	print("(All section indices: " + str(data.section_stats) + ")")
 
 
 # triggered_section is called at the start of a level, and on any checkpoints. Start of level has index = 0.
 func triggered_section(index):
+	print("Calling triggered_section with: " + str(data.level_stats))
 	data.current_section = index
 	assert(data.section_stats.size() >= index - 1)
-	data.section_stats.insert(index, data.level_stats) # Take snapshot of level stats at section index
+	
+	var level_stats_duplicate = {}
+	clone_dict(data.level_stats, level_stats_duplicate)
+	
+	data.section_stats.insert(index, level_stats_duplicate) # Take snapshot of level stats at section index
 	data.section_stats.resize(index + 1) # Erase any items following `index`
 	save_data()
+	print("Leaving triggered_section with: " + str(data.level_stats))
+
+
+func clone_dict(source, target):
+	for key in source:
+		target[key] = source[key]
 
 
 # Using saved data about the current level, we will update save game data, save the game, then load the next level.
 func finished_level():
-	# data.current_level should always point at the currently or last played level (where should Continue button go?)
 	data.current_section = 0
-	data.kills_this_level = 0
-	data.blockers_cleared_this_level = 0
+	data.deaths = 0
 	data.current_level = int(data.current_level)
 	if data.current_level < get_levels_count()-1:
 		data.highest_level_discovered = max(data.highest_level_discovered, data.current_level + 1)
 		data.current_level += 1
 		save_data()
 		get_tree().change_scene("res://scenes/levels/lvl" + str(data.current_level) + ".tscn")
-	else:
+	else: # Roll credits
 		save_data()
 		get_tree().change_scene("res://scenes/information.tscn")

@@ -67,6 +67,7 @@ animations = [ {
 
 [node name="Bee" type="Area2D" groups=[
 "Enemy",
+"Bee",
 ]]
 
 input/pickable = true

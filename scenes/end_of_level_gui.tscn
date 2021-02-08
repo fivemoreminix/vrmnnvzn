@@ -17,7 +17,7 @@ tracks/0/keys = {
 "times": FloatArray( 0, 0.5 ),
 "transitions": FloatArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( -136, 0 ), Vector2( 8, 0 ) ]
+"values": [ Vector2( -145, 0 ), Vector2( 0, 0 ) ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Value:visibility/visible")
@@ -32,7 +32,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=2]
 
-length = 10.0
+length = 13.0
 loop = false
 step = 0.1
 tracks/0/type = "value"
@@ -68,7 +68,7 @@ tracks/2/keys = {
 } ]
 }
 tracks/3/type = "method"
-tracks/3/path = NodePath("Enemies/AnimationPlayer")
+tracks/3/path = NodePath("Bees/AnimationPlayer")
 tracks/3/interp = 1
 tracks/3/imported = false
 tracks/3/keys = {
@@ -80,11 +80,35 @@ tracks/3/keys = {
 } ]
 }
 tracks/4/type = "method"
-tracks/4/path = NodePath("Blockers/AnimationPlayer")
+tracks/4/path = NodePath("Centipedes/AnimationPlayer")
 tracks/4/interp = 1
 tracks/4/imported = false
 tracks/4/keys = {
 "times": FloatArray( 6.5 ),
+"transitions": FloatArray( 1 ),
+"values": [ {
+"args": [ "Anim" ],
+"method": "play"
+} ]
+}
+tracks/5/type = "method"
+tracks/5/path = NodePath("Wasps/AnimationPlayer")
+tracks/5/interp = 1
+tracks/5/imported = false
+tracks/5/keys = {
+"times": FloatArray( 8 ),
+"transitions": FloatArray( 1 ),
+"values": [ {
+"args": [ "Anim" ],
+"method": "play"
+} ]
+}
+tracks/6/type = "method"
+tracks/6/path = NodePath("Deaths/AnimationPlayer")
+tracks/6/interp = 1
+tracks/6/imported = false
+tracks/6/keys = {
+"times": FloatArray( 9.5 ),
 "transitions": FloatArray( 1 ),
 "values": [ {
 "args": [ "Anim" ],
@@ -143,9 +167,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 80.0
+margin/top = 60.0
 margin/right = 256.0
-margin/bottom = 88.0
+margin/bottom = 68.0
 
 [node name="Title" type="Label" parent="Difficulty"]
 
@@ -153,7 +177,7 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = -136.0
+margin/left = -145.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 9.0
@@ -190,24 +214,24 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
-[node name="Enemies" type="Control" parent="."]
+[node name="Bees" type="Control" parent="."]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 104.0
+margin/top = 84.0
 margin/right = 256.0
-margin/bottom = 112.0
+margin/bottom = 92.0
 
-[node name="Title" type="Label" parent="Enemies"]
+[node name="Title" type="Label" parent="Bees"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = -136.0
+margin/left = -145.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 9.0
@@ -217,7 +241,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Value" type="Label" parent="Enemies"]
+[node name="Value" type="Label" parent="Bees"]
 
 visibility/visible = false
 focus/ignore_mouse = true
@@ -233,7 +257,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Enemies"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bees"]
 
 playback/process_mode = 1
 playback/default_blend_time = 0.0
@@ -244,34 +268,34 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
-[node name="Blockers" type="Control" parent="."]
+[node name="Centipedes" type="Control" parent="."]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
-margin/top = 128.0
+margin/top = 108.0
 margin/right = 256.0
-margin/bottom = 136.0
+margin/bottom = 116.0
 
-[node name="Title" type="Label" parent="Blockers"]
+[node name="Title" type="Label" parent="Centipedes"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = -136.0
+margin/left = -145.0
 margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 9.0
-text = "BARRELS EXPLODED"
+text = "CENTIPEDES CRUSHED"
 align = 2
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Value" type="Label" parent="Blockers"]
+[node name="Value" type="Label" parent="Centipedes"]
 
 visibility/visible = false
 focus/ignore_mouse = true
@@ -287,7 +311,115 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Blockers"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Centipedes"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/Anim = SubResource( 1 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="Wasps" type="Control" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 132.0
+margin/right = 256.0
+margin/bottom = 140.0
+
+[node name="Title" type="Label" parent="Wasps"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -145.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 9.0
+text = "WASPS SETTLED"
+align = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Value" type="Label" parent="Wasps"]
+
+visibility/visible = false
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 176.0
+margin/top = 0.0
+margin/right = 265.0
+margin/bottom = 9.0
+text = "0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Wasps"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/Anim = SubResource( 1 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="Deaths" type="Control" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 156.0
+margin/right = 256.0
+margin/bottom = 164.0
+
+[node name="Title" type="Label" parent="Deaths"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = -145.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 9.0
+text = "DEATHS"
+align = 2
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Value" type="Label" parent="Deaths"]
+
+visibility/visible = false
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 176.0
+margin/top = 0.0
+margin/right = 265.0
+margin/bottom = 9.0
+text = "0"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Deaths"]
 
 playback/process_mode = 1
 playback/default_blend_time = 0.0
@@ -311,7 +443,7 @@ autoplay = ""
 
 [node name="ShipPosition" type="Position2D" parent="."]
 
-transform/pos = Vector2( 160, 112 )
+transform/pos = Vector2( 161, 113 )
 
 [connection signal="finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_finished"]
 
