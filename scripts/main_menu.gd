@@ -8,7 +8,7 @@ func _ready():
 	set_process(true)
 	
 	get_node("Continue").set_disabled(not File.new().file_exists("user://VRMNNVZN.save"))
-#	GameData.load_global_data() # To initialize video settings and get the global data into memory
+	GameData.load_global_data() # To initialize video settings and get the global data into memory
 
 func _process(delta):
 	if not get_tree().get_root().is_input_disabled():
