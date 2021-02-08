@@ -18,14 +18,13 @@ var killed = false
 onready var shipSprite = get_node("shipSprite")
 onready var shots = [preload("res://scenes/shot.tscn"),preload("res://scenes/2shot.tscn"),preload("res://scenes/3shot.tscn")]
 
-var active_effects = [] # a list of active powerups or detriments [type of effect, effect name, duration as a float]
+var active_effects = [] # a list of active powerups or detriments [effect name, duration as a float]
 
 onready var last_mouse_pos = get_viewport().get_mouse_pos()
 
 func _ready():
 	screen_size = get_viewport().get_rect().size
 	set_process(true)
-#	set_process_input(true)
 
 
 func _process(delta):
@@ -43,8 +42,6 @@ func _process(delta):
 			if e[0] == "Phase-through": stop_blinking()
 	
 	if override_move_target != null:
-#		motion = (override_move_target - get_global_pos()).normalized()
-#		move(delta, motion)
 		override_move_target_time += delta
 		var cpos = get_global_pos()
 		cpos = cpos.linear_interpolate(override_move_target, override_move_target_time)
@@ -67,13 +64,6 @@ func _process(delta):
 			if shooting: shoot()
 
 
-# Experimental mouse support
-#func _input(event):
-#	if event.type == InputEvent.MOUSE_MOTION:
-#		print(var2str(event.relative_pos))
-#		move(get_process_delta_time(), event.relative_pos)
-
-
 func move(delta, motion):
 	var pos = get_pos()
 	
@@ -82,9 +72,6 @@ func move(delta, motion):
 	
 	pos.x = clamp(pos.x, 0, screen_size.x)
 	pos.y = min(pos.y, 175)
-	
-	# Make y value discrete to prevent (most) stuttering
-	pos.y = int(pos.y)
 	
 	set_pos(pos)
 

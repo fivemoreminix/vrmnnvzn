@@ -3,7 +3,7 @@ extends Control
 onready var fade = get_node("Fade")
 
 func _ready():
-	print(OS.get_data_dir())
+	print("Data dir: \"" + OS.get_data_dir() + "\"")
 	
 	set_process(true)
 	
