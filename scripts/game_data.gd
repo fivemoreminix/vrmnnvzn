@@ -109,7 +109,7 @@ func refresh_video_settings():
 		var size = OS.get_screen_size(OS.get_current_screen())
 		x = size.x
 		y = size.y # Make sure screen size matches before updating
-		OS.set_window_fullscreen(true)
+	OS.set_window_fullscreen(fullscreen)
 	OS.set_borderless_window(global_data.window_mode == "Borderless")
 	OS.set_window_size(Vector2(x, y))
 	OS.set_use_vsync(global_data.vsync)
