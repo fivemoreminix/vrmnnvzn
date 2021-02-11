@@ -5,7 +5,8 @@ export(String, "Random", "Fast shooting", "Phase-through", "Triple-shot", "Shoot
 
 func _on_Powerup_area_enter( area ):
 	if area.get_name() == "ship":
-		area.add_effect(powerup)
+		# Powerups for bullets last until you die
+		area.add_effect(powerup, 300 if powerup != "Phase-through" else 10)
 		queue_free() # Remove this powerup from scene
 
 func _ready():
