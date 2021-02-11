@@ -2,6 +2,8 @@ extends Area2D
 
 const STUN_DIR = Vector2(1, -1) # Direction wasp moves while stunned
 
+var powerup = preload("res://scenes/powerup.tscn")
+
 # Onready
 onready var SPEED = 75 if GameData.data.difficulty == "Normal" else 60
 onready var enemy_shot = preload("res://scenes/enemy_shot.tscn")
@@ -152,6 +154,12 @@ func destroy():
 			call_deferred("set_monitorable", false) # Disable the collisions on this Bee
 #			set_monitorable(false) # This won't work because we can't prevent monitoring while monitoring...
 			get_node("sfx").play("sound_explode")
+			
+			# Spawn a random powerup on death
+			var p = powerup.instance()
+			p.set_global_pos(get_global_pos())
+			get_parent().add_child(p)
+			
 			return true
 		else:
 			flashing = true
