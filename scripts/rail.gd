@@ -7,6 +7,8 @@ const Y_MOTION = -50 # Local y position change in pixels each frame
 const DIST_TO_BEGIN_LERP = 50
 const INTERPOLATE_SPEED = 1
 
+export var disabled = false # Used for cinematics or something
+
 #export var max_x = 256 # Max x distance rail can travel from origin before stopping
 export(int) var travel_y = 200 # The y distance the rail will travel before stopping (relative)
 onready var starting_y = get_pos().y
@@ -21,6 +23,7 @@ func _process(delta):
 		update()
 		return
 	else:
+		if disabled: return
 		
 		if get_pos().y <= -travel_y: # If the rail has travelled past the distance of travel_y ...
 			emit_signal("rail_finished")
