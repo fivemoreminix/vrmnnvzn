@@ -115,7 +115,7 @@ func kill():
 	if not killed:
 		killed = true
 		call_deferred("set_monitorable", false) # Keep other enemies from dying on our invisible collider
-#		set_monitorable(false) # This won't work because we can't prevent monitoring while monitoring...
+
 		get_node("shipSprite").hide()
 		get_node("thruster").hide()
 		get_node("explosion").show()
@@ -124,7 +124,6 @@ func kill():
 		
 		get_node("../hud/Pause").popup(true, true) # Show pause menu dialog
 		get_node("../hud/Pause").handle("restart") # Show checkpoint selection menu
-		print("called restart...")
 		
 		set_process(false) # Keep player from being controllable after death
 		get_parent().stop() # Stop the rail from moving
