@@ -5,7 +5,7 @@ var powerup = preload("res://scenes/powerup.tscn")
 
 # Member variables
 onready var SPEED = 75 if GameData.data.difficulty == "Normal" else 60
-var powerup_drop_chance = 15 if GameData.data.difficulty == "Normal" else 30
+var powerup_drop_chance = 20 if GameData.data.difficulty == "Normal" else 45
 
 export(NodePath) var TargetPath = "../../rail/ship"
 var RailPath                    = "../../rail"
