@@ -79,7 +79,7 @@ editor/display_folded = true
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 0
+frame = 2
 
 [node name="Fade" parent="rail/hud"]
 
@@ -242,14 +242,23 @@ transform/pos = Vector2( 73, 1885 )
 
 transform/pos = Vector2( 158, 0 )
 
+[node name="Sprite" parent="entities/Laser/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser1" parent="entities" instance=ExtResource( 9 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 8, 1647.4 )
+time_delay = 1.0
 
 [node name="RightHead" parent="entities/Laser1"]
 
 transform/pos = Vector2( 110, 0 )
+
+[node name="Sprite" parent="entities/Laser1/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Blocker" parent="entities" instance=ExtResource( 10 )]
 
@@ -302,14 +311,11 @@ transform/pos = Vector2( 58, -935 )
 
 transform/pos = Vector2( 171, 0 )
 
-[node name="Sprite" parent="entities/Laser3/LeftHead/Beam"]
-
-frame = 1
-
 [node name="Laser4" parent="entities" instance=ExtResource( 9 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 183, -1582 )
+time_delay = 2.0
 
 [node name="RightHead" parent="entities/Laser4"]
 
@@ -332,6 +338,7 @@ frame = 1
 
 editor/display_folded = true
 transform/pos = Vector2( 56, -2083 )
+time_delay = 1.0
 
 [node name="RightHead" parent="entities/Laser6"]
 
