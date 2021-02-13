@@ -224,11 +224,16 @@ margin/bottom = -2106.0
 
 editor/display_folded = true
 transform/pos = Vector2( 0, 2200 )
+disabled = false
 travel_y = 2298
 
 [node name="thruster" parent="rail/ship"]
 
 frame = 1
+
+[node name="TextBar" parent="rail/hud"]
+
+messages_hidden = false
 
 [node name="entities" type="Node2D" parent="."]
 
@@ -243,6 +248,10 @@ transform/pos = Vector2( 64, 2166 )
 
 transform/pos = Vector2( 112, 0 )
 
+[node name="Sprite" parent="entities/Laser/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser1" parent="entities" instance=ExtResource( 13 )]
 
 editor/display_folded = true
@@ -252,10 +261,6 @@ time_delay = 1.0
 [node name="RightHead" parent="entities/Laser1"]
 
 transform/pos = Vector2( 112, 0 )
-
-[node name="Sprite" parent="entities/Laser1/LeftHead/Beam"]
-
-frame = 1
 
 [node name="Laser3" parent="entities" instance=ExtResource( 13 )]
 
@@ -267,6 +272,10 @@ time_delay = 1.0
 
 transform/pos = Vector2( 96, 0 )
 
+[node name="Sprite" parent="entities/Laser3/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser2" parent="entities" instance=ExtResource( 13 )]
 
 editor/display_folded = true
@@ -276,10 +285,6 @@ time_delay = 1.0
 [node name="RightHead" parent="entities/Laser2"]
 
 transform/pos = Vector2( 64, 0 )
-
-[node name="Sprite" parent="entities/Laser2/LeftHead/Beam"]
-
-frame = 1
 
 [node name="Bee" parent="entities" instance=ExtResource( 14 )]
 
@@ -453,7 +458,6 @@ powerup = "Phase-through"
 [node name="Checkpoint" parent="entities" instance=ExtResource( 16 )]
 
 transform/pos = Vector2( 0, -826 )
-easy_mode_only = false
 
 [node name="Wasp Writing" type="Node2D" parent="entities"]
 
@@ -470,7 +474,6 @@ transform/pos = Vector2( -50, -74 )
 transform/pos = Vector2( 64, -8 )
 RailPath = NodePath("../../../rail")
 writing = true
-follow_right = true
 
 [node name="Area2D" type="Area2D" parent="entities/Wasp Writing"]
 

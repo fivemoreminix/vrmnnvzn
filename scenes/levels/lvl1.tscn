@@ -58,7 +58,7 @@ func spawn_centipede(gpos):
 	add_child(c)
 "
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=3]
 
 script/source = "extends VisibilityNotifier2D
 
@@ -66,7 +66,7 @@ func send():
 	get_parent().bar.message(\"It looks like this place winds, you'll need to be quick on the steering.\")
 "
 
-[sub_resource type="GDScript" id=5]
+[sub_resource type="GDScript" id=4]
 
 script/source = "extends VisibilityNotifier2D
 
@@ -74,15 +74,15 @@ func send():
 	get_parent().bar.message(\"That was a millipede. They're not one of the VRMNZ. It's very rare to see them about; they usually nest deep within the surface of these formations.\")
 "
 
-[sub_resource type="GDScript" id=6]
+[sub_resource type="GDScript" id=5]
 
 script/source = "extends VisibilityNotifier2D
 
 func send():
-	get_parent().bar.message(\"VRMN runes? But nobody knew they wrote. Maybe they're reading the runes, instead. Transmitting a report to HQ.\")
+	get_parent().bar.message(\"VRMN runes? But nobody knew they wrote. Transmitting a report to HQ.\")
 "
 
-[sub_resource type="GDScript" id=7]
+[sub_resource type="GDScript" id=6]
 
 script/source = "extends VisibilityNotifier2D
 
@@ -214,11 +214,20 @@ margin/bottom = -3776.0
 [node name="rail" parent="." instance=ExtResource( 11 )]
 
 transform/pos = Vector2( 0, 160 )
+disabled = false
 travel_y = 3968
+
+[node name="thruster" parent="rail/ship"]
+
+frame = 0
 
 [node name="Fade" parent="rail/hud"]
 
 editor/display_folded = true
+
+[node name="TextBar" parent="rail/hud"]
+
+messages_hidden = false
 
 [node name="entities" type="Node2D" parent="."]
 
@@ -228,7 +237,6 @@ transform/pos = Vector2( 0, 10 )
 
 editor/display_folded = true
 transform/pos = Vector2( 0, -824 )
-easy_mode_only = false
 
 [node name="RespawnPoint" parent="entities/Checkpoint1"]
 
@@ -239,7 +247,6 @@ transform/pos = Vector2( 152, 0 )
 editor/display_folded = true
 transform/pos = Vector2( 0, -2504 )
 section_index = 2
-easy_mode_only = false
 
 [node name="RespawnPoint" parent="entities/Checkpoint"]
 
@@ -457,25 +464,25 @@ message_bar_path = NodePath("../rail/hud/TextBar")
 
 transform/pos = Vector2( 190, 20 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 4 )
+script/script = SubResource( 3 )
 
 [node name="Msg1" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 150, -1210 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 5 )
+script/script = SubResource( 4 )
 
 [node name="Msg2" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 120, -2160 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 6 )
+script/script = SubResource( 5 )
 
 [node name="Msg3" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 200, -2682 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 7 )
+script/script = SubResource( 6 )
 
 [connection signal="finished" from="EndOfLevelGUI" to="." method="_on_EndOfLevelGUI_finished"]
 

@@ -43,7 +43,7 @@ func send():
 script/source = "extends VisibilityNotifier2D
 
 func send():
-	get_parent().bar.message(\"There's one, on the right... Get ready to maneuver and shoot anything that moves!\")
+	get_parent().bar.message(\"There's one, on the right... Prepare to maneuver!\")
 "
 
 [node name="lvl0" type="Node2D"]
@@ -98,6 +98,7 @@ transform/pos = Vector2( 224, -3184 )
 
 editor/display_folded = true
 transform/pos = Vector2( 0, 1284 )
+disabled = false
 travel_y = 3968
 
 [node name="thruster" parent="rail/ship"]
@@ -107,6 +108,10 @@ frame = 0
 [node name="Fade" parent="rail/hud"]
 
 editor/display_folded = true
+
+[node name="TextBar" parent="rail/hud"]
+
+messages_hidden = false
 
 [node name="entities" type="Node2D" parent="."]
 
@@ -239,7 +244,6 @@ stream/buffering_ms = 500
 
 [node name="Sequencing" type="Node2D" parent="."]
 
-editor/display_folded = true
 script/script = ExtResource( 13 )
 message_bar_path = NodePath("../rail/hud/TextBar")
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=1]
+[gd_scene load_steps=27 format=1]
 
 [ext_resource path="res://scripts/level_manager.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=2]
@@ -42,7 +42,23 @@ func send():
 script/source = "extends VisibilityNotifier2D
 
 func send():
-	get_parent().bar.message(\"Nothing comes without some resistence, though.\")
+	get_parent().bar.message(\"Nothing comes without some resistence.\")
+"
+
+[sub_resource type="GDScript" id=6]
+
+script/source = "extends VisibilityNotifier2D
+
+func send():
+	get_parent().bar.message(\"Stay to the right side!\")
+"
+
+[sub_resource type="GDScript" id=5]
+
+script/source = "extends VisibilityNotifier2D
+
+func send():
+	get_parent().bar.message(\"Look! More runes...\")
 "
 
 [node name="lvl0" type="Node2D"]
@@ -214,6 +230,10 @@ travel_y = 3968
 [node name="ship" parent="rail"]
 
 editor/display_folded = true
+
+[node name="thruster" parent="rail/ship"]
+
+frame = 1
 
 [node name="Fade" parent="rail/hud"]
 
@@ -461,10 +481,6 @@ transform/pos = Vector2( 68, 3224 )
 
 transform/pos = Vector2( 72, 0 )
 
-[node name="Sprite" parent="entities/Laser/LeftHead/Beam"]
-
-frame = 1
-
 [node name="Laser2" parent="entities" instance=ExtResource( 17 )]
 
 editor/display_folded = true
@@ -474,6 +490,10 @@ time_delay = 1.0
 [node name="RightHead" parent="entities/Laser2"]
 
 transform/pos = Vector2( 167, 0 )
+
+[node name="Sprite" parent="entities/Laser2/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Laser3" parent="entities" instance=ExtResource( 17 )]
 
@@ -485,6 +505,10 @@ time_delay = 3.0
 
 transform/pos = Vector2( 103, 0 )
 
+[node name="Sprite" parent="entities/Laser3/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser4" parent="entities" instance=ExtResource( 17 )]
 
 editor/display_folded = true
@@ -495,6 +519,10 @@ time_delay = 4.0
 
 transform/pos = Vector2( 166, 0 )
 
+[node name="Sprite" parent="entities/Laser4/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser1" parent="entities" instance=ExtResource( 17 )]
 
 editor/display_folded = true
@@ -504,10 +532,6 @@ transform/pos = Vector2( 69, 2599 )
 
 transform/pos = Vector2( 150, 0 )
 
-[node name="Sprite" parent="entities/Laser1/LeftHead/Beam"]
-
-frame = 1
-
 [node name="Laser5" parent="entities" instance=ExtResource( 17 )]
 
 editor/display_folded = true
@@ -516,10 +540,6 @@ transform/pos = Vector2( 84, -1280 )
 [node name="RightHead" parent="entities/Laser5"]
 
 transform/pos = Vector2( 167, 0 )
-
-[node name="Sprite" parent="entities/Laser5/LeftHead/Beam"]
-
-frame = 1
 
 [node name="Laser6" parent="entities" instance=ExtResource( 17 )]
 
@@ -531,10 +551,6 @@ time_delay = 4.0
 
 transform/pos = Vector2( 196, 0 )
 
-[node name="Sprite" parent="entities/Laser6/LeftHead/Beam"]
-
-frame = 1
-
 [node name="Laser7" parent="entities" instance=ExtResource( 17 )]
 
 editor/display_folded = true
@@ -544,10 +560,6 @@ time_delay = 2.0
 [node name="RightHead" parent="entities/Laser7"]
 
 transform/pos = Vector2( 230, 0 )
-
-[node name="Sprite" parent="entities/Laser7/LeftHead/Beam"]
-
-frame = 1
 
 [node name="Laser8" parent="entities" instance=ExtResource( 17 )]
 
@@ -559,10 +571,6 @@ time_delay = 1.0
 
 transform/pos = Vector2( 230, 0 )
 
-[node name="Sprite" parent="entities/Laser8/LeftHead/Beam"]
-
-frame = 1
-
 [node name="Laser9" parent="entities" instance=ExtResource( 17 )]
 
 editor/display_folded = true
@@ -573,10 +581,6 @@ time_delay = 1.0
 
 transform/pos = Vector2( 166, 0 )
 
-[node name="Sprite" parent="entities/Laser9/LeftHead/Beam"]
-
-frame = 1
-
 [node name="Laser10" parent="entities" instance=ExtResource( 17 )]
 
 editor/display_folded = true
@@ -585,10 +589,6 @@ transform/pos = Vector2( 37, -1810 )
 [node name="RightHead" parent="entities/Laser10"]
 
 transform/pos = Vector2( 165, 0 )
-
-[node name="Sprite" parent="entities/Laser10/LeftHead/Beam"]
-
-frame = 1
 
 [node name="Laser11" parent="entities" instance=ExtResource( 17 )]
 
@@ -600,6 +600,10 @@ time_delay = 3.0
 
 transform/pos = Vector2( 227, 0 )
 
+[node name="Sprite" parent="entities/Laser11/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser12" parent="entities" instance=ExtResource( 17 )]
 
 editor/display_folded = true
@@ -609,10 +613,6 @@ time_delay = 3.0
 [node name="RightHead" parent="entities/Laser12"]
 
 transform/pos = Vector2( 210, 0 )
-
-[node name="Sprite" parent="entities/Laser12/LeftHead/Beam"]
-
-frame = 1
 
 [node name="Laser13" parent="entities" instance=ExtResource( 17 )]
 
@@ -624,10 +624,6 @@ time_delay = 5.0
 
 transform/pos = Vector2( 210, 0 )
 
-[node name="Sprite" parent="entities/Laser13/LeftHead/Beam"]
-
-frame = 1
-
 [node name="Laser14" parent="entities" instance=ExtResource( 17 )]
 
 editor/display_folded = true
@@ -637,10 +633,6 @@ time_delay = 5.0
 [node name="RightHead" parent="entities/Laser14"]
 
 transform/pos = Vector2( 178, 0 )
-
-[node name="Sprite" parent="entities/Laser14/LeftHead/Beam"]
-
-frame = 1
 
 [node name="Laser15" parent="entities" instance=ExtResource( 17 )]
 
@@ -652,6 +644,10 @@ time_delay = 2.0
 
 transform/pos = Vector2( 164, 0 )
 
+[node name="Sprite" parent="entities/Laser15/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser16" parent="entities" instance=ExtResource( 17 )]
 
 editor/display_folded = true
@@ -661,6 +657,10 @@ time_delay = 1.0
 [node name="RightHead" parent="entities/Laser16"]
 
 transform/pos = Vector2( 227, 0 )
+
+[node name="Sprite" parent="entities/Laser16/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Laser17" parent="entities" instance=ExtResource( 17 )]
 
@@ -672,10 +672,6 @@ time_delay = 2.0
 
 transform/pos = Vector2( 164, 0 )
 
-[node name="Sprite" parent="entities/Laser17/LeftHead/Beam"]
-
-frame = 1
-
 [node name="Laser18" parent="entities" instance=ExtResource( 17 )]
 
 editor/display_folded = true
@@ -685,6 +681,10 @@ time_delay = 3.0
 [node name="RightHead" parent="entities/Laser18"]
 
 transform/pos = Vector2( 53, 0 )
+
+[node name="Sprite" parent="entities/Laser18/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Laser20" parent="entities" instance=ExtResource( 17 )]
 
@@ -696,6 +696,10 @@ time_delay = 1.0
 
 transform/pos = Vector2( 84, 0 )
 
+[node name="Sprite" parent="entities/Laser20/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser21" parent="entities" instance=ExtResource( 17 )]
 
 editor/display_folded = true
@@ -705,6 +709,10 @@ time_delay = 2.0
 [node name="RightHead" parent="entities/Laser21"]
 
 transform/pos = Vector2( 84, 0 )
+
+[node name="Sprite" parent="entities/Laser21/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Laser22" parent="entities" instance=ExtResource( 17 )]
 
@@ -716,6 +724,10 @@ time_delay = 3.0
 
 transform/pos = Vector2( 162, 0 )
 
+[node name="Sprite" parent="entities/Laser22/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser19" parent="entities" instance=ExtResource( 17 )]
 
 editor/display_folded = true
@@ -726,10 +738,6 @@ time_delay = 1.0
 [node name="RightHead" parent="entities/Laser19"]
 
 transform/pos = Vector2( 42, 1.90735e-06 )
-
-[node name="Sprite" parent="entities/Laser19/LeftHead/Beam"]
-
-frame = 1
 
 [node name="Millipede1" type="Node2D" parent="entities"]
 
@@ -781,6 +789,24 @@ transform/pos = Vector2( 120, 3580 )
 rect = Rect2( -10, -10, 20, 20 )
 script/script = SubResource( 4 )
 
+[node name="Msg2" type="VisibilityNotifier2D" parent="Sequencing"]
+
+transform/pos = Vector2( 200, 2130 )
+rect = Rect2( -10, -10, 20, 20 )
+script/script = SubResource( 6 )
+
+[node name="Msg3" type="VisibilityNotifier2D" parent="Sequencing"]
+
+transform/pos = Vector2( 120, 1180 )
+rect = Rect2( -10, -10, 20, 20 )
+script/script = SubResource( 5 )
+
+[node name="Msg4" type="VisibilityNotifier2D" parent="Sequencing"]
+
+transform/pos = Vector2( 30, 500 )
+rect = Rect2( -10, -10, 20, 20 )
+script/script = SubResource( 5 )
+
 [connection signal="finished" from="EndOfLevelGUI" to="." method="_on_EndOfLevelGUI_finished"]
 
 [connection signal="rail_finished" from="rail" to="." method="_on_rail_rail_finished"]
@@ -792,6 +818,10 @@ script/script = SubResource( 4 )
 [connection signal="enter_screen" from="Sequencing/Msg" to="Sequencing/Msg" method="send"]
 
 [connection signal="enter_screen" from="Sequencing/Msg1" to="Sequencing/Msg1" method="send"]
+
+[connection signal="enter_screen" from="Sequencing/Msg2" to="Sequencing/Msg2" method="send"]
+
+[connection signal="enter_screen" from="Sequencing/Msg3" to="Sequencing/Msg3" method="send"]
 
 
 [editable path="rail"]

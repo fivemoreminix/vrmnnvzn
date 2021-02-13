@@ -1,4 +1,4 @@
-[Entering combat for the first time]
+[Entering combat for the first time: level 1]
 [No enemies]
 
 Looks like we're in this together, {name}. I'm the Admin.
@@ -7,25 +7,109 @@ I'll be on the communications and radar, and monitoring the ship. We're connecte
 
 The VRMNZ are some of the dumbest space-faring pirates in the universe, but they're numerous. When they brought down our fifth colony ship... I think they became something much more united. It's hard to say.
 
+[A bee is spotted]
 There's one, on the right... Prepare to maneuver!
 
 
 
 
 
-[Entering level 2]
+[Entering level 2: Enigma]
 It looks like this place winds, you'll need to be quick on the steering.
 
 [Millipede saves player]
 That was a millipede. They're not one of the VRMNZ. It's very rare to see them about; they usually nest deep within the surface of these formations.
 
 [Runes]
-VRMN runes? But nobody knew they wrote. Maybe they're reading the runes, instead. Transmitting a report to HQ.
+VRMN runes? But nobody knew they wrote. Transmitting a report to HQ.
 
 We need to decode the messages.
 
 
 
 
+[Level 3: Into the Fog]
+An ambush. They were expecting us.
 
-These structures are not natural formations -- the VRMNZ built these.
+A swarm of those things are coming. Quick, grab that power!
+
+Wow, that was close. Up ahead, there's more runes.
+
+[Wasp spotted writing]
+Looks like we found our Ernest Hemingway. Transmitting to HQ...
+
+[Pass through force field]
+{1 second delay}
+We passed through some kind of force field. It corrupted our message, and we lost communications.
+
+We're alone.
+
+
+
+
+
+[level 4: Spire]
+Just a ways more. I'm getting disturbances directly ahead. What I believe to be a way out.
+But nothing comes without *some* resistence.
+
+[When the right side of the level is the correct to stick to]
+Stay to the right side!
+
+[On see wasp]
+Oh, that does not look good.
+
+[On wasp killed]
+I can't believe he stuck around.
+
+[On second wasp killed]
+And... medal.
+
+
+
+
+[Level 5: Waking up Hell]
+The exit is just on the other side of this chasm. There is a lot of activity ahead, stay sharp. I know you can do it.
+
+[Near the end of the level]
+Cutting through their defenses has really weakened them. We weren't supposed to have stepped through their shields, I suppose. They haven't been ready for us.
+
+[About to pass through other side of force field]
+Look, there's the exit!
+
+[After passing through shield]
+I am reconnecting to the IGCN... Please hold.
+{Delay of 3 seconds}
+There are several new messages. It looks like they thought we had died upon impact of the shield. The colony is reporting major retreat for many of the VRMNZ.
+
+I am compiling reports of our progress and I will transmit them shortly.
+
+
+
+
+[Level 6: Fugitives on the Run]
+
+[After defeating one or two waves of bees and centipedes]
+They're retreating!
+
+But to where?
+
+[About halfway through the level]
+It looks like they're headed for a last line of defense. The Hornet's Nest, the colony is calling it. Sounds like it might be a big fight.
+
+
+
+
+
+[Level 7: The Hornet's Nest]
+This is it: the Hornet's Nest is up ahead. Expect many hostiles.
+
+[Almost entirely through the level]
+That's it, we've broken up their last line of defense and eliminated all of the wasps. The colony says they're backing off! I think the war is over. Without the wasps in command, the VRMNZ are directionless.
+
+The commander wants us to return. They have some mighty big medals to hang around your shoulders. :)
+
+
+
+
+[End of game]
+{roll credits}

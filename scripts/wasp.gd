@@ -1,5 +1,7 @@
 extends Area2D
 
+signal killed
+
 const STUN_DIR = Vector2(1, -1) # Direction wasp moves while stunned
 
 var powerup = preload("res://scenes/powerup.tscn")
@@ -159,6 +161,8 @@ func destroy():
 			var p = powerup.instance()
 			p.set_global_pos(get_global_pos())
 			get_parent().add_child(p)
+			
+			emit_signal("killed")
 			
 			return true
 		else:
