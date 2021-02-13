@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=32 format=1]
+[gd_resource type="TileSet" load_steps=36 format=1]
 
 [ext_resource path="res://assets/tiles/brick.png" type="Texture" id=1]
 [ext_resource path="res://assets/tiles/joint.png" type="Texture" id=2]
@@ -31,6 +31,26 @@
 
 custom_solver_bias = 0.0
 extents = Vector2( 8, 8 )
+
+[sub_resource type="RectangleShape2D" id=6]
+
+custom_solver_bias = 0.0
+extents = Vector2( 6, 8 )
+
+[sub_resource type="RectangleShape2D" id=7]
+
+custom_solver_bias = 0.0
+extents = Vector2( 6, 8 )
+
+[sub_resource type="RectangleShape2D" id=8]
+
+custom_solver_bias = 0.0
+extents = Vector2( 8, 6 )
+
+[sub_resource type="RectangleShape2D" id=9]
+
+custom_solver_bias = 0.0
+extents = Vector2( 8, 6 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 
@@ -303,8 +323,8 @@ points = Vector2Array( 0, 16, 16, 0, 16, 16 )
 22/region = Rect2( 0, 0, 16, 16 )
 22/occluder_offset = Vector2( 8, 8 )
 22/navigation_offset = Vector2( 8, 8 )
-22/shape_offset = Vector2( 8, 8 )
-22/shapes = [ SubResource( 1 ) ]
+22/shape_offset = Vector2( 6, 8 )
+22/shapes = [ SubResource( 6 ) ]
 22/one_way_collision_direction = Vector2( 0, 0 )
 22/one_way_collision_max_depth = 0.0
 23/name = "pipeCutoffLeft"
@@ -314,8 +334,8 @@ points = Vector2Array( 0, 16, 16, 0, 16, 16 )
 23/region = Rect2( 0, 0, 16, 16 )
 23/occluder_offset = Vector2( 8, 8 )
 23/navigation_offset = Vector2( 8, 8 )
-23/shape_offset = Vector2( 8, 8 )
-23/shapes = [ SubResource( 1 ) ]
+23/shape_offset = Vector2( 10, 8 )
+23/shapes = [ SubResource( 7 ) ]
 23/one_way_collision_direction = Vector2( 0, 0 )
 23/one_way_collision_max_depth = 0.0
 24/name = "pipeCutoffUp"
@@ -325,8 +345,8 @@ points = Vector2Array( 0, 16, 16, 0, 16, 16 )
 24/region = Rect2( 0, 0, 16, 16 )
 24/occluder_offset = Vector2( 8, 8 )
 24/navigation_offset = Vector2( 8, 8 )
-24/shape_offset = Vector2( 8, 8 )
-24/shapes = [ SubResource( 1 ) ]
+24/shape_offset = Vector2( 8, 10 )
+24/shapes = [ SubResource( 8 ) ]
 24/one_way_collision_direction = Vector2( 0, 0 )
 24/one_way_collision_max_depth = 0.0
 25/name = "pipeCutoffDown"
@@ -336,8 +356,8 @@ points = Vector2Array( 0, 16, 16, 0, 16, 16 )
 25/region = Rect2( 0, 0, 16, 16 )
 25/occluder_offset = Vector2( 8, 8 )
 25/navigation_offset = Vector2( 8, 8 )
-25/shape_offset = Vector2( 8, 8 )
-25/shapes = [ SubResource( 1 ) ]
+25/shape_offset = Vector2( 8, 6 )
+25/shapes = [ SubResource( 9 ) ]
 25/one_way_collision_direction = Vector2( 0, 0 )
 25/one_way_collision_max_depth = 0.0
 
