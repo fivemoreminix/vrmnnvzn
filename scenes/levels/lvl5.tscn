@@ -1,15 +1,16 @@
-[gd_scene load_steps=10 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://scripts/level_manager.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=2]
 [ext_resource path="res://assets/sprites/portal/black.png" type="Texture" id=3]
 [ext_resource path="res://scenes/end_of_level_gui.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/ship.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=6]
-[ext_resource path="res://assets/sound/music/electric_sound_loop.ogg" type="AudioStream" id=7]
-[ext_resource path="res://scripts/sequencing.gd" type="Script" id=8]
+[ext_resource path="res://scenes/bee.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=7]
+[ext_resource path="res://assets/sound/music/electric_sound_loop.ogg" type="AudioStream" id=8]
+[ext_resource path="res://scripts/sequencing.gd" type="Script" id=9]
 
-[sub_resource type="GDScript" id=2]
+[sub_resource type="GDScript" id=1]
 
 script/source = "extends VisibilityNotifier2D
 
@@ -41,7 +42,7 @@ collision/bounce = 0.0
 collision/layers = 1
 collision/mask = 1
 occluder/light_mask = 1
-tile_data = IntArray( 0, 4, 15, 4, 65536, 4, 65551, 4, 131072, 4, 131087, 4, 196608, 4, 196623, 4, 262144, 4, 262159, 4, 327680, 4, 327695, 4, 393216, 4, 393231, 4, 458752, 4, 458767, 4, 524288, 4, 524303, 4, 589824, 4, 589839, 4, 655360, 4, 655375, 4, 720896, 4, 720911, 4, 786432, 4, 786433, 4, 786434, 4, 786435, 4, 786436, 4, 786443, 4, 786444, 4, 786445, 4, 786446, 4, 786447, 4 )
+tile_data = IntArray( -4194282, 4, -4194281, 4, -4194280, 4, -4194279, 4, -4128749, 4, -4128747, 4, -4128743, 4, -4128732, 4, -4063213, 4, -4063212, 4, -4063205, 4, -4063204, 4, -4063203, 4, -4063202, 4, -4063196, 4, -3997677, 4, -3997669, 4, -3997666, 4, -3997660, 4, -3932141, 4, -3932134, 4, -3932130, 4, -3932126, 4, -3932125, 4, -3932124, 4, -3932123, 4, -3866605, 4, -3866598, 4, -3866597, 4, -3866596, 4, -3866595, 4, -3866589, 4, -3866585, 4, -3866582, 4, -3801069, 4, -3801062, 4, -3801053, 4, -3801049, 4, -3801047, 4, -3801045, 4, -3735533, 4, -3735526, 4, -3735517, 4, -3735512, 4, -3669997, 4, -3669990, 4, -3669989, 4, -3669985, 4, -3669982, 4, -3669977, 4, -3604461, 4, -3604453, 4, -3604452, 4, -3604451, 4, -3604450, 4, -3604441, 4, -3538926, 4, -3538909, 4, -3538908, 4, -3538905, 4, -3538900, 4, 0, 4, 15, 4, 65536, 4, 65551, 4, 131072, 4, 131087, 4, 196608, 4, 196623, 4, 262144, 4, 262159, 4, 327680, 4, 327695, 4, 393216, 4, 393231, 4, 393251, 4, 458752, 4, 458767, 4, 458771, 4, 458787, 4, 524288, 4, 524303, 4, 524307, 4, 524309, 4, 524310, 4, 524311, 4, 524312, 4, 524323, 4, 589824, 4, 589839, 4, 589843, 4, 589844, 4, 589845, 4, 589848, 4, 655360, 4, 655375, 4, 655379, 4, 655380, 4, 655388, 4, 655389, 4, 655395, 4, 720896, 4, 720910, 4, 720911, 4, 720915, 4, 720916, 4, 720924, 4, 720926, 4, 720931, 4, 786432, 4, 786446, 4, 786447, 4, 786452, 4, 786465, 4, 786466, 4, 786467, 4, 786468, 4, 786471, 4, 851968, 4, 851981, 4, 851982, 4, 851983, 4, 851987, 4, 851988, 4, 851994, 4, 851995, 4, 851996, 4, 851997, 4, 852002, 4, 852007, 4, 852011, 4, 852016, 4, 852019, 4, 917504, 4, 917517, 4, 917518, 4, 917519, 4, 917523, 4, 917524, 4, 917530, 4, 917531, 4, 917532, 4, 917538, 4, 917543, 4, 917547, 4, 917550, 4, 917551, 4, 917552, 4, 917553, 4, 917555, 4, 917557, 4, 917558, 4, 983040, 4, 983041, 4, 983053, 4, 983054, 4, 983055, 4, 983059, 4, 983066, 4, 983074, 4, 983079, 4, 983083, 4, 983086, 4, 983091, 4, 983092, 4, 1048576, 4, 1048577, 4, 1048590, 4, 1048591, 4, 1048595, 4, 1048602, 4, 1048606, 4, 1048610, 4, 1048615, 4, 1048619, 4, 1048622, 4, 1048627, 4, 1048628, 4, 1048630, 4, 1114112, 4, 1114113, 4, 1114126, 4, 1114127, 4, 1114131, 4, 1114140, 4, 1114141, 4, 1114146, 4, 1114147, 4, 1114151, 4, 1114154, 4, 1114155, 4, 1114158, 4, 1114163, 4, 1114166, 4, 1179648, 4, 1179649, 4, 1179650, 4, 1179663, 4, 1179683, 4, 1179687, 4, 1179688, 4, 1179689, 4, 1179691, 4, 1179694, 4, 1179699, 4, 1179703, 4, 1245184, 4, 1245185, 4, 1245186, 4, 1245199, 4, 1245228, 4, 1245230, 4, 1245239, 4, 1310720, 4, 1310721, 4, 1310722, 4, 1310735, 4, 1310775, 4, 1376256, 4, 1376257, 4, 1376271, 4, 1441792, 4, 1441793, 4, 1441807, 4, 1507328, 4, 1507329, 4, 1507343, 4, 1572864, 4, 1572879, 4, 1638400, 4, 1638415, 4, 1703936, 4, 1703951, 4, 1769472, 4, 1769487, 4, 1835008, 4, 1835023, 4, 1900544, 4, 1900545, 4, 1900559, 4, 1966080, 4, 1966081, 4, 1966095, 4, 2031616, 4, 2031617, 4, 2031631, 4, 2097152, 4, 2097153, 4, 2097167, 4, 2162688, 4, 2162689, 4, 2162703, 4, 2228224, 4, 2228225, 4, 2228238, 4, 2228239, 4, 2293760, 4, 2293761, 4, 2293774, 4, 2293775, 4, 2359296, 4, 2359297, 4, 2359310, 4, 2359311, 4, 2424832, 4, 2424846, 4, 2424847, 4, 2490368, 4, 2490382, 4, 2490383, 4, 2555904, 4, 2555919, 4, 2621440, 4, 2621455, 4, 2686976, 4, 2686991, 4, 2752512, 4, 2752527, 4, 2818048, 4, 2818063, 4, 2883584, 4, 2883599, 4, 2949120, 4, 2949135, 4, 3014656, 2, 3014657, 22, 3014669, 23, 3014670, 17, 3014671, 4, 3080192, 4, 3080205, 11, 3080206, 3, 3080207, 4, 3145728, 4, 3145741, 11, 3145742, 3, 3145743, 4, 3211264, 4, 3211277, 11, 3211278, 3, 3211279, 4, 3276800, 4, 3276813, 11, 3276814, 3, 3276815, 4, 3342336, 4, 3342337, 4, 3342349, 11, 3342350, 3, 3342351, 4, 3407872, 4, 3407873, 4, 3407885, 11, 3407886, 3, 3407887, 4, 3473408, 4, 3473409, 4, 3473410, 4, 3473421, 11, 3473422, 3, 3473423, 4, 3538944, 4, 3538945, 4, 3538946, 4, 3538957, 11, 3538958, 3, 3538959, 4, 3604480, 4, 3604481, 4, 3604482, 4, 3604493, 11, 3604494, 3, 3604495, 4, 3670016, 4, 3670017, 4, 3670018, 4, 3670029, 11, 3670030, 3, 3670031, 4, 3735552, 4, 3735553, 4, 3735554, 4, 3735565, 11, 3735566, 3, 3735567, 4, 3801088, 4, 3801089, 4, 3801101, 11, 3801102, 3, 3801103, 4, 3866624, 4, 3866625, 4, 3866637, 11, 3866638, 3, 3866639, 4, 3932160, 4, 3932161, 4, 3932168, 13, 3932173, 11, 3932174, 3, 3932175, 4, 3997696, 4, 3997703, 11, 3997704, 4, 3997705, 10, 3997709, 11, 3997710, 3, 3997711, 4, 4063232, 4, 4063239, 11, 4063240, 4, 4063241, 10, 4063245, 23, 4063246, 19, 4063247, 4, 4128768, 4, 4128775, 11, 4128776, 4, 4128777, 10, 4128781, 11, 4128782, 3, 4128783, 4, 4194304, 4, 4194311, 11, 4194312, 4, 4194313, 10, 4194317, 11, 4194318, 3, 4194319, 4, 4259840, 4, 4259847, 11, 4259848, 4, 4259849, 10, 4259853, 11, 4259854, 3, 4259855, 4, 4325376, 4, 4325383, 11, 4325384, 4, 4325385, 10, 4325389, 11, 4325390, 3, 4325391, 4, 4390912, 4, 4390920, 12, 4390925, 11, 4390926, 3, 4390927, 4, 4456448, 4, 4456461, 11, 4456462, 3, 4456463, 4, 4521984, 4, 4521997, 11, 4521998, 3, 4521999, 4, 4587520, 4, 4587533, 11, 4587534, 3, 4587535, 4, 4653056, 4, 4653064, 13, 4653069, 11, 4653070, 3, 4653071, 4, 4718592, 4, 4718599, 11, 4718600, 16, 4718601, 22, 4718605, 23, 4718606, 15, 4718607, 4, 4784128, 4, 4784129, 4, 4784135, 11, 4784136, 3, 4784137, 10, 4784141, 11, 4784142, 4, 4784143, 4, 4849664, 4, 4849665, 4, 4849671, 11, 4849672, 3, 4849673, 10, 4849677, 11, 4849678, 4, 4849679, 4, 4915200, 4, 4915201, 4, 4915207, 11, 4915208, 3, 4915209, 10, 4915213, 11, 4915214, 4, 4915215, 4, 4980736, 4, 4980737, 4, 4980743, 11, 4980744, 25, 4980745, 10, 4980749, 11, 4980750, 4, 4980751, 4, 5046272, 4, 5046285, 11, 5046286, 4, 5046287, 4, 5111808, 4, 5111823, 4, 5177344, 4, 5177359, 4, 5242880, 4, 5242895, 4, 5308416, 4, 5308423, 11, 5308424, 24, 5308425, 10, 5308431, 4, 5373952, 4, 5373959, 11, 5373960, 3, 5373961, 10, 5373967, 4, 5439488, 4, 5439495, 11, 5439496, 3, 5439497, 10, 5439503, 4, 5505024, 4, 5505031, 11, 5505032, 3, 5505033, 10, 5505039, 4, 5570560, 4, 5570567, 11, 5570568, 3, 5570569, 10, 5570575, 4, 5636096, 4, 5636103, 11, 5636104, 3, 5636105, 10, 5636111, 4, 5701632, 4, 5701639, 11, 5701640, 25, 5701641, 10, 5701646, 4, 5701647, 4, 5767168, 4, 5767169, 4, 5767182, 4, 5767183, 4, 5832704, 4, 5832705, 4, 5832718, 4, 5832719, 4, 5898240, 4, 5898241, 4, 5898254, 4, 5898255, 4, 5963776, 4, 5963777, 4, 5963790, 4, 5963791, 4, 6029312, 4, 6029313, 4, 6029319, 11, 6029320, 24, 6029321, 10, 6029326, 4, 6029327, 4, 6094848, 4, 6094855, 11, 6094856, 3, 6094857, 10, 6094862, 4, 6094863, 4, 6160384, 4, 6160391, 11, 6160392, 3, 6160393, 10, 6160398, 4, 6160399, 4, 6225920, 4, 6225927, 11, 6225928, 3, 6225929, 10, 6225933, 4, 6225934, 4, 6225935, 4, 6291456, 4, 6291463, 11, 6291464, 3, 6291465, 10, 6291469, 4, 6291470, 4, 6291471, 4, 6356992, 4, 6356999, 11, 6357000, 25, 6357001, 10, 6357005, 4, 6357006, 4, 6357007, 4, 6422528, 4, 6422541, 4, 6422542, 4, 6422543, 4, 6488064, 4, 6488077, 4, 6488078, 4, 6488079, 4, 6553600, 4, 6553614, 4, 6553615, 4, 6619136, 4, 6619150, 4, 6619151, 4, 6684672, 4, 6684679, 11, 6684680, 24, 6684681, 10, 6684686, 4, 6684687, 4, 6750208, 4, 6750215, 11, 6750216, 3, 6750217, 10, 6750223, 4, 6815744, 4, 6815751, 11, 6815752, 3, 6815753, 10, 6815759, 4, 6881280, 4, 6881287, 11, 6881288, 3, 6881289, 10, 6881295, 4, 6946816, 4, 6946823, 11, 6946824, 3, 6946825, 10, 6946831, 4, 7012352, 4, 7012353, 4, 7012359, 11, 7012360, 25, 7012361, 10, 7012367, 4, 7077888, 4, 7077889, 4, 7077903, 4, 7143424, 4, 7143425, 4, 7143439, 4, 7208960, 4, 7208961, 4, 7208975, 4, 7274496, 4, 7274497, 4, 7274511, 4, 7340032, 4, 7340033, 4, 7340039, 11, 7340040, 24, 7340041, 10, 7340047, 4, 7405568, 4, 7405575, 11, 7405576, 3, 7405577, 10, 7405583, 4, 7471104, 4, 7471111, 11, 7471112, 3, 7471113, 10, 7471119, 4, 7536640, 4, 7536647, 11, 7536648, 3, 7536649, 10, 7536655, 4, 7602176, 4, 7602183, 11, 7602184, 3, 7602185, 10, 7602190, 4, 7602191, 4, 7667712, 4, 7667719, 11, 7667720, 3, 7667721, 10, 7667726, 4, 7667727, 4, 7733248, 22, 7733255, 23, 7733256, 15, 7733257, 10, 7733262, 4, 7733263, 4, 7798784, 4, 7798792, 12, 7798798, 4, 7798799, 4, 7864320, 4, 7864334, 4, 7864335, 4, 7929856, 4, 7929870, 4, 7929871, 4, 7995392, 4, 7995407, 4, 8060928, 4, 8060943, 4, 8126464, 4, 8126479, 4, 8192000, 4, 8192015, 4, 8257536, 4, 8257551, 4, 8323072, 4, 8323087, 4, 8388608, 4, 8388623, 4, 8454144, 4, 8454159, 4, 8519680, 4, 8519695, 4, 8585216, 4, 8585231, 4, 8650752, 4, 8650767, 4, 8716288, 4, 8716303, 4, 8781824, 4, 8781839, 4, 8847360, 4, 8847375, 4, 8912896, 4, 8912911, 4 )
 __meta__ = {
 "_edit_lock_": true
 }
@@ -62,6 +63,8 @@ margin/bottom = -3776.0
 [node name="rail" parent="." instance=ExtResource( 5 )]
 
 editor/display_folded = true
+transform/pos = Vector2( 0, 2000 )
+disabled = false
 travel_y = 3968
 
 [node name="ship" parent="rail"]
@@ -70,24 +73,229 @@ editor/display_folded = true
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 1
+frame = 0
 
 [node name="Fade" parent="rail/hud"]
 
 editor/display_folded = true
 
+[node name="TextBar" parent="rail/hud"]
+
+messages_hidden = false
+
 [node name="entities" type="Node2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 0, 10 )
 
-[node name="LevelFinishTrigger" parent="." instance=ExtResource( 6 )]
+[node name="Bee" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 80, 1818 )
+
+[node name="Bee1" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 180, 1768 )
+
+[node name="Bee2" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 40, 1698 )
+
+[node name="Bee3" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 200, 1668 )
+
+[node name="Bee4" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 130, 1608 )
+
+[node name="Bee5" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 70, 1558 )
+
+[node name="Bee6" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 110, 1558 )
+
+[node name="Bee13" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 110, 838 )
+
+[node name="Bee27" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 40, 688 )
+
+[node name="Bee28" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 160, 618 )
+
+[node name="Bee29" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 50.2735, 359.354 )
+
+[node name="Bee30" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 150.274, 359.354 )
+
+[node name="Bee31" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 100.274, 219.354 )
+
+[node name="Bee14" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 170, 868 )
+
+[node name="Bee27 4" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 100, 718 )
+
+[node name="Bee275" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 220, 648 )
+
+[node name="Bee276" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 96.2242, 361.796 )
+
+[node name="Bee278 2" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 196.224, 361.796 )
+
+[node name="Bee2783" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 146.224, 221.796 )
+
+[node name="Bee277" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 116.224, 331.796 )
+
+[node name="Bee278" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 216.224, 331.796 )
+
+[node name="Bee279" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 166.224, 191.796 )
+
+[node name="Bee22" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 170, 988 )
+
+[node name="Bee23" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 90, 988 )
+
+[node name="Bee24" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 40, 998 )
+
+[node name="Bee25" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 110, 1088 )
+
+[node name="Bee26" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 220, 1088 )
+
+[node name="Bee15" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 150, 808 )
+
+[node name="Bee27 3" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 80, 658 )
+
+[node name="Bee274" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 200, 588 )
+
+[node name="Bee276 3" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 77.8452, 330.975 )
+
+[node name="Bee2764" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 177.845, 330.975 )
+
+[node name="Bee2765" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 127.845, 190.975 )
+
+[node name="Bee16" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 50, 808 )
+
+[node name="Bee17" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 90, 758 )
+
+[node name="Bee18" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 180, 758 )
+
+[node name="Bee19" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 130, 758 )
+
+[node name="Bee20" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 100, 798 )
+
+[node name="Bee27 2" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 30, 648 )
+
+[node name="Bee273" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 150, 578 )
+
+[node name="Bee276 2" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 50, 328 )
+
+[node name="Bee2763" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 150, 328 )
+
+[node name="Bee2765 2" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 100, 188 )
+
+[node name="Bee21" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 210, 808 )
+
+[node name="Bee7" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 150, 1558 )
+
+[node name="Bee8" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 183, 1398 )
+
+[node name="Bee9" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 53, 1367 )
+
+[node name="Bee10" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 103, 1257 )
+
+[node name="Bee11" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 133, 1257 )
+
+[node name="Bee12" parent="entities" instance=ExtResource( 6 )]
+
+transform/pos = Vector2( 183, 1257 )
+
+[node name="LevelFinishTrigger" parent="." instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 120, -3792 )
 transform/scale = Vector2( 5.125, 1 )
 
 [node name="Music" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 7 )
+stream/stream = ExtResource( 8 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 0.0
@@ -98,14 +306,14 @@ stream/buffering_ms = 500
 
 [node name="Sequencing" type="Node2D" parent="."]
 
-script/script = ExtResource( 8 )
-message_bar_path = null
+script/script = ExtResource( 9 )
+message_bar_path = "../rail/hud/TextBar"
 
 [node name="Msg" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 120, 0 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 2 )
+script/script = SubResource( 1 )
 
 [connection signal="finished" from="EndOfLevelGUI" to="." method="_on_EndOfLevelGUI_finished"]
 
