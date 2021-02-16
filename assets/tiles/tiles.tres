@@ -32,42 +32,42 @@
 custom_solver_bias = 0.0
 extents = Vector2( 8, 8 )
 
-[sub_resource type="RectangleShape2D" id=6]
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
 extents = Vector2( 6, 8 )
 
-[sub_resource type="RectangleShape2D" id=7]
+[sub_resource type="RectangleShape2D" id=3]
 
 custom_solver_bias = 0.0
 extents = Vector2( 6, 8 )
 
-[sub_resource type="RectangleShape2D" id=8]
+[sub_resource type="RectangleShape2D" id=4]
 
 custom_solver_bias = 0.0
 extents = Vector2( 8, 6 )
 
-[sub_resource type="RectangleShape2D" id=9]
+[sub_resource type="RectangleShape2D" id=5]
 
 custom_solver_bias = 0.0
 extents = Vector2( 8, 6 )
 
-[sub_resource type="ConvexPolygonShape2D" id=2]
+[sub_resource type="ConvexPolygonShape2D" id=6]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 16, 0, 0, 16, 0, 0 )
 
-[sub_resource type="ConvexPolygonShape2D" id=3]
+[sub_resource type="ConvexPolygonShape2D" id=7]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 16, 16, 0, 16, 0, 0 )
 
-[sub_resource type="ConvexPolygonShape2D" id=4]
+[sub_resource type="ConvexPolygonShape2D" id=8]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 0, 0, 16, 0, 16, 16 )
 
-[sub_resource type="ConvexPolygonShape2D" id=5]
+[sub_resource type="ConvexPolygonShape2D" id=9]
 
 custom_solver_bias = 0.0
 points = Vector2Array( 0, 16, 16, 0, 16, 16 )
@@ -148,7 +148,7 @@ points = Vector2Array( 0, 16, 16, 0, 16, 16 )
 6/occluder_offset = Vector2( 8, 8 )
 6/navigation_offset = Vector2( 8, 8 )
 6/shape_offset = Vector2( 0, 0 )
-6/shapes = [ SubResource( 2 ) ]
+6/shapes = [ SubResource( 6 ) ]
 6/one_way_collision_direction = Vector2( 0, 0 )
 6/one_way_collision_max_depth = 0.0
 7/name = "bLc"
@@ -159,7 +159,7 @@ points = Vector2Array( 0, 16, 16, 0, 16, 16 )
 7/occluder_offset = Vector2( 8, 8 )
 7/navigation_offset = Vector2( 8, 8 )
 7/shape_offset = Vector2( 0, 0 )
-7/shapes = [ SubResource( 3 ) ]
+7/shapes = [ SubResource( 7 ) ]
 7/one_way_collision_direction = Vector2( 0, 0 )
 7/one_way_collision_max_depth = 0.0
 8/name = "uRc"
@@ -170,7 +170,7 @@ points = Vector2Array( 0, 16, 16, 0, 16, 16 )
 8/occluder_offset = Vector2( 8, 8 )
 8/navigation_offset = Vector2( 8, 8 )
 8/shape_offset = Vector2( 0, 0 )
-8/shapes = [ SubResource( 4 ) ]
+8/shapes = [ SubResource( 8 ) ]
 8/one_way_collision_direction = Vector2( 0, 0 )
 8/one_way_collision_max_depth = 0.0
 9/name = "lRc"
@@ -181,7 +181,7 @@ points = Vector2Array( 0, 16, 16, 0, 16, 16 )
 9/occluder_offset = Vector2( 8, 8 )
 9/navigation_offset = Vector2( 8, 8 )
 9/shape_offset = Vector2( 0, 0 )
-9/shapes = [ SubResource( 5 ) ]
+9/shapes = [ SubResource( 9 ) ]
 9/one_way_collision_direction = Vector2( 0, 0 )
 9/one_way_collision_max_depth = 0.0
 10/name = "lS"
@@ -324,7 +324,7 @@ points = Vector2Array( 0, 16, 16, 0, 16, 16 )
 22/occluder_offset = Vector2( 8, 8 )
 22/navigation_offset = Vector2( 8, 8 )
 22/shape_offset = Vector2( 6, 8 )
-22/shapes = [ SubResource( 6 ) ]
+22/shapes = [ SubResource( 2 ) ]
 22/one_way_collision_direction = Vector2( 0, 0 )
 22/one_way_collision_max_depth = 0.0
 23/name = "pipeCutoffLeft"
@@ -335,7 +335,7 @@ points = Vector2Array( 0, 16, 16, 0, 16, 16 )
 23/occluder_offset = Vector2( 8, 8 )
 23/navigation_offset = Vector2( 8, 8 )
 23/shape_offset = Vector2( 10, 8 )
-23/shapes = [ SubResource( 7 ) ]
+23/shapes = [ SubResource( 3 ) ]
 23/one_way_collision_direction = Vector2( 0, 0 )
 23/one_way_collision_max_depth = 0.0
 24/name = "pipeCutoffUp"
@@ -346,7 +346,7 @@ points = Vector2Array( 0, 16, 16, 0, 16, 16 )
 24/occluder_offset = Vector2( 8, 8 )
 24/navigation_offset = Vector2( 8, 8 )
 24/shape_offset = Vector2( 8, 10 )
-24/shapes = [ SubResource( 8 ) ]
+24/shapes = [ SubResource( 4 ) ]
 24/one_way_collision_direction = Vector2( 0, 0 )
 24/one_way_collision_max_depth = 0.0
 25/name = "pipeCutoffDown"
@@ -357,7 +357,7 @@ points = Vector2Array( 0, 16, 16, 0, 16, 16 )
 25/occluder_offset = Vector2( 8, 8 )
 25/navigation_offset = Vector2( 8, 8 )
 25/shape_offset = Vector2( 8, 6 )
-25/shapes = [ SubResource( 9 ) ]
+25/shapes = [ SubResource( 5 ) ]
 25/one_way_collision_direction = Vector2( 0, 0 )
 25/one_way_collision_max_depth = 0.0
 

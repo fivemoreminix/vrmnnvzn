@@ -8,17 +8,14 @@ onready var SPEED = 75 if GameData.data.difficulty == "Normal" else 60
 var powerup_drop_chance = 20 if GameData.data.difficulty == "Normal" else 45
 
 export(NodePath) var TargetPath = "../../rail/ship"
-var RailPath                    = "../../rail"
-var target                      = null
+onready var target = get_node(TargetPath)
 
 export(bool) var disabled = false
-export(bool) var play_alert_sound_when_visible = false
+export(bool) var target_is_non_player = false
 
 var direction = Vector2(0,0)
 var health = 2 # Number of times this enemy can take damage
 var destroyed = false
-
-var target_pos = Vector2(0, 0)
 
 var flashing = false
 var is_white = false
@@ -29,10 +26,6 @@ func _process(delta):
 			global_translate(-direction*SPEED*delta*0.5)
 		else:
 			global_translate(direction*SPEED*delta)
-
-
-func _ready():
-	target = get_node(TargetPath)
 
 
 func destroy():
@@ -70,22 +63,29 @@ func destroy():
 	return false
 
 
-func _on_visibility_enter_screen():
-#	if play_alert_sound_when_visible:
-#		get_node("sfx").play("alert")
+func start():
+	var target_pos = Vector2(0, 0) # In global coordinates
 	
-	var rail_speed = Vector2(0, target.get_parent().Y_MOTION)
-	var player_speed = target.SPEED
-	var player_pos = target.get_global_pos()
-	var distance = (player_pos - get_global_pos()).length() # distance: us from player
+	if target_is_non_player:
+		target_pos = target.get_global_pos()
+	else:
+		var rail_speed = Vector2(0, target.get_parent().Y_MOTION)
+		var player_speed = target.SPEED
+		var player_pos = target.get_global_pos()
+		var distance = (player_pos - get_global_pos()).length() # distance: us from player
+		
+		# What offset from the player's current position when we get there?
+		var predict = Vector2(0, -player_speed) * get_process_delta_time() * (distance * (1.0/SPEED))
+		
+		target_pos = player_pos + predict
 	
-	# What offset from the player's current position when we get there?
-	var predict = Vector2(0, -player_speed) * get_process_delta_time() * (distance * (1.0/SPEED))
-	
-	target_pos = player_pos + predict
 	direction = (target_pos - get_global_pos()).normalized()
 	
 	set_process(true) # begin moving
+
+
+func _on_visibility_enter_screen():
+	start()
 
 
 func _on_visibility_exit_screen():

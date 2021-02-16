@@ -61,9 +61,6 @@ Oh, that does not look good.
 [On wasp killed]
 I can't believe he stuck around.
 
-[On second wasp killed]
-And... medal.
-
 
 
 
