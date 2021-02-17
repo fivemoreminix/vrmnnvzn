@@ -24,7 +24,7 @@
 [ext_resource path="res://scripts/bar.gd" type="Script" id=22]
 [ext_resource path="res://scenes/pointer.tscn" type="PackedScene" id=23]
 
-[sub_resource type="Animation" id=1]
+[sub_resource type="Animation" id=9]
 
 resource/name = "FlyIn"
 length = 1.5
@@ -51,7 +51,7 @@ tracks/1/keys = {
 "values": [ Vector2( 128, 278 ), Vector2( 128, 142 ) ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=10]
 
 resource/name = "Idle"
 length = 0.1
@@ -78,7 +78,7 @@ tracks/1/keys = {
 "values": [ false ]
 }
 
-[sub_resource type="SampleLibrary" id=3]
+[sub_resource type="SampleLibrary" id=11]
 
 samples/bloop = {
 "db": 0.0,
@@ -87,12 +87,12 @@ samples/bloop = {
 "sample": ExtResource( 2 )
 }
 
-[sub_resource type="ConvexPolygonShape2D" id=4]
+[sub_resource type="ConvexPolygonShape2D" id=12]
 
 custom_solver_bias = 0.0
 points = Vector2Array( -7, 6, 0, -8, 7, 6 )
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=13]
 
 animations = [ {
 "frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 7 ), ExtResource( 8 ) ],
@@ -101,7 +101,7 @@ animations = [ {
 "speed": 15.0
 } ]
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=14]
 
 length = 1.0
 loop = false
@@ -127,7 +127,7 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=15]
 
 length = 0.2
 loop = false
@@ -164,13 +164,13 @@ samples/powerup_get = {
 "sample": ExtResource( 12 )
 }
 samples/shoot = {
-"db": -8.0,
+"db": 8.0,
 "pitch": 1.0,
 "priority": 0,
 "sample": ExtResource( 13 )
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=16]
 
 length = 0.7
 loop = false
@@ -206,7 +206,7 @@ tracks/2/keys = {
 "values": [ false, true ]
 }
 
-[sub_resource type="StyleBoxFlat" id=10]
+[sub_resource type="StyleBoxFlat" id=17]
 
 content_margin/left = -1.0
 content_margin/right = -1.0
@@ -219,7 +219,7 @@ border_size = 0
 border_blend = true
 draw_bg = true
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=18]
 
 length = 2.0
 loop = false
@@ -245,7 +245,7 @@ tracks/1/keys = {
 "values": [ true, false ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=19]
 
 length = 0.5
 loop = false
@@ -287,6 +287,7 @@ script/script = ExtResource( 1 )
 __meta__ = {
 "__editor_plugin_screen__": "2D"
 }
+disabled = false
 travel_y = 200
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -294,8 +295,8 @@ travel_y = 200
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/FlyIn = SubResource( 1 )
-anims/Idle = SubResource( 2 )
+anims/FlyIn = SubResource( 9 )
+anims/Idle = SubResource( 10 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -310,7 +311,7 @@ params/attenuation/min_distance = 1.0
 params/attenuation/max_distance = 2048.0
 params/attenuation/distance_exp = 1.0
 config/polyphony = 1
-config/samples = SubResource( 3 )
+config/samples = SubResource( 11 )
 config/pitch_random = 0.0
 
 [node name="ship" type="Area2D" parent="." groups=[
@@ -319,7 +320,7 @@ config/pitch_random = 0.0
 
 transform/pos = Vector2( 128, 278 )
 input/pickable = true
-shapes/0/shape = SubResource( 4 )
+shapes/0/shape = SubResource( 12 )
 shapes/0/transform = Matrix32( 1.25, 0, 0, 1.25, 0, 0 )
 shapes/0/trigger = false
 gravity_vec = Vector2( 0, 1 )
@@ -409,9 +410,9 @@ texture = ExtResource( 4 )
 [node name="thruster" type="AnimatedSprite" parent="ship"]
 
 transform/pos = Vector2( 0, 13 )
-frames = SubResource( 5 )
+frames = SubResource( 13 )
 animation = "default"
-frame = 3
+frame = 1
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ship"]
@@ -427,8 +428,8 @@ trigger = false
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/explosion = SubResource( 6 )
-anims/shoot = SubResource( 7 )
+anims/explosion = SubResource( 14 )
+anims/shoot = SubResource( 15 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -654,7 +655,7 @@ margin/bottom = 100.0
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/popup = SubResource( 9 )
+anims/popup = SubResource( 16 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -675,6 +676,7 @@ margin/top = 184.0
 margin/right = 256.0
 margin/bottom = 192.0
 script/script = ExtResource( 22 )
+messages_hidden = false
 
 [node name="Panel" type="Panel" parent="hud/TextBar"]
 
@@ -692,7 +694,7 @@ margin/left = 128.0
 margin/top = 10.0
 margin/right = -128.0
 margin/bottom = 0.0
-custom_styles/panel = SubResource( 10 )
+custom_styles/panel = SubResource( 17 )
 
 [node name="Text" type="Label" parent="hud/TextBar/Panel"]
 
@@ -714,8 +716,8 @@ max_lines_visible = -1
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/Hide = SubResource( 11 )
-anims/Show = SubResource( 12 )
+anims/Hide = SubResource( 18 )
+anims/Show = SubResource( 19 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
