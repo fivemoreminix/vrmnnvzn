@@ -100,10 +100,13 @@ It looks like they're headed for a last line of defense. The Hornet's Nest, the 
 [Level 7: The Hornet's Nest]
 This is it: the Hornet's Nest is up ahead. Expect many hostiles.
 
-[Almost entirely through the level]
-That's it, we've broken up their last line of defense and eliminated all of the wasps. The colony says they're backing off! I think the war is over. Without the wasps in command, the VRMNZ are directionless.
+[Upon seeing structures]
+This is the hornet's nest. These structures are not natural formations. The VRMNZ built these.
 
-The commander wants us to return. They have some mighty big medals to hang around your shoulders. :)
+[End of level]
+That's it, we've broken up their last line of defense and eliminated all of the commanding wasps. The colony says they're backing off! I think the war is over. Without the wasps in command, the VRMNZ are directionless.
+
+The commander wants us to return. I think we may have some awards waiting for us... :)
 
 
 
