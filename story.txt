@@ -44,6 +44,10 @@ We passed through some kind of force field. It corrupted our message, and we los
 
 We're alone.
 
+I can't decipher exactly what the wasps are writing, but it seems to be messages to the VRMNZ. Maybe instructions.
+
+I'll begin running a learning algorithm I've prepared.
+
 
 
 
@@ -71,7 +75,7 @@ The exit is just on the other side of this chasm. There is a lot of activity ahe
 Cutting through their defenses has really weakened them. We weren't supposed to have stepped through their shields, I suppose. They haven't been ready for us.
 
 [About to pass through other side of force field]
-Look, there's the exit!
+Brace!
 
 [After passing through shield]
 I am reconnecting to the IGCN... Please hold.
@@ -91,7 +95,7 @@ They're retreating!
 But to where?
 
 [About halfway through the level]
-It looks like they're headed for a last line of defense. The Hornet's Nest, the colony is calling it. Sounds like it might be a big fight.
+It looks like they're headed for a last line of defense. The colony calls it The Hornet's Nest. That sounds like it might be a big fight.
 
 
 
@@ -104,9 +108,9 @@ This is it: the Hornet's Nest is up ahead. Expect many hostiles.
 This is the hornet's nest. These structures are not natural formations. The VRMNZ built these.
 
 [End of level]
-That's it, we've broken up their last line of defense and eliminated all of the commanding wasps. The colony says they're backing off! I think the war is over. Without the wasps in command, the VRMNZ are directionless.
+That's it, we've broken up their last line of defense and eliminated all of the commanding wasps. The colony says they're backing off! Hah. I think the war is over. Without the wasps in command, the VRMNZ are directionless.
 
-The commander wants us to return. I think we may have some awards waiting for us... :)
+The commander wants us to return. I think you may have a reward. :)
 
 
 
