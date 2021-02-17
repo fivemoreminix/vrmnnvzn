@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=1]
+[gd_scene load_steps=21 format=1]
 
 [ext_resource path="res://scripts/level_manager.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=2]
@@ -21,7 +21,48 @@
 script/source = "extends VisibilityNotifier2D
 
 func send():
-	get_parent().bar.message(\"An ambush. They were expecting us.\")
+	get_parent().bar.message(\"The exit is just on the other side of this chasm. There is a lot of activity ahead, stay sharp.\")
+"
+
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends VisibilityNotifier2D
+
+func send():
+	get_parent().bar.message(\"Cutting through their defenses has really weakened them. We weren't supposed to have stepped through their shields, I suppose. They haven't been ready for us.\")
+"
+
+[sub_resource type="GDScript" id=3]
+
+script/source = "extends VisibilityNotifier2D
+
+func send():
+	get_parent().bar.message(\"Brace!\")
+"
+
+[sub_resource type="GDScript" id=4]
+
+script/source = "extends VisibilityNotifier2D
+
+func send():
+	get_node(\"Timer1\").start()
+
+
+func _on_Timer1_timeout():
+	get_parent().bar.message(\"I am reconnecting to the IGCN... Please hold.\")
+	get_node(\"Timer2\").start() # Dialog resumes on Timer2's timeout()
+
+
+func _on_Timer_timeout():
+	get_parent().bar.message(\"There are several new messages. It looks like they thought we had died upon impact of the shield. The colony is reporting major retreat for many of the VRMNZ.\")
+"
+
+[sub_resource type="GDScript" id=5]
+
+script/source = "extends VisibilityNotifier2D
+
+func send():
+	get_parent().bar.message(\"I am compiling reports of our progress and I will transmit them shortly.\")
 "
 
 [node name="lvl0" type="Node2D"]
@@ -76,16 +117,13 @@ travel_y = 3000
 
 editor/display_folded = true
 
-[node name="thruster" parent="rail/ship"]
-
-frame = 3
-
 [node name="Fade" parent="rail/hud"]
 
 editor/display_folded = true
 
 [node name="entities" type="Node2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 0, 10 )
 
 [node name="YCentipede" parent="entities" instance=ExtResource( 6 )]
@@ -261,6 +299,10 @@ transform/pos = Vector2( 73, 1885 )
 
 transform/pos = Vector2( 158, 0 )
 
+[node name="Sprite" parent="entities/Laser/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser1" parent="entities" instance=ExtResource( 9 )]
 
 editor/display_folded = true
@@ -270,6 +312,10 @@ time_delay = 1.0
 [node name="RightHead" parent="entities/Laser1"]
 
 transform/pos = Vector2( 110, 0 )
+
+[node name="Sprite" parent="entities/Laser1/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Blocker" parent="entities" instance=ExtResource( 10 )]
 
@@ -309,6 +355,10 @@ transform/pos = Vector2( 198, -305 )
 
 transform/pos = Vector2( 36, 0 )
 
+[node name="Sprite" parent="entities/Laser 2/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser3" parent="entities" instance=ExtResource( 9 )]
 
 editor/display_folded = true
@@ -317,10 +367,6 @@ transform/pos = Vector2( 58, -935 )
 [node name="RightHead" parent="entities/Laser3"]
 
 transform/pos = Vector2( 171, 0 )
-
-[node name="Sprite" parent="entities/Laser3/LeftHead/Beam"]
-
-frame = 1
 
 [node name="Laser4" parent="entities" instance=ExtResource( 9 )]
 
@@ -332,10 +378,6 @@ time_delay = 2.0
 
 transform/pos = Vector2( 50, 0 )
 
-[node name="Sprite" parent="entities/Laser4/LeftHead/Beam"]
-
-frame = 1
-
 [node name="Laser5" parent="entities" instance=ExtResource( 9 )]
 
 editor/display_folded = true
@@ -344,6 +386,10 @@ transform/pos = Vector2( 72, -1747 )
 [node name="RightHead" parent="entities/Laser5"]
 
 transform/pos = Vector2( 128, 0 )
+
+[node name="Sprite" parent="entities/Laser5/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Laser6" parent="entities" instance=ExtResource( 9 )]
 
@@ -355,10 +401,6 @@ time_delay = 1.0
 
 transform/pos = Vector2( 112, 0 )
 
-[node name="Sprite" parent="entities/Laser6/LeftHead/Beam"]
-
-frame = 1
-
 [node name="Laser7" parent="entities" instance=ExtResource( 9 )]
 
 editor/display_folded = true
@@ -368,6 +410,10 @@ transform/rot = -90.0
 [node name="RightHead" parent="entities/Laser7"]
 
 transform/pos = Vector2( 68, 4.76837e-07 )
+
+[node name="Sprite" parent="entities/Laser7/LeftHead/Beam"]
+
+frame = 1
 
 [node name="LevelFinishTrigger" parent="." instance=ExtResource( 12 )]
 
@@ -392,9 +438,46 @@ message_bar_path = "../rail/hud/TextBar"
 
 [node name="Msg" type="VisibilityNotifier2D" parent="Sequencing"]
 
-transform/pos = Vector2( 120, 0 )
+transform/pos = Vector2( 150.025, 1943.77 )
 rect = Rect2( -10, -10, 20, 20 )
 script/script = SubResource( 1 )
+
+[node name="Msg1" type="VisibilityNotifier2D" parent="Sequencing"]
+
+transform/pos = Vector2( 58.8315, -1120.72 )
+rect = Rect2( -10, -10, 20, 20 )
+script/script = SubResource( 2 )
+
+[node name="Msg2" type="VisibilityNotifier2D" parent="Sequencing"]
+
+transform/pos = Vector2( 127.485, -1907.44 )
+rect = Rect2( -10, -10, 20, 20 )
+script/script = SubResource( 3 )
+
+[node name="Msg3PassedShield" type="Node2D" parent="Sequencing"]
+
+transform/pos = Vector2( 127.485, -1967.44 )
+script/script = SubResource( 4 )
+
+[node name="Timer1" type="Timer" parent="Sequencing/Msg3PassedShield"]
+
+process_mode = 1
+wait_time = 1.0
+one_shot = true
+autostart = false
+
+[node name="Timer2" type="Timer" parent="Sequencing/Msg3PassedShield"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = true
+autostart = false
+
+[node name="Msg4" type="VisibilityNotifier2D" parent="Sequencing"]
+
+transform/pos = Vector2( 187.485, -2537.44 )
+rect = Rect2( -10, -10, 20, 20 )
+script/script = SubResource( 5 )
 
 [node name="ForceField" parent="." instance=ExtResource( 15 )]
 
@@ -407,6 +490,18 @@ transform/pos = Vector2( 0, -1880 )
 [connection signal="level_finished" from="LevelFinishTrigger" to="." method="_on_LevelFinishTrigger_level_finished"]
 
 [connection signal="enter_screen" from="Sequencing/Msg" to="Sequencing/Msg" method="send"]
+
+[connection signal="enter_screen" from="Sequencing/Msg1" to="Sequencing/Msg1" method="send"]
+
+[connection signal="enter_screen" from="Sequencing/Msg2" to="Sequencing/Msg2" method="send"]
+
+[connection signal="timeout" from="Sequencing/Msg3PassedShield/Timer1" to="Sequencing/Msg3PassedShield" method="_on_Timer1_timeout"]
+
+[connection signal="timeout" from="Sequencing/Msg3PassedShield/Timer2" to="Sequencing/Msg3PassedShield" method="_on_Timer_timeout"]
+
+[connection signal="enter_screen" from="Sequencing/Msg4" to="Sequencing/Msg4" method="send"]
+
+[connection signal="player_passed" from="ForceField" to="Sequencing/Msg3PassedShield" method="send"]
 
 
 [editable path="rail"]

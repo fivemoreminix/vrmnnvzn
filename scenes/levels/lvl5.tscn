@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=1]
+[gd_scene load_steps=23 format=1]
 
 [ext_resource path="res://scripts/level_manager.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=2]
@@ -26,7 +26,20 @@
 script/source = "extends VisibilityNotifier2D
 
 func send():
-	get_parent().bar.message(\"An ambush. They were expecting us.\")
+	get_parent().bar.message(\"They're retreating!\")
+	get_node(\"Timer\").start() # Dialog continues on timer timeout()
+
+
+func _on_Timer_timeout():
+	get_parent().bar.message(\"But to where?\")
+"
+
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends VisibilityNotifier2D
+
+func send():
+	get_parent().bar.message(\"It looks like they're headed for a last line of defense. The colony calls it The Hornet's Nest. That sounds like it might be a big fight.\")
 "
 
 [node name="lvl0" type="Node2D"]
@@ -59,6 +72,8 @@ __meta__ = {
 }
 
 [node name="Runes" type="Node2D" parent="."]
+
+editor/display_folded = true
 
 [node name="Sprite" type="Sprite" parent="Runes"]
 
@@ -160,7 +175,7 @@ editor/display_folded = true
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 1
+frame = 0
 
 [node name="Fade" parent="rail/hud"]
 
@@ -168,9 +183,12 @@ editor/display_folded = true
 
 [node name="entities" type="Node2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 0, 10 )
 
 [node name="bees" type="Node2D" parent="entities"]
+
+editor/display_folded = true
 
 [node name="Bee" parent="entities/bees" instance=ExtResource( 12 )]
 
@@ -1103,15 +1121,34 @@ message_bar_path = "../rail/hud/TextBar"
 
 [node name="Msg" type="VisibilityNotifier2D" parent="Sequencing"]
 
-transform/pos = Vector2( 120, 90 )
+transform/pos = Vector2( 131.408, -162.363 )
 rect = Rect2( -10, -10, 20, 20 )
 script/script = SubResource( 1 )
+
+[node name="Timer" type="Timer" parent="Sequencing/Msg"]
+
+process_mode = 1
+wait_time = 3.0
+one_shot = true
+autostart = false
+
+[node name="Msg1" type="VisibilityNotifier2D" parent="Sequencing"]
+
+transform/pos = Vector2( 140.787, -1886.51 )
+rect = Rect2( -10, -10, 20, 20 )
+script/script = SubResource( 2 )
 
 [connection signal="finished" from="EndOfLevelGUI" to="." method="_on_EndOfLevelGUI_finished"]
 
 [connection signal="rail_finished" from="rail" to="." method="_on_rail_rail_finished"]
 
 [connection signal="level_finished" from="LevelFinishTrigger" to="." method="_on_LevelFinishTrigger_level_finished"]
+
+[connection signal="enter_screen" from="Sequencing/Msg" to="Sequencing/Msg" method="send"]
+
+[connection signal="timeout" from="Sequencing/Msg/Timer" to="Sequencing/Msg" method="_on_Timer_timeout"]
+
+[connection signal="enter_screen" from="Sequencing/Msg1" to="Sequencing/Msg1" method="send"]
 
 
 [editable path="rail"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=1]
+[gd_scene load_steps=19 format=1]
 
 [ext_resource path="res://scripts/level_manager.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=2]
@@ -20,7 +20,31 @@
 script/source = "extends VisibilityNotifier2D
 
 func send():
-	get_parent().bar.message(\"An ambush. They were expecting us.\")
+	get_parent().bar.message(\"This is it: the Hornet's Nest is up ahead. Expect many hostiles.\")
+"
+
+[sub_resource type="GDScript" id=2]
+
+script/source = "extends VisibilityNotifier2D
+
+func send():
+	get_parent().bar.message(\"This is the hornet's nest. These structures are not natural formations. The VRMNZ built these.\")
+"
+
+[sub_resource type="GDScript" id=3]
+
+script/source = "extends VisibilityNotifier2D
+
+func send():
+	get_parent().bar.message(\"That's it, we've broken up their last line of defense and eliminated all of the commanding wasps. The colony says they're backing off! Hah. I think the war is over. Without the wasps in command, the VRMNZ are directionless.\")
+"
+
+[sub_resource type="GDScript" id=4]
+
+script/source = "extends VisibilityNotifier2D
+
+func send():
+	get_parent().bar.message(\"The commander wants us to return. He said he needs to see you.\")
 "
 
 [node name="lvl0" type="Node2D"]
@@ -75,19 +99,18 @@ travel_y = 3968
 
 editor/display_folded = true
 
-[node name="thruster" parent="rail/ship"]
-
-frame = 0
-
 [node name="Fade" parent="rail/hud"]
 
 editor/display_folded = true
 
 [node name="entities" type="Node2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 0, 10 )
 
 [node name="bees" type="Node2D" parent="entities"]
+
+editor/display_folded = true
 
 [node name="Bee" parent="entities/bees" instance=ExtResource( 6 )]
 
@@ -610,10 +633,6 @@ transform/pos = Vector2( 54.1073, 1870.1 )
 
 transform/pos = Vector2( 144, 0 )
 
-[node name="Sprite" parent="entities/Laser/LeftHead/Beam"]
-
-frame = 1
-
 [node name="Laser1" parent="entities" instance=ExtResource( 7 )]
 
 editor/display_folded = true
@@ -622,6 +641,10 @@ transform/pos = Vector2( 39.1073, 1598.1 )
 [node name="RightHead" parent="entities/Laser1"]
 
 transform/pos = Vector2( 176, 0 )
+
+[node name="Sprite" parent="entities/Laser1/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Laser2" parent="entities" instance=ExtResource( 7 )]
 
@@ -633,6 +656,10 @@ time_delay = 1.0
 
 transform/pos = Vector2( 144, 0 )
 
+[node name="Sprite" parent="entities/Laser2/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser3" parent="entities" instance=ExtResource( 7 )]
 
 editor/display_folded = true
@@ -643,15 +670,15 @@ time_delay = 2.0
 
 transform/pos = Vector2( 208, 0 )
 
-[node name="Sprite" parent="entities/Laser3/LeftHead/Beam"]
-
-frame = 1
-
 [node name="Laser4" parent="entities" instance=ExtResource( 7 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 39.1073, 1454.1 )
 time_delay = 1.0
+
+[node name="Sprite" parent="entities/Laser4/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Laser5" parent="entities" instance=ExtResource( 7 )]
 
@@ -662,6 +689,10 @@ time_delay = 1.0
 [node name="RightHead" parent="entities/Laser5"]
 
 transform/pos = Vector2( 96, 0 )
+
+[node name="Sprite" parent="entities/Laser5/LeftHead/Beam"]
+
+frame = 1
 
 [node name="YCentipede" parent="entities" instance=ExtResource( 8 )]
 
@@ -734,9 +765,27 @@ message_bar_path = "../rail/hud/TextBar"
 
 [node name="Msg" type="VisibilityNotifier2D" parent="Sequencing"]
 
-transform/pos = Vector2( 120, 0 )
+transform/pos = Vector2( 124.101, 1923.41 )
 rect = Rect2( -10, -10, 20, 20 )
 script/script = SubResource( 1 )
+
+[node name="Msg1" type="VisibilityNotifier2D" parent="Sequencing"]
+
+transform/pos = Vector2( 122.755, -1346.22 )
+rect = Rect2( -10, -10, 20, 20 )
+script/script = SubResource( 2 )
+
+[node name="Msg2" type="VisibilityNotifier2D" parent="Sequencing"]
+
+transform/pos = Vector2( 140.685, -2831.06 )
+rect = Rect2( -10, -10, 20, 20 )
+script/script = SubResource( 3 )
+
+[node name="Msg3" type="VisibilityNotifier2D" parent="Sequencing"]
+
+transform/pos = Vector2( 138.229, -3618.62 )
+rect = Rect2( -10, -10, 20, 20 )
+script/script = SubResource( 4 )
 
 [connection signal="finished" from="EndOfLevelGUI" to="." method="_on_EndOfLevelGUI_finished"]
 
@@ -745,6 +794,12 @@ script/script = SubResource( 1 )
 [connection signal="level_finished" from="LevelFinishTrigger" to="." method="_on_LevelFinishTrigger_level_finished"]
 
 [connection signal="enter_screen" from="Sequencing/Msg" to="Sequencing/Msg" method="send"]
+
+[connection signal="enter_screen" from="Sequencing/Msg1" to="Sequencing/Msg1" method="send"]
+
+[connection signal="enter_screen" from="Sequencing/Msg2" to="Sequencing/Msg2" method="send"]
+
+[connection signal="enter_screen" from="Sequencing/Msg3" to="Sequencing/Msg3" method="send"]
 
 
 [editable path="rail"]
