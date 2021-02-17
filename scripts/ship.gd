@@ -77,10 +77,8 @@ func move(delta, motion):
 
 func shoot():
 	if can_shoot:
-		print(GameData.data.level_stats)
-		
 		# Just pressed
-		var shot = shots[1 if has_effect("Double-shot") else 2 if has_effect("Triple-shot") else 0].instance()
+		var shot = shots[2 if has_effect("Triple-shot") else 1 if has_effect("Double-shot") else 0].instance()
 		get_node("anim").play("shoot")
 		# Use the Position2D as reference
 		shot.set_pos(get_node("shootfrom").get_global_pos())
