@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=1]
+[gd_scene load_steps=28 format=1]
 
 [ext_resource path="res://scripts/level_manager.gd" type="Script" id=1]
 [ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=2]
@@ -61,6 +61,14 @@ func send():
 	get_parent().bar.message(\"Look! More runes...\")
 "
 
+[sub_resource type="GDScript" id=6]
+
+script/source = "extends VisibilityNotifier2D
+
+func send():
+	get_parent().bar.message(\"Stay to the right side!\")
+"
+
 [node name="lvl0" type="Node2D"]
 
 script/script = ExtResource( 1 )
@@ -91,6 +99,8 @@ __meta__ = {
 }
 
 [node name="runes" type="Node2D" parent="."]
+
+editor/display_folded = true
 
 [node name="Rune" type="Sprite" parent="runes"]
 
@@ -224,7 +234,6 @@ margin/bottom = -3776.0
 
 editor/display_folded = true
 transform/pos = Vector2( 0, 4000 )
-disabled = false
 travel_y = 3968
 
 [node name="ship" parent="rail"]
@@ -235,11 +244,9 @@ editor/display_folded = true
 
 editor/display_folded = true
 
-[node name="TextBar" parent="rail/hud"]
-
-messages_hidden = false
-
 [node name="entities" type="Node2D" parent="."]
+
+editor/display_folded = true
 
 [node name="YCentipede" parent="entities" instance=ExtResource( 12 )]
 
@@ -262,178 +269,222 @@ transform/pos = Vector2( 209.286, 1791.45 )
 [node name="Bee" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 190, 2760 )
+target_is_non_player = false
 
 [node name="Bee8" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 70, 2760 )
+target_is_non_player = false
 
 [node name="Bee1" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 130, 2670 )
+target_is_non_player = false
 
 [node name="Bee2" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 160, 2580 )
+target_is_non_player = false
 
 [node name="Bee3" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 40, 2510 )
+target_is_non_player = false
 
 [node name="Bee4" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 180, 2480 )
+target_is_non_player = false
 
 [node name="Bee42" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 90, 2430 )
+target_is_non_player = false
 
 [node name="Bee43" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 80, 2220 )
+target_is_non_player = false
 
 [node name="Bee9" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 150, 2400 )
+target_is_non_player = false
 
 [node name="Bee10" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 130, 2290 )
+target_is_non_player = false
 
 [node name="Bee11" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 190, 2180 )
+target_is_non_player = false
 
 [node name="Bee5" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 180, 2350 )
+target_is_non_player = false
 
 [node name="Bee6" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 20, 2330 )
+target_is_non_player = false
 
 [node name="Bee7" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 230, 2070 )
+target_is_non_player = false
 
 [node name="Bee12" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 220, 1760 )
+target_is_non_player = false
 
 [node name="Bee13" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 110, 1810 )
+target_is_non_player = false
 
 [node name="Bee14" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 79, 1710 )
+target_is_non_player = false
 
 [node name="Bee15" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 249, 1590 )
+target_is_non_player = false
 
 [node name="Bee16" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 69, 1580 )
+target_is_non_player = false
 
 [node name="Bee17" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 149, 1480 )
+target_is_non_player = false
 
 [node name="Bee18" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 219, 1310 )
+target_is_non_player = false
 
 [node name="Bee19" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 59, 1310 )
+target_is_non_player = false
 
 [node name="Bee20" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 139, 1160 )
+target_is_non_player = false
 
 [node name="Bee21" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 29, 1140 )
+target_is_non_player = false
 
 [node name="Bee22" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 71, 950 )
+target_is_non_player = false
 
 [node name="Bee23" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 171, 840 )
+target_is_non_player = false
 
 [node name="Bee24" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 61, 630 )
+target_is_non_player = false
 
 [node name="Bee25" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 171, 310 )
+target_is_non_player = false
 
 [node name="Bee26" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 91, 200 )
+target_is_non_player = false
 
 [node name="Bee27" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 211, 60 )
+target_is_non_player = false
 
 [node name="Bee28" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 151, -80 )
+target_is_non_player = false
 
 [node name="Bee29" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 221, -200 )
+target_is_non_player = false
 
 [node name="Bee30" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 141, -200 )
+target_is_non_player = false
 
 [node name="Bee31" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 51, -340 )
+target_is_non_player = false
 
 [node name="Bee32" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 201, -370 )
+target_is_non_player = false
 
 [node name="Bee33" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 211, -490 )
+target_is_non_player = false
 
 [node name="Bee34" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 51, -490 )
+target_is_non_player = false
 
 [node name="Bee35" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 191, -600 )
+target_is_non_player = false
 
 [node name="Bee36" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 171, -700 )
+target_is_non_player = false
 
 [node name="Bee37" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 51, -780 )
+target_is_non_player = false
 
 [node name="Bee38" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 141, -820 )
+target_is_non_player = false
 
 [node name="Bee39" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 201, -910 )
+target_is_non_player = false
 
 [node name="Bee40" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 81, -910 )
+target_is_non_player = false
 
 [node name="Bee41" parent="entities" instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 81, -1020 )
+target_is_non_player = false
 
 [node name="Blocker" parent="entities" instance=ExtResource( 14 )]
 
@@ -799,9 +850,9 @@ script/script = SubResource( 5 )
 
 [node name="Msg4" type="VisibilityNotifier2D" parent="Sequencing"]
 
-transform/pos = Vector2( 30, 500 )
+transform/pos = Vector2( 210, 90 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 5 )
+script/script = SubResource( 6 )
 
 [connection signal="finished" from="EndOfLevelGUI" to="." method="_on_EndOfLevelGUI_finished"]
 
@@ -818,6 +869,8 @@ script/script = SubResource( 5 )
 [connection signal="enter_screen" from="Sequencing/Msg2" to="Sequencing/Msg2" method="send"]
 
 [connection signal="enter_screen" from="Sequencing/Msg3" to="Sequencing/Msg3" method="send"]
+
+[connection signal="enter_screen" from="Sequencing/Msg4" to="Sequencing/Msg4" method="send"]
 
 
 [editable path="rail"]
