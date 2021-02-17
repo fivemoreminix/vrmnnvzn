@@ -44,9 +44,7 @@ We passed through some kind of force field. It corrupted our message, and we los
 
 We're alone.
 
-I can't decipher exactly what the wasps are writing, but it seems to be messages to the VRMNZ. Maybe instructions.
-
-I'll begin running a learning algorithm I've prepared.
+I can't decipher exactly what the wasps are writing, but it seems to be messages to the VRMNZ. Maybe instructions. I'll begin running a learning algorithm I've prepared.
 
 
 
