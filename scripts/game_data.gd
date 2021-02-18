@@ -75,8 +75,7 @@ func load_global_data(): # load global data from disk
 			print("game_data.gd: failed to parse global save file")
 			return 2
 		
-		# for the purposes of making this software stable, we will load game resolution and window type immediately
-		# upon reading the global data file
+		refresh_audio_settings()
 		refresh_video_settings()
 		
 		return 0
@@ -91,6 +90,15 @@ func load_global_data(): # load global data from disk
 		print("game_data.gd: global save file not found... creating one now")
 		save_global_data()
 		return 1 # make the file
+
+func refresh_audio_settings():
+	# Set SFX volume
+	global_data.sfx_volume = clamp(global_data.sfx_volume, 0.0, 1.0)
+	print(global_data.sfx_volume)
+	AudioServer.set_fx_global_volume_scale(global_data.sfx_volume)
+	# Set music volume
+	global_data.music_volume = clamp(global_data.music_volume, 0.0, 1.0)
+	AudioServer.set_stream_global_volume_scale(global_data.music_volume)
 
 func refresh_video_settings():
 	print("game_data.gd: Refreshing video settings: " + var2str(global_data.resolution))

@@ -8,7 +8,7 @@ func _ready():
 	set_process(true)
 	
 	get_node("Continue").set_disabled(not File.new().file_exists("user://VRMNNVZN.save"))
-	GameData.load_global_data() # To initialize video settings and get the global data into memory
+
 
 func _process(delta):
 	if not get_tree().get_root().is_input_disabled():
@@ -18,12 +18,15 @@ func _process(delta):
 			else: # use new game button
 				get_node("NewGame")._on_button_pressed()
 
+
 func handle(func_name):
 	fade.begin_fade_out()
 	fade.connect("fade_finished", self, func_name)
 
+
 func new_game():
 	get_tree().change_scene("res://scenes/new_game.tscn")
+
 
 func continue_game():
 	var err = GameData.load_data()
@@ -33,14 +36,18 @@ func continue_game():
 	
 	get_tree().change_scene("res://scenes/levels/lvl" + str(GameData.data.current_level) + ".tscn")
 
+
 func levels():
 	get_tree().change_scene("res://scenes/level_selection.tscn")
+
 
 func exit_game():
 	get_tree().quit()
 
+
 func settings():
 	get_tree().change_scene("res://scenes/settings.tscn")
+
 
 func info():
 	get_tree().change_scene("res://scenes/information.tscn")
