@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=1]
+[gd_scene load_steps=21 format=1]
 
 [ext_resource path="res://scripts/wasp.gd" type="Script" id=1]
 [ext_resource path="res://assets/sprites/enemies/wasps/wasp_0.png" type="Texture" id=2]
@@ -7,16 +7,15 @@
 [ext_resource path="res://assets/sprites/enemies/wasps/wasp_writing_1.png" type="Texture" id=5]
 [ext_resource path="res://assets/sprites/enemies/wasps/wasp_white_0.png" type="Texture" id=6]
 [ext_resource path="res://assets/sprites/enemies/wasps/wasp_white_1.png" type="Texture" id=7]
-[ext_resource path="res://assets/sound/alert.wav" type="Sample" id=8]
-[ext_resource path="res://assets/sound/bee_hit.wav" type="Sample" id=9]
-[ext_resource path="res://assets/sound/sound_explode.wav" type="Sample" id=10]
-[ext_resource path="res://assets/sprites/splat/splat_0.png" type="Texture" id=11]
-[ext_resource path="res://assets/sprites/splat/splat_1.png" type="Texture" id=12]
-[ext_resource path="res://assets/sprites/splat/splat_2.png" type="Texture" id=13]
-[ext_resource path="res://assets/sprites/splat/splat_3.png" type="Texture" id=14]
-[ext_resource path="res://assets/sprites/splat/splat_4.png" type="Texture" id=15]
-[ext_resource path="res://assets/sprites/gibs/gibs_5.png" type="Texture" id=16]
-[ext_resource path="res://assets/sprites/gibs/gibs_0.png" type="Texture" id=17]
+[ext_resource path="res://assets/sound/bee_hit.wav" type="Sample" id=8]
+[ext_resource path="res://assets/sound/sound_explode.wav" type="Sample" id=9]
+[ext_resource path="res://assets/sprites/splat/splat_0.png" type="Texture" id=10]
+[ext_resource path="res://assets/sprites/splat/splat_1.png" type="Texture" id=11]
+[ext_resource path="res://assets/sprites/splat/splat_2.png" type="Texture" id=12]
+[ext_resource path="res://assets/sprites/splat/splat_3.png" type="Texture" id=13]
+[ext_resource path="res://assets/sprites/splat/splat_4.png" type="Texture" id=14]
+[ext_resource path="res://assets/sprites/gibs/gibs_5.png" type="Texture" id=15]
+[ext_resource path="res://assets/sprites/gibs/gibs_0.png" type="Texture" id=16]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -44,29 +43,23 @@ animations = [ {
 
 [sub_resource type="SampleLibrary" id=3]
 
-samples/alert = {
+samples/bee_hit = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
 "sample": ExtResource( 8 )
 }
-samples/bee_hit = {
+samples/sound_explode = {
 "db": 0.0,
 "pitch": 1.0,
 "priority": 0,
 "sample": ExtResource( 9 )
 }
-samples/sound_explode = {
-"db": 0.0,
-"pitch": 1.0,
-"priority": 0,
-"sample": ExtResource( 10 )
-}
 
 [sub_resource type="SpriteFrames" id=4]
 
 animations = [ {
-"frames": [ ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ), ExtResource( 15 ) ],
+"frames": [ ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ), ExtResource( 14 ) ],
 "loop": false,
 "name": "default",
 "speed": 12.0
@@ -138,7 +131,7 @@ config/process_mode = 1
 config/local_space = false
 config/explosiveness = 0.01
 config/flip_h = true
-config/texture = ExtResource( 16 )
+config/texture = ExtResource( 15 )
 config/v_frames = 4
 params/direction = 0.0
 params/spread = 90.0
@@ -167,7 +160,7 @@ config/emitting = false
 config/process_mode = 1
 config/local_space = false
 config/explosiveness = 0.01
-config/texture = ExtResource( 16 )
+config/texture = ExtResource( 15 )
 config/v_frames = 4
 params/direction = 0.0
 params/spread = 90.0
@@ -196,7 +189,7 @@ config/emitting = false
 config/process_mode = 1
 config/local_space = false
 config/explosiveness = 0.01
-config/texture = ExtResource( 17 )
+config/texture = ExtResource( 16 )
 config/v_frames = 4
 params/direction = 0.0
 params/spread = 90.0
@@ -227,7 +220,7 @@ config/process_mode = 1
 config/local_space = false
 config/explosiveness = 0.01
 config/flip_h = true
-config/texture = ExtResource( 17 )
+config/texture = ExtResource( 16 )
 config/v_frames = 4
 params/direction = 0.0
 params/spread = 90.0

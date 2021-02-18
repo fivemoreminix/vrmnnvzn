@@ -26,6 +26,9 @@ func hurt_nearby_entities(times): # times: int
 		if area.has_method(\"destroy\"):
 			for i in range(times):
 				area.destroy() # Call `destroy` N `times`
+		elif area.has_method(\"kill\"):
+			for i in range(times):
+				area.kill() # Call `kill` N `times`
 
 
 func _on_Area2D_area_enter( area ):
@@ -47,8 +50,8 @@ samples/sound_explode = {
 }
 
 [node name="Blocker" type="Area2D" groups=[
-"Blocker",
 "Enemy",
+"Blocker",
 ]]
 
 input/pickable = true

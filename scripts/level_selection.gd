@@ -37,6 +37,7 @@ func start():
 	GameData.data.current_section = 0
 	GameData.data.deaths = 0
 	GameData.save_data()
+	printerr(selected_level_idx)
 	get_tree().change_scene("res://scenes/levels/lvl" + selected_level_idx + ".tscn")
 
 

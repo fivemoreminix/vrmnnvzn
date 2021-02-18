@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=1]
+[gd_scene load_steps=33 format=1]
 
 [ext_resource path="res://scripts/level_manager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sound/music/level_3.ogg" type="AudioStream" id=2]
@@ -21,9 +21,8 @@
 [ext_resource path="res://scenes/ycentipede.tscn" type="PackedScene" id=19]
 [ext_resource path="res://scenes/blocker.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=21]
-[ext_resource path="res://assets/sound/music/electric_sound_loop.ogg" type="AudioStream" id=22]
-[ext_resource path="res://scripts/sequencing.gd" type="Script" id=23]
-[ext_resource path="res://scenes/force_field.tscn" type="PackedScene" id=24]
+[ext_resource path="res://scripts/sequencing.gd" type="Script" id=22]
+[ext_resource path="res://scenes/force_field.tscn" type="PackedScene" id=23]
 
 [sub_resource type="GDScript" id=1]
 
@@ -223,7 +222,7 @@ travel_y = 2298
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 0
+frame = 2
 
 [node name="entities" type="Node2D" parent="."]
 
@@ -239,10 +238,6 @@ transform/pos = Vector2( 64, 2166 )
 
 transform/pos = Vector2( 112, 0 )
 
-[node name="Sprite" parent="entities/Laser/LeftHead/Beam"]
-
-frame = 1
-
 [node name="Laser1" parent="entities" instance=ExtResource( 14 )]
 
 editor/display_folded = true
@@ -252,6 +247,10 @@ time_delay = 1.0
 [node name="RightHead" parent="entities/Laser1"]
 
 transform/pos = Vector2( 112, 0 )
+
+[node name="Sprite" parent="entities/Laser1/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Laser3" parent="entities" instance=ExtResource( 14 )]
 
@@ -263,10 +262,6 @@ time_delay = 1.0
 
 transform/pos = Vector2( 96, 0 )
 
-[node name="Sprite" parent="entities/Laser3/LeftHead/Beam"]
-
-frame = 1
-
 [node name="Laser2" parent="entities" instance=ExtResource( 14 )]
 
 editor/display_folded = true
@@ -276,6 +271,10 @@ time_delay = 1.0
 [node name="RightHead" parent="entities/Laser2"]
 
 transform/pos = Vector2( 64, 0 )
+
+[node name="Sprite" parent="entities/Laser2/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Bee" parent="entities" instance=ExtResource( 15 )]
 
@@ -498,20 +497,9 @@ transform/pos = Vector2( 227.484, 1695.27 )
 transform/pos = Vector2( 120, -2122 )
 transform/scale = Vector2( 5.125, 1 )
 
-[node name="Music" type="StreamPlayer" parent="."]
-
-stream/stream = ExtResource( 22 )
-stream/play = false
-stream/loop = true
-stream/volume_db = 0.0
-stream/autoplay = false
-stream/paused = false
-stream/loop_restart_time = 0.0
-stream/buffering_ms = 500
-
 [node name="Sequencing" type="Node2D" parent="."]
 
-script/script = ExtResource( 23 )
+script/script = ExtResource( 22 )
 message_bar_path = NodePath("../rail/hud/TextBar")
 
 [node name="Msg1" type="VisibilityNotifier2D" parent="Sequencing"]
@@ -562,7 +550,7 @@ transform/pos = Vector2( 130, -1274 )
 rect = Rect2( -10, -10, 20, 20 )
 script/script = SubResource( 9 )
 
-[node name="ForceField" parent="." instance=ExtResource( 24 )]
+[node name="ForceField" parent="." instance=ExtResource( 23 )]
 
 [connection signal="finished" from="EndOfLevelGUI" to="." method="_on_EndOfLevelGUI_finished"]
 

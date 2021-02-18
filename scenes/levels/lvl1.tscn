@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=1]
+[gd_scene load_steps=26 format=1]
 
 [ext_resource path="res://scripts/level_manager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sound/music/level_2.ogg" type="AudioStream" id=2]
@@ -18,8 +18,7 @@
 [ext_resource path="res://scenes/ycentipede.tscn" type="PackedScene" id=16]
 [ext_resource path="res://scenes/laser.tscn" type="PackedScene" id=17]
 [ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=18]
-[ext_resource path="res://assets/sound/music/electric_sound_loop.ogg" type="AudioStream" id=19]
-[ext_resource path="res://scripts/sequencing.gd" type="Script" id=20]
+[ext_resource path="res://scripts/sequencing.gd" type="Script" id=19]
 
 [sub_resource type="Curve2D" id=1]
 
@@ -215,12 +214,9 @@ margin/bottom = -3776.0
 
 [node name="rail" parent="." instance=ExtResource( 12 )]
 
+editor/display_folded = true
 transform/pos = Vector2( 0, 160 )
 travel_y = 3968
-
-[node name="thruster" parent="rail/ship"]
-
-frame = 2
 
 [node name="Fade" parent="rail/hud"]
 
@@ -228,6 +224,7 @@ editor/display_folded = true
 
 [node name="entities" type="Node2D" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 0, 10 )
 
 [node name="Checkpoint1" parent="entities" instance=ExtResource( 13 )]
@@ -347,6 +344,10 @@ transform/pos = Vector2( 24, -1952 )
 
 transform/pos = Vector2( 179, 0 )
 
+[node name="Sprite" parent="entities/Laser 2/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser3" parent="entities" instance=ExtResource( 17 )]
 
 editor/display_folded = true
@@ -355,6 +356,10 @@ transform/pos = Vector2( 175, -2698 )
 [node name="RightHead" parent="entities/Laser3"]
 
 transform/pos = Vector2( 56, 0 )
+
+[node name="Sprite" parent="entities/Laser3/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Laser6" parent="entities" instance=ExtResource( 17 )]
 
@@ -365,6 +370,10 @@ transform/pos = Vector2( 184, -42 )
 
 transform/pos = Vector2( 50, 0 )
 
+[node name="Sprite" parent="entities/Laser6/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser7" parent="entities" instance=ExtResource( 17 )]
 
 editor/display_folded = true
@@ -373,10 +382,6 @@ transform/pos = Vector2( 40, 14 )
 [node name="RightHead" parent="entities/Laser7"]
 
 transform/pos = Vector2( 67, 0 )
-
-[node name="Sprite" parent="entities/Laser7/LeftHead/Beam"]
-
-frame = 1
 
 [node name="Laser4" parent="entities" instance=ExtResource( 17 )]
 
@@ -387,6 +392,10 @@ transform/pos = Vector2( 16, -2866 )
 
 transform/pos = Vector2( 51, 0 )
 
+[node name="Sprite" parent="entities/Laser4/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser5" parent="entities" instance=ExtResource( 17 )]
 
 editor/display_folded = true
@@ -395,6 +404,10 @@ transform/pos = Vector2( 40, -3460 )
 [node name="RightHead" parent="entities/Laser5"]
 
 transform/pos = Vector2( 176, 0 )
+
+[node name="Sprite" parent="entities/Laser5/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Bee 4" parent="entities" instance=ExtResource( 14 )]
 
@@ -425,20 +438,9 @@ transform/pos = Vector2( 128, -3624 )
 transform/pos = Vector2( 120, -3792 )
 transform/scale = Vector2( 5.125, 1 )
 
-[node name="Music" type="StreamPlayer" parent="."]
-
-stream/stream = ExtResource( 19 )
-stream/play = false
-stream/loop = true
-stream/volume_db = 0.0
-stream/autoplay = false
-stream/paused = false
-stream/loop_restart_time = 0.0
-stream/buffering_ms = 500
-
 [node name="Sequencing" type="Node2D" parent="."]
 
-script/script = ExtResource( 20 )
+script/script = ExtResource( 19 )
 message_bar_path = NodePath("../rail/hud/TextBar")
 
 [node name="Msg" type="VisibilityNotifier2D" parent="Sequencing"]
