@@ -1,5 +1,7 @@
 extends Control
 
+export(AudioStream) var music_stream
+
 onready var fade = get_node("Fade")
 
 func _ready():
@@ -8,6 +10,7 @@ func _ready():
 	set_process(true)
 	
 	get_node("Continue").set_disabled(not File.new().file_exists("user://VRMNNVZN.save"))
+	Music.set_ensure_playing(music_stream)
 
 
 func _process(delta):

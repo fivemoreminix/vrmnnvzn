@@ -1,19 +1,20 @@
-[gd_scene load_steps=19 format=1]
+[gd_scene load_steps=20 format=1]
 
 [ext_resource path="res://scripts/level_manager.gd" type="Script" id=1]
-[ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=2]
-[ext_resource path="res://assets/sprites/portal/black.png" type="Texture" id=3]
-[ext_resource path="res://scenes/end_of_level_gui.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/ship.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/bee.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/laser.tscn" type="PackedScene" id=7]
-[ext_resource path="res://scenes/ycentipede.tscn" type="PackedScene" id=8]
-[ext_resource path="res://scenes/wasp.tscn" type="PackedScene" id=9]
-[ext_resource path="res://scenes/checkpoint.tscn" type="PackedScene" id=10]
-[ext_resource path="res://scenes/powerup.tscn" type="PackedScene" id=11]
-[ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=12]
-[ext_resource path="res://assets/sound/music/electric_sound_loop.ogg" type="AudioStream" id=13]
-[ext_resource path="res://scripts/sequencing.gd" type="Script" id=14]
+[ext_resource path="res://assets/sound/music/level_7.ogg" type="AudioStream" id=2]
+[ext_resource path="res://assets/tiles/tiles.tres" type="TileSet" id=3]
+[ext_resource path="res://assets/sprites/portal/black.png" type="Texture" id=4]
+[ext_resource path="res://scenes/end_of_level_gui.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/ship.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/bee.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/laser.tscn" type="PackedScene" id=8]
+[ext_resource path="res://scenes/ycentipede.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/wasp.tscn" type="PackedScene" id=10]
+[ext_resource path="res://scenes/checkpoint.tscn" type="PackedScene" id=11]
+[ext_resource path="res://scenes/powerup.tscn" type="PackedScene" id=12]
+[ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=13]
+[ext_resource path="res://assets/sound/music/electric_sound_loop.ogg" type="AudioStream" id=14]
+[ext_resource path="res://scripts/sequencing.gd" type="Script" id=15]
 
 [sub_resource type="GDScript" id=1]
 
@@ -51,6 +52,7 @@ func send():
 
 script/script = ExtResource( 1 )
 level_name = "A Rookie at Hell's Gates"
+music_stream = ExtResource( 2 )
 rail_path = "rail"
 end_of_level_gui_path = "EndOfLevelGUI"
 fade_path = "rail/hud/Fade"
@@ -58,7 +60,7 @@ fade_path = "rail/hud/Fade"
 [node name="TileMap" type="TileMap" parent="."]
 
 mode = 0
-tile_set = ExtResource( 2 )
+tile_set = ExtResource( 3 )
 cell/size = Vector2( 16, 16 )
 cell/quadrant_size = 16
 cell/custom_transform = Matrix32( 1, 0, 0, 1, 0, 0 )
@@ -82,14 +84,14 @@ __meta__ = {
 
 transform/pos = Vector2( 128, -3878 )
 transform/scale = Vector2( 6.5, 5.08333 )
-texture = ExtResource( 3 )
+texture = ExtResource( 4 )
 
-[node name="EndOfLevelGUI" parent="." instance=ExtResource( 4 )]
+[node name="EndOfLevelGUI" parent="." instance=ExtResource( 5 )]
 
 margin/top = -3968.0
 margin/bottom = -3776.0
 
-[node name="rail" parent="." instance=ExtResource( 5 )]
+[node name="rail" parent="." instance=ExtResource( 6 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 0, 2000 )
@@ -112,345 +114,292 @@ transform/pos = Vector2( 0, 10 )
 
 editor/display_folded = true
 
-[node name="Bee" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 160, 1216 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee4" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee4" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 96, 1008 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee6" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee6" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 189.025, 263.408 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee7" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee7" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 99.2415, -383.024 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee8" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee8" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 169.81, -510.195 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee9" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee9" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 77.9503, -870.954 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee10" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee10" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 77.9503, -834.935 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee11" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee11" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 118.38, -803.326 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee12" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee12" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 135.287, -849.637 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee13" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee13" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 177.188, -816.558 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee14" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee14" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 150.724, -889.332 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee16" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee16" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 138.228, -679.831 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee18" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee18" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 94.8575, -1092.95 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee21 2" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee21 2" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 76.3675, -1876.9 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee213" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee213" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 108.948, -2229.58 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee215" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee215" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 100.987, -2620.34 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee214" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee214" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 172.948, -2309.58 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee215 2" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee215 2" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 164.987, -2700.34 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee19" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee19" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 66.1889, -1056.2 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee21" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee21" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 47.6989, -1840.15 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee22" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee22" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 137.295, -2084.5 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee20" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee20" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 136.023, -1059.87 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee21 3" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee21 3" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 164, -1592.35 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee1" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee1" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 112, 1216 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee4 4" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee4 4" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 48, 1008 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee46" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee46" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 30.2507, 180.733 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee2" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee2" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 144, 1184 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee4 2" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee4 2" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 80, 976 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee46 3" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee46 3" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 49.2821, 162.782 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee3" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee3" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 192, 1184 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee4 3" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee4 3" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 128, 976 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee46 2" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee46 2" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 225.698, 268.98 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee464" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee464" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 135.915, -377.452 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee465" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee465" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 206.484, -504.623 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee466" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee466" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 114.624, -865.382 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee467" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee467" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 114.624, -829.363 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee468" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee468" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 155.054, -797.754 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee469" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee469" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 171.961, -844.065 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee470" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee470" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 213.861, -810.985 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee471" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee471" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 187.398, -883.759 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee473" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee473" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 174.901, -674.258 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee475" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee475" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 131.531, -1087.38 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee478 3" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee478 3" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 113.041, -1871.33 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee4784" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee4784" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 145.621, -2224.01 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee4786" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee4786" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 137.66, -2614.77 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee4785" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee4785" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 209.621, -2304.01 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee4786 2" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee4786 2" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 201.66, -2694.77 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee476" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee476" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 102.862, -1050.63 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee478 2" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee478 2" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 130.84, -1583.1 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee477" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee477" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 172.696, -1054.3 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee478" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee478" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 154.206, -1838.25 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee479" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee479" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 238.1, -2076.9 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
-[node name="Bee463" parent="entities/bees" instance=ExtResource( 6 )]
+[node name="Bee463" parent="entities/bees" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 117.605, -82.4287 )
 TargetPath = NodePath("../../../rail/ship")
-target_is_non_player = false
 
 [node name="retreating" type="Node2D" parent="entities/bees"]
 
-[node name="Bee5" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee5" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 16.7542, -110.166 )
 TargetPath = NodePath("../Position2D")
 target_is_non_player = true
 
-[node name="Bee45" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee45" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( -4.04556, -128.742 )
 TargetPath = NodePath("../Position2D")
 target_is_non_player = true
 
-[node name="Bee43" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee43" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 14.9858, -146.692 )
 TargetPath = NodePath("../Position2D")
 target_is_non_player = true
 
-[node name="Bee44" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee44" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 35.7855, -128.117 )
 TargetPath = NodePath("../Position2D")
@@ -480,151 +429,151 @@ transform/pos = Vector2( -39.8403, -3429.86 )
 
 transform/pos = Vector2( 312.16, -3546.86 )
 
-[node name="Bee216" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee216" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 19.9561, -2873.25 )
 TargetPath = NodePath("../Position2D1")
 target_is_non_player = true
 
-[node name="Bee217" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee217" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 227.158, -3088.21 )
 TargetPath = NodePath("../Position2D2")
 target_is_non_player = true
 
-[node name="Bee218" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee218" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 11.0918, -3187.93 )
 TargetPath = NodePath("../Position2D3")
 target_is_non_player = true
 
-[node name="Bee219" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee219" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 218.294, -3451.65 )
 TargetPath = NodePath("../Position2D4")
 target_is_non_player = true
 
-[node name="Bee220" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee220" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 227.158, -3386.27 )
 TargetPath = NodePath("../Position2D4")
 target_is_non_player = true
 
-[node name="Bee221" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee221" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 16.632, -3596.8 )
 TargetPath = NodePath("../Position2D5")
 target_is_non_player = true
 
-[node name="Bee2153" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee2153" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 1.69757, -2859.94 )
 TargetPath = NodePath("../Position2D1")
 target_is_non_player = true
 
-[node name="Bee2154" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee2154" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 208.9, -3074.9 )
 TargetPath = NodePath("../Position2D2")
 target_is_non_player = true
 
-[node name="Bee2155" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee2155" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 13.3994, -3138.14 )
 TargetPath = NodePath("../Position2D3")
 target_is_non_player = true
 
-[node name="Bee2156" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee2156" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 243.821, -3350.77 )
 TargetPath = NodePath("../Position2D4")
 target_is_non_player = true
 
-[node name="Bee2157" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee2157" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 208.9, -3372.96 )
 TargetPath = NodePath("../Position2D4")
 target_is_non_player = true
 
-[node name="Bee2158" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee2158" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( -1.62646, -3583.49 )
 TargetPath = NodePath("../Position2D5")
 target_is_non_player = true
 
-[node name="Bee4787" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee4787" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 56.6296, -2867.68 )
 TargetPath = NodePath("../Position2D1")
 target_is_non_player = true
 
-[node name="Bee4788" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee4788" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 226.017, -3031.55 )
 TargetPath = NodePath("../Position2D2")
 target_is_non_player = true
 
-[node name="Bee4789" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee4789" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 47.7654, -3182.36 )
 TargetPath = NodePath("../Position2D3")
 target_is_non_player = true
 
-[node name="Bee4790" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee4790" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 254.968, -3446.07 )
 TargetPath = NodePath("../Position2D4")
 target_is_non_player = true
 
-[node name="Bee4791" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee4791" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 263.832, -3380.7 )
 TargetPath = NodePath("../Position2D4")
 target_is_non_player = true
 
-[node name="Bee4792" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee4792" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 14.8272, -3559.38 )
 TargetPath = NodePath("../Position2D5")
 target_is_non_player = true
 
-[node name="Bee47863" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee47863" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 27.7564, -2901.47 )
 TargetPath = NodePath("../Position2D1")
 target_is_non_player = true
 
-[node name="Bee47864" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee47864" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 245.573, -3069.33 )
 TargetPath = NodePath("../Position2D2")
 target_is_non_player = true
 
-[node name="Bee47865" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee47865" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 29.5069, -3169.05 )
 TargetPath = NodePath("../Position2D3")
 target_is_non_player = true
 
-[node name="Bee47866" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee47866" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 236.709, -3432.76 )
 TargetPath = NodePath("../Position2D4")
 target_is_non_player = true
 
-[node name="Bee47867" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee47867" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 238.939, -3411.18 )
 TargetPath = NodePath("../Position2D4")
 target_is_non_player = true
 
-[node name="Bee47868" parent="entities/bees/retreating" instance=ExtResource( 6 )]
+[node name="Bee47868" parent="entities/bees/retreating" instance=ExtResource( 7 )]
 
 transform/pos = Vector2( 7.18344, -3538.11 )
 TargetPath = NodePath("../Position2D5")
 target_is_non_player = true
 
-[node name="Laser" parent="entities" instance=ExtResource( 7 )]
+[node name="Laser" parent="entities" instance=ExtResource( 8 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 54.1073, 1870.1 )
@@ -633,7 +582,11 @@ transform/pos = Vector2( 54.1073, 1870.1 )
 
 transform/pos = Vector2( 144, 0 )
 
-[node name="Laser1" parent="entities" instance=ExtResource( 7 )]
+[node name="Sprite" parent="entities/Laser/LeftHead/Beam"]
+
+frame = 1
+
+[node name="Laser1" parent="entities" instance=ExtResource( 8 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 39.1073, 1598.1 )
@@ -642,11 +595,7 @@ transform/pos = Vector2( 39.1073, 1598.1 )
 
 transform/pos = Vector2( 176, 0 )
 
-[node name="Sprite" parent="entities/Laser1/LeftHead/Beam"]
-
-frame = 1
-
-[node name="Laser2" parent="entities" instance=ExtResource( 7 )]
+[node name="Laser2" parent="entities" instance=ExtResource( 8 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 54.1073, 1742.1 )
@@ -656,11 +605,7 @@ time_delay = 1.0
 
 transform/pos = Vector2( 144, 0 )
 
-[node name="Sprite" parent="entities/Laser2/LeftHead/Beam"]
-
-frame = 1
-
-[node name="Laser3" parent="entities" instance=ExtResource( 7 )]
+[node name="Laser3" parent="entities" instance=ExtResource( 8 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 23.1073, 1534.1 )
@@ -670,17 +615,17 @@ time_delay = 2.0
 
 transform/pos = Vector2( 208, 0 )
 
-[node name="Laser4" parent="entities" instance=ExtResource( 7 )]
+[node name="Sprite" parent="entities/Laser3/LeftHead/Beam"]
+
+frame = 1
+
+[node name="Laser4" parent="entities" instance=ExtResource( 8 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 39.1073, 1454.1 )
 time_delay = 1.0
 
-[node name="Sprite" parent="entities/Laser4/LeftHead/Beam"]
-
-frame = 1
-
-[node name="Laser5" parent="entities" instance=ExtResource( 7 )]
+[node name="Laser5" parent="entities" instance=ExtResource( 8 )]
 
 editor/display_folded = true
 transform/pos = Vector2( 55.1073, 1374.1 )
@@ -690,66 +635,62 @@ time_delay = 1.0
 
 transform/pos = Vector2( 96, 0 )
 
-[node name="Sprite" parent="entities/Laser5/LeftHead/Beam"]
-
-frame = 1
-
-[node name="YCentipede" parent="entities" instance=ExtResource( 8 )]
+[node name="YCentipede" parent="entities" instance=ExtResource( 9 )]
 
 transform/pos = Vector2( 66.2932, 839.677 )
 
-[node name="YCentipede1" parent="entities" instance=ExtResource( 8 )]
+[node name="YCentipede1" parent="entities" instance=ExtResource( 9 )]
 
 transform/pos = Vector2( 206.696, 658.11 )
 body_segments = 8
 
-[node name="YCentipede2" parent="entities" instance=ExtResource( 8 )]
+[node name="YCentipede2" parent="entities" instance=ExtResource( 9 )]
 
 transform/pos = Vector2( 172.882, 362.603 )
 body_segments = 6
 
-[node name="YCentipede3" parent="entities" instance=ExtResource( 8 )]
+[node name="YCentipede3" parent="entities" instance=ExtResource( 9 )]
 
 transform/pos = Vector2( 190.026, -2236.25 )
 
-[node name="Wasp" parent="entities" instance=ExtResource( 9 )]
+[node name="Wasp" parent="entities" instance=ExtResource( 10 )]
 
 transform/pos = Vector2( 70.4343, 702.071 )
 follow_right = false
 
-[node name="Wasp1" parent="entities" instance=ExtResource( 9 )]
+[node name="Wasp1" parent="entities" instance=ExtResource( 10 )]
 
 transform/pos = Vector2( 139.772, 172.994 )
 
-[node name="Wasp2" parent="entities" instance=ExtResource( 9 )]
+[node name="Wasp2" parent="entities" instance=ExtResource( 10 )]
 
 transform/pos = Vector2( 159.191, -602.698 )
 
-[node name="Wasp3" parent="entities" instance=ExtResource( 9 )]
+[node name="Wasp3" parent="entities" instance=ExtResource( 10 )]
 
 transform/pos = Vector2( 124.982, -2159.22 )
 
-[node name="Wasp4" parent="entities" instance=ExtResource( 9 )]
+[node name="Wasp4" parent="entities" instance=ExtResource( 10 )]
 
 transform/pos = Vector2( 165.497, -1549.03 )
 
-[node name="Checkpoint" parent="entities" instance=ExtResource( 10 )]
+[node name="Checkpoint" parent="entities" instance=ExtResource( 11 )]
 
 transform/pos = Vector2( 0, -224 )
 
-[node name="Powerup" parent="entities" instance=ExtResource( 11 )]
+[node name="Powerup" parent="entities" instance=ExtResource( 12 )]
 
 transform/pos = Vector2( 200, -418 )
 powerup = "Triple-shot"
 
-[node name="LevelFinishTrigger" parent="." instance=ExtResource( 12 )]
+[node name="LevelFinishTrigger" parent="." instance=ExtResource( 13 )]
 
 transform/pos = Vector2( 120, -3792 )
 transform/scale = Vector2( 5.125, 1 )
 
 [node name="Music" type="StreamPlayer" parent="."]
 
-stream/stream = ExtResource( 13 )
+stream/stream = ExtResource( 14 )
 stream/play = false
 stream/loop = true
 stream/volume_db = 0.0
@@ -760,7 +701,7 @@ stream/buffering_ms = 500
 
 [node name="Sequencing" type="Node2D" parent="."]
 
-script/script = ExtResource( 14 )
+script/script = ExtResource( 15 )
 message_bar_path = "../rail/hud/TextBar"
 
 [node name="Msg" type="VisibilityNotifier2D" parent="Sequencing"]
