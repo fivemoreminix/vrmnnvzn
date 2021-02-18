@@ -26,7 +26,7 @@ func set_menu_pause():
 	get_node("Resume").grab_focus() # Resume is preferred option
 
 func popup(val, died): # if died == true, then message is "You died!", otherwise "game paused"
-	if val:
+	if val: # Popup appearing
 		get_node("AnimationPlayer").play("popup")
 		
 		get_node("Resume").set_disabled(died)
@@ -34,8 +34,11 @@ func popup(val, died): # if died == true, then message is "You died!", otherwise
 			get_node("Label1").set_text("YOU DIED!")
 		else:
 			get_node("Label1").set_text("GAME PAUSED")
-	else:   get_node("AnimationPlayer").play_backwards("popup")
+	else: # Popup closing
+		get_node("AnimationPlayer").play_backwards("popup")
+	
 	player_is_dead = died
+	Music.set_paused(val and not died)
 
 func _on_Pause_visibility_changed():
 	if is_visible():
