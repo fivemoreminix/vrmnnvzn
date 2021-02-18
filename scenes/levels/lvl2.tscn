@@ -76,7 +76,7 @@ func send():
 
 [sub_resource type="GDScript" id=7]
 
-script/source = "extends VisibilityNotifier2D
+script/source = "extends Node2D
 
 func send():
 	get_parent().bar.message(\"We passed through some kind of force field. It corrupted our message, and we lost communications.\")
@@ -223,7 +223,7 @@ travel_y = 2298
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 3
+frame = 0
 
 [node name="entities" type="Node2D" parent="."]
 
@@ -239,6 +239,10 @@ transform/pos = Vector2( 64, 2166 )
 
 transform/pos = Vector2( 112, 0 )
 
+[node name="Sprite" parent="entities/Laser/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser1" parent="entities" instance=ExtResource( 14 )]
 
 editor/display_folded = true
@@ -248,10 +252,6 @@ time_delay = 1.0
 [node name="RightHead" parent="entities/Laser1"]
 
 transform/pos = Vector2( 112, 0 )
-
-[node name="Sprite" parent="entities/Laser1/LeftHead/Beam"]
-
-frame = 1
 
 [node name="Laser3" parent="entities" instance=ExtResource( 14 )]
 
@@ -263,6 +263,10 @@ time_delay = 1.0
 
 transform/pos = Vector2( 96, 0 )
 
+[node name="Sprite" parent="entities/Laser3/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser2" parent="entities" instance=ExtResource( 14 )]
 
 editor/display_folded = true
@@ -272,10 +276,6 @@ time_delay = 1.0
 [node name="RightHead" parent="entities/Laser2"]
 
 transform/pos = Vector2( 64, 0 )
-
-[node name="Sprite" parent="entities/Laser2/LeftHead/Beam"]
-
-frame = 1
 
 [node name="Bee" parent="entities" instance=ExtResource( 15 )]
 
