@@ -77,8 +77,9 @@ flip_h = true
 texture = ExtResource( 2 )
 
 [node name="Beam" type="Area2D" parent="LeftHead" groups=[
-"Godmode",
 "Enemy",
+"Godmode",
+"BulletNoCollide",
 ]]
 
 input/pickable = true

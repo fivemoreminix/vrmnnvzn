@@ -21,7 +21,9 @@ animations = [ {
 "speed": 10.0
 } ]
 
-[node name="Powerup" type="Area2D"]
+[node name="Powerup" type="Area2D" groups=[
+"BulletNoCollide",
+]]
 
 input/pickable = true
 shapes/0/shape = SubResource( 1 )
@@ -38,7 +40,6 @@ powerup = "Random"
 
 frames = SubResource( 2 )
 animation = "default"
-frame = 3
 playing = true
 
 [node name="Label" type="Label" parent="."]

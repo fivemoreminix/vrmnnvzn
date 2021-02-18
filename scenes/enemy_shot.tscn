@@ -9,7 +9,7 @@ custom_solver_bias = 0.0
 extents = Vector2( 2, 4 )
 
 [node name="enemy_shot" type="Area2D" groups=[
-"Projectile",
+"BulletNoCollide",
 ]]
 
 input/pickable = true

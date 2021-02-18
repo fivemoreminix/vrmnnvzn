@@ -22,7 +22,7 @@ func _on_visibility_exit_screen():
 
 
 func _on_shot_area_enter(area):
-	if area.is_in_group("Projectile"): return
+	if area.is_in_group("BulletNoCollide"): return
 	# Hit the player
 	if area.is_in_group("Player"):
 		# Duck typing at its best
