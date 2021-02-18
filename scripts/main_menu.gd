@@ -23,6 +23,9 @@ func _process(delta):
 
 
 func handle(func_name):
+	if func_name == "continue_game":
+		Music.fade_out()
+	
 	fade.begin_fade_out()
 	fade.connect("fade_finished", self, func_name)
 

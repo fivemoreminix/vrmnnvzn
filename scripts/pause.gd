@@ -73,10 +73,12 @@ func restart():
 func main_menu():
 	get_tree().set_pause(false)
 	get_tree().change_scene("res://scenes/main_menu.scn")
+	Music.call_deferred("set_paused", false) # Call frame after, to prevent single frame of sound
 
 func settings():
 	get_tree().set_pause(false)
 	get_tree().change_scene("res://scenes/settings.tscn")
+	Music.call_deferred("set_paused", false) # Call frame after, to prevent single frame of sound
 
 
 func _on_CheckpointSelection_option_canceled():
@@ -90,6 +92,8 @@ func _on_CheckpointSelection_option_selected(option_idx):
 	# Set current section to what was selected from the menu
 	GameData.data.current_section = option_idx
 	print("selected starting section idx: " + str(option_idx))
+	
+	Music.call_deferred("set_paused", false) # Call frame after, to prevent single frame of sound
 	
 	# Reload the scene, rail will align to correct section
 	get_tree().reload_current_scene()
