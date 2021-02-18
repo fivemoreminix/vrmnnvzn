@@ -84,7 +84,7 @@ __meta__ = {
 }
 TargetPath = "../../rail/ship"
 disabled = false
-play_alert_sound_when_visible = false
+target_is_non_player = false
 
 [node name="sprite" type="AnimatedSprite" parent="."]
 
