@@ -9,6 +9,9 @@ func _ready():
 	set_process(true)
 	
 	get_node("entities/Millipede").begin()
+	
+	Music.set_ensure_playing(preload("res://assets/sound/music/level_7.ogg"))
+	Music.play(65) # start 65 seconds into song
 
 
 func _process(delta):
