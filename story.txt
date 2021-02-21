@@ -1,11 +1,11 @@
 [Entering combat for the first time: level 1]
 [No enemies]
 
-Looks like we're in this together, {name}. I'm the Admin.
+Looks like we're in this together, pilot. I'm the Admin.
 
-I'll be on the communications and radar, and monitoring the ship. We're connected with HQ, and I'll be relaying any important details to them about the VRMNZ. We're their frontline "scouts". Really we're in for the dirty work.
+I'll be on the communications and radar, and monitoring Recon 115/6. We're connected with HQ, and I'll be relaying any details to them about the VRMNZ. We're their frontline "scouts". Really we're in for the dirty work.
 
-The VRMNZ are some of the dumbest space-faring pirates in the universe, but they're numerous. When they brought down our fifth colony ship... I think they became something much more united. It's hard to say.
+The VRMNZ were the *least intelligent* pirates in the universe. Numerous; they're omnipresent but incorporeal. But when they brought down our fifth colony ship... I think they became something much more united. It's hard to say how.
 
 [A bee is spotted]
 There's one, on the right... Prepare to maneuver!
@@ -78,9 +78,7 @@ Brace!
 [After passing through shield]
 I am reconnecting to the IGCN... Please hold.
 {Delay of 3 seconds}
-There are several new messages. It looks like they thought we had died upon impact of the shield. The colony is reporting major retreat for many of the VRMNZ.
-
-I am compiling reports of our progress and I will transmit them shortly.
+There are several new messages. It looks like they thought we had died upon impact of the shield. The colony is reporting major retreat for many of the VRMNZ. I am compiling reports of our progress and I will transmit them shortly.
 
 
 
@@ -88,9 +86,7 @@ I am compiling reports of our progress and I will transmit them shortly.
 [Level 6: Fugitives on the Run]
 
 [After defeating one or two waves of bees and centipedes]
-They're retreating!
-
-But to where?
+They're retreating! But to where?
 
 [About halfway through the level]
 It looks like they're headed for a last line of defense. The colony calls it The Hornet's Nest. That sounds like it might be a big fight.
@@ -100,7 +96,7 @@ It looks like they're headed for a last line of defense. The colony calls it The
 
 
 [Level 7: The Hornet's Nest]
-This is it: the Hornet's Nest is up ahead. Expect many hostiles.
+This is it: the Hornet's Nest is up ahead. Expect many hostiles. Or.. lasers.
 
 [Upon seeing structures]
 This is the hornet's nest. These structures are not natural formations. The VRMNZ built these.
