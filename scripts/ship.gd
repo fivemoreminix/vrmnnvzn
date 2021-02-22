@@ -73,7 +73,6 @@ func move(delta, motion):
 	# apply interpolation
 	var target_speed = motion.length() * SPEED # assumes motion is normalized
 	move_speed = lerp(move_speed, target_speed, INTERP_SPEED * delta)
-	print(move_speed)
 	
 	# apply virtual movement
 	movement = movement.linear_interpolate(motion * move_speed * delta, INTERP_SPEED * delta)
@@ -93,7 +92,7 @@ func shoot():
 		get_node("anim").play("shoot")
 		# Use the Position2D as reference
 		shot.set_pos(get_node("shootfrom").get_global_pos())
-		shot.set_rot(get_node("shootfrom").get_rot()) 
+		shot.set_rot(get_node("shootfrom").get_rot())
 		
 		shot.connect("enemy_destroyed", self, "on_enemy_destroyed")
 		

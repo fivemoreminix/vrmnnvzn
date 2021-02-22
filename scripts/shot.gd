@@ -5,9 +5,11 @@ signal enemy_destroyed(area)
 # Member variables
 const SPEED = 600
 
+var movement = Vector2(0, -1) # movement of the shot, normalized
+
 
 func _fixed_process(delta):
-	translate(Vector2(0, -delta*SPEED).rotated(get_rot()))
+	translate((movement * SPEED * delta).rotated(get_rot()))
 
 
 func _ready():
