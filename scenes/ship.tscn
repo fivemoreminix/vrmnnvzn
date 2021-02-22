@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=1]
+[gd_scene load_steps=37 format=1]
 
 [ext_resource path="res://scripts/rail.gd" type="Script" id=1]
 [ext_resource path="res://assets/sound/bloop.wav" type="Sample" id=2]
@@ -14,15 +14,16 @@
 [ext_resource path="res://assets/sound/powerup_get.wav" type="Sample" id=12]
 [ext_resource path="res://assets/sound/sound_shoot.wav" type="Sample" id=13]
 [ext_resource path="res://scripts/screen_shake.gd" type="Script" id=14]
-[ext_resource path="res://assets/themes/theme.thm" type="Theme" id=15]
-[ext_resource path="res://scripts/pause.gd" type="Script" id=16]
-[ext_resource path="res://scripts/button.gd" type="Script" id=17]
-[ext_resource path="res://assets/images/cog_unfilled.png" type="Texture" id=18]
-[ext_resource path="res://scenes/button_flasher.tscn" type="PackedScene" id=19]
-[ext_resource path="res://scenes/checkpoint_selection.tscn" type="PackedScene" id=20]
-[ext_resource path="res://scenes/fade.tscn" type="PackedScene" id=21]
-[ext_resource path="res://scripts/bar.gd" type="Script" id=22]
-[ext_resource path="res://scenes/pointer.tscn" type="PackedScene" id=23]
+[ext_resource path="res://scripts/bar.gd" type="Script" id=15]
+[ext_resource path="res://assets/themes/theme.thm" type="Theme" id=16]
+[ext_resource path="res://scripts/pause.gd" type="Script" id=17]
+[ext_resource path="res://scripts/button.gd" type="Script" id=18]
+[ext_resource path="res://assets/images/cog_unfilled.png" type="Texture" id=19]
+[ext_resource path="res://scenes/button_flasher.tscn" type="PackedScene" id=20]
+[ext_resource path="res://scenes/checkpoint_selection.tscn" type="PackedScene" id=21]
+[ext_resource path="res://scenes/settings.tscn" type="PackedScene" id=22]
+[ext_resource path="res://scenes/fade.tscn" type="PackedScene" id=23]
+[ext_resource path="res://scenes/pointer.tscn" type="PackedScene" id=24]
 
 [sub_resource type="Animation" id=1]
 
@@ -170,42 +171,6 @@ samples/shoot = {
 "sample": ExtResource( 13 )
 }
 
-[sub_resource type="Animation" id=9]
-
-length = 0.7
-loop = false
-step = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:rect/scale")
-tracks/0/interp = 1
-tracks/0/imported = false
-tracks/0/keys = {
-"times": FloatArray( 0, 0.7 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath(".:rect/pos")
-tracks/1/interp = 1
-tracks/1/imported = false
-tracks/1/keys = {
-"times": FloatArray( 0.1, 0.7 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 120, 90 ), Vector2( 64, 60 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath(".:visibility/visible")
-tracks/2/interp = 1
-tracks/2/imported = false
-tracks/2/keys = {
-"times": FloatArray( 0, 0.1 ),
-"transitions": FloatArray( 1, 1 ),
-"update": 1,
-"values": [ false, true ]
-}
-
 [sub_resource type="StyleBoxFlat" id=10]
 
 content_margin/left = -1.0
@@ -279,6 +244,42 @@ tracks/2/keys = {
 "transitions": FloatArray( 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ) ]
+}
+
+[sub_resource type="Animation" id=9]
+
+length = 0.7
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:rect/scale")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.7 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rect/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0.1, 0.7 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 120, 90 ), Vector2( 64, 60 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:visibility/visible")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 0, 0.1 ),
+"transitions": FloatArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
 }
 
 [node name="rail" type="Node2D"]
@@ -412,7 +413,6 @@ texture = ExtResource( 4 )
 transform/pos = Vector2( 0, 13 )
 frames = SubResource( 5 )
 animation = "default"
-frame = 2
 playing = true
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ship"]
@@ -511,162 +511,9 @@ offset = Vector2( 0, 0 )
 rotation = 0.0
 scale = Vector2( 1, 1 )
 
-[node name="Pause" type="Panel" parent="hud"]
-
-process/pause_mode = 2
-visibility/visible = false
-anchor/left = 3
-anchor/top = 3
-anchor/right = 3
-anchor/bottom = 3
-rect/scale = Vector2( 0, 0 )
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-theme/theme = ExtResource( 15 )
-margin/left = 8.0
-margin/top = 6.0
-margin/right = -120.0
-margin/bottom = -76.0
-script/script = ExtResource( 16 )
-
-[node name="Resume" type="Button" parent="hud/Pause"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 8.0
-margin/top = 8.0
-margin/right = 96.0
-margin/bottom = 26.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "RESUME"
-flat = false
-script/script = ExtResource( 17 )
-parent_function_to_call = "resume"
-
-[node name="Restart" type="Button" parent="hud/Pause"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 8.0
-margin/top = 32.0
-margin/right = 96.0
-margin/bottom = 50.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "RESTART"
-flat = false
-script/script = ExtResource( 17 )
-parent_function_to_call = "restart"
-
-[node name="MainMenu" type="Button" parent="hud/Pause"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 8.0
-margin/top = 56.0
-margin/right = 96.0
-margin/bottom = 74.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "MAIN MENU"
-flat = false
-script/script = ExtResource( 17 )
-parent_function_to_call = "main_menu"
-
-[node name="Settings" type="TextureButton" parent="hud/Pause"]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 104.0
-margin/top = 56.0
-margin/right = 120.0
-margin/bottom = 72.0
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-textures/normal = ExtResource( 18 )
-params/resize_mode = 0
-params/stretch_mode = 0
-script/script = ExtResource( 17 )
-parent_function_to_call = "settings"
-
-[node name="Label" type="Label" parent="hud/Pause"]
-
-visibility/visible = false
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 8.0
-margin/top = 8.0
-margin/right = 120.0
-margin/bottom = 29.0
-text = "YOU DIED
-FIGHTING VRMNZ"
-align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="Label1" type="Label" parent="hud/Pause"]
-
-focus/ignore_mouse = true
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 8.0
-margin/top = -40.0
-margin/right = 120.0
-margin/bottom = -27.0
-custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
-custom_constants/shadow_as_outline = 1
-text = "GAME PAUSED"
-align = 1
-percent_visible = 1.0
-lines_skipped = 0
-max_lines_visible = -1
-
-[node name="ButtonFlasher" parent="hud/Pause" instance=ExtResource( 19 )]
-
-[node name="CheckpointSelection" parent="hud/Pause" instance=ExtResource( 20 )]
-
-visibility/visible = false
-margin/left = -32.0
-margin/top = -20.0
-margin/right = 120.0
-margin/bottom = 100.0
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="hud/Pause"]
-
-playback/process_mode = 1
-playback/default_blend_time = 0.0
-root/root = NodePath("..")
-anims/popup = SubResource( 9 )
-playback/active = true
-playback/speed = 1.0
-blend_times = [  ]
-autoplay = ""
-
-[node name="Fade" parent="hud" instance=ExtResource( 21 )]
-
-process/pause_mode = 2
-
 [node name="TextBar" type="Control" parent="hud"]
 
+editor/display_folded = true
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -675,7 +522,7 @@ margin/left = 0.0
 margin/top = 184.0
 margin/right = 256.0
 margin/bottom = 192.0
-script/script = ExtResource( 22 )
+script/script = ExtResource( 15 )
 messages_hidden = false
 
 [node name="Panel" type="Panel" parent="hud/TextBar"]
@@ -689,7 +536,7 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-theme/theme = ExtResource( 15 )
+theme/theme = ExtResource( 16 )
 margin/left = 128.0
 margin/top = 10.0
 margin/right = -128.0
@@ -730,7 +577,169 @@ wait_time = 2.0
 one_shot = true
 autostart = false
 
-[node name="Pointer" parent="hud" instance=ExtResource( 23 )]
+[node name="Pause" type="Panel" parent="hud"]
+
+process/pause_mode = 2
+visibility/visible = false
+anchor/left = 3
+anchor/top = 3
+anchor/right = 3
+anchor/bottom = 3
+rect/scale = Vector2( 0, 0 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+theme/theme = ExtResource( 16 )
+margin/left = 8.0
+margin/top = 6.0
+margin/right = -120.0
+margin/bottom = -76.0
+script/script = ExtResource( 17 )
+
+[node name="Resume" type="Button" parent="hud/Pause"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 8.0
+margin/top = 8.0
+margin/right = 96.0
+margin/bottom = 26.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "RESUME"
+flat = false
+script/script = ExtResource( 18 )
+parent_function_to_call = "resume"
+
+[node name="Restart" type="Button" parent="hud/Pause"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 8.0
+margin/top = 32.0
+margin/right = 96.0
+margin/bottom = 50.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "RESTART"
+flat = false
+script/script = ExtResource( 18 )
+parent_function_to_call = "restart"
+
+[node name="MainMenu" type="Button" parent="hud/Pause"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 8.0
+margin/top = 56.0
+margin/right = 96.0
+margin/bottom = 74.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "MAIN MENU"
+flat = false
+script/script = ExtResource( 18 )
+parent_function_to_call = "main_menu"
+
+[node name="Settings" type="TextureButton" parent="hud/Pause"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 104.0
+margin/top = 56.0
+margin/right = 120.0
+margin/bottom = 72.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+textures/normal = ExtResource( 19 )
+params/resize_mode = 0
+params/stretch_mode = 0
+script/script = ExtResource( 18 )
+parent_function_to_call = "settings"
+
+[node name="Label" type="Label" parent="hud/Pause"]
+
+visibility/visible = false
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 8.0
+margin/top = 8.0
+margin/right = 120.0
+margin/bottom = 29.0
+text = "YOU DIED
+FIGHTING VRMNZ"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Label1" type="Label" parent="hud/Pause"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 8.0
+margin/top = -40.0
+margin/right = 120.0
+margin/bottom = -27.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+custom_constants/shadow_as_outline = 1
+text = "GAME PAUSED"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ButtonFlasher" parent="hud/Pause" instance=ExtResource( 20 )]
+
+[node name="CheckpointSelection" parent="hud/Pause" instance=ExtResource( 21 )]
+
+visibility/visible = false
+margin/left = -32.0
+margin/top = -20.0
+margin/right = 120.0
+margin/bottom = 100.0
+
+[node name="SettingsScene" parent="hud/Pause" instance=ExtResource( 22 )]
+
+visibility/visible = false
+margin/left = -64.0
+margin/top = -60.0
+margin/right = -64.0
+margin/bottom = -50.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="hud/Pause"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/popup = SubResource( 9 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="Fade" parent="hud" instance=ExtResource( 23 )]
+
+process/pause_mode = 2
+
+[node name="Pointer" parent="hud" instance=ExtResource( 24 )]
 
 process/pause_mode = 2
 visibility/visible = false
@@ -743,12 +752,14 @@ visibility/visible = false
 
 [connection signal="timeout" from="ship/BlinkTimer" to="ship" method="_on_BlinkTimer_timeout"]
 
+[connection signal="timeout" from="hud/TextBar/Timer" to="hud/TextBar" method="_on_Timer_timeout"]
+
 [connection signal="visibility_changed" from="hud/Pause" to="hud/Pause" method="_on_Pause_visibility_changed"]
 
 [connection signal="option_canceled" from="hud/Pause/CheckpointSelection" to="hud/Pause" method="_on_CheckpointSelection_option_canceled"]
 
 [connection signal="option_selected" from="hud/Pause/CheckpointSelection" to="hud/Pause" method="_on_CheckpointSelection_option_selected"]
 
-[connection signal="timeout" from="hud/TextBar/Timer" to="hud/TextBar" method="_on_Timer_timeout"]
+[connection signal="finished" from="hud/Pause/SettingsScene" to="hud/Pause" method="_on_SettingsScene_finished"]
 
 

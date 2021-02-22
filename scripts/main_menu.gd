@@ -25,6 +25,9 @@ func _process(delta):
 func handle(func_name):
 	if func_name == "continue_game":
 		Music.fade_out()
+	elif func_name == "settings":
+		settings()
+		return
 	
 	fade.begin_fade_out()
 	fade.connect("fade_finished", self, func_name)
@@ -52,8 +55,12 @@ func exit_game():
 
 
 func settings():
-	get_tree().change_scene("res://scenes/settings.tscn")
+	get_node("SettingsScene").show()
 
 
 func info():
 	get_tree().change_scene("res://scenes/information.tscn")
+
+
+func _on_SettingsScene_finished():
+	get_node("SettingsScene").hide()

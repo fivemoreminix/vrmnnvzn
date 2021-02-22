@@ -4,12 +4,28 @@
 [ext_resource path="res://scripts/settings.gd" type="Script" id=2]
 [ext_resource path="res://scripts/button.gd" type="Script" id=3]
 [ext_resource path="res://scenes/button_flasher.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/fade.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/pointer.tscn" type="PackedScene" id=6]
-[ext_resource path="res://scenes/dialog.tscn" type="PackedScene" id=7]
+[ext_resource path="res://scenes/dialog.tscn" type="PackedScene" id=5]
+
+[sub_resource type="CanvasItemMaterial" id=2]
+
+shader/shading_mode = 1
+
+[sub_resource type="StyleBoxFlat" id=3]
+
+content_margin/left = -1.0
+content_margin/right = -1.0
+content_margin/top = -1.0
+content_margin/bottom = -1.0
+bg_color = Color( 0, 0, 0, 0.715843 )
+light_color = Color( 0.8, 0.8, 0.8, 1 )
+dark_color = Color( 0.8, 0.8, 0.8, 1 )
+border_size = 0
+border_blend = true
+draw_bg = true
 
 [node name="Settings" type="Control"]
 
+material/material = SubResource( 2 )
 anchor/right = 1
 anchor/bottom = 1
 focus/ignore_mouse = false
@@ -29,6 +45,21 @@ resolution_input = NodePath("Panel/Scroll/Margin/VBox/Resolution/Input")
 vsync_check = NodePath("Panel/Scroll/Margin/VBox/VsyncCheck")
 dialog_check = NodePath("Panel/Scroll/Margin/VBox/DialogCheck")
 move_speed_slider = NodePath("Panel/Scroll/Margin/VBox/MoveSpeed/Slider")
+
+[node name="BackgroundPanel" type="Panel" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 0.0
+custom_styles/panelf = SubResource( 3 )
+custom_styles/panel = SubResource( 3 )
 
 [node name="Title" type="Label" parent="."]
 
@@ -82,7 +113,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 234.0
+margin/right = 237.0
 margin/bottom = 209.0
 custom_constants/margin_right = 5
 custom_constants/margin_top = 5
@@ -97,7 +128,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 5.0
 margin/top = 5.0
-margin/right = 229.0
+margin/right = 232.0
 margin/bottom = 204.0
 alignment = 0
 
@@ -109,7 +140,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 0.0
-margin/right = 224.0
+margin/right = 227.0
 margin/bottom = 9.0
 text = "Audio:"
 align = 1
@@ -125,7 +156,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 13.0
-margin/right = 224.0
+margin/right = 227.0
 margin/bottom = 29.0
 alignment = 0
 
@@ -153,7 +184,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 0
 margin/left = 68.0
 margin/top = 0.0
-margin/right = 224.0
+margin/right = 227.0
 margin/bottom = 16.0
 range/min = 0.0
 range/max = 1.0
@@ -174,7 +205,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 33.0
-margin/right = 224.0
+margin/right = 227.0
 margin/bottom = 49.0
 alignment = 0
 
@@ -202,7 +233,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 68.0
 margin/top = 0.0
-margin/right = 224.0
+margin/right = 227.0
 margin/bottom = 16.0
 range/min = 0.0
 range/max = 1.0
@@ -223,7 +254,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 53.0
-margin/right = 224.0
+margin/right = 227.0
 margin/bottom = 62.0
 text = "Display:"
 align = 1
@@ -241,7 +272,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 66.0
-margin/right = 224.0
+margin/right = 227.0
 margin/bottom = 84.0
 alignment = 0
 
@@ -268,7 +299,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 92.0
 margin/top = 0.0
-margin/right = 224.0
+margin/right = 227.0
 margin/bottom = 18.0
 toggle_mode = false
 enabled_focus_mode = 2
@@ -289,7 +320,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 88.0
-margin/right = 224.0
+margin/right = 227.0
 margin/bottom = 102.0
 alignment = 0
 
@@ -317,7 +348,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 92.0
 margin/top = 0.0
-margin/right = 224.0
+margin/right = 227.0
 margin/bottom = 14.0
 text = "800x600"
 placeholder/alpha = 0.6
@@ -333,7 +364,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 106.0
-margin/right = 224.0
+margin/right = 227.0
 margin/bottom = 124.0
 toggle_mode = true
 is_pressed = true
@@ -351,7 +382,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 0.0
 margin/top = 128.0
-margin/right = 224.0
+margin/right = 227.0
 margin/bottom = 137.0
 text = "Gameplay:"
 align = 1
@@ -366,9 +397,9 @@ focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 0
 size_flags/vertical = 2
-margin/left = 54.0
+margin/left = 56.0
 margin/top = 141.0
-margin/right = 169.0
+margin/right = 171.0
 margin/bottom = 157.0
 toggle_mode = false
 enabled_focus_mode = 2
@@ -384,7 +415,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 161.0
-margin/right = 224.0
+margin/right = 227.0
 margin/bottom = 179.0
 toggle_mode = true
 is_pressed = true
@@ -403,7 +434,7 @@ size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 183.0
-margin/right = 224.0
+margin/right = 227.0
 margin/bottom = 199.0
 alignment = 0
 
@@ -430,7 +461,7 @@ size_flags/horizontal = 3
 size_flags/vertical = 2
 margin/left = 116.0
 margin/top = 0.0
-margin/right = 224.0
+margin/right = 227.0
 margin/bottom = 16.0
 range/min = 0.0
 range/max = 1.0
@@ -463,11 +494,7 @@ parent_function_to_call = "go_back"
 
 [node name="ButtonFlasher" parent="." instance=ExtResource( 4 )]
 
-[node name="Fade" parent="." instance=ExtResource( 5 )]
-
-[node name="Pointer" parent="." instance=ExtResource( 6 )]
-
-[node name="Dialog" parent="." instance=ExtResource( 7 )]
+[node name="Dialog" parent="." instance=ExtResource( 5 )]
 
 visibility/visible = false
 message = "Resolution provided was not a valid input. A valid resolution would be widthxheight, for example: 800x600 is the default setting."

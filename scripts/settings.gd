@@ -15,9 +15,6 @@ export(NodePath) var vsync_check
 export(NodePath) var dialog_check
 export(NodePath) var move_speed_slider
 
-onready var fade = get_node("Fade")
-var dirty = false # if values in this menu have changed at all
-
 
 func _ready():
 	var err = GameData.load_global_data()
@@ -99,13 +96,14 @@ func handle(func_name):
 			get_node("Dialog").show()
 			return
 	
-	fade.begin_fade_out()
-	fade.connect("fade_finished", self, func_name)
+#	fade.begin_fade_out()
+#	fade.connect("fade_finished", self, func_name)
+	call(func_name)
 
 
 func go_back():
 	save_changes()
-	get_tree().change_scene("res://scenes/main_menu.scn")
+	emit_signal("finished")
 
 
 func _on_window_mode_value_changed(_):

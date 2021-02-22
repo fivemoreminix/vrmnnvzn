@@ -48,7 +48,7 @@ func _on_Pause_visibility_changed():
 		get_node("../Pointer").hide()
 
 func handle(func_name):
-	if func_name == "resume" or func_name == "restart":
+	if func_name == "resume" or func_name == "restart" or func_name == "settings":
 		call(func_name)
 		return
 	
@@ -76,9 +76,14 @@ func main_menu():
 	Music.call_deferred("set_paused", false) # Call frame after, to prevent single frame of sound
 
 func settings():
-	get_tree().set_pause(false)
-	get_tree().change_scene("res://scenes/settings.tscn")
-	Music.call_deferred("set_paused", false) # Call frame after, to prevent single frame of sound
+#	get_tree().set_pause(false)
+#	get_tree().change_scene("res://scenes/settings.tscn")
+#	Music.call_deferred("set_paused", false) # Call frame after, to prevent single frame of sound
+	get_node("SettingsScene").show()
+
+
+func _on_SettingsScene_finished():
+	get_node("SettingsScene").hide()
 
 
 func _on_CheckpointSelection_option_canceled():
