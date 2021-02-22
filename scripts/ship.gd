@@ -4,7 +4,7 @@ signal enemy_killed(enemy)
 
 
 # Constants variables
-const SPEED = 180 # maximum movement speed / target speed ; move_speed is actual speed
+const SPEED = 320 # maximum movement speed / target speed ; move_speed is actual speed
 const INTERP_SPEED = 15 # rate of interpolation
 
 onready var DEFAULT_SHOOT_WAIT_TIME = 0.3 if GameData.data.difficulty == "Normal" else 0.2
@@ -70,8 +70,8 @@ func _process(delta):
 func move(delta, motion):
 	var pos = get_pos()
 	
-	# apply interpolation
-	var target_speed = motion.length() * SPEED # assumes motion is normalized
+	# apply interpolation -- assumes motion is normalized
+	var target_speed = motion.length() * SPEED * GameData.global_data.move_speed_factor
 	move_speed = lerp(move_speed, target_speed, INTERP_SPEED * delta)
 	
 	# apply virtual movement
