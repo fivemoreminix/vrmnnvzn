@@ -20,7 +20,7 @@
 script/source = "extends VisibilityNotifier2D
 
 func send():
-	get_parent().bar.message(\"This is it: the Hornet's Nest is up ahead. Expect many hostiles.\")
+	get_parent().bar.message(\"This is it: the Hornet's Nest is up ahead. Expect many hostiles. Or... lasers.\")
 "
 
 [sub_resource type="GDScript" id=2]
@@ -102,7 +102,7 @@ editor/display_folded = true
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 3
+frame = 1
 
 [node name="Fade" parent="rail/hud"]
 

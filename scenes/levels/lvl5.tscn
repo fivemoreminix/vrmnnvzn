@@ -26,12 +26,7 @@
 script/source = "extends VisibilityNotifier2D
 
 func send():
-	get_parent().bar.message(\"They're retreating!\")
-	get_node(\"Timer\").start() # Dialog continues on timer timeout()
-
-
-func _on_Timer_timeout():
-	get_parent().bar.message(\"But to where?\")
+	get_parent().bar.message(\"They're retreating! But to where?\")
 "
 
 [sub_resource type="GDScript" id=2]
@@ -176,7 +171,7 @@ editor/display_folded = true
 
 [node name="thruster" parent="rail/ship"]
 
-frame = 3
+frame = 0
 
 [node name="Fade" parent="rail/hud"]
 
@@ -1017,13 +1012,6 @@ transform/pos = Vector2( 131.408, -162.363 )
 rect = Rect2( -10, -10, 20, 20 )
 script/script = SubResource( 1 )
 
-[node name="Timer" type="Timer" parent="Sequencing/Msg"]
-
-process_mode = 1
-wait_time = 3.0
-one_shot = true
-autostart = false
-
 [node name="Msg1" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 140.787, -1886.51 )
@@ -1037,8 +1025,6 @@ script/script = SubResource( 2 )
 [connection signal="level_finished" from="LevelFinishTrigger" to="." method="_on_LevelFinishTrigger_level_finished"]
 
 [connection signal="enter_screen" from="Sequencing/Msg" to="Sequencing/Msg" method="send"]
-
-[connection signal="timeout" from="Sequencing/Msg/Timer" to="Sequencing/Msg" method="_on_Timer_timeout"]
 
 [connection signal="enter_screen" from="Sequencing/Msg1" to="Sequencing/Msg1" method="send"]
 

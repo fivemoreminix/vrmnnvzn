@@ -19,7 +19,7 @@
 script/source = "extends VisibilityNotifier2D
 
 func send():
-	get_parent().bar.message(\"Looks like we're in this together, %s. I'm the Admin.\" % GameData.data.name)
+	get_parent().bar.message(\"Looks like we're in this together, pilot. I'm the Admin.\" % GameData.data.name)
 "
 
 [sub_resource type="GDScript" id=2]
@@ -27,7 +27,7 @@ func send():
 script/source = "extends VisibilityNotifier2D
 
 func send():
-	get_parent().bar.message(\"I'll be on the communications and radar, and monitoring the ship. We're connected with HQ, and I'll be relaying any important details to them about the VRMNs. We're their frontline \\\"scouts\\\". Really we're in for the dirty work.\")
+	get_parent().bar.message(\"I'll be on the communications and radar, and monitoring Recon 115/6. We're connected with HQ, and I'll be relaying any details to them about the VRMNs. We're their frontline \\\"scouts\\\". Really we're in for the dirty work.\")
 "
 
 [sub_resource type="GDScript" id=3]
@@ -35,7 +35,7 @@ func send():
 script/source = "extends VisibilityNotifier2D
 
 func send():
-	get_parent().bar.message(\"The VRMNZ are some of the dumbest space-faring pirates in the universe, but they're numerous. When they brought down our fifth colony ship... I think they became something much more united. It's hard to say.\")
+	get_parent().bar.message(\"The VRMNZ were the least intelligent pirates in the universe. Numerous; they're omnipresent but incorporeal. But when they brought down our fifth colony ship... I think they became something much more united. It's hard to say how.\")
 "
 
 [sub_resource type="GDScript" id=4]
@@ -101,6 +101,10 @@ editor/display_folded = true
 transform/pos = Vector2( 0, 1284 )
 travel_y = 3968
 
+[node name="thruster" parent="rail/ship"]
+
+frame = 0
+
 [node name="Fade" parent="rail/hud"]
 
 editor/display_folded = true
@@ -118,6 +122,10 @@ transform/pos = Vector2( 184, -346 )
 
 transform/pos = Vector2( 50, 0 )
 
+[node name="Sprite" parent="entities/Laser/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser 2" parent="entities" instance=ExtResource( 8 )]
 
 editor/display_folded = true
@@ -132,6 +140,10 @@ transform/pos = Vector2( 32, -0.0252664 )
 
 editor/display_folded = true
 
+[node name="Sprite" parent="entities/Laser 2/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser 3" parent="entities" instance=ExtResource( 8 )]
 
 editor/display_folded = true
@@ -140,6 +152,10 @@ transform/pos = Vector2( 24, -1442 )
 [node name="RightHead" parent="entities/Laser 3"]
 
 transform/pos = Vector2( 34, 0 )
+
+[node name="Sprite" parent="entities/Laser 3/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Laser4" parent="entities" instance=ExtResource( 8 )]
 
@@ -151,6 +167,10 @@ time_delay = 2.0
 
 transform/pos = Vector2( 50, 0 )
 
+[node name="Sprite" parent="entities/Laser4/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser5" parent="entities" instance=ExtResource( 8 )]
 
 editor/display_folded = true
@@ -159,6 +179,10 @@ transform/pos = Vector2( 136, -1669 )
 [node name="RightHead" parent="entities/Laser5"]
 
 transform/pos = Vector2( 50, 0 )
+
+[node name="Sprite" parent="entities/Laser5/LeftHead/Beam"]
+
+frame = 1
 
 [node name="Laser6" parent="entities" instance=ExtResource( 8 )]
 
@@ -170,6 +194,10 @@ time_delay = 1.0
 [node name="RightHead" parent="entities/Laser6"]
 
 transform/pos = Vector2( 54, -2.38419e-06 )
+
+[node name="Sprite" parent="entities/Laser6/LeftHead/Beam"]
+
+frame = 1
 
 [node name="YCentipede" parent="entities" instance=ExtResource( 9 )]
 
