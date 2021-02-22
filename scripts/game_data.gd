@@ -65,6 +65,8 @@ func load_global_data(): # load global data from disk
 			print("game_data.gd: failed to parse global save file")
 			return 2
 		
+		global_data.move_speed_factor = clamp(global_data.move_speed_factor, 0.0, 1.0)
+		
 		refresh_settings()
 		
 		return 0
