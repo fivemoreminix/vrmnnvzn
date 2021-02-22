@@ -75,11 +75,11 @@ func move(delta, motion):
 	move_speed = lerp(move_speed, target_speed, INTERP_SPEED * delta)
 	print(move_speed)
 	
+	# apply virtual movement
 	movement = movement.linear_interpolate(motion * move_speed * delta, INTERP_SPEED * delta)
 	
 	# move ship
 	pos += movement
-#	pos += motion * move_speed * delta
 	
 	pos.x = clamp(pos.x, 0, screen_size.x)
 	pos.y = clamp(pos.y, 12, 175)
