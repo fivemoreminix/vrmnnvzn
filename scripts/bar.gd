@@ -17,7 +17,7 @@ func _process(delta):
 
 
 func message(text):
-	if not messages_hidden:
+	if not messages_hidden and GameData.global_data.dialog_enabled:
 		get_node("AnimationPlayer").play("Show")
 		get_node("../../MessageSoundPlayer").play("bloop")
 		get_node("Timer").start()
