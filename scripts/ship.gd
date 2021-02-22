@@ -3,11 +3,14 @@ extends Area2D
 signal enemy_killed(enemy)
 
 
-# Member variables
-const SPEED = 110
+# Constants variables
+const SPEED = 180 # maximum movement speed / target speed ; move_speed is actual speed
+const INTERP_SPEED = 15 # rate of interpolation
+
 onready var DEFAULT_SHOOT_WAIT_TIME = 0.3 if GameData.data.difficulty == "Normal" else 0.2
 
-var motion = Vector2()
+var move_speed = 0.0 # actual speed to be applied to movement
+var movement = Vector2(0, 0) # actual movement applied to position
 
 var screen_size
 export var input_disabled = false
@@ -48,17 +51,17 @@ func _process(delta):
 		set_global_pos(cpos)
 	else:
 		if not input_disabled:
-			motion = Vector2(0,0)
+			var motion = Vector2(0,0)
 			if Input.is_action_pressed("move_up"):
-				motion += Vector2(0, -1)
+				motion += Vector2(0, -0.7)
 			if Input.is_action_pressed("move_down"):
-				motion += Vector2(0, 1.5)
+				motion += Vector2(0, 1)
 			if Input.is_action_pressed("move_left"):
 				motion += Vector2(-1, 0)
 			if Input.is_action_pressed("move_right"):
 				motion += Vector2(1, 0)
 			
-			move(delta, motion)
+			move(delta, motion.normalized())
 			
 			var shooting = Input.is_action_pressed("shoot")
 			if shooting: shoot()
@@ -67,11 +70,19 @@ func _process(delta):
 func move(delta, motion):
 	var pos = get_pos()
 	
+	# apply interpolation
+	var target_speed = motion.length() * SPEED # assumes motion is normalized
+	move_speed = lerp(move_speed, target_speed, INTERP_SPEED * delta)
+	print(move_speed)
+	
+	movement = movement.linear_interpolate(motion * move_speed * delta, INTERP_SPEED * delta)
+	
 	# move ship
-	pos += motion*delta*SPEED
+	pos += movement
+#	pos += motion * move_speed * delta
 	
 	pos.x = clamp(pos.x, 0, screen_size.x)
-	pos.y = min(pos.y, 175)
+	pos.y = clamp(pos.y, 12, 175)
 	
 	set_pos(pos)
 
