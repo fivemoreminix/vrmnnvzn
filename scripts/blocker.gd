@@ -11,7 +11,7 @@ func destroy():
 		
 		if health <= 0:
 			set_monitorable(false)
-			get_node("Sprite").set_visible(false)
+			get_node("Sprite").hide()
 			get_node("Particles2D").set_emitting(true)
 			
 			# Play explosion sound
