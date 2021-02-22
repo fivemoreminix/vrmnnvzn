@@ -22,6 +22,13 @@ margin/top = 0.0
 margin/right = 0.0
 margin/bottom = 0.0
 script/script = ExtResource( 2 )
+sfx_slider = NodePath("Panel/Scroll/Margin/VBox/SFX/Slider")
+music_slider = NodePath("Panel/Scroll/Margin/VBox/Music/Slider")
+window_mode_selection = NodePath("Panel/Scroll/Margin/VBox/WindowMode/Selection")
+resolution_input = NodePath("Panel/Scroll/Margin/VBox/Resolution/Input")
+vsync_check = NodePath("Panel/Scroll/Margin/VBox/VsyncCheck")
+dialog_check = NodePath("Panel/Scroll/Margin/VBox/DialogCheck")
+move_speed_slider = NodePath("Panel/Scroll/Margin/VBox/MoveSpeed/Slider")
 
 [node name="Title" type="Label" parent="."]
 
@@ -29,56 +36,174 @@ focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 10.0
-margin/top = 10.0
-margin/right = 74.0
-margin/bottom = 24.0
+margin/left = 5.0
+margin/top = 4.0
+margin/right = 69.0
+margin/bottom = 14.0
 text = "SETTINGS"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="SFXSliderLabel" type="Label" parent="."]
+[node name="Panel" type="Panel" parent="."]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 5.0
+margin/top = 19.0
+margin/right = 5.0
+margin/bottom = 27.0
+
+[node name="Scroll" type="ScrollContainer" parent="Panel"]
+
+anchor/right = 1
+anchor/bottom = 1
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 0.0
+margin/bottom = 1.0
+scroll/horizontal = false
+scroll/vertical = true
+scroll/deadzone = 0
+
+[node name="Margin" type="MarginContainer" parent="Panel/Scroll"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 234.0
+margin/bottom = 209.0
+custom_constants/margin_right = 5
+custom_constants/margin_top = 5
+custom_constants/margin_left = 5
+custom_constants/margin_bottom = 5
+
+[node name="VBox" type="VBoxContainer" parent="Panel/Scroll/Margin"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 5.0
+margin/top = 5.0
+margin/right = 229.0
+margin/bottom = 204.0
+alignment = 0
+
+[node name="AudioLabel" type="Label" parent="Panel/Scroll/Margin/VBox"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 0.0
+margin/right = 224.0
+margin/bottom = 9.0
+text = "Audio:"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="SFX" type="HBoxContainer" parent="Panel/Scroll/Margin/VBox"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 13.0
+margin/right = 224.0
+margin/bottom = 29.0
+alignment = 0
+
+[node name="Label" type="Label" parent="Panel/Scroll/Margin/VBox/SFX"]
 
 hint/tooltip = "Volume of sound effects (shooting, explosions, powerups, etc.)"
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 8.0
-margin/top = 40.0
-margin/right = 72.0
-margin/bottom = 54.0
+margin/left = 0.0
+margin/top = 3.0
+margin/right = 64.0
+margin/bottom = 12.0
 text = "Sound FX"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="MusicSliderLabel" type="Label" parent="."]
+[node name="Slider" type="HSlider" parent="Panel/Scroll/Margin/VBox/SFX"]
 
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 0
+margin/left = 68.0
+margin/top = 0.0
+margin/right = 224.0
+margin/bottom = 16.0
+range/min = 0.0
+range/max = 1.0
+range/step = 0.1
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = false
+tick_count = 0
+ticks_on_borders = true
+focus_mode = 2
+
+[node name="Music" type="HBoxContainer" parent="Panel/Scroll/Margin/VBox"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 33.0
+margin/right = 224.0
+margin/bottom = 49.0
+alignment = 0
+
+[node name="Label" type="Label" parent="Panel/Scroll/Margin/VBox/Music"]
+
+rect/min_size = Vector2( 64, 0 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 8.0
-margin/top = 56.0
-margin/right = 72.0
-margin/bottom = 70.0
+margin/left = 0.0
+margin/top = 3.0
+margin/right = 64.0
+margin/bottom = 12.0
 text = "Music"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="SFXSlider" type="HSlider" parent="."]
+[node name="Slider" type="HSlider" parent="Panel/Scroll/Margin/VBox/Music"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 80.0
-margin/top = 38.0
-margin/right = 248.0
-margin/bottom = 54.0
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 68.0
+margin/top = 0.0
+margin/right = 224.0
+margin/bottom = 16.0
 range/min = 0.0
 range/max = 1.0
 range/step = 0.1
@@ -90,52 +215,61 @@ tick_count = 0
 ticks_on_borders = true
 focus_mode = 2
 
-[node name="MusicSlider" type="HSlider" parent="."]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 0
-margin/left = 80.0
-margin/top = 58.0
-margin/right = 248.0
-margin/bottom = 74.0
-range/min = 0.0
-range/max = 1.0
-range/step = 0.1
-range/page = 0.0
-range/value = 1.0
-range/exp_edit = false
-range/rounded = false
-tick_count = 0
-ticks_on_borders = true
-focus_mode = 2
-
-[node name="WindowModeOptionLabel" type="Label" parent="."]
+[node name="DisplayLabel" type="Label" parent="Panel/Scroll/Margin/VBox"]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 24.0
-margin/top = 96.0
-margin/right = 112.0
-margin/bottom = 110.0
+margin/left = 0.0
+margin/top = 53.0
+margin/right = 224.0
+margin/bottom = 62.0
+text = "Display:"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="WindowMode" type="HBoxContainer" parent="Panel/Scroll/Margin/VBox"]
+
+editor/display_folded = true
+rect/min_size = Vector2( 0, 18 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 66.0
+margin/right = 224.0
+margin/bottom = 84.0
+alignment = 0
+
+[node name="Label" type="Label" parent="Panel/Scroll/Margin/VBox/WindowMode"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 4.0
+margin/right = 88.0
+margin/bottom = 13.0
 text = "Window Mode"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="WindowModeOption" type="OptionButton" parent="."]
+[node name="Selection" type="OptionButton" parent="Panel/Scroll/Margin/VBox/WindowMode"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
+size_flags/horizontal = 3
 size_flags/vertical = 2
-margin/left = 120.0
-margin/top = 96.0
-margin/right = 247.0
-margin/bottom = 111.0
+margin/left = 92.0
+margin/top = 0.0
+margin/right = 224.0
+margin/bottom = 18.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
@@ -145,47 +279,62 @@ align = 0
 selected = 0
 items = [ "Windowed", null, false, 0, null, "Borderless", null, false, 1, null, "Fullscreen", null, false, 2, null ]
 
-[node name="ResolutionOptionLabel" type="Label" parent="."]
+[node name="Resolution" type="HBoxContainer" parent="Panel/Scroll/Margin/VBox"]
 
+editor/display_folded = true
+rect/min_size = Vector2( 0, 14 )
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 88.0
+margin/right = 224.0
+margin/bottom = 102.0
+alignment = 0
+
+[node name="Label" type="Label" parent="Panel/Scroll/Margin/VBox/Resolution"]
+
+rect/min_size = Vector2( 88, 0 )
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
-margin/left = 24.0
-margin/top = 120.0
-margin/right = 112.0
-margin/bottom = 134.0
+margin/left = 0.0
+margin/top = 2.0
+margin/right = 88.0
+margin/bottom = 11.0
 text = "Resolution"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="ResolutionOption" type="LineEdit" parent="."]
+[node name="Input" type="LineEdit" parent="Panel/Scroll/Margin/VBox/Resolution"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
-size_flags/horizontal = 2
+size_flags/horizontal = 3
 size_flags/vertical = 2
-margin/left = 120.0
-margin/top = 120.0
-margin/right = 247.0
-margin/bottom = 135.0
+margin/left = 92.0
+margin/top = 0.0
+margin/right = 224.0
+margin/bottom = 14.0
 text = "800x600"
 placeholder/alpha = 0.6
 focus_mode = 2
 caret/caret_blink = false
 caret/caret_blink_speed = 0.65
 
-[node name="VsyncCheck" type="CheckBox" parent="."]
+[node name="VsyncCheck" type="CheckBox" parent="Panel/Scroll/Margin/VBox"]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 120.0
-margin/top = 144.0
-margin/right = 250.0
-margin/bottom = 162.0
+margin/left = 0.0
+margin/top = 106.0
+margin/right = 224.0
+margin/bottom = 124.0
 toggle_mode = true
 is_pressed = true
 enabled_focus_mode = 2
@@ -194,42 +343,123 @@ text = "Vertical Sync"
 flat = false
 align = 0
 
+[node name="GameplayLabel" type="Label" parent="Panel/Scroll/Margin/VBox"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 128.0
+margin/right = 224.0
+margin/bottom = 137.0
+text = "Gameplay:"
+align = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="ControlsButton" type="Button" parent="Panel/Scroll/Margin/VBox"]
+
+rect/min_size = Vector2( 115, 16 )
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 0
+size_flags/vertical = 2
+margin/left = 54.0
+margin/top = 141.0
+margin/right = 169.0
+margin/bottom = 157.0
+toggle_mode = false
+enabled_focus_mode = 2
+shortcut = null
+text = "Edit Controls"
+flat = false
+
+[node name="DialogCheck" type="CheckBox" parent="Panel/Scroll/Margin/VBox"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 161.0
+margin/right = 224.0
+margin/bottom = 179.0
+toggle_mode = true
+is_pressed = true
+enabled_focus_mode = 2
+shortcut = null
+text = "Scrolling Dialog"
+flat = false
+align = 0
+
+[node name="MoveSpeed" type="HBoxContainer" parent="Panel/Scroll/Margin/VBox"]
+
+editor/display_folded = true
+focus/ignore_mouse = false
+focus/stop_mouse = false
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 0.0
+margin/top = 183.0
+margin/right = 224.0
+margin/bottom = 199.0
+alignment = 0
+
+[node name="Label" type="Label" parent="Panel/Scroll/Margin/VBox/MoveSpeed"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 0.0
+margin/top = 3.0
+margin/right = 112.0
+margin/bottom = 12.0
+text = "Movement Speed"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="Slider" type="HSlider" parent="Panel/Scroll/Margin/VBox/MoveSpeed"]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 3
+size_flags/vertical = 2
+margin/left = 116.0
+margin/top = 0.0
+margin/right = 224.0
+margin/bottom = 16.0
+range/min = 0.0
+range/max = 1.0
+range/step = 0.1
+range/page = 0.0
+range/value = 0.5
+range/exp_edit = false
+range/rounded = false
+tick_count = 0
+ticks_on_borders = true
+focus_mode = 2
+
 [node name="Cancel" type="Button" parent="."]
 
 focus/ignore_mouse = false
 focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
-margin/left = 13.0
-margin/top = 166.0
-margin/right = 75.0
-margin/bottom = 182.0
+margin/left = 5.0
+margin/top = 171.0
+margin/right = 61.0
+margin/bottom = 187.0
 toggle_mode = false
 enabled_focus_mode = 2
 shortcut = null
-text = "CANCEL"
+text = "BACK"
 flat = false
 script/script = ExtResource( 3 )
 parent_function_to_call = "go_back"
-
-[node name="Save" type="Button" parent="."]
-
-focus/ignore_mouse = false
-focus/stop_mouse = true
-size_flags/horizontal = 2
-size_flags/vertical = 2
-margin/left = 121.0
-margin/top = 166.0
-margin/right = 242.0
-margin/bottom = 182.0
-disabled = true
-toggle_mode = false
-enabled_focus_mode = 2
-shortcut = null
-text = "SAVE CHANGES"
-flat = false
-script/script = ExtResource( 3 )
-parent_function_to_call = "save_changes"
 
 [node name="ButtonFlasher" parent="." instance=ExtResource( 4 )]
 
@@ -242,14 +472,10 @@ parent_function_to_call = "save_changes"
 visibility/visible = false
 message = "Resolution provided was not a valid input. A valid resolution would be widthxheight, for example: 800x600 is the default setting."
 
-[connection signal="value_changed" from="SFXSlider" to="." method="_on_value_changed"]
+[connection signal="value_changed" from="Panel/Scroll/Margin/VBox/SFX/Slider" to="." method="_on_SFX_value_changed"]
 
-[connection signal="value_changed" from="MusicSlider" to="." method="_on_value_changed"]
+[connection signal="value_changed" from="Panel/Scroll/Margin/VBox/Music/Slider" to="." method="_on_Music_value_changed"]
 
-[connection signal="item_selected" from="WindowModeOption" to="." method="_on_window_mode_value_changed"]
-
-[connection signal="text_changed" from="ResolutionOption" to="." method="_on_value_changed"]
-
-[connection signal="toggled" from="VsyncCheck" to="." method="_on_value_changed"]
+[connection signal="item_selected" from="Panel/Scroll/Margin/VBox/WindowMode/Selection" to="." method="_on_window_mode_value_changed"]
 
 

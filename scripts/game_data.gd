@@ -40,18 +40,8 @@ func load_data(): # load saved game data from disk
 		return 0
 		# ** To add data, edit in NewGame node's MainDialog child script **
 		# ** Bottom of this script has handlers for end of level changes **
-#	else: # data save file does NOT exist ...
-#		data = { ### data defaults ###
-#			current_level: 0,
-#			current_section: 0,
-#			kills_this_level: 0,
-#			blockers_cleared_this_level: 0,
-#			highest_level_discovered: 0,
-#			difficulty: "Normal",
-#		}
-#		print("game_data.gd: game data save file not found... creating one now")
-#		return save_data() # make the file
 	return 1
+
 
 # returns int: error type, so 0 = OK loaded fine, 2 = SHIT EXPLODED, FILE WONT SAVE
 func save_global_data(): # save global data to disk
@@ -61,6 +51,7 @@ func save_global_data(): # save global data to disk
 	f.store_string(global_data.to_json())
 	f.close()
 	return 0
+
 
 # returns int: error type, so 0 = OK loaded fine, 1 = had to create the file, 2 = SHIT EXPLODED, FILE WONT READ
 func load_global_data(): # load global data from disk
@@ -74,8 +65,7 @@ func load_global_data(): # load global data from disk
 			print("game_data.gd: failed to parse global save file")
 			return 2
 		
-		refresh_audio_settings()
-		refresh_video_settings()
+		refresh_settings()
 		
 		return 0
 	else: # global data save file does NOT exist ...
@@ -85,10 +75,20 @@ func load_global_data(): # load global data from disk
 			window_mode = "Windowed", # note: this property must be typed in title case
 			resolution = "800x600",
 			vsync = true,
+			dialog_enabled = true,
+			move_speed_factor = 0.5,
 		}
 		print("game_data.gd: global save file not found... creating one now")
+		
 		save_global_data()
+		refresh_settings()
+		
 		return 1 # make the file
+
+
+func refresh_settings():
+	refresh_audio_settings()
+	refresh_video_settings()
 
 func refresh_audio_settings():
 	# Set SFX volume
@@ -120,11 +120,10 @@ func refresh_video_settings():
 	OS.set_borderless_window(global_data.window_mode == "Borderless")
 	OS.set_window_size(Vector2(x, y))
 	OS.set_use_vsync(global_data.vsync)
-#	var ssize = OS.get_screen_size(OS.get_current_screen())
-#	OS.set_window_position(Vector2(ssize.x/2-x/2, ssize.y/2-y/2))
+
 
 func _enter_tree():
-	load_global_data() # Load global data and refresh video settings upon game load (this code is a singleton)
+	load_global_data() # Load global data upon game load (this code is a singleton)
 
 
 ### GAME-WIDE HELPER FUNCTIONS ###
