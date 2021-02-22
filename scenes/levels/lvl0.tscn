@@ -19,7 +19,7 @@
 script/source = "extends VisibilityNotifier2D
 
 func send():
-	get_parent().bar.message(\"Looks like we're in this together, pilot. I'm the Admin.\" % GameData.data.name)
+	get_parent().bar.message(\"Looks like we're in this together, pilot. I'm the Admin.\")
 "
 
 [sub_resource type="GDScript" id=2]
@@ -100,10 +100,6 @@ transform/pos = Vector2( 224, -3184 )
 editor/display_folded = true
 transform/pos = Vector2( 0, 1284 )
 travel_y = 3968
-
-[node name="thruster" parent="rail/ship"]
-
-frame = 0
 
 [node name="Fade" parent="rail/hud"]
 
