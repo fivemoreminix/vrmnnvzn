@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=1]
+[gd_scene load_steps=23 format=1]
 
 [ext_resource path="res://scripts/level_manager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sound/music/level_1.ogg" type="AudioStream" id=2]
@@ -13,6 +13,10 @@
 [ext_resource path="res://scenes/checkpoint.tscn" type="PackedScene" id=11]
 [ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=12]
 [ext_resource path="res://scripts/sequencing.gd" type="Script" id=13]
+[ext_resource path="res://assets/sound/dialog/1_01.tres" type="Sample" id=14]
+[ext_resource path="res://assets/sound/dialog/1_02.tres" type="Sample" id=15]
+[ext_resource path="res://assets/sound/dialog/1_03.tres" type="Sample" id=16]
+[ext_resource path="res://assets/sound/dialog/1_04.tres" type="Sample" id=17]
 
 [sub_resource type="GDScript" id=1]
 
@@ -20,7 +24,35 @@ script/source = "extends VisibilityNotifier2D
 
 func send():
 	get_parent().bar.message(\"Looks like we're in this together, pilot. I'm the Admin.\")
+	get_node(\"SamplePlayer\").play(\"1_01\")
 "
+
+[sub_resource type="SampleLibrary" id=5]
+
+samples/1_01 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 14 )
+}
+samples/1_02 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 15 )
+}
+samples/1_03 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 16 )
+}
+samples/1_04 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 17 )
+}
 
 [sub_resource type="GDScript" id=2]
 
@@ -28,6 +60,7 @@ script/source = "extends VisibilityNotifier2D
 
 func send():
 	get_parent().bar.message(\"I'll be on the communications and radar, and monitoring Recon 115/6. We're connected with HQ, and I'll be relaying any details to them about the VRMNs. We're their frontline \\\"scouts\\\". Really we're in for the dirty work.\")
+	get_node(\"SamplePlayer\").play(\"1_02\")
 "
 
 [sub_resource type="GDScript" id=3]
@@ -36,6 +69,7 @@ script/source = "extends VisibilityNotifier2D
 
 func send():
 	get_parent().bar.message(\"The VRMNZ were the least intelligent pirates in the universe. Numerous; they're omnipresent but incorporeal. But when they brought down our fifth colony ship... I think they became something much more united. It's hard to say how.\")
+	get_node(\"SamplePlayer\").play(\"1_03\")
 "
 
 [sub_resource type="GDScript" id=4]
@@ -44,6 +78,7 @@ script/source = "extends VisibilityNotifier2D
 
 func send():
 	get_parent().bar.message(\"There's one, on the right... Prepare to maneuver!\")
+	get_node(\"SamplePlayer\").play(\"1_04\")
 "
 
 [node name="lvl0" type="Node2D"]
@@ -256,11 +291,45 @@ transform/pos = Vector2( 128, 1210 )
 rect = Rect2( -10, -10, 20, 20 )
 script/script = SubResource( 1 )
 
+[node name="SamplePlayer" type="SamplePlayer" parent="Sequencing/Msg"]
+
+config/polyphony = 1
+config/samples = SubResource( 5 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
+
 [node name="Msg1" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 128, 910 )
 rect = Rect2( -10, -10, 20, 20 )
 script/script = SubResource( 2 )
+
+[node name="SamplePlayer" type="SamplePlayer" parent="Sequencing/Msg1"]
+
+config/polyphony = 1
+config/samples = SubResource( 5 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
 
 [node name="Msg2" type="VisibilityNotifier2D" parent="Sequencing"]
 
@@ -268,11 +337,45 @@ transform/pos = Vector2( 128, 130 )
 rect = Rect2( -10, -10, 20, 20 )
 script/script = SubResource( 3 )
 
+[node name="SamplePlayer" type="SamplePlayer" parent="Sequencing/Msg2"]
+
+config/polyphony = 1
+config/samples = SubResource( 5 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
+
 [node name="Msg3" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 118, -650 )
 rect = Rect2( -10, -10, 20, 20 )
 script/script = SubResource( 4 )
+
+[node name="SamplePlayer" type="SamplePlayer" parent="Sequencing/Msg3"]
+
+config/polyphony = 1
+config/samples = SubResource( 5 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
 
 [connection signal="finished" from="EndOfLevelGUI" to="." method="_on_EndOfLevelGUI_finished"]
 

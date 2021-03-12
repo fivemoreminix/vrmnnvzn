@@ -241,6 +241,23 @@ margin/right = 0.0
 margin/bottom = 0.0
 script/script = SubResource( 2 )
 
+[node name="LoadingTimesMessage" type="Label" parent="MainDialog"]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 20.0
+margin/top = 98.0
+margin/right = 238.0
+margin/bottom = 159.0
+text = "Please provide up to 15 seconds for loading levels, because dialog sounds may be loaded slowly."
+align = 1
+autowrap = true
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="DifficultyLabel" type="Label" parent="MainDialog"]
 
 focus/ignore_mouse = true
@@ -248,9 +265,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 16.0
-margin/top = 96.0
+margin/top = 46.0
 margin/right = 240.0
-margin/bottom = 105.0
+margin/bottom = 55.0
 text = "DIFFICULTY SELECT"
 align = 1
 percent_visible = 1.0
@@ -264,9 +281,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 48.0
-margin/top = 112.0
+margin/top = 62.0
 margin/right = 128.0
-margin/bottom = 130.0
+margin/bottom = 80.0
 toggle_mode = true
 enabled_focus_mode = 2
 shortcut = null
@@ -281,9 +298,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = 144.0
-margin/top = 112.0
-margin/right = 208.0
-margin/bottom = 130.0
+margin/top = 62.0
+margin/right = 218.0
+margin/bottom = 80.0
 toggle_mode = true
 enabled_focus_mode = 2
 shortcut = null

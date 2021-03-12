@@ -1,0 +1,223 @@
+[gd_resource type="SampleLibrary" load_steps=32 format=1]
+
+[ext_resource path="res://assets/sound/dialog/1_01.tres" type="Sample" id=1]
+[ext_resource path="res://assets/sound/dialog/1_02.tres" type="Sample" id=2]
+[ext_resource path="res://assets/sound/dialog/1_03.tres" type="Sample" id=3]
+[ext_resource path="res://assets/sound/dialog/1_04.tres" type="Sample" id=4]
+[ext_resource path="res://assets/sound/dialog/2_01.tres" type="Sample" id=5]
+[ext_resource path="res://assets/sound/dialog/2_02.tres" type="Sample" id=6]
+[ext_resource path="res://assets/sound/dialog/2_03.tres" type="Sample" id=7]
+[ext_resource path="res://assets/sound/dialog/2_04.tres" type="Sample" id=8]
+[ext_resource path="res://assets/sound/dialog/3_01.tres" type="Sample" id=9]
+[ext_resource path="res://assets/sound/dialog/3_02.tres" type="Sample" id=10]
+[ext_resource path="res://assets/sound/dialog/3_03.tres" type="Sample" id=11]
+[ext_resource path="res://assets/sound/dialog/3_04.tres" type="Sample" id=12]
+[ext_resource path="res://assets/sound/dialog/3_05.tres" type="Sample" id=13]
+[ext_resource path="res://assets/sound/dialog/3_06.tres" type="Sample" id=14]
+[ext_resource path="res://assets/sound/dialog/3_07.tres" type="Sample" id=15]
+[ext_resource path="res://assets/sound/dialog/4_01.tres" type="Sample" id=16]
+[ext_resource path="res://assets/sound/dialog/4_02.tres" type="Sample" id=17]
+[ext_resource path="res://assets/sound/dialog/4_03.tres" type="Sample" id=18]
+[ext_resource path="res://assets/sound/dialog/4_04.tres" type="Sample" id=19]
+[ext_resource path="res://assets/sound/dialog/4_05.tres" type="Sample" id=20]
+[ext_resource path="res://assets/sound/dialog/5_01.tres" type="Sample" id=21]
+[ext_resource path="res://assets/sound/dialog/5_02.tres" type="Sample" id=22]
+[ext_resource path="res://assets/sound/dialog/5_03.tres" type="Sample" id=23]
+[ext_resource path="res://assets/sound/dialog/5_05.tres" type="Sample" id=24]
+[ext_resource path="res://assets/sound/dialog/5_06.tres" type="Sample" id=25]
+[ext_resource path="res://assets/sound/dialog/6_01.tres" type="Sample" id=26]
+[ext_resource path="res://assets/sound/dialog/6_02.tres" type="Sample" id=27]
+[ext_resource path="res://assets/sound/dialog/7_01.tres" type="Sample" id=28]
+[ext_resource path="res://assets/sound/dialog/7_02.tres" type="Sample" id=29]
+[ext_resource path="res://assets/sound/dialog/7_03.tres" type="Sample" id=30]
+[ext_resource path="res://assets/sound/dialog/7_04.tres" type="Sample" id=31]
+
+[resource]
+
+samples/1_01 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 1 )
+}
+samples/1_02 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 2 )
+}
+samples/1_03 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 3 )
+}
+samples/1_04 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 4 )
+}
+samples/2_01 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 5 )
+}
+samples/2_02 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 6 )
+}
+samples/2_03 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 7 )
+}
+samples/2_04 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 8 )
+}
+samples/3_01 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 9 )
+}
+samples/3_02 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 10 )
+}
+samples/3_03 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 11 )
+}
+samples/3_04 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 12 )
+}
+samples/3_05 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 13 )
+}
+samples/3_06 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 14 )
+}
+samples/3_07 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 15 )
+}
+samples/4_01 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 16 )
+}
+samples/4_02 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 17 )
+}
+samples/4_03 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 18 )
+}
+samples/4_04 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 19 )
+}
+samples/4_05 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 20 )
+}
+samples/5_01 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 21 )
+}
+samples/5_02 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 22 )
+}
+samples/5_03 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 23 )
+}
+samples/5_05 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 24 )
+}
+samples/5_06 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 25 )
+}
+samples/6_01 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 26 )
+}
+samples/6_02 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 27 )
+}
+samples/7_01 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 28 )
+}
+samples/7_02 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 29 )
+}
+samples/7_03 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 30 )
+}
+samples/7_04 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 31 )
+}
+

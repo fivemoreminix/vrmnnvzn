@@ -39,10 +39,10 @@ size_flags/vertical = 2
 margin/left = 0.0
 margin/top = 192.0
 margin/right = 0.0
-margin/bottom = -498.0
+margin/bottom = -613.0
 bbcode/enabled = true
-bbcode/bbcode = "VRMN NVZN v0.6 Alpha
-Feb. 27, 2020 - Feb. 8, 2021
+bbcode/bbcode = "VRMN NVZN v1.0
+Feb. 27, 2020 - Mar. 12, 2021
 
 
 [center]CREDITS[/center]
@@ -57,7 +57,6 @@ Luke I. Wilson \"fivemoreminix\"
 [center]Programming[/center]
 
 Luke Wilson
-Ayman Lezhar \"Haxeil\"
 
 [center]Graphics[/center]
 
@@ -71,6 +70,17 @@ Hollo
 [center]Sound Effects[/center]
 
 Luke Wilson
+Hollo
+
+[center]Voice Acting[/center]
+
+Brittanie Arwen
+
+
+
+[center]With Assistance From[/center]
+
+Ayman Lezhar \"Haxeil\"
 
 
 

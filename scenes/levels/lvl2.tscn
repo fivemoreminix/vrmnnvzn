@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=1]
+[gd_scene load_steps=41 format=1]
 
 [ext_resource path="res://scripts/level_manager.gd" type="Script" id=1]
 [ext_resource path="res://assets/sound/music/level_3.ogg" type="AudioStream" id=2]
@@ -22,7 +22,14 @@
 [ext_resource path="res://scenes/blocker.tscn" type="PackedScene" id=20]
 [ext_resource path="res://scenes/level_finish_trigger.tscn" type="PackedScene" id=21]
 [ext_resource path="res://scripts/sequencing.gd" type="Script" id=22]
-[ext_resource path="res://scenes/force_field.tscn" type="PackedScene" id=23]
+[ext_resource path="res://assets/sound/dialog/3_01.tres" type="Sample" id=23]
+[ext_resource path="res://assets/sound/dialog/3_02.tres" type="Sample" id=24]
+[ext_resource path="res://assets/sound/dialog/3_03.tres" type="Sample" id=25]
+[ext_resource path="res://assets/sound/dialog/3_04.tres" type="Sample" id=26]
+[ext_resource path="res://assets/sound/dialog/3_05.tres" type="Sample" id=27]
+[ext_resource path="res://assets/sound/dialog/3_06.tres" type="Sample" id=28]
+[ext_resource path="res://assets/sound/dialog/3_07.tres" type="Sample" id=29]
+[ext_resource path="res://scenes/force_field.tscn" type="PackedScene" id=30]
 
 [sub_resource type="GDScript" id=1]
 
@@ -47,22 +54,61 @@ script/source = "extends VisibilityNotifier2D
 
 func send():
 	get_parent().bar.message(\"An ambush. They were expecting us.\")
+	get_node(\"SamplePlayer\").play(\"3_01\")
 "
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="SampleLibrary" id=4]
 
-script/source = "extends VisibilityNotifier2D
-
-func send():
-	get_parent().bar.message(\"A swarm of those things are coming. Quick grab that power!\")
-"
+samples/3_01 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 23 )
+}
+samples/3_02 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 24 )
+}
+samples/3_03 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 25 )
+}
+samples/3_04 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 26 )
+}
+samples/3_05 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 27 )
+}
+samples/3_06 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 28 )
+}
+samples/3_07 = {
+"db": 0.0,
+"pitch": 1.0,
+"priority": 0,
+"sample": ExtResource( 29 )
+}
 
 [sub_resource type="GDScript" id=5]
 
 script/source = "extends VisibilityNotifier2D
 
 func send():
-	get_parent().bar.message(\"Wow, that was close. Up ahead, there's more runes.\")
+	get_parent().bar.message(\"A swarm of those things are coming. Quick grab that power!\")
+	get_node(\"SamplePlayer\").play(\"3_02\")
 "
 
 [sub_resource type="GDScript" id=6]
@@ -70,27 +116,30 @@ func send():
 script/source = "extends VisibilityNotifier2D
 
 func send():
-	get_parent().bar.message(\"Looks like we found our Ernest Hemingway. Transmitting to HQ...\")
+	get_parent().bar.message(\"Wow, that was close. Up ahead, there's more runes.\")
+	get_node(\"SamplePlayer\").play(\"3_03\")
 "
 
 [sub_resource type="GDScript" id=7]
+
+script/source = "extends VisibilityNotifier2D
+
+func send():
+	get_parent().bar.message(\"Looks like we found our Ernest Hemingway. Transmitting to HQ...\")
+	get_node(\"SamplePlayer\").play(\"3_04\")
+"
+
+[sub_resource type="GDScript" id=8]
 
 script/source = "extends Node2D
 
 func send():
 	get_parent().bar.message(\"We passed through some kind of force field. It corrupted our message, and we lost communications.\")
+	get_node(\"SamplePlayer\").play(\"3_05\")
 
 
 func _on_ForceField_player_passed():
 	get_node(\"Timer\").start()
-"
-
-[sub_resource type="GDScript" id=8]
-
-script/source = "extends VisibilityNotifier2D
-
-func send():
-	get_parent().bar.message(\"We're alone.\")
 "
 
 [sub_resource type="GDScript" id=9]
@@ -98,7 +147,17 @@ func send():
 script/source = "extends VisibilityNotifier2D
 
 func send():
+	get_parent().bar.message(\"We're alone.\")
+	get_node(\"SamplePlayer\").play(\"3_06\")
+"
+
+[sub_resource type="GDScript" id=10]
+
+script/source = "extends VisibilityNotifier2D
+
+func send():
 	get_parent().bar.message(\"I can't decipher exactly what the wasps are writing, but it seems to be messages to the VRMNZ. Maybe instructions. I'll begin running a learning algorithm I've prepared.\")
+	get_node(\"SamplePlayer\").play(\"3_07\")
 "
 
 [node name="lvl0" type="Node2D"]
@@ -238,6 +297,10 @@ transform/pos = Vector2( 64, 2166 )
 
 transform/pos = Vector2( 112, 0 )
 
+[node name="Sprite" parent="entities/Laser/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser1" parent="entities" instance=ExtResource( 14 )]
 
 editor/display_folded = true
@@ -247,10 +310,6 @@ time_delay = 1.0
 [node name="RightHead" parent="entities/Laser1"]
 
 transform/pos = Vector2( 112, 0 )
-
-[node name="Sprite" parent="entities/Laser1/LeftHead/Beam"]
-
-frame = 1
 
 [node name="Laser3" parent="entities" instance=ExtResource( 14 )]
 
@@ -262,6 +321,10 @@ time_delay = 1.0
 
 transform/pos = Vector2( 96, 0 )
 
+[node name="Sprite" parent="entities/Laser3/LeftHead/Beam"]
+
+frame = 1
+
 [node name="Laser2" parent="entities" instance=ExtResource( 14 )]
 
 editor/display_folded = true
@@ -271,10 +334,6 @@ time_delay = 1.0
 [node name="RightHead" parent="entities/Laser2"]
 
 transform/pos = Vector2( 64, 0 )
-
-[node name="Sprite" parent="entities/Laser2/LeftHead/Beam"]
-
-frame = 1
 
 [node name="Bee" parent="entities" instance=ExtResource( 15 )]
 
@@ -508,28 +567,96 @@ transform/pos = Vector2( 120, 1854 )
 rect = Rect2( -10, -10, 20, 20 )
 script/script = SubResource( 3 )
 
+[node name="SamplePlayer" type="SamplePlayer" parent="Sequencing/Msg1"]
+
+config/polyphony = 1
+config/samples = SubResource( 4 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
+
 [node name="Msg2" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 120, 1206 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 4 )
+script/script = SubResource( 5 )
+
+[node name="SamplePlayer" type="SamplePlayer" parent="Sequencing/Msg2"]
+
+config/polyphony = 1
+config/samples = SubResource( 4 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
 
 [node name="Msg5" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 110, 676 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 5 )
+script/script = SubResource( 6 )
+
+[node name="SamplePlayer" type="SamplePlayer" parent="Sequencing/Msg5"]
+
+config/polyphony = 1
+config/samples = SubResource( 4 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
 
 [node name="Msg3" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 140, -134 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 6 )
+script/script = SubResource( 7 )
+
+[node name="SamplePlayer" type="SamplePlayer" parent="Sequencing/Msg3"]
+
+config/polyphony = 1
+config/samples = SubResource( 4 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
 
 [node name="Msg4" type="Node2D" parent="Sequencing"]
 
 transform/pos = Vector2( 120, -604 )
-script/script = SubResource( 7 )
+script/script = SubResource( 8 )
 
 [node name="Timer" type="Timer" parent="Sequencing/Msg4"]
 
@@ -538,19 +665,70 @@ wait_time = 1.0
 one_shot = true
 autostart = false
 
+[node name="SamplePlayer" type="SamplePlayer" parent="Sequencing/Msg4"]
+
+config/polyphony = 1
+config/samples = SubResource( 4 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
+
 [node name="Msg6" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 130, -1034 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 8 )
+script/script = SubResource( 9 )
+
+[node name="SamplePlayer" type="SamplePlayer" parent="Sequencing/Msg6"]
+
+config/polyphony = 1
+config/samples = SubResource( 4 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
 
 [node name="Msg7" type="VisibilityNotifier2D" parent="Sequencing"]
 
 transform/pos = Vector2( 130, -1274 )
 rect = Rect2( -10, -10, 20, 20 )
-script/script = SubResource( 9 )
+script/script = SubResource( 10 )
 
-[node name="ForceField" parent="." instance=ExtResource( 23 )]
+[node name="SamplePlayer" type="SamplePlayer" parent="Sequencing/Msg7"]
+
+config/polyphony = 1
+config/samples = SubResource( 4 )
+default/volume_db = 0.0
+default/pitch_scale = 1.0
+default/pan = 0.0
+default/depth = 0.0
+default/height = 0.0
+default/filter/type = 0
+default/filter/cutoff = 5000.0
+default/filter/resonance = 1.0
+default/filter/gain = 1.0
+default/reverb_room = 2
+default/reverb_send = 0.0
+default/chorus_send = 0.0
+
+[node name="ForceField" parent="." instance=ExtResource( 30 )]
 
 [connection signal="finished" from="EndOfLevelGUI" to="." method="_on_EndOfLevelGUI_finished"]
 
